@@ -1,0 +1,20 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+@import "./app/styles/container.scss";
+@import "./app/styles/fonts-control.scss";
+@import "./app/styles/icon-fonts.css";
+@import "./app/styles/normalize.scss";
+@import "./app/styles/variables.scss";
+
+body {
+  font-family: "Poppins", sans-serif;
+  overflow-x: hidden;
+  color: $gray-200;
+  min-height: 100vh;
+  background: #121829 url(./assets/images/background-min.png) center center/cover no-repeat;
+  @include bodyLarge;
+}
+
+.wrapper {
+  position: relative;
+}

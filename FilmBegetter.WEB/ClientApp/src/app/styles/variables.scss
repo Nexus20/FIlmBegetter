@@ -1,0 +1,62 @@
+//gray
+$gray-700: #323b54;
+$gray-600: #475069;
+$gray-300: #8e95a9;
+$gray-200: #a8aebf;
+$gray-100: #c3c8d4;
+
+//primary
+$primary-600: #483bc3;
+$primary-500: #5a4af4;
+$primary-400: #7b6ef6;
+
+//secondary
+$secondary-600: #1884ca;
+$secondary-500: #1ea5fc;
+$secondary-400: #4bb7fd;
+
+//tertary
+$tertary-600: #9257cc;
+$tertary-500: #b66dff;
+$tertary-400: #c58aff;
+
+//success
+$success-600: #04a574;
+$success-500: #05ce91;
+$success-400: #37d8a7;
+
+//error
+$error-600: #cc4e4e;
+$error-500: #ff6161;
+$error-400: #ff8181;
+
+//warning
+$warning-600: #cc8a3a;
+$warning-500: #ffad49;
+$warning-400: #ffbd6d;
+
+//default colors
+$white: #fff;
+$black: #000;
+//border radius
+$button-radius: 12px;
+
+// fonts mixin
+
+@mixin bodyLarge {
+    font-family: Poppins;
+    font-size: 20px;
+    line-height: 32px;
+}
+
+@mixin bodyRegular {
+    font-family: Poppins;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+@mixin bodySmall {
+    font-family: Poppins;
+    font-size: 14px;
+    line-height: 24px;
+}
