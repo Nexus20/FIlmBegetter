@@ -1,5 +1,11 @@
-﻿namespace FilmBegetter.BLL.Entities; 
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace FilmBegetter.DAL.Entities; 
 
 public abstract class BaseEntity {
-    public Guid Id { get; set; }
+
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public string Id { get; set; }
+
+    public DateTime CreationDate { get; set; }
 }

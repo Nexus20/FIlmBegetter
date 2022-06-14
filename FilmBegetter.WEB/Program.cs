@@ -1,6 +1,11 @@
+using FilmBegetter.DAL;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDataAccessLayer(connectionString);
 
 builder.Services.AddControllersWithViews();
 

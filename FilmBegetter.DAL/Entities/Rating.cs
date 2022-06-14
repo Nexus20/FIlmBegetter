@@ -1,4 +1,4 @@
-namespace FilmBegetter.BLL.Entities;
+namespace FilmBegetter.DAL.Entities;
 
 public class Rating : BaseEntity {
 
@@ -10,5 +10,5 @@ public class Rating : BaseEntity {
 
     public User User { get; set; }
 
-    public int Rating { get; set; }
+    public int RatingValue { get; set; }
 }

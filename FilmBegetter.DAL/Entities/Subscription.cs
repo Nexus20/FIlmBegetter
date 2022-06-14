@@ -1,4 +1,4 @@
-﻿namespace FilmBegetter.BLL.Entities;
+﻿namespace FilmBegetter.DAL.Entities;
 
 public class Subscription : BaseEntity {
     

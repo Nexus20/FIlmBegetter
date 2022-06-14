@@ -1,4 +1,5 @@
 ﻿using FilmBegetter.DAL.Entities;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace FilmBegetter.DAL.EntityExtensions;
@@ -14,12 +15,18 @@ public static class UserEntityExtensions {
             .HasMany(x => x.Comments)
             .WithOne(x => x.Author)
             .HasForeignKey(x => x.AuthorId)
-            .IsRequired(false);
+            .OnDelete(DeleteBehavior.Restrict);
 
         builder
             .HasMany(x => x.UserRoles)
             .WithOne(x => x.User)
             .HasForeignKey(x => x.UserId)
             .IsRequired();
+
+        builder
+            .HasMany(x => x.MovieCollections)
+            .WithOne(x => x.Author)
+            .HasForeignKey(x => x.AuthorId)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }

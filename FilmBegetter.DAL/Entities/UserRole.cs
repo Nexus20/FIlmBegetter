@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 
-namespace FilmBegetter.DAL;
+namespace FilmBegetter.DAL.Entities;
 
 public class UserRole : IdentityUserRole<string> {
 
