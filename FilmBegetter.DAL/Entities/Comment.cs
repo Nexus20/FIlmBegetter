@@ -10,17 +10,17 @@ public class Comment : BaseEntity {
 
     public string AuthorId { get; set; }
 
-    public User Author { get; set; }
+    public virtual User Author { get; set; }
 
     public string MovieId { get; set; }
 
-    public Movie Movie { get; set; }
+    public virtual Movie Movie { get; set; }
 
     public string? ParentCommentId { get; set; }
 
-    public Comment ParentComment { get; set; }
+    public virtual Comment ParentComment { get; set; }
 
-    public ICollection<Comment> Answers { get; set; }
+    public virtual ICollection<Comment> Answers { get; set; }
     
     public CommentType Type { get; set; }
 

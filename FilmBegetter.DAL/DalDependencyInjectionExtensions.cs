@@ -1,4 +1,6 @@
 ﻿using FilmBegetter.DAL.Entities;
+using FilmBegetter.DAL.Interfaces;
+using FilmBegetter.DAL.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -9,7 +11,11 @@ public static class DalDependencyInjectionExtensions {
     
     public static IServiceCollection AddDataAccessLayer(this IServiceCollection services, string connectionString) {
 
-        services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
+        services.AddTransient<IUnitOfWork, UnitOfWork>();
+        
+        services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+
+        services.AddDbContext<ApplicationDbContext>(options => options.UseLazyLoadingProxies().UseSqlServer(connectionString));
         services.AddIdentity<User, IdentityRole>()
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddSignInManager<SignInManager<User>>()

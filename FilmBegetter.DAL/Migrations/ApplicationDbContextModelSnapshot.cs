@@ -88,49 +88,49 @@ namespace FilmBegetter.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "6a115579-969a-40e8-9a05-2263c62a4546",
+                            Id = "2c33dba5-3b44-4f75-8895-64764467fc90",
                             CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Action"
                         },
                         new
                         {
-                            Id = "b5ca2ddb-cd36-4ba8-ae5c-62ebe3edfbd8",
+                            Id = "89843592-a214-4658-97d7-e2dd37b75e74",
                             CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Comedy"
                         },
                         new
                         {
-                            Id = "a1b25d79-b104-479a-a17a-e6b43f83913e",
+                            Id = "a6e658d4-d87a-4cc7-80e2-4d19a063e671",
                             CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Drama"
                         },
                         new
                         {
-                            Id = "2f77fb5f-1085-4f9e-95ea-aa623868a463",
+                            Id = "2853a445-6368-42f3-ae98-6284afe18552",
                             CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Fantasy"
                         },
                         new
                         {
-                            Id = "2dd98ce6-945b-42bb-a297-1a2094d05c6c",
+                            Id = "65713510-be94-439f-ac56-f3b5242a867d",
                             CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Horror"
                         },
                         new
                         {
-                            Id = "824c2012-9f1a-4710-a05f-9906620c94e3",
+                            Id = "2c2f40c0-ed95-4f50-8c7a-30a23076e772",
                             CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Mystery"
                         },
                         new
                         {
-                            Id = "6567f3c0-a44f-4aab-b47d-8ed8510cbcaf",
+                            Id = "efab3ed7-83ea-4382-ab06-6d5b50a3a029",
                             CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Romance"
                         },
                         new
                         {
-                            Id = "5e71ce70-6be3-4bef-8282-9372d376563f",
+                            Id = "bf9db786-18be-420f-916e-ab38557e685a",
                             CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Thriller"
                         });
@@ -246,11 +246,10 @@ namespace FilmBegetter.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("RatingValue")
-                        .HasColumnType("int");
+                    b.Property<double>("RatingValue")
+                        .HasColumnType("float");
 
                     b.Property<string>("UserId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
@@ -580,9 +579,7 @@ namespace FilmBegetter.DAL.Migrations
 
                     b.HasOne("FilmBegetter.DAL.Entities.User", "User")
                         .WithMany("Ratings")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
                     b.Navigation("Movie");
 

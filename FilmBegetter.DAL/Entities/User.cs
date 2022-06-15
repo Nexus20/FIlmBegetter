@@ -4,17 +4,17 @@ namespace FilmBegetter.DAL.Entities;
 
 public class User : IdentityUser {
 
-    public ICollection<MovieCollection> MovieCollections { get; set; }
+    public virtual ICollection<MovieCollection> MovieCollections { get; set; }
 
-    public ICollection<Rating> Ratings { get; set; }
+    public virtual ICollection<Rating> Ratings { get; set; }
 
-    public ICollection<User> Friends { get; set; }
+    public virtual ICollection<User> Friends { get; set; }
 
-    public ICollection<Comment> Comments { get; set; }
+    public virtual ICollection<Comment> Comments { get; set; }
     
-    public ICollection<UserRole> UserRoles { get; set; }
+    public virtual ICollection<UserRole> UserRoles { get; set; }
 
-    public Subscription Subscription { get; set; }
+    public virtual Subscription Subscription { get; set; }
 
     public bool IsBanned { get; set; }
 

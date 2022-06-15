@@ -28,5 +28,10 @@ public static class UserEntityExtensions {
             .WithOne(x => x.Author)
             .HasForeignKey(x => x.AuthorId)
             .OnDelete(DeleteBehavior.Restrict);
+
+        builder.HasMany(u => u.Ratings)
+            .WithOne(r => r.User)
+            .HasForeignKey(r => r.UserId)
+            .IsRequired(false);
     }
 }

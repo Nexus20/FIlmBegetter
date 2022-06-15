@@ -297,8 +297,8 @@ namespace FilmBegetter.DAL.Migrations
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     MovieId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    RatingValue = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    RatingValue = table.Column<double>(type: "float", nullable: false),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETDATE()")
                 },
                 constraints: table =>
@@ -308,8 +308,7 @@ namespace FilmBegetter.DAL.Migrations
                         name: "FK_Ratings_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Ratings_Movies_MovieId",
                         column: x => x.MovieId,
@@ -347,14 +346,14 @@ namespace FilmBegetter.DAL.Migrations
                 columns: new[] { "Id", "Name" },
                 values: new object[,]
                 {
-                    { "2dd98ce6-945b-42bb-a297-1a2094d05c6c", "Horror" },
-                    { "2f77fb5f-1085-4f9e-95ea-aa623868a463", "Fantasy" },
-                    { "5e71ce70-6be3-4bef-8282-9372d376563f", "Thriller" },
-                    { "6567f3c0-a44f-4aab-b47d-8ed8510cbcaf", "Romance" },
-                    { "6a115579-969a-40e8-9a05-2263c62a4546", "Action" },
-                    { "824c2012-9f1a-4710-a05f-9906620c94e3", "Mystery" },
-                    { "a1b25d79-b104-479a-a17a-e6b43f83913e", "Drama" },
-                    { "b5ca2ddb-cd36-4ba8-ae5c-62ebe3edfbd8", "Comedy" }
+                    { "2853a445-6368-42f3-ae98-6284afe18552", "Fantasy" },
+                    { "2c2f40c0-ed95-4f50-8c7a-30a23076e772", "Mystery" },
+                    { "2c33dba5-3b44-4f75-8895-64764467fc90", "Action" },
+                    { "65713510-be94-439f-ac56-f3b5242a867d", "Horror" },
+                    { "89843592-a214-4658-97d7-e2dd37b75e74", "Comedy" },
+                    { "a6e658d4-d87a-4cc7-80e2-4d19a063e671", "Drama" },
+                    { "bf9db786-18be-420f-916e-ab38557e685a", "Thriller" },
+                    { "efab3ed7-83ea-4382-ab06-6d5b50a3a029", "Romance" }
                 });
 
             migrationBuilder.CreateIndex(

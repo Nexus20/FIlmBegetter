@@ -6,7 +6,7 @@ public class MovieCollection : BaseEntity {
 
     public string AuthorId { get; set; }
 
-    public User Author { get; set; }
+    public virtual User Author { get; set; }
 
-    public ICollection<MovieMovieCollection> MovieCollections { get; set; }
+    public virtual ICollection<MovieMovieCollection> MovieCollections { get; set; }
 }
