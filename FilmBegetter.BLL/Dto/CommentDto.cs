@@ -1,22 +1,22 @@
 ﻿using FilmBegetter.Domain;
 
-namespace FilmBegetter.DAL.Entities;
+namespace FilmBegetter.BLL.Dto;
 
-public class Comment : BaseEntity {
+public class CommentDto : BaseDto {
 
     public string AuthorId { get; set; }
 
-    public virtual User Author { get; set; }
+    public UserDto Author { get; set; }
 
     public string MovieId { get; set; }
 
-    public virtual Movie Movie { get; set; }
+    public MovieDto Movie { get; set; }
 
     public string? ParentCommentId { get; set; }
 
-    public virtual Comment ParentComment { get; set; }
+    public CommentDto ParentComment { get; set; }
 
-    public virtual ICollection<Comment> Answers { get; set; }
+    public ICollection<CommentDto> Answers { get; set; }
     
     public CommentType Type { get; set; }
 

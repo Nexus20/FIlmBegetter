@@ -27,7 +27,6 @@
 
     <ItemGroup>
       <ProjectReference Include="..\FilmBegetter.BLL\FilmBegetter.BLL.csproj" />
-      <ProjectReference Include="..\FilmBegetter.DAL\FilmBegetter.DAL.csproj" />
     </ItemGroup>
 
     <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
