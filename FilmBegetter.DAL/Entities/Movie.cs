@@ -12,13 +12,13 @@ public class Movie : BaseEntity {
 
     public DateTime PublicationDate { get; set; }
 
-    public virtual ICollection<MovieGenre> MovieGenres { get; set; }
+    public ICollection<MovieGenre> MovieGenres { get; set; }
 
-    public virtual ICollection<MovieMovieCollection> MovieCollections { get; set; }
+    public ICollection<MovieMovieCollection> MovieCollections { get; set; }
 
-    public virtual ICollection<Rating> Ratings { get; set; }
+    public ICollection<Rating> Ratings { get; set; }
 
-    public virtual ICollection<Comment> Comments { get; set; }
+    public ICollection<Comment> Comments { get; set; }
 
     public string ImagePath { get; set; }
 }

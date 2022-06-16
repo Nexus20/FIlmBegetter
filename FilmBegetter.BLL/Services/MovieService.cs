@@ -48,8 +48,12 @@ class MovieService : IMovieService {
         throw new NotImplementedException();
     }
 
-    public Task<MovieDto> GetMovieByIdAsync(string id) {
-        throw new NotImplementedException();
+    public async Task<MovieDto> GetMovieByIdAsync(string id) {
+
+        var source = await _unitOfWork.GetRepository<IMovieRepository, Movie>()
+            .FirstOrDefaultWithDetailsAsync(x => x.Id == id);
+
+        return _mapper.Map<Movie, MovieDto>(source);
     }
 
     public async Task<List<MovieDto>> GetAllMoviesAsync(MovieFilterModel filterModel) {

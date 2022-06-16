@@ -14,8 +14,11 @@ public static class DalDependencyInjectionExtensions {
         services.AddTransient<IUnitOfWork, UnitOfWork>();
         
         services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+        services.AddScoped<IMovieRepository, MovieRepository>();
 
-        services.AddDbContext<ApplicationDbContext>(options => options.UseLazyLoadingProxies().UseSqlServer(connectionString));
+        services.AddDbContext<ApplicationDbContext>(options => options
+            // .UseLazyLoadingProxies()
+            .UseSqlServer(connectionString));
         services.AddIdentity<User, IdentityRole>()
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddSignInManager<SignInManager<User>>()

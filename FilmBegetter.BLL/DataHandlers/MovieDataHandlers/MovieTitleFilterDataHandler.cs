@@ -2,7 +2,7 @@
 using FilmBegetter.DAL;
 using FilmBegetter.DAL.Entities;
 
-namespace FilmBegetter.BLL.DataHandlers;
+namespace FilmBegetter.BLL.DataHandlers.MovieDataHandlers;
 
 public class MovieTitleFilterDataHandler : DataHandler<Movie, MovieFilterModel> {
 

@@ -1,4 +1,5 @@
 ﻿using FilmBegetter.BLL.DataHandlers;
+using FilmBegetter.BLL.DataHandlers.MovieDataHandlers;
 using FilmBegetter.BLL.FilterModels;
 using FilmBegetter.BLL.Interfaces;
 using FilmBegetter.BLL.Pipelines.Builders;
@@ -16,7 +17,7 @@ public static class BllDependencyInjectionExtensions {
         
         services.AddDataAccessLayer(connectionString);
         
-        services.AddAutoMapper(typeof(AutomapperProfile));
+        services.AddAutoMapper(typeof(AutomapperBllProfile));
 
         services.AddScoped<IMovieService, MovieService>();
         
