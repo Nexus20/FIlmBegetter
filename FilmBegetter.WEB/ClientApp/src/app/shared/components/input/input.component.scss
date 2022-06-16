@@ -1,0 +1,70 @@
+@import "../../../styles/variables.scss";
+
+[class^="icon-"] {
+    position: absolute;
+    color: $gray-600;
+    transition: 0.3s ease;
+}
+
+.input-block {
+    display: inline-block;
+    position: relative;
+}
+
+.field {
+    background-color: rgba($color: $black, $alpha: 0.1);
+    border-radius: $button-radius;
+    outline: none;
+    border: 2px solid $gray-700;
+    @include bodyRegular;
+    padding: 18px 16px;
+    transition: 0.3s ease;
+    color: $gray-600;
+
+    &:not(:disabled):hover {
+        border-color: rgba($color: $primary-400, $alpha: 1);
+    }
+
+    &:not(:disabled):hover + [class^="icon-"],
+    &:not(:disabled):focus + [class^="icon-"] {
+        color: rgba($color: $primary-400, $alpha: 1);
+    }
+
+    &:focus {
+        border-color: rgba($color: $primary-400, $alpha: 1);
+        color: $primary-400;
+    }
+
+    &:disabled {
+        opacity: 0.4;
+    }
+}
+
+.input {
+    & + [class^="icon-"] {
+        top: 50%;
+        transform: translateY(-50%);
+        left: 10px;
+    }
+
+    &-icon {
+        padding: 18px 16px 18px 36px;
+    }
+
+    &-error {
+        position: absolute;
+        color: $error-600;
+        position: absolute;
+        left: 12px;
+        bottom: -32px;
+        font-size: 13px;
+        pointer-events: none;
+    }
+}
+
+.textarea {
+    & + [class^="icon-"] {
+        top: 20px;
+        left: 10px;
+    }
+}
