@@ -19,6 +19,10 @@
                             <a href="#news"> Contacts</a>
                         </li>
                         <li class="header__list-item">
+                          <a class="nav-link" [routerLink]="['/authentication/register']" routerLinkActive="active"
+                             [routerLinkActiveOptions]="{exact: true}">Register</a>
+                        </li>
+                        <li class="header__list-item">
                             <a href="#music"> Sign in</a>
                             <span class="icon-arrow-right"></span>
                         </li>

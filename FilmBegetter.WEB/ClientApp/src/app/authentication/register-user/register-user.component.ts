@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { FormGroup, FormControl, Validators, AbstractControl } from "@angular/forms";
 import { AuthenticationService } from "../../shared/services/authentication.service";
 import { RegistrationViewModel } from "../../shared/models/registrationViewModel.interface";
 import { HttpErrorResponse } from "@angular/common/http";
+import {
+  PasswordConfirmationValidatorService
+} from "../../shared/custom-validators/password-confirmation-validator.service";
 
 
 @Component({
@@ -12,9 +15,11 @@ import { HttpErrorResponse } from "@angular/common/http";
 })
 export class RegisterUserComponent implements OnInit {
 
-    registerForm: FormGroup;
+    public registerForm: FormGroup;
+    public errorMessage: string = '';
+    public showError: boolean = false;
 
-    constructor(private authService: AuthenticationService) {
+    constructor(private authService: AuthenticationService, private passConfValidator: PasswordConfirmationValidatorService) {
         this.registerForm = new FormGroup({}, undefined, undefined);
     }
 
@@ -26,6 +31,10 @@ export class RegisterUserComponent implements OnInit {
             password: new FormControl('', [Validators.required]),
             confirm: new FormControl('')
         });
+        this.registerForm.get('confirm')?.setValidators([
+          Validators.required,
+          this.passConfValidator.validateConfirmPassword(<AbstractControl>this.registerForm.get('password'))
+        ]);
     }
 
     public validateControl = (controlName: string) => {
@@ -37,6 +46,8 @@ export class RegisterUserComponent implements OnInit {
     }
 
     public registerUser = (registerFormValue: any) => {
+
+        this.showError = false;
 
         const formValues = { ...registerFormValue };
 
@@ -51,7 +62,10 @@ export class RegisterUserComponent implements OnInit {
         this.authService.registerUser("api/accounts/registration", user)
             .subscribe({
                 next: (_) => console.log("Successful registration"),
-                error: (err: HttpErrorResponse) => console.log(err.error.errors)
+                error: (err: HttpErrorResponse) => {
+                    this.errorMessage = err.message;
+                    this.showError = true;
+                }
             })
     }
 }
