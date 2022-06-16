@@ -9,6 +9,10 @@ const routes: Routes = [
     {
         path: 'test',
         loadChildren: () => import('./shared/components/test-ui/test.module').then(m => m.TestModule)
+    },
+    {
+        path: 'authentication',
+        loadChildren: () => import('./authentication/authentication.module').then(m => m.AuthenticationModule)
     }
 ];
 
