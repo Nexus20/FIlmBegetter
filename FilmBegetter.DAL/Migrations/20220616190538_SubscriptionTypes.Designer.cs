@@ -4,6 +4,7 @@ using FilmBegetter.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FilmBegetter.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220616190538_SubscriptionTypes")]
+    partial class SubscriptionTypes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -88,49 +90,49 @@ namespace FilmBegetter.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "b5b275d5-429c-46d9-a0b4-69ae4c6dbf62",
+                            Id = "ff16d4be-29ff-46e8-a62d-a2ae818ca495",
                             CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Action"
                         },
                         new
                         {
-                            Id = "0ae34292-d164-4557-a3d5-69d51c7710e7",
+                            Id = "d14bb929-6046-4b39-ac3e-3d002c1033eb",
                             CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Comedy"
                         },
                         new
                         {
-                            Id = "7e452c05-641c-4b2d-afc7-f360178ee0a8",
+                            Id = "8ae23b2a-fba4-4e7d-983f-79f78e2b70d7",
                             CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Drama"
                         },
                         new
                         {
-                            Id = "9def0dde-1184-42f0-8a8b-5cb53ab0daa6",
+                            Id = "8746e8bb-ed0c-4283-9f88-f87602e653f6",
                             CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Fantasy"
                         },
                         new
                         {
-                            Id = "8f0e80e4-2d14-46d0-a701-527d0270d078",
+                            Id = "431e78bb-74ee-4169-a976-97f06ead6713",
                             CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Horror"
                         },
                         new
                         {
-                            Id = "321792ea-1ac7-4a3a-a967-14ceb03bef43",
+                            Id = "0ecedeed-812c-45f3-9d19-fac89820c203",
                             CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Mystery"
                         },
                         new
                         {
-                            Id = "6e71f28d-eccd-42b4-8888-6c8cfbe18921",
+                            Id = "b7383317-5ee5-4b7c-9958-eb10ca87e9b5",
                             CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Romance"
                         },
                         new
                         {
-                            Id = "c79ca0be-e642-4085-81d8-fcd2f4d637f4",
+                            Id = "103fcd2a-bed4-4f40-9f87-31d07cc43539",
                             CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Thriller"
                         });
@@ -313,13 +315,13 @@ namespace FilmBegetter.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "5df936bd-e181-4b11-9963-5871faff3801",
+                            Id = "54a9f55f-8576-4127-a455-933a898aa99c",
                             CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Type = "Basic"
                         },
                         new
                         {
-                            Id = "28e9b37d-a3a2-4d7f-a7f7-b84e1fcd60f6",
+                            Id = "036c3174-6f33-4515-bc6a-4becef8a5ee9",
                             CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Type = "Premium"
                         });

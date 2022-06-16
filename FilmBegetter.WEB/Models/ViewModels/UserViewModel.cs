@@ -25,4 +25,6 @@ public class UserViewModel {
     public List<RoleViewModel> Roles { get; set; }
 
     public SubscriptionViewModel Subscription { get; set; }
+    
+    public string SubscriptionId { get; set; }
 }

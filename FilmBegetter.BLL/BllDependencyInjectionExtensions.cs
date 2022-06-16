@@ -19,6 +19,8 @@ public static class BllDependencyInjectionExtensions {
         
         services.AddAutoMapper(typeof(AutomapperBllProfile));
 
+        services.AddScoped<IUserService, UserService>();
+        
         services.AddScoped<IMovieService, MovieService>();
         
         services.AddScoped(typeof(IPipelineBuilder<,>), typeof(SelectionPipelineBuilder<,>));

@@ -15,6 +15,8 @@ public class User : IdentityUser {
     public virtual ICollection<UserRole> UserRoles { get; set; }
 
     public virtual Subscription Subscription { get; set; }
+    
+    public string SubscriptionId { get; set; }
 
     public bool IsBanned { get; set; }
 

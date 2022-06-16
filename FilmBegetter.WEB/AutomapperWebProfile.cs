@@ -27,5 +27,12 @@ public class AutomapperWebProfile : Profile {
 
         CreateMap<CommentDto, CommentViewModel>()
             .ReverseMap();
+
+        CreateMap<UserDto, RegistrationViewModel>()
+            .ReverseMap()
+            .ForMember(d => d.UserName, o => o.MapFrom(s => s.Email));
+
+        CreateMap<RegistrationResponseDto, RegistrationResponseViewModel>()
+            .ReverseMap();
     }
 }

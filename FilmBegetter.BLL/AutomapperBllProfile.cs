@@ -19,5 +19,8 @@ public class AutomapperBllProfile : Profile {
 
         CreateMap<Rating, RatingDto>()
             .ReverseMap();
+
+        CreateMap<User, UserDto>()
+            .ReverseMap();
     }
 }

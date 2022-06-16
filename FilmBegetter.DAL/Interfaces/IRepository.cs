@@ -13,6 +13,8 @@ public interface IRepository<TEntity> where TEntity : class {
     void Update(TEntity entity);
 
     Task<List<TEntity>> FindAsync(Expression<Func<TEntity, bool>> filter);
+
+    Task<TEntity> FirstOrDefaultAsync(Expression<Func<TEntity, bool>> filter); 
     
     Task<TEntity> FirstOrDefaultWithDetailsAsync(Expression<Func<TEntity, bool>> filter);
 
