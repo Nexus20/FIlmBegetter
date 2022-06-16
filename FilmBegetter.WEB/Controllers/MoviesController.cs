@@ -4,7 +4,9 @@ using FilmBegetter.BLL.FilterModels;
 using FilmBegetter.BLL.Interfaces;
 using FilmBegetter.WEB.Models.FilterModels;
 using FilmBegetter.WEB.Models.ViewModels;
+using FilmBegetter.WEB.Util;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
 
 namespace FilmBegetter.WEB.Controllers; 
 
@@ -15,11 +17,14 @@ public class MoviesController : ControllerBase {
     private readonly IMovieService _movieService;
 
     private readonly IMapper _mapper;
+
+    private readonly RequestResponseService _requestResponseService;
     
     // GET: api/Movies
-    public MoviesController(IMovieService movieService, IMapper mapper) {
+    public MoviesController(IMovieService movieService, IMapper mapper, RequestResponseService requestResponseService) {
         _movieService = movieService;
         _mapper = mapper;
+        _requestResponseService = requestResponseService;
     }
 
     [HttpGet]
@@ -58,5 +63,31 @@ public class MoviesController : ControllerBase {
     [HttpDelete("{id}")]
     public void Delete(int id)
     {
+    }
+
+    [HttpGet]
+    [Route("recommend")]
+    public async Task<List<MovieViewModel>> Get() {
+
+        var response = await _requestResponseService.Invoke();
+
+        var obj = JObject.Parse(response);
+
+        var suggestedMoviesIds = obj["Results"]["output1"]["value"]["Values"][0]
+            .Select(i => i.Value<string>());
+
+        var model = new List<MovieViewModel>();
+        
+        foreach (var id in suggestedMoviesIds) {
+            
+            if (id == null) {
+                continue;
+            }
+            
+            var movie = await _movieService.GetMovieByIdAsync(id);
+            model.Add(_mapper.Map<MovieDto, MovieViewModel>(movie));
+        }
+
+        return model;
     }
 }
