@@ -1,8 +1,14 @@
+using System.Text.Json.Serialization;
+using FilmBegetter.WEB;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllersWithViews();
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddWebLayer(connectionString);
+
+builder.Services.AddControllersWithViews().AddJsonOptions(o => o.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
 
 var app = builder.Build();
 
