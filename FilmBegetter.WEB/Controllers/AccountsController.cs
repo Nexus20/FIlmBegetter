@@ -14,9 +14,12 @@ public class AccountsController : ControllerBase {
 
     private readonly IUserService _userService;
 
-    public AccountsController(IMapper mapper, IUserService userService) {
+    private readonly ISignInService _signInService;
+
+    public AccountsController(IMapper mapper, IUserService userService, ISignInService signInService) {
         _mapper = mapper;
         _userService = userService;
+        _signInService = signInService;
     }
     
     [HttpPost("Registration")] 
@@ -30,5 +33,21 @@ public class AccountsController : ControllerBase {
         var result = await _userService.CreateUserAccountAsync(dto);
 
         return result.IsSuccessfulRegistration ? StatusCode(201) : BadRequest(result);
+    }
+    
+    [HttpPost("Login")]
+    public async Task<IActionResult> Login([FromBody] AuthenticationViewModel userForAuthentication) {
+
+        if (!ModelState.IsValid) {
+            return BadRequest();
+        }
+
+        var authenticationDto = _mapper.Map<AuthenticationViewModel, AuthenticationDto>(userForAuthentication);
+        
+        var responseDto = await _signInService.SignInAsync(authenticationDto);
+
+        var responseViewModel = _mapper.Map<AuthenticationResponseDto, AuthenticationResponseViewModel>(responseDto);
+
+        return responseViewModel.IsAuthSuccessful ? Ok(responseViewModel) : Unauthorized(responseViewModel);
     }
 }

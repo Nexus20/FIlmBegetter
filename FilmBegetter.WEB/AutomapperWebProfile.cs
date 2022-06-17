@@ -34,5 +34,11 @@ public class AutomapperWebProfile : Profile {
 
         CreateMap<RegistrationResponseDto, RegistrationResponseViewModel>()
             .ReverseMap();
+
+        CreateMap<AuthenticationDto, AuthenticationViewModel>()
+            .ReverseMap();
+        
+        CreateMap<AuthenticationResponseDto, AuthenticationResponseViewModel>()
+            .ReverseMap();
     }
 }

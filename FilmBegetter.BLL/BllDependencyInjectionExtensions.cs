@@ -5,6 +5,7 @@ using FilmBegetter.BLL.Interfaces;
 using FilmBegetter.BLL.Pipelines.Builders;
 using FilmBegetter.BLL.Pipelines.Directors;
 using FilmBegetter.BLL.Services;
+using FilmBegetter.BLL.Utils;
 using FilmBegetter.DAL;
 using FilmBegetter.DAL.Entities;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,7 +20,11 @@ public static class BllDependencyInjectionExtensions {
         
         services.AddAutoMapper(typeof(AutomapperBllProfile));
 
+        services.AddScoped<JwtHandler>();
+        
         services.AddScoped<IUserService, UserService>();
+        
+        services.AddScoped<ISignInService, SignInService>();
         
         services.AddScoped<IMovieService, MovieService>();
         
