@@ -13,7 +13,11 @@ export class HeaderComponent implements OnInit {
 
     burgerIsOpen: boolean = false;
 
-    constructor(private authService: AuthenticationService, private router: Router) { }
+    constructor(private authService: AuthenticationService, private router: Router) {
+        this.authService.authChanged.subscribe(res => {
+            this.isUserAuthenticated = res;
+          });
+    }
 
     ngOnInit(): void {
         this.authService.authChanged
