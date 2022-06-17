@@ -43,6 +43,20 @@ export class AuthenticationService {
       return token != null && token != '' && !this.jwtHelper.isTokenExpired(token!);
     }
 
+    public isUserAdmin = (): boolean => {
+        const token = localStorage.getItem("token");
+        const decodedToken = this.jwtHelper.decodeToken(token!);
+        const role = decodedToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/role']
+        return role === 'Admin';
+    }
+
+    public isUserModerator = (): boolean => {
+      const token = localStorage.getItem("token");
+      const decodedToken = this.jwtHelper.decodeToken(token!);
+      const role = decodedToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/role']
+      return role === 'Moderator';
+    }
+
     private createCompleteRoute = (route: string, envAddress: string) => {
         return `${envAddress}/${route}`;
     }

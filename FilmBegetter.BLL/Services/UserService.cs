@@ -34,6 +34,8 @@ class UserService : IUserService {
         var result = await _userManager.CreateAsync(user, userDto.Password);
 
         if (result.Succeeded) {
+
+            await _userManager.AddToRoleAsync(user, UserRoles.User);
             
             return new RegistrationResponseDto() {
                 IsSuccessfulRegistration = true

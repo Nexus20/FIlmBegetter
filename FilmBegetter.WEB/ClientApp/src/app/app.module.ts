@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorHandlerService } from "./shared/services/error-handler.service";
+import { ForbiddenComponent } from './forbidden/forbidden.component';
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -14,7 +15,8 @@ export function tokenGetter() {
 
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
+        ForbiddenComponent
     ],
     imports: [
         BrowserModule,

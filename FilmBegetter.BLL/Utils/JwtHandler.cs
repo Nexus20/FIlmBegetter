@@ -1,6 +1,7 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using FilmBegetter.DAL.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -10,8 +11,11 @@ namespace FilmBegetter.BLL.Utils;
 public class JwtHandler {
     
     private readonly IConfigurationSection _jwtSettings;
+    
+    private readonly UserManager<User> _userManager;
 
-    public JwtHandler(IConfiguration configuration) {
+    public JwtHandler(IConfiguration configuration, UserManager<User> userManager) {
+        _userManager = userManager;
         _jwtSettings = configuration.GetSection("JwtSettings");
     }
     
@@ -22,11 +26,18 @@ public class JwtHandler {
         return new SigningCredentials(secret, SecurityAlgorithms.HmacSha256);
     }
     
-    public List<Claim> GetClaims(IdentityUser user) {
+    public async Task<List<Claim>> GetClaimsAsync(User user) {
         
         var claims = new List<Claim> {
             new Claim(ClaimTypes.Name, user.Email)
         };
+        
+        var roles = await _userManager.GetRolesAsync(user);
+        
+        foreach (var role in roles) {
+            claims.Add(new Claim(ClaimTypes.Role, role));
+        }
+        
         return claims;
     }
     

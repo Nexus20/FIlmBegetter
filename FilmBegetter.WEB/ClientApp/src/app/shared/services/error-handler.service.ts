@@ -30,6 +30,9 @@ export class ErrorHandlerService implements HttpInterceptor {
         if(error.status === 401) {
           return this.handleUnauthorized(error);
         }
+        if(error.status === 403) {
+          return this.handleForbidden(error);
+        }
         return "";
     }
 
@@ -62,5 +65,10 @@ export class ErrorHandlerService implements HttpInterceptor {
         }
         this.router.navigate(['/authentication/login']);
         return error.message;
+    }
+
+    private handleForbidden = (error: HttpErrorResponse) => {
+        this.router.navigate(["/forbidden"], { queryParams: { returnUrl: this.router.url }});
+        return "Forbidden";
     }
 }

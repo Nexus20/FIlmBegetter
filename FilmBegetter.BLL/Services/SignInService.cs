@@ -30,7 +30,7 @@ public class SignInService : ISignInService {
         }
 
         var signingCredentials = _jwtHandler.GetSigningCredentials();
-        var claims = _jwtHandler.GetClaims(user);
+        var claims = await _jwtHandler.GetClaimsAsync(user);
         var tokenOptions = _jwtHandler.GenerateTokenOptions(signingCredentials, claims);
         var token = new JwtSecurityTokenHandler().WriteToken(tokenOptions);
         
