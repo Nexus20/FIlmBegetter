@@ -25,4 +25,6 @@ public class UserDto {
     public List<RoleDto> Roles { get; set; }
 
     public SubscriptionDto Subscription { get; set; }
+    
+    public string SubscriptionId { get; set; }
 }

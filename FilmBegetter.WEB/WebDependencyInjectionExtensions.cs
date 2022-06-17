@@ -12,7 +12,7 @@ public static class WebDependencyInjectionExtensions {
         
         services.AddAutoMapper(typeof(AutomapperWebProfile));
 
-        services.AddSingleton<RequestResponseService>();
+        services.AddScoped<RequestResponseService>();
         
         return services;
     }
