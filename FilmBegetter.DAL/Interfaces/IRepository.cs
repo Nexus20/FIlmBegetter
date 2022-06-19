@@ -14,6 +14,8 @@ public interface IRepository<TEntity> where TEntity : class {
 
     Task<List<TEntity>> FindAsync(Expression<Func<TEntity, bool>> filter);
 
+    TEntity FirstOrDefault(Expression<Func<TEntity, bool>> filter);
+    
     Task<TEntity> FirstOrDefaultAsync(Expression<Func<TEntity, bool>> filter); 
     
     Task<TEntity> FirstOrDefaultWithDetailsAsync(Expression<Func<TEntity, bool>> filter);

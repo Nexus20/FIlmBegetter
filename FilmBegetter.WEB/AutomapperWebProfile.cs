@@ -12,6 +12,8 @@ public class AutomapperWebProfile : Profile {
 
         CreateMap<MovieFilterViewModel, MovieFilterModel>()
             .ReverseMap();
+        CreateMap<UserFilterViewModel, UserFilterModel>()
+            .ReverseMap();
 
         CreateMap<MovieDto, MovieViewModel>()
             .ReverseMap();
@@ -37,6 +39,12 @@ public class AutomapperWebProfile : Profile {
         CreateMap<UserDto, RegistrationViewModel>()
             .ReverseMap()
             .ForMember(d => d.UserName, o => o.MapFrom(s => s.Email));
+
+        CreateMap<UserDto, UserViewModel>()
+            .ReverseMap();
+
+        CreateMap<SubscriptionDto, SubscriptionViewModel>()
+            .ReverseMap();
 
         CreateMap<RegistrationResponseDto, RegistrationResponseViewModel>()
             .ReverseMap();

@@ -34,7 +34,10 @@ builder.Services.AddControllersWithViews().AddJsonOptions(o => o.JsonSerializerO
 
 var app = builder.Build();
 
-app.Services.GetRequiredService<IdentityInitializer>().Initialize();
+using (var scopedServices = app.Services.CreateScope()) {
+    var serviceProvider = scopedServices.ServiceProvider;
+    serviceProvider.GetRequiredService<IdentityInitializer>().Initialize();
+}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment()) {

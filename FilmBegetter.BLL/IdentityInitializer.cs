@@ -1,4 +1,6 @@
-﻿using FilmBegetter.DAL.Entities;
+﻿using FilmBegetter.BLL.Dto;
+using FilmBegetter.DAL.Entities;
+using FilmBegetter.DAL.Interfaces;
 using FilmBegetter.Domain;
 using Microsoft.AspNetCore.Identity;
 
@@ -10,19 +12,22 @@ public class IdentityInitializer {
 
     private readonly RoleManager<Role> _roleManager;
 
-    public IdentityInitializer(UserManager<User> userManager, RoleManager<Role> roleManager) {
+    private readonly IUnitOfWork _unitOfWork;
+
+    public IdentityInitializer(UserManager<User> userManager, RoleManager<Role> roleManager, IUnitOfWork unitOfWork) {
         _userManager = userManager;
         _roleManager = roleManager;
+        _unitOfWork = unitOfWork;
     }
 
     public void Initialize() {
         
-        var superAdmin = _userManager.Users.FirstOrDefault(u => u.UserName == "root") ?? RegisterSuperAdmin();
-        var superAdminRole = RegisterAdminRole();
+        var admin = _userManager.Users.FirstOrDefault(u => u.UserName == "root") ?? RegisterSuperAdmin();
+        var adminRole = RegisterAdminRole();
 
         if (_userManager.Users.FirstOrDefault(u =>
-                u.Id == superAdmin.Id && u.UserRoles.Select(ur => ur.Role.Name).Contains(superAdminRole.Name)) == null) {
-            _userManager.AddToRoleAsync(superAdmin, superAdminRole.Name).Wait();
+                u.Id == admin.Id && u.UserRoles.Select(ur => ur.Role.Name).Contains(adminRole.Name)) == null) {
+            _userManager.AddToRoleAsync(admin, adminRole.Name).Wait();
         }
     }
 
@@ -42,8 +47,12 @@ public class IdentityInitializer {
 
     private User RegisterSuperAdmin() {
 
+        var subscription = _unitOfWork.GetRepository<IRepository<Subscription>, Subscription>()
+            .FirstOrDefault(s => s.Type == SubscriptionTypes.Basic);
+        
         var superAdmin = new User() {
             UserName = "root",
+            SubscriptionId = subscription.Id
         };
 
         _userManager.CreateAsync(superAdmin, "_ABCabc123_").Wait();
