@@ -5,7 +5,7 @@ import { RegistrationResponseViewModel } from "../models/registrationResponseVie
 import { EnvironmentUrlService } from './environment-url.service';
 import { AuthenticationViewModel } from "../models/authenticationViewModel.interface";
 import { AuthenticationResponseViewModel } from "../models/authenticationResponseViewModel.interface";
-import { Subject } from "rxjs";
+import {BehaviorSubject, Subject} from "rxjs";
 import {JwtHelperService} from "@auth0/angular-jwt";
 
 @Injectable({
@@ -13,7 +13,7 @@ import {JwtHelperService} from "@auth0/angular-jwt";
 })
 export class AuthenticationService {
 
-    private authChangeSub = new Subject<boolean>()
+    private authChangeSub = new BehaviorSubject<boolean>(false)
 
     public authChanged = this.authChangeSub.asObservable();
 

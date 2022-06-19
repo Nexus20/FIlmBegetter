@@ -1,3 +1,4 @@
+import { CardModule } from './../card/card.module';
 import { SharedModule } from './../../shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -11,12 +12,13 @@ import { InputComponent } from '../input/input.component';
 @NgModule({
     declarations: [
         TestComponent,
-        InputComponent
+
     ],
     imports: [
         CommonModule,
         TestRoutingModule,
-        SharedModule
+        SharedModule,
+        CardModule
     ],
     exports: [
         TestComponent

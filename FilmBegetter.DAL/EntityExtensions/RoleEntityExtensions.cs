@@ -15,9 +15,9 @@ public static class RoleEntityExtensions {
             .IsRequired();
 
         builder.HasData(
-            new Role { Name = UserRoles.User },
-            new Role { Name = UserRoles.Moderator },
-            new Role { Name = UserRoles.Admin }
+            new Role { Name = UserRoles.User, NormalizedName = UserRoles.User.ToUpper() },
+            new Role { Name = UserRoles.Moderator, NormalizedName = UserRoles.Moderator.ToUpper() },
+            new Role { Name = UserRoles.Admin , NormalizedName = UserRoles.Admin.ToUpper() }
         );
     }
 }

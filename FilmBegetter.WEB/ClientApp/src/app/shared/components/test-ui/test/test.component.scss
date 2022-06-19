@@ -16,10 +16,12 @@
     }
 }
 
-app-input {
+app-input,
+app-card {
     display: block;
 }
 
-app-input + app-input {
+app-input + app-input,
+app-card + app-card {
     margin-top: 20px;
 }
