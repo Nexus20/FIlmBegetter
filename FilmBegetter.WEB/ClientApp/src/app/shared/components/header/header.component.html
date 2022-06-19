@@ -1,0 +1,97 @@
+<header class="header">
+    <div class="container">
+        <div class="header__inner">
+            <div class="header__logo">
+                <img
+                    src="../../../../assets/images/logo.png"
+                    width="60"
+                    height="60"
+                    alt="logo"
+                />
+            </div>
+            <div class="header__menu">
+                <nav class="header__menu-nav">
+                    <ul class="header__list">
+                        <li class="header__list-item">
+                            <a href="#about"> Catalog</a>
+                        </li>
+                        <li class="header__list-item">
+                            <a href="#news"> Contacts</a>
+                        </li>
+                        <ng-container *ngIf="isUserAuthenticated == true;">
+                            <li class="header__list-item">
+                                <button class="btn btn-link" style="color: #ffffff80;" (click)="logout()">Logout</button>
+                            </li>
+                        </ng-container>
+                        <ng-container *ngIf="isUserAuthenticated == false;">
+                            <li class="header__list-item">
+                                <a [routerLink]="['/authentication/register']" routerLinkActive="active"
+                                   [routerLinkActiveOptions]="{exact: true}">Register</a>
+                            </li>
+                            <li class="header__list-item">
+                                <a [routerLink]="['/authentication/login']" routerLinkActive="active"
+                                   [routerLinkActiveOptions]="{exact: true}">Sign in</a>
+                                <span class="icon-arrow-right"></span>
+                            </li>
+                        </ng-container>
+<!--                        <ng-template #userIsNotAuthenticatedTemplateA>-->
+<!--                            <li class="header__list-item">-->
+<!--                                <a [routerLink]="['/authentication/register']" routerLinkActive="active"-->
+<!--                                   [routerLinkActiveOptions]="{exact: true}">Register</a>-->
+<!--                            </li>-->
+<!--                            <li class="header__list-item">-->
+<!--                                <a [routerLink]="['/authentication/login']" routerLinkActive="active"-->
+<!--                                   [routerLinkActiveOptions]="{exact: true}">Sign in</a>-->
+<!--                                <span class="icon-arrow-right"></span>-->
+<!--                            </li>-->
+<!--                        </ng-template>-->
+<!--&lt;!&ndash;                        <li *[ngIf]="!isUserAuthenticated" class="header__list-item">&ndash;&gt;-->
+<!--                        <li class="header__list-item">-->
+<!--                            <a [routerLink]="['/authentication/register']" routerLinkActive="active"-->
+<!--                              [routerLinkActiveOptions]="{exact: true}">Register</a>-->
+<!--                        </li>-->
+<!--&lt;!&ndash;                        <li *[ngIf]="!isUserAuthenticated" class="header__list-item">&ndash;&gt;-->
+<!--                        <li class="header__list-item">-->
+<!--                            <a [routerLink]="['/authentication/login']" routerLinkActive="active"-->
+<!--                               [routerLinkActiveOptions]="{exact: true}">Sign in</a>-->
+<!--                                <span class="icon-arrow-right"></span>-->
+<!--                        </li>-->
+
+<!--                        <li *[ngIf]="isUserAuthenticated" class="header__list-item">-->
+<!--                        <li class="header__list-item">-->
+<!--                            <button class="btn btn-link" style="color: #ffffff80;" (click)="logout()">Logout</button>-->
+<!--                        </li>-->
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="header__menu-mob-block" [class.active]="burgerIsOpen">
+                <div class="header__menu-mob__inner">
+                    <span
+                        class="header__menu-close"
+                        (click)="burgerIsOpen = false"
+                        [class.active]="burgerIsOpen"
+                        >+</span
+                    >
+                </div>
+                <nav class="header__menu-burg">
+                    <ul class="header__menu-items-burg">
+                        <li class="header__menu-item-burg">
+                            <a class="btn" href="#about"> Catalog</a>
+                        </li>
+                        <li class="header__menu-item-burg">
+                            <a class="btn" href="#news"> Contacts</a>
+                        </li>
+                        <li class="header__menu-item-burg">
+                            <a class="btn" href="#music"> Sign in</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="header__burger" (click)="burgerIsOpen = true">
+                <span class="burger-item"></span>
+            </div>
+        </div>
+    </div>
+</header>

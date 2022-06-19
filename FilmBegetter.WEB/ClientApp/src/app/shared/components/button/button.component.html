@@ -1,0 +1,44 @@
+<ng-container *ngIf="buttonConfig">
+    <button
+        *ngIf="!buttonConfig.href"
+        class="button"
+        [ngClass]="{
+            defaultType: buttonConfig.type === 'default',
+            success: buttonConfig.type === 'success',
+            danger: buttonConfig.type === 'danger',
+            defaultSize: buttonConfig.size === 'default',
+            small: buttonConfig.size === 'small',
+            unHover: buttonConfig.unactive,
+            disabled: buttonConfig.disabled,
+            iconActive: buttonConfig.icon
+        }"
+    >
+        <span
+            *ngIf="buttonConfig.icon"
+            [ngClass]="'icon-' + buttonConfig.icon"
+        ></span>
+        <span> {{ buttonConfig.text }}</span>
+    </button>
+
+    <a
+        *ngIf="buttonConfig.href"
+        [routerLink]="buttonConfig.href"
+        class="button link"
+        [ngClass]="{
+            defaultType: buttonConfig.type === 'default',
+            success: buttonConfig.type === 'success',
+            danger: buttonConfig.type === 'danger',
+            defaultSize: buttonConfig.size === 'default',
+            small: buttonConfig.size === 'small',
+            disabled: buttonConfig.disabled,
+            unHover: buttonConfig.unactive,
+            iconActive: buttonConfig.icon
+        }"
+    >
+        <span
+            *ngIf="buttonConfig.icon"
+            [ngClass]="'icon-' + buttonConfig.icon"
+        ></span>
+        <span> {{ buttonConfig.text }}</span>
+    </a>
+</ng-container>
