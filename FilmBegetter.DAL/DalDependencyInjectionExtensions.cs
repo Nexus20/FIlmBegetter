@@ -19,10 +19,10 @@ public static class DalDependencyInjectionExtensions {
         services.AddDbContext<ApplicationDbContext>(options => options
             // .UseLazyLoadingProxies()
             .UseSqlServer(connectionString));
-        services.AddIdentity<User, IdentityRole>()
+        services.AddIdentity<User, Role>()
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddSignInManager<SignInManager<User>>()
-            .AddRoleManager<RoleManager<IdentityRole>>();
+            .AddRoleManager<RoleManager<Role>>();
 
         return services;
     }

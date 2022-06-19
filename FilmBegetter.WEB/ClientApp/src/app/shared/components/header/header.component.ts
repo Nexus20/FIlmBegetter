@@ -9,20 +9,22 @@ import {Router} from "@angular/router";
 })
 export class HeaderComponent implements OnInit {
 
-    public isUserAuthenticated: boolean | undefined;
+    public isUserAuthenticated!: boolean;
 
     burgerIsOpen: boolean = false;
 
     constructor(private authService: AuthenticationService, private router: Router) {
-        this.authService.authChanged.subscribe(res => {
-            this.isUserAuthenticated = res;
-          });
+        // this.authService.authChanged.subscribe(res => {
+        //     console.log(res);
+        //     this.isUserAuthenticated = res;
+        //   });
     }
 
     ngOnInit(): void {
         this.authService.authChanged
             .subscribe(res => {
-              this.isUserAuthenticated = res;
+                console.log("Init", res);
+                this.isUserAuthenticated = res;
             });
     }
 
