@@ -22,5 +22,5 @@ public class MovieViewModel : BaseViewModel {
 
     public string ImagePath { get; set; }
 
-    public double CommonRating => Math.Round(Ratings.Average(r => r.RatingValue), 2);
+    public double CommonRating => Ratings.Any() ? Math.Round(Ratings.Average(r => r.RatingValue), 2) : 0;
 }

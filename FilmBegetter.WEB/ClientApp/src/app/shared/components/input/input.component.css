@@ -1,0 +1,64 @@
+[class^=icon-] {
+  position: absolute;
+  color: #475069;
+  transition: 0.3s ease;
+}
+
+.input-block {
+  display: inline-block;
+  position: relative;
+}
+
+.field {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  outline: none;
+  border: 2px solid #323b54;
+  font-family: Poppins;
+  font-size: 16px;
+  line-height: 24px;
+  padding: 18px 16px;
+  transition: 0.3s ease;
+  color: #475069;
+}
+.field:not(:disabled):hover {
+  border-color: #7b6ef6;
+}
+.field:not(:disabled):hover + [class^=icon-], .field:not(:disabled):focus + [class^=icon-] {
+  color: #7b6ef6;
+}
+.field:focus {
+  border-color: #7b6ef6;
+  color: #7b6ef6;
+}
+.field:disabled {
+  opacity: 0.4;
+}
+
+.input {
+  max-width: 280px;
+}
+.input + [class^=icon-] {
+  top: 50%;
+  transform: translateY(-50%);
+  left: 10px;
+}
+.input-icon {
+  padding: 18px 16px 18px 42px;
+}
+.input-error {
+  position: absolute;
+  color: #cc4e4e;
+  position: absolute;
+  left: 12px;
+  bottom: -32px;
+  font-size: 13px;
+  pointer-events: none;
+}
+
+.textarea + [class^=icon-] {
+  top: 20px;
+  left: 10px;
+}
+
+/*# sourceMappingURL=input.component.css.map */

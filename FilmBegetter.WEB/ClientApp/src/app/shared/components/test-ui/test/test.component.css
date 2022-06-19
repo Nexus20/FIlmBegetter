@@ -1,0 +1,26 @@
+.wrapper {
+  padding: 40px;
+}
+.wrapper section:first-child {
+  padding-bottom: 50px;
+}
+.wrapper section:not(:first-child) {
+  padding: 50px 0;
+}
+.wrapper .section-title {
+  pointer-events: none;
+  margin-bottom: 20px;
+  color: #4bb7fd;
+}
+
+app-input,
+app-card {
+  display: block;
+}
+
+app-input + app-input,
+app-card + app-card {
+  margin-top: 20px;
+}
+
+/*# sourceMappingURL=test.component.css.map */
