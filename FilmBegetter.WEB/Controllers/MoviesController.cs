@@ -2,10 +2,13 @@ using AutoMapper;
 using FilmBegetter.BLL.Dto;
 using FilmBegetter.BLL.FilterModels;
 using FilmBegetter.BLL.Interfaces;
+using FilmBegetter.Domain;
 using FilmBegetter.WEB.Models.FilterModels;
 using FilmBegetter.WEB.Models.ViewModels;
 using FilmBegetter.WEB.Util;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Newtonsoft.Json.Linq;
 
 namespace FilmBegetter.WEB.Controllers; 
@@ -20,11 +23,14 @@ public class MoviesController : ControllerBase {
 
     private readonly RequestResponseService _requestResponseService;
     
+    private readonly IWebHostEnvironment _appEnvironment;
+    
     // GET: api/Movies
-    public MoviesController(IMovieService movieService, IMapper mapper, RequestResponseService requestResponseService) {
+    public MoviesController(IMovieService movieService, IMapper mapper, RequestResponseService requestResponseService, IWebHostEnvironment appEnvironment) {
         _movieService = movieService;
         _mapper = mapper;
         _requestResponseService = requestResponseService;
+        _appEnvironment = appEnvironment;
     }
 
     [HttpGet]
@@ -55,8 +61,38 @@ public class MoviesController : ControllerBase {
 
     // PUT: api/Movies/5
     [HttpPut("{id}")]
-    public void Put(int id, [FromBody] string value)
-    {
+    // [Authorize(Roles = UserRoles.Admin)]
+    public async Task<IActionResult> Put(string id, [FromBody] MovieToUpdateViewModel model) {
+        
+        if (!ModelState.IsValid) {
+            return BadRequest();
+        }
+        
+        var dto = _mapper.Map<MovieToUpdateViewModel, MovieDto>(model);
+
+        try {
+            
+            var directoryPath = Path.Combine(_appEnvironment.WebRootPath, "img", "cars");
+            
+            if (!Directory.Exists(directoryPath)) {
+                var dirInfo = new DirectoryInfo(directoryPath);
+                dirInfo.Create();
+            }
+            
+            var path = $"/img/cars/{model.Id}/{model.ImageFile.FileName}";
+
+            await using (var fileStream = new FileStream(Path.Combine(directoryPath, model.ImageFile.FileName), FileMode.Create)) {
+                await model.ImageFile.CopyToAsync(fileStream);
+            }
+
+            dto.ImagePath = path;
+            await _movieService.UpdateMovieAsync(dto);
+        }
+        catch (Exception ex) {
+            return BadRequest(ex.Message);
+        }
+
+        return NoContent();
     }
 
     // DELETE: api/Movies/5
