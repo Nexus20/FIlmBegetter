@@ -41,6 +41,8 @@
 }
 
 .input {
+    max-width: 280px;
+
     & + [class^="icon-"] {
         top: 50%;
         transform: translateY(-50%);
@@ -48,7 +50,7 @@
     }
 
     &-icon {
-        padding: 18px 16px 18px 36px;
+        padding: 18px 16px 18px 42px;
     }
 
     &-error {
