@@ -9,7 +9,6 @@ using FilmBegetter.WEB.Models.ViewModels;
 using FilmBegetter.WEB.Util;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Newtonsoft.Json.Linq;
 
 namespace FilmBegetter.WEB.Controllers; 

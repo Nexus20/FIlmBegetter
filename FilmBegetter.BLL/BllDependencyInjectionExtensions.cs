@@ -1,5 +1,6 @@
 ﻿using FilmBegetter.BLL.DataHandlers;
 using FilmBegetter.BLL.DataHandlers.MovieDataHandlers;
+using FilmBegetter.BLL.DataHandlers.UserDataHandlers;
 using FilmBegetter.BLL.FilterModels;
 using FilmBegetter.BLL.Interfaces;
 using FilmBegetter.BLL.Pipelines.Builders;
@@ -33,9 +34,15 @@ public static class BllDependencyInjectionExtensions {
         services.AddScoped<IPipelineBuilderDirector<Movie, MovieFilterModel>, MovieSelectionPipelineBuilderDirector>();
 
         services.AddScoped<MovieTitleFilterDataHandler>();
+        
+        services.AddScoped<IPipelineBuilderDirector<User, UserFilterModel>, UserSelectionPipelineBuilderDirector>();
+
+        services.AddScoped<UserEmailFilterDataHandler>();
 
         services.AddScoped(typeof(SkipObjectsDataHandler<,>));
         services.AddScoped(typeof(TakeObjectsDataHandler<,>));
+
+        services.AddScoped<IdentityInitializer>();
         
         return services;
     }
