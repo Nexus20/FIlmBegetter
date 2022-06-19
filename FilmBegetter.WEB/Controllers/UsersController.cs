@@ -38,11 +38,14 @@ namespace FilmBegetter.WEB.Controllers
             return _mapper.Map<List<UserDto>, List<UserViewModel>>(source);
         }
 
-        // // GET: api/Users/5
-        // [HttpGet("{id}", Name = "Get")]
-        // public string Get(int id) {
-        //     return "value";
-        // }
+        // GET: api/Users/5
+        [HttpGet("{id}")]
+        public async Task<UserViewModel> Get(string id) {
+            
+            var source = await _userService.GetUserByIdAsync(id);
+
+            return _mapper.Map<UserDto, UserViewModel>(source);
+        }
 
         // POST: api/Users
         [HttpPost]

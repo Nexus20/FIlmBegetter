@@ -8,6 +8,7 @@ using FilmBegetter.DAL.Entities;
 using FilmBegetter.DAL.Interfaces;
 using FilmBegetter.Domain;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace FilmBegetter.BLL.Services;
 
@@ -62,5 +63,13 @@ class UserService : IUserService {
         var source = await _userManager.FindAllWithDetailsAsync(expressions);
 
         return _mapper.Map<List<User>, List<UserDto>>(source);
+    }
+
+    public async Task<UserDto> GetUserByIdAsync(string id) {
+
+        var source = await _userManager.Users.Include(u => u.UserRoles).ThenInclude(ur => ur.Role)
+            .Include(u => u.Subscription).FirstOrDefaultAsync(u => u.Id == id);
+
+        return _mapper.Map<User, UserDto>(source);
     }
 }
