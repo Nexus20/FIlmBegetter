@@ -18,9 +18,22 @@
                         <li class="header__list-item">
                             <a href="#news"> Contacts</a>
                         </li>
+
+<!--                        <li *[ngIf]="!isUserAuthenticated" class="header__list-item">-->
                         <li class="header__list-item">
-                            <a href="#music"> Sign in</a>
-                            <span class="icon-arrow-right"></span>
+                            <a [routerLink]="['/authentication/register']" routerLinkActive="active"
+                              [routerLinkActiveOptions]="{exact: true}">Register</a>
+                        </li>
+<!--                        <li *[ngIf]="!isUserAuthenticated" class="header__list-item">-->
+                        <li class="header__list-item">
+                            <a [routerLink]="['/authentication/login']" routerLinkActive="active"
+                               [routerLinkActiveOptions]="{exact: true}">Sign in</a>
+                                <span class="icon-arrow-right"></span>
+                        </li>
+
+<!--                        <li *[ngIf]="isUserAuthenticated" class="header__list-item">-->
+                        <li class="header__list-item">
+                            <button class="btn btn-link" style="color: #ffffff80;" (click)="logout()">Logout</button>
                         </li>
                     </ul>
                 </nav>
