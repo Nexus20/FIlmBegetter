@@ -1,3 +1,4 @@
+using System.Net;
 using AutoMapper;
 using FilmBegetter.BLL.Dto;
 using FilmBegetter.BLL.FilterModels;
@@ -55,13 +56,37 @@ public class MoviesController : ControllerBase {
 
     // POST: api/Movies
     [HttpPost]
-    public void Post([FromBody] string value)
-    {
+    [Authorize(Roles = UserRoles.Admin)]
+    public async Task<IActionResult> Post([FromBody] MovieToCreateViewModel model) {
+        
+        if (!ModelState.IsValid) {
+            return BadRequest();
+        }
+        
+        var dto = _mapper.Map<MovieToCreateViewModel, MovieDto>(model);
+
+        try {
+
+            if (model.ImageFile != null) {
+
+                await UploadImage(model.ImageFile);
+
+                var path = $"/img/movies/{model.ImageFile.FileName}";
+                dto.ImagePath = path;
+            }
+
+            await _movieService.CreateMovieAsync(dto);
+        }
+        catch (Exception ex) {
+            return BadRequest(ex.Message);
+        }
+
+        return StatusCode((int)HttpStatusCode.Created);
     }
 
     // PUT: api/Movies/5
     [HttpPut("{id}")]
-    // [Authorize(Roles = UserRoles.Admin)]
+    [Authorize(Roles = UserRoles.Admin)]
     public async Task<IActionResult> Put(string id, [FromBody] MovieToUpdateViewModel model) {
         
         if (!ModelState.IsValid) {
@@ -71,21 +96,15 @@ public class MoviesController : ControllerBase {
         var dto = _mapper.Map<MovieToUpdateViewModel, MovieDto>(model);
 
         try {
-            
-            var directoryPath = Path.Combine(_appEnvironment.WebRootPath, "img", "cars");
-            
-            if (!Directory.Exists(directoryPath)) {
-                var dirInfo = new DirectoryInfo(directoryPath);
-                dirInfo.Create();
-            }
-            
-            var path = $"/img/cars/{model.Id}/{model.ImageFile.FileName}";
 
-            await using (var fileStream = new FileStream(Path.Combine(directoryPath, model.ImageFile.FileName), FileMode.Create)) {
-                await model.ImageFile.CopyToAsync(fileStream);
+            if (model.ImageFile != null) {
+
+                await UploadImage(model.ImageFile);
+
+                var path = $"/img/movies/{model.ImageFile.FileName}";
+                dto.ImagePath = path;
             }
 
-            dto.ImagePath = path;
             await _movieService.UpdateMovieAsync(dto);
         }
         catch (Exception ex) {
@@ -125,5 +144,19 @@ public class MoviesController : ControllerBase {
         }
 
         return model;
+    }
+    
+    private async Task UploadImage(IFormFile file) {
+        
+        var directoryPath = Path.Combine(_appEnvironment.WebRootPath, "img", "movies");
+
+        if (!Directory.Exists(directoryPath)) {
+            var dirInfo = new DirectoryInfo(directoryPath);
+            dirInfo.Create();
+        }
+
+        await using var fileStream = new FileStream(Path.Combine(directoryPath, file.FileName),
+            FileMode.Create);
+        await file.CopyToAsync(fileStream);
     }
 }

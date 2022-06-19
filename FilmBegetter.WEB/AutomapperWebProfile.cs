@@ -16,6 +16,12 @@ public class AutomapperWebProfile : Profile {
         CreateMap<MovieDto, MovieViewModel>()
             .ReverseMap();
 
+        CreateMap<MovieDto, MovieToUpdateViewModel>()
+            .ReverseMap();
+        
+        CreateMap<MovieDto, MovieToCreateViewModel>()
+            .ReverseMap();
+
         CreateMap<GenreDto, GenreViewModel>()
             .ReverseMap();
         
