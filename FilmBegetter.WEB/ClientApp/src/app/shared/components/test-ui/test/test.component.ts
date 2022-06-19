@@ -1,3 +1,6 @@
+import { IUserCard } from './../../../models/card-user.interface';
+import { IStatistics } from './../../../models/card-statistics.interface copy';
+import { IMovieCard } from './../../../models/card.interface';
 import { IInput } from './../../../models/input.interface';
 import { IButton } from './../../../models/button.interface';
 import { Component, OnInit } from '@angular/core';
@@ -126,4 +129,82 @@ export class TestComponent implements OnInit {
         error: 'Your message contains forbidden words'
     }
 
+    //cards
+    public movieCardDefault: IMovieCard = {
+        type: 'defaultPreview',
+        info: {
+            id: '1',
+            title: 'Black Widow',
+            description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem voluptates dolorem temporibus optio tempore, voluptate nesciunt blanditiis placeat maiores aut.`,
+            country: 'Ukraine',
+            director: 'Horkun Dmytro',
+            imagePath: '../../../../../assets/images/card-preview.png',
+            comments: [`Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis nulla, fuga quas laborum numquam illum.`, 'Lorem ipsum dolor sit amet'],
+            raiting: 6.8,
+            movieCollections: ['New realizes', 'Best June'],
+            movieGenres: ['Actions', 'Drama'],
+            publicationDate: new Date()
+        }
+    }
+
+    public movieCardSmall: IMovieCard = {
+        type: 'smallPreview',
+        info: {
+            id: '2',
+            title: 'Black Widow',
+            description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem voluptates dolorem temporibus optio tempore, voluptate nesciunt blanditiis placeat maiores aut.`,
+            country: 'Ukraine',
+            director: 'Horkun Dmytro',
+            imagePath: '../../../../../assets/images/card-preview.png',
+            comments: [`Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis nulla, fuga quas laborum numquam illum.`, 'Lorem ipsum dolor sit amet'],
+            raiting: 6.8,
+            movieCollections: ['New realizes', 'Best June'],
+            movieGenres: ['Actions', 'Drama'],
+            publicationDate: new Date()
+        }
+    }
+
+    public movieCardAdmin: IMovieCard = {
+        type: 'adminView',
+        info: {
+            id: '3',
+            title: 'Black Widow',
+            description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem voluptates dolorem temporibus optio tempore, voluptate nesciunt blanditiis placeat maiores aut.`,
+            country: 'Ukraine',
+            director: 'Horkun Dmytro',
+            imagePath: '../../../../../assets/images/card-preview.png',
+            comments: [`Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis nulla, fuga quas laborum numquam illum.`, 'Lorem ipsum dolor sit amet'],
+            raiting: 6.8,
+            movieCollections: ['New realizes', 'Best June'],
+            movieGenres: ['Actions', 'Drama'],
+            publicationDate: new Date()
+        }
+    }
+
+    //cards:: statistics card
+    public statisticsCard: IStatistics = {
+        type: 'statistics',
+        title: 'Movies',
+        value: 93
+    }
+
+    //cards:: user card for admin panel
+    public userCard: IUserCard = {
+        type: 'user',
+        info: {
+            id: '1',
+            passwotd: 'qwe',
+            email: 'qwe@wqe',
+            movieCollections: [],
+            friends: [],
+            comments: [],
+            userRoles: [],
+            subscription: 'Premium',
+            isBanned: false,
+            subscriptionId: '1',
+            subscriptionUntil: new Date(),
+            name: 'John',
+            surname: 'Doe',
+        }
+    }
 }
