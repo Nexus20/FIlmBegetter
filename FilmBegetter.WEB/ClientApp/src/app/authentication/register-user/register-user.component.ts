@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, AbstractControl } from "@angular/forms";
 import { AuthenticationService } from "../../shared/services/authentication.service";
-import { RegistrationViewModel } from "../../shared/models/registrationViewModel.interface";
 import { HttpErrorResponse } from "@angular/common/http";
 import {
   PasswordConfirmationValidatorService
 } from "../../shared/custom-validators/password-confirmation-validator.service";
-import {Router} from "@angular/router";
+import { Router} from "@angular/router";
+import { RegistrationViewModel} from "../../core/models/registrationViewModel.interface";
 
 
 @Component({

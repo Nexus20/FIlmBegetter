@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {EnvironmentUrlService} from "../services/environment-url.service";
-import {MovieViewModel} from "../models/movieViewModel.interface";
+import { HttpClient } from "@angular/common/http";
+import { EnvironmentUrlService } from "../services/environment-url.service";
+import { MovieViewModel } from "../../core/models/movieViewModel.interface";
+
 
 @Injectable({
   providedIn: 'root'

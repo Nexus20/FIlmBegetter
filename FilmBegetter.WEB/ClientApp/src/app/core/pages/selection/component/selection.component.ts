@@ -3,7 +3,7 @@ import {CSelectionPage} from './../selection.config';
 import {Component, OnInit} from '@angular/core';
 import {MovieService} from "../../../../shared/data-services/movie.service";
 import {HttpErrorResponse} from "@angular/common/http";
-import {MovieViewModel} from "../../../../shared/models/movieViewModel.interface";
+import {MovieViewModel} from "../../../models/movieViewModel.interface";
 
 
 @Component({

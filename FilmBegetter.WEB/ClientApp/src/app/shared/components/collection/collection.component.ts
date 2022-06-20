@@ -1,6 +1,5 @@
 import { IMovieCard } from './../../models/card.interface';
 import { Component, Input, OnInit } from '@angular/core';
-import {MovieViewModel} from "../../models/movieViewModel.interface";
 
 @Component({
     selector: 'app-collection',

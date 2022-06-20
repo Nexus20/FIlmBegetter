@@ -2,9 +2,8 @@ import { Component, forwardRef, Input, OnInit } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { IInput } from '../../models/input.interface';
 import {MovieService} from "../../data-services/movie.service";
-import {MovieViewModel} from "../../models/movieViewModel.interface";
-import {IMovieCard} from "../../models/card.interface";
 import {HttpErrorResponse} from "@angular/common/http";
+import {MovieViewModel} from "../../../core/models/movieViewModel.interface";
 
 
 export const INPUT_VALUE_ACCESSOR: any = {
