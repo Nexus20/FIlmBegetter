@@ -1,6 +1,10 @@
-import { IMovieCard } from './../../../../shared/models/card.interface';
-import { CSelectionPage } from './../selection.config';
-import { Component, OnInit } from '@angular/core';
+import {IMovieCard} from './../../../../shared/models/card.interface';
+import {CSelectionPage} from './../selection.config';
+import {Component, OnInit} from '@angular/core';
+import {MovieService} from "../../../../shared/data-services/movie.service";
+import {HttpErrorResponse} from "@angular/common/http";
+import {MovieViewModel} from "../../../models/movieViewModel.interface";
+
 
 @Component({
     selector: 'app-selection',
@@ -10,8 +14,6 @@ import { Component, OnInit } from '@angular/core';
 export class SelectionComponent implements OnInit {
 
     public selectionConfig = CSelectionPage;
-
-
 
     public bestOptions: IMovieCard[] = [
         {
@@ -24,9 +26,9 @@ export class SelectionComponent implements OnInit {
                 director: 'Horkun Dmytro',
                 imagePath: '../../../../../assets/images/card-preview.png',
                 comments: [`Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis nulla, fuga quas laborum numquam illum.`, 'Lorem ipsum dolor sit amet'],
-                raiting: 6.8,
-                movieCollections: ['New realizes', 'Best June'],
-                movieGenres: ['Actions', 'Drama'],
+                commonRating: 6.8,
+                //movieCollections: ['New realizes', 'Best June'],
+                genres: [],
                 publicationDate: new Date()
             }
         },
@@ -40,9 +42,9 @@ export class SelectionComponent implements OnInit {
                 director: 'Horkun Dmytro',
                 imagePath: '../../../../../assets/images/card-preview.png',
                 comments: [`Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis nulla, fuga quas laborum numquam illum.`, 'Lorem ipsum dolor sit amet'],
-                raiting: 6.8,
-                movieCollections: ['New realizes', 'Best June'],
-                movieGenres: ['Actions', 'Drama'],
+                commonRating: 6.8,
+                //movieCollections: ['New realizes', 'Best June'],
+                genres: [],
                 publicationDate: new Date()
             }
         },
@@ -56,9 +58,9 @@ export class SelectionComponent implements OnInit {
                 director: 'Horkun Dmytro',
                 imagePath: '../../../../../assets/images/card-preview.png',
                 comments: [`Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis nulla, fuga quas laborum numquam illum.`, 'Lorem ipsum dolor sit amet'],
-                raiting: 6.8,
-                movieCollections: ['New realizes', 'Best June'],
-                movieGenres: ['Actions', 'Drama'],
+                commonRating: 6.8,
+                //movieCollections: ['New realizes', 'Best June'],
+                genres: [],
                 publicationDate: new Date()
             }
         },
@@ -72,9 +74,9 @@ export class SelectionComponent implements OnInit {
                 director: 'Horkun Dmytro',
                 imagePath: '../../../../../assets/images/card-preview.png',
                 comments: [`Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis nulla, fuga quas laborum numquam illum.`, 'Lorem ipsum dolor sit amet'],
-                raiting: 6.8,
-                movieCollections: ['New realizes', 'Best June'],
-                movieGenres: ['Actions', 'Drama'],
+                commonRating: 6.8,
+                //movieCollections: ['New realizes', 'Best June'],
+                genres: [],
                 publicationDate: new Date()
             }
         },
@@ -88,9 +90,9 @@ export class SelectionComponent implements OnInit {
                 director: 'Horkun Dmytro',
                 imagePath: '../../../../../assets/images/card-preview.png',
                 comments: [`Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis nulla, fuga quas laborum numquam illum.`, 'Lorem ipsum dolor sit amet'],
-                raiting: 6.8,
-                movieCollections: ['New realizes', 'Best June'],
-                movieGenres: ['Actions', 'Drama'],
+                commonRating: 6.8,
+                //movieCollections: ['New realizes', 'Best June'],
+                genres: [],
                 publicationDate: new Date()
             }
         },
@@ -104,9 +106,9 @@ export class SelectionComponent implements OnInit {
                 director: 'Horkun Dmytro',
                 imagePath: '../../../../../assets/images/card-preview.png',
                 comments: [`Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis nulla, fuga quas laborum numquam illum.`, 'Lorem ipsum dolor sit amet'],
-                raiting: 6.8,
-                movieCollections: ['New realizes', 'Best June'],
-                movieGenres: ['Actions', 'Drama'],
+                commonRating: 6.8,
+                //movieCollections: ['New realizes', 'Best June'],
+                genres: [],
                 publicationDate: new Date()
             }
         },
@@ -120,9 +122,9 @@ export class SelectionComponent implements OnInit {
                 director: 'Horkun Dmytro',
                 imagePath: '../../../../../assets/images/card-preview.png',
                 comments: [`Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis nulla, fuga quas laborum numquam illum.`, 'Lorem ipsum dolor sit amet'],
-                raiting: 6.8,
-                movieCollections: ['New realizes', 'Best June'],
-                movieGenres: ['Actions', 'Drama'],
+                commonRating: 6.8,
+                //movieCollections: ['New realizes', 'Best June'],
+                genres: [],
                 publicationDate: new Date()
             }
         },
@@ -136,9 +138,9 @@ export class SelectionComponent implements OnInit {
                 director: 'Horkun Dmytro',
                 imagePath: '../../../../../assets/images/card-preview.png',
                 comments: [`Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis nulla, fuga quas laborum numquam illum.`, 'Lorem ipsum dolor sit amet'],
-                raiting: 6.8,
-                movieCollections: ['New realizes', 'Best June'],
-                movieGenres: ['Actions', 'Drama'],
+                commonRating: 6.8,
+                //movieCollections: ['New realizes', 'Best June'],
+                genres: [],
                 publicationDate: new Date()
             }
         },
@@ -152,9 +154,9 @@ export class SelectionComponent implements OnInit {
                 director: 'Horkun Dmytro',
                 imagePath: '../../../../../assets/images/card-preview.png',
                 comments: [`Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis nulla, fuga quas laborum numquam illum.`, 'Lorem ipsum dolor sit amet'],
-                raiting: 6.8,
-                movieCollections: ['New realizes', 'Best June'],
-                movieGenres: ['Actions', 'Drama'],
+                commonRating: 6.8,
+                //movieCollections: ['New realizes', 'Best June'],
+                genres: [],
                 publicationDate: new Date()
             }
         },
@@ -171,9 +173,9 @@ export class SelectionComponent implements OnInit {
                 director: 'Horkun Dmytro',
                 imagePath: '../../../../../assets/images/card-preview.png',
                 comments: [`Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis nulla, fuga quas laborum numquam illum.`, 'Lorem ipsum dolor sit amet'],
-                raiting: 6.8,
-                movieCollections: ['New realizes', 'Best June'],
-                movieGenres: ['Actions', 'Drama'],
+                commonRating: 6.8,
+                // movieCollections: ['New realizes', 'Best June'],
+                genres: [],
                 publicationDate: new Date()
             }
         },
@@ -187,9 +189,9 @@ export class SelectionComponent implements OnInit {
                 director: 'Horkun Dmytro',
                 imagePath: '../../../../../assets/images/card-preview.png',
                 comments: [`Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis nulla, fuga quas laborum numquam illum.`, 'Lorem ipsum dolor sit amet'],
-                raiting: 6.8,
-                movieCollections: ['New realizes', 'Best June'],
-                movieGenres: ['Actions', 'Drama'],
+                commonRating: 6.8,
+                // movieCollections: ['New realizes', 'Best June'],
+                genres: [],
                 publicationDate: new Date()
             }
         },
@@ -203,9 +205,9 @@ export class SelectionComponent implements OnInit {
                 director: 'Horkun Dmytro',
                 imagePath: '../../../../../assets/images/card-preview.png',
                 comments: [`Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis nulla, fuga quas laborum numquam illum.`, 'Lorem ipsum dolor sit amet'],
-                raiting: 6.8,
-                movieCollections: ['New realizes', 'Best June'],
-                movieGenres: ['Actions', 'Drama'],
+                commonRating: 6.8,
+                // movieCollections: ['New realizes', 'Best June'],
+                genres: [],
                 publicationDate: new Date()
             }
         },
@@ -219,9 +221,9 @@ export class SelectionComponent implements OnInit {
                 director: 'Horkun Dmytro',
                 imagePath: '../../../../../assets/images/card-preview.png',
                 comments: [`Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis nulla, fuga quas laborum numquam illum.`, 'Lorem ipsum dolor sit amet'],
-                raiting: 6.8,
-                movieCollections: ['New realizes', 'Best June'],
-                movieGenres: ['Actions', 'Drama'],
+                commonRating: 6.8,
+                // movieCollections: ['New realizes', 'Best June'],
+                genres: [],
                 publicationDate: new Date()
             }
         },
@@ -235,9 +237,9 @@ export class SelectionComponent implements OnInit {
                 director: 'Horkun Dmytro',
                 imagePath: '../../../../../assets/images/card-preview.png',
                 comments: [`Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis nulla, fuga quas laborum numquam illum.`, 'Lorem ipsum dolor sit amet'],
-                raiting: 6.8,
-                movieCollections: ['New realizes', 'Best June'],
-                movieGenres: ['Actions', 'Drama'],
+                commonRating: 6.8,
+                // movieCollections: ['New realizes', 'Best June'],
+                genres: [],
                 publicationDate: new Date()
             }
         },
@@ -251,9 +253,9 @@ export class SelectionComponent implements OnInit {
                 director: 'Horkun Dmytro',
                 imagePath: '../../../../../assets/images/card-preview.png',
                 comments: [`Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis nulla, fuga quas laborum numquam illum.`, 'Lorem ipsum dolor sit amet'],
-                raiting: 6.8,
-                movieCollections: ['New realizes', 'Best June'],
-                movieGenres: ['Actions', 'Drama'],
+                commonRating: 6.8,
+                // movieCollections: ['New realizes', 'Best June'],
+                genres: [],
                 publicationDate: new Date()
             }
         },
@@ -267,9 +269,9 @@ export class SelectionComponent implements OnInit {
                 director: 'Horkun Dmytro',
                 imagePath: '../../../../../assets/images/card-preview.png',
                 comments: [`Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis nulla, fuga quas laborum numquam illum.`, 'Lorem ipsum dolor sit amet'],
-                raiting: 6.8,
-                movieCollections: ['New realizes', 'Best June'],
-                movieGenres: ['Actions', 'Drama'],
+                commonRating: 6.8,
+                // movieCollections: ['New realizes', 'Best June'],
+                genres: [],
                 publicationDate: new Date()
             }
         },
@@ -283,17 +285,37 @@ export class SelectionComponent implements OnInit {
                 director: 'Horkun Dmytro',
                 imagePath: '../../../../../assets/images/card-preview.png',
                 comments: [`Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis nulla, fuga quas laborum numquam illum.`, 'Lorem ipsum dolor sit amet'],
-                raiting: 6.8,
-                movieCollections: ['New realizes', 'Best June'],
-                movieGenres: ['Actions', 'Drama'],
+                commonRating: 6.8,
+                // movieCollections: ['New realizes', 'Best June'],
+                genres: [],
                 publicationDate: new Date()
             }
         },
     ];
 
-    constructor() { }
+    constructor(private movieService: MovieService) { }
+
+    public movies!: IMovieCard[];
+
+    public getMovies = () => {
+        this.movieService.getMovies("api/movies").subscribe({
+            next: (data: {$id: string, $values: MovieViewModel[]}) => {
+
+                this.movies = new Array<IMovieCard>();
+
+                for (let i = 0; i < data.$values.length; i++) {
+
+                    this.movies.push(<IMovieCard>{info: data.$values[i], type: "defaultPreview"})
+                }
+            },
+            error: (err: HttpErrorResponse) => {
+                console.log(err);
+            }
+        });
+    }
 
     ngOnInit(): void {
+        this.getMovies();
     }
 
 }

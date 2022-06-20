@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import { RegistrationViewModel } from "../models/registrationViewModel.interface";
-import { RegistrationResponseViewModel } from "../models/registrationResponseViewModel.interface";
 import { EnvironmentUrlService } from './environment-url.service';
-import { AuthenticationViewModel } from "../models/authenticationViewModel.interface";
-import { AuthenticationResponseViewModel } from "../models/authenticationResponseViewModel.interface";
-import {BehaviorSubject, Subject} from "rxjs";
-import {JwtHelperService} from "@auth0/angular-jwt";
+import { BehaviorSubject } from "rxjs";
+import { JwtHelperService } from "@auth0/angular-jwt";
+import { AuthenticationViewModel } from "../../core/models/authenticationViewModel.interface";
+import { AuthenticationResponseViewModel } from "../../core/models/authenticationResponseViewModel.interface";
+import { RegistrationResponseViewModel } from "../../core/models/registrationResponseViewModel.interface";
+import { RegistrationViewModel } from "../../core/models/registrationViewModel.interface";
 
 @Injectable({
   providedIn: 'root'
