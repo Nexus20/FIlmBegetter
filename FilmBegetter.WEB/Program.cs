@@ -1,5 +1,6 @@
 using System.Text;
 using System.Text.Json.Serialization;
+using FilmBegetter.BLL;
 using FilmBegetter.WEB;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
@@ -33,6 +34,11 @@ builder.Services.AddControllersWithViews().AddJsonOptions(o => o.JsonSerializerO
 
 var app = builder.Build();
 
+using (var scopedServices = app.Services.CreateScope()) {
+    var serviceProvider = scopedServices.ServiceProvider;
+    serviceProvider.GetRequiredService<IdentityInitializer>().Initialize();
+}
+
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment()) {
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
@@ -51,6 +57,5 @@ app.MapControllerRoute(
     pattern: "{controller}/{action=Index}/{id?}");
 
 app.MapFallbackToFile("index.html");
-;
 
 app.Run();
