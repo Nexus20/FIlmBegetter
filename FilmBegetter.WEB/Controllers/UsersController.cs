@@ -1,14 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using AutoMapper;
 using FilmBegetter.BLL.Dto;
 using FilmBegetter.BLL.FilterModels;
 using FilmBegetter.BLL.Interfaces;
+using FilmBegetter.Domain;
 using FilmBegetter.WEB.Models.FilterModels;
 using FilmBegetter.WEB.Models.ViewModels;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FilmBegetter.WEB.Controllers
@@ -28,6 +25,7 @@ namespace FilmBegetter.WEB.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = UserRoles.Admin)]
         public async Task<IEnumerable<UserViewModel>> Get([FromQuery]UserFilterViewModel filter) {
             
             filter.PageNumber ??= 1;
@@ -40,6 +38,7 @@ namespace FilmBegetter.WEB.Controllers
 
         // GET: api/Users/5
         [HttpGet("{id}")]
+        [Authorize(Roles = UserRoles.Admin)]
         public async Task<UserViewModel> Get(string id) {
             
             var source = await _userService.GetUserByIdAsync(id);
