@@ -34,14 +34,14 @@ public class MoviesController : ControllerBase {
     }
 
     [HttpGet]
-    public async Task<List<MovieViewModel>> Get([FromQuery]MovieFilterViewModel filter) {
+    public async Task<IActionResult> Get([FromQuery]MovieFilterViewModel filter) {
 
         filter.PageNumber ??= 1;
         filter.TakeCount ??= 10;
 
         var source = await _movieService.GetAllMoviesAsync(_mapper.Map<MovieFilterViewModel, MovieFilterModel>(filter)); 
         
-        return _mapper.Map<List<MovieDto>, List<MovieViewModel>>(source);
+        return Ok(_mapper.Map<List<MovieDto>, List<MovieViewModel>>(source));
     }
 
     // GET: api/Movies/5

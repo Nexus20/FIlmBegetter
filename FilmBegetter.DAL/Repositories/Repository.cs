@@ -99,7 +99,7 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : class {
             query = query.Take(expressions.TakeCount);
         }
 
-        return query.AsNoTracking().ToListAsync();
+        return query.AsSplitQuery().AsNoTracking().ToListAsync();
     }
     
     protected virtual IQueryable<TEntity> FindAllWithDetailsWithoutFilter() {

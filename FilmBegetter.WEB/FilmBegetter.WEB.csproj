@@ -27,6 +27,24 @@
         <Content Remove="$(SpaRoot)**" />
         <None Remove="$(SpaRoot)**" />
         <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+        <None Include="Models\FilterModels\BaseFilterViewModel.cs" />
+        <None Include="Models\FilterModels\MovieFilterViewModel.cs" />
+        <None Include="Models\FilterModels\UserFilterViewModel.cs" />
+        <None Include="Models\ViewModels\AuthenticationResponseViewModel.cs" />
+        <None Include="Models\ViewModels\AuthenticationViewModel.cs" />
+        <None Include="Models\ViewModels\BaseViewModel.cs" />
+        <None Include="Models\ViewModels\CommentViewModel.cs" />
+        <None Include="Models\ViewModels\GenreViewModel.cs" />
+        <None Include="Models\ViewModels\MovieCollectionViewModel.cs" />
+        <None Include="Models\ViewModels\MovieToCreateViewModel.cs" />
+        <None Include="Models\ViewModels\MovieToUpdateViewModel.cs" />
+        <None Include="Models\ViewModels\MovieViewModel.cs" />
+        <None Include="Models\ViewModels\RatingViewModel.cs" />
+        <None Include="Models\ViewModels\RegistrationResponseViewModel.cs" />
+        <None Include="Models\ViewModels\RegistrationViewModel.cs" />
+        <None Include="Models\ViewModels\RoleViewModel.cs" />
+        <None Include="Models\ViewModels\SubscriptionViewModel.cs" />
+        <None Include="Models\ViewModels\UserViewModel.cs" />
     </ItemGroup>
 
     <ItemGroup>

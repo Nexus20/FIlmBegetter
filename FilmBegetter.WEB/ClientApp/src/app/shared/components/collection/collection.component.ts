@@ -1,5 +1,6 @@
 import { IMovieCard } from './../../models/card.interface';
 import { Component, Input, OnInit } from '@angular/core';
+import {MovieViewModel} from "../../models/movieViewModel.interface";
 
 @Component({
     selector: 'app-collection',
@@ -18,6 +19,11 @@ export class CollectionComponent implements OnInit {
     }
 
     public getTotalMoviesNumber(): number {
+
+        if(this.movies == undefined) {
+            return 0;
+        }
+
         return this.movies.length;
     }
 
