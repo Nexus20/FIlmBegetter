@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using AutoMapper;
 using FilmBegetter.BLL.Dto;
 using FilmBegetter.BLL.FilterModels;
@@ -43,6 +44,18 @@ namespace FilmBegetter.WEB.Controllers
             
             var source = await _userService.GetUserByIdAsync(id);
 
+            return _mapper.Map<UserDto, UserViewModel>(source);
+        }
+
+        [HttpGet]
+        [Route("currentUser")]
+        [Authorize]
+        public async Task<UserViewModel> GetCurrentUser() {
+
+            var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var source = await _userService.GetUserByIdAsync(currentUserId);
+            
             return _mapper.Map<UserDto, UserViewModel>(source);
         }
 

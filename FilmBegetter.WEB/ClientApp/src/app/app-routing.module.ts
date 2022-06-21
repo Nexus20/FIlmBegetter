@@ -19,6 +19,11 @@ const routes: Routes = [
     {
         path: 'admin',
         loadChildren: () => import('./core/pages/admin-page/admin-page.module').then(m => m.AdminPageModule)
+    },
+    {
+        path: 'profile',
+        loadChildren: () => import('./core/pages/user-profile/user-profile.module').then(m => m.UserProfileModule),
+        canActivate: [AuthGuard]
     }
 ];
 
