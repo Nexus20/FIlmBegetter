@@ -91,4 +91,23 @@ class UserService : IUserService {
 
         await _userManager.UpdateAsync(user);
     }
+
+    public async Task CheckSubscriptionExpiration(string userId) {
+
+        var user = await _userManager.FindByIdAsync(userId);
+
+        var currentSubscription = await _unitOfWork.GetRepository<IRepository<Subscription>, Subscription>()
+            .FirstOrDefaultAsync(s => s.Id == user.SubscriptionId);
+
+        if (currentSubscription.Type == SubscriptionTypes.Premium && DateTime.Now >= user.SubscriptionExpirationDare) {
+
+            var basicSubscription = await _unitOfWork.GetRepository<IRepository<Subscription>, Subscription>()
+                .FirstOrDefaultAsync(s => s.Type == SubscriptionTypes.Basic);
+
+            user.SubscriptionId = basicSubscription.Id;
+            user.SubscriptionExpirationDare = null;
+
+            await _userManager.UpdateAsync(user);
+        }
+    }
 }

@@ -2,6 +2,7 @@ using System.Text;
 using System.Text.Json.Serialization;
 using FilmBegetter.BLL;
 using FilmBegetter.WEB;
+using FilmBegetter.WEB.Middlewares;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 
@@ -51,6 +52,8 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseMiddleware<SubscriptionExpirationChecking>();
 
 app.MapControllerRoute(
     name: "default",
