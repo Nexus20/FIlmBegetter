@@ -52,6 +52,7 @@ public class IdentityInitializer {
         
         var superAdmin = new User() {
             UserName = "root",
+            Email = "admin@filmbegetter.com",
             SubscriptionId = subscription.Id
         };
 

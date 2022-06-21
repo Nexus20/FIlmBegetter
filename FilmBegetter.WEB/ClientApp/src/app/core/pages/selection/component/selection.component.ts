@@ -1,9 +1,9 @@
-import {IMovieCard} from './../../../../shared/models/card.interface';
-import {CSelectionPage} from './../selection.config';
-import {Component, OnInit} from '@angular/core';
-import {MovieService} from "../../../../shared/data-services/movie.service";
-import {HttpErrorResponse} from "@angular/common/http";
-import {MovieViewModel} from "../../../models/movieViewModel.interface";
+import { IMovieCard } from '../../../../shared/models/card.interface';
+import { CSelectionPage } from '../selection.config';
+import { Component, OnInit } from '@angular/core';
+import { HttpErrorResponse } from "@angular/common/http";
+import { MovieViewModel } from "../../../models/movieViewModel.interface";
+import { MovieService } from "../../../services/movie.service";
 
 
 @Component({
