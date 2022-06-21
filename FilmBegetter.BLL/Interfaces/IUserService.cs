@@ -10,4 +10,6 @@ public interface IUserService {
     Task<List<UserDto>> GetAllUsersAsync(UserFilterModel filterModel);
     
     Task<UserDto> GetUserByIdAsync(string id);
+    
+    Task UpdateSubscription(string userId, string type);
 }

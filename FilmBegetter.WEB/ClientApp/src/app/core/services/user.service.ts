@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import { EnvironmentUrlService } from "../../shared/services/environment-url.service";
 import { UserViewModel } from "../models/user-view-model.interface";
+import {SubscriptionChangeResponse} from "../models/subscription-change-response.interface";
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,11 @@ export class UserService {
 
     public getCurrentUser(route: string) {
         return this.http.get<UserViewModel>(this.createCompleteRoute(route, this.envUrl.urlAddress));
+    }
+
+    public updateUserSubscription(route: string, body: SubscriptionChangeResponse) {
+
+        return this.http.put(this.createCompleteRoute(route, this.envUrl.urlAddress), body);
     }
 
     private createCompleteRoute = (route: string, envAddress: string) => {

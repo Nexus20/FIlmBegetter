@@ -72,4 +72,23 @@ class UserService : IUserService {
 
         return _mapper.Map<User, UserDto>(source);
     }
+
+    public async Task UpdateSubscription(string userId, string type) {
+
+        var user = await _userManager.FindByIdAsync(userId);
+
+        var subscription = await _unitOfWork.GetRepository<IRepository<Subscription>, Subscription>()
+            .FirstOrDefaultAsync(s => s.Type == type);
+
+        user.SubscriptionId = subscription.Id;
+        
+        if (type == SubscriptionTypes.Premium) {
+            user.SubscriptionExpirationDare = user.SubscriptionExpirationDare?.AddMonths(1) ?? DateTime.Now.AddMonths(1);
+        }
+        else {
+            user.SubscriptionExpirationDare = null;
+        }
+
+        await _userManager.UpdateAsync(user);
+    }
 }

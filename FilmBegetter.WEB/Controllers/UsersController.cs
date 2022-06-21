@@ -65,16 +65,35 @@ namespace FilmBegetter.WEB.Controllers
         {
         }
 
-        // PUT: api/Users/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
+        // // PUT: api/Users/5
+        // [HttpPut("{id}")]
+        // public void Put(int id, [FromBody] string value)
+        // {
+        // }
+        //
+        // // DELETE: api/Users/5
+        // [HttpDelete("{id}")]
+        // public void Delete(int id)
+        // {
+        // }
 
-        // DELETE: api/Users/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+        [HttpPut]
+        [Authorize]
+        [Route("updateSubscription")]
+        public async Task<IActionResult> UpdateSubscription([FromBody]SubscriptionChangeResponseViewModel responce) {
+
+            if (!ModelState.IsValid) {
+                return BadRequest();
+            }
+
+            try {
+                await _userService.UpdateSubscription(responce.UserId, responce.Type);
+            }
+            catch (Exception ex) {
+                return BadRequest();
+            }
+
+            return Ok();
         }
     }
 }

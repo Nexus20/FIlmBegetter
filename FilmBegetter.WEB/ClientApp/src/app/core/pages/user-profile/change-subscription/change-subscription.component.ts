@@ -25,6 +25,16 @@ export class ChangeSubscriptionComponent implements OnInit {
                 value: "100.00",
                 onApprove: (details) => {
                     console.log('success');
+                    console.log(details);
+
+                    this.userService.updateUserSubscription('api/users/updateSubscription', {userId: this.user.id, type: 'Premium'}).subscribe({
+                        next: (data: any) => {
+                            console.log(data);
+                        },
+                        error: (err: HttpErrorResponse) => {
+                            console.log(err);
+                        }
+                    });
                 }
             }
         );
