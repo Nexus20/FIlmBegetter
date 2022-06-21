@@ -27,24 +27,6 @@
         <Content Remove="$(SpaRoot)**" />
         <None Remove="$(SpaRoot)**" />
         <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
-        <None Include="Models\FilterModels\BaseFilterViewModel.cs" />
-        <None Include="Models\FilterModels\MovieFilterViewModel.cs" />
-        <None Include="Models\FilterModels\UserFilterViewModel.cs" />
-        <None Include="Models\ViewModels\AuthenticationResponseViewModel.cs" />
-        <None Include="Models\ViewModels\AuthenticationViewModel.cs" />
-        <None Include="Models\ViewModels\BaseViewModel.cs" />
-        <None Include="Models\ViewModels\CommentViewModel.cs" />
-        <None Include="Models\ViewModels\GenreViewModel.cs" />
-        <None Include="Models\ViewModels\MovieCollectionViewModel.cs" />
-        <None Include="Models\ViewModels\MovieToCreateViewModel.cs" />
-        <None Include="Models\ViewModels\MovieToUpdateViewModel.cs" />
-        <None Include="Models\ViewModels\MovieViewModel.cs" />
-        <None Include="Models\ViewModels\RatingViewModel.cs" />
-        <None Include="Models\ViewModels\RegistrationResponseViewModel.cs" />
-        <None Include="Models\ViewModels\RegistrationViewModel.cs" />
-        <None Include="Models\ViewModels\RoleViewModel.cs" />
-        <None Include="Models\ViewModels\SubscriptionViewModel.cs" />
-        <None Include="Models\ViewModels\UserViewModel.cs" />
     </ItemGroup>
 
     <ItemGroup>
@@ -52,6 +34,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="ClientApp\.angular\cache\angular-webpack\a9021c9e266ff00b503a7a65d3f915fba5290e71" />
       <Folder Include="ClientApp\.angular\cache\angular-webpack\d43003bda06bb66c4aae30490d53670394d4bc25" />
     </ItemGroup>
 
