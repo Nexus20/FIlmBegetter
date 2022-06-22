@@ -45,7 +45,11 @@ export class FriendsComponent implements OnInit {
         this.userService.getUsers('api/users/', {name: username, email: username}).subscribe({
 
             next: (data: UserViewModel[]) => {
-                console.log(data)
+
+                if(data.length) {
+                    let friends = data.filter(val => val.id != this.user.id);
+                    console.log(friends);
+                }
             },
             error: (err: HttpErrorResponse) => {
                 console.log(err);
