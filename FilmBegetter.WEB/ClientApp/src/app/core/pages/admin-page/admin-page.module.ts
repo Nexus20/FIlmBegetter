@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { MoviesComponent } from './movies/movies.component';
 import { UsersComponent } from './users/users.component';
 import {RouterModule} from "@angular/router";
+import { MovieCreationFormComponent } from './movie-creation-form/movie-creation-form.component';
 
 
 
@@ -11,7 +12,8 @@ import {RouterModule} from "@angular/router";
   declarations: [
     HomeComponent,
     MoviesComponent,
-    UsersComponent
+    UsersComponent,
+    MovieCreationFormComponent
   ],
   imports: [
     CommonModule,
