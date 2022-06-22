@@ -318,4 +318,16 @@ export class SelectionComponent implements OnInit {
         this.getMovies();
     }
 
+    public getMoviesByTitle = (event: any) => {
+        let movieTitle: string = event.target.value;
+
+        this.movieService.getMovies("api/movies", {title: movieTitle}).subscribe({
+            next: (data: MovieViewModel[]) => {
+                console.log(data);
+            },
+            error: (err: HttpErrorResponse) => {
+                console.log(err);
+            }
+        });
+    }
 }

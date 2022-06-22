@@ -16,7 +16,7 @@
                             />
                         </ng-container>
                     </div>
-                    <app-input
+                    <app-input (input)="getMoviesByTitle($event)"
                         [inputParameters]="selectionConfig.inputs.searchInput"
                     ></app-input>
                 </div>
