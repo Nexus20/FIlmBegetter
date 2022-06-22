@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { UserViewModel } from "../../../models/user-view-model.interface";
+import { UserService } from "../../../services/user.service";
+import { HttpErrorResponse } from "@angular/common/http";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
 
 @Component({
   selector: 'app-edit-profile',
@@ -7,9 +11,66 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditProfileComponent implements OnInit {
 
-  constructor() { }
+    editUserForm: FormGroup;
 
-  ngOnInit(): void {
-  }
+    user!: UserViewModel;
 
+    errorMessage: string = '';
+    showError: boolean = false;
+
+    constructor(private userService: UserService) {
+
+        this.editUserForm = new FormGroup({
+            name: new FormControl('', [Validators.required]),
+            surname: new FormControl('', [Validators.required]),
+            email: new FormControl('', [Validators.required, Validators.email])
+        })
+
+    }
+
+    ngOnInit(): void {
+        this.getUserProfile();
+    }
+
+    validateControl = (controlName: string) => {
+        return this.editUserForm.get(controlName)?.invalid && this.editUserForm.get(controlName)?.touched
+    }
+
+    hasError = (controlName: string, errorName: string) => {
+        return this.editUserForm.get(controlName)?.hasError(errorName)
+    }
+
+    getUserProfile = () => {
+        this.userService.getCurrentUser("api/users/currentUser").subscribe({
+
+            next: (data: UserViewModel) => {
+                this.user = data;
+
+                this.editUserForm = new FormGroup({
+                    name: new FormControl(this.user.name, [Validators.required]),
+                    surname: new FormControl(this.user.surname, [Validators.required]),
+                    email: new FormControl(this.user.email, [Validators.required, Validators.email])
+                })
+            },
+            error: (err: HttpErrorResponse) => {
+                console.log(err);
+            }
+
+        });
+    }
+
+    editUser = (editUserFormValue: any) => {
+
+        this.userService.updateCurrentUser("api/accounts/update", editUserFormValue).subscribe({
+
+            next: (res: any) => {
+                console.log(res)
+            },
+
+            error: (err: HttpErrorResponse) => {
+                this.errorMessage = err.message;
+                this.showError = true;
+            }
+        });
+    }
 }

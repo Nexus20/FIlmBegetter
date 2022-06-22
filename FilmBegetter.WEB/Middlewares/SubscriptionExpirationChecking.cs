@@ -13,7 +13,7 @@ public class SubscriptionExpirationChecking {
     
     public async Task InvokeAsync(HttpContext context, IUserService userService) {
 
-        if (!context.User.Identity.IsAuthenticated) {
+        if (context.User.Identity.IsAuthenticated) {
 
             var userId = context.User.FindFirstValue(ClaimTypes.NameIdentifier);
             
