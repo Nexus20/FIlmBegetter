@@ -6,7 +6,7 @@ import { UserService } from "../../../services/user.service";
 @Component({
   selector: 'app-friends',
   templateUrl: './friends.component.html',
-  styleUrls: ['./friends.component.css']
+  styleUrls: ['./friends.component.scss']
 })
 export class FriendsComponent implements OnInit {
 
