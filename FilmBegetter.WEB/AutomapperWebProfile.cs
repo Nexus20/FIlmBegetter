@@ -29,7 +29,10 @@ public class AutomapperWebProfile : Profile {
         
         CreateMap<MovieCollectionDto, MovieCollectionViewModel>()
             .ReverseMap();
-        
+
+        CreateMap<MovieCollectionDto, MovieCollectionToCreateViewModel>()
+            .ReverseMap();
+
         CreateMap<RatingDto, RatingViewModel>()
             .ReverseMap();
 
@@ -37,6 +40,10 @@ public class AutomapperWebProfile : Profile {
             .ReverseMap();
 
         CreateMap<UserDto, RegistrationViewModel>()
+            .ReverseMap()
+            .ForMember(d => d.UserName, o => o.MapFrom(s => s.Email));
+        
+        CreateMap<UserDto, UserToUpdateViewModel>()
             .ReverseMap()
             .ForMember(d => d.UserName, o => o.MapFrom(s => s.Email));
 

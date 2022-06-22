@@ -51,6 +51,8 @@ public class IdentityInitializer {
             .FirstOrDefault(s => s.Type == SubscriptionTypes.Basic);
         
         var superAdmin = new User() {
+            Name = "root",
+            Surname = "root",
             UserName = "root",
             Email = "admin@filmbegetter.com",
             SubscriptionId = subscription.Id

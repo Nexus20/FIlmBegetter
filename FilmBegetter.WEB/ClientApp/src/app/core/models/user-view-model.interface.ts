@@ -1,8 +1,8 @@
-import { CommentViewModel } from "./commentViewModel.interface";
-import { SubscriptionViewModel } from "./subscription-view-model.interface";
-import { RoleViewModel } from "./role-view-model.interface";
-import { RatingViewModel } from "./rating-view-model.interface";
-import { MovieCollectionViewModel } from "./movie-collection-view-model.interface";
+import {CommentViewModel} from "./commentViewModel.interface";
+import {SubscriptionViewModel} from "./subscription-view-model.interface";
+import {RoleViewModel} from "./role-view-model.interface";
+import {RatingViewModel} from "./rating-view-model.interface";
+import {MovieCollectionViewModel} from "./movie-collection-view-model.interface";
 
 export interface UserViewModel {
 
@@ -21,3 +21,4 @@ export interface UserViewModel {
     ratings: RatingViewModel[];
     movieCollections: MovieCollectionViewModel[];
 }
+

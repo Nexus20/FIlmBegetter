@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+using System.Security.Claims;
 using AutoMapper;
 using FilmBegetter.BLL.Dto;
 using FilmBegetter.BLL.FilterModels;
@@ -25,7 +27,7 @@ namespace FilmBegetter.WEB.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = UserRoles.Admin)]
+        [Authorize]
         public async Task<IEnumerable<UserViewModel>> Get([FromQuery]UserFilterViewModel filter) {
             
             filter.PageNumber ??= 1;
@@ -46,22 +48,73 @@ namespace FilmBegetter.WEB.Controllers
             return _mapper.Map<UserDto, UserViewModel>(source);
         }
 
+        [HttpGet]
+        [Route("currentUser")]
+        [Authorize]
+        public async Task<UserViewModel> GetCurrentUser() {
+
+            var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var source = await _userService.GetUserByIdAsync(currentUserId);
+            
+            return _mapper.Map<UserDto, UserViewModel>(source);
+        }
+
         // POST: api/Users
         [HttpPost]
         public void Post([FromBody] string value)
         {
         }
 
-        // PUT: api/Users/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
+        // // PUT: api/Users/5
+        // [HttpPut("{id}")]
+        // public void Put(int id, [FromBody] string value)
+        // {
+        // }
+        //
+        // // DELETE: api/Users/5
+        // [HttpDelete("{id}")]
+        // public void Delete(int id)
+        // {
+        // }
 
-        // DELETE: api/Users/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+        [HttpPut]
+        [Authorize]
+        [Route("updateSubscription")]
+        public async Task<IActionResult> UpdateSubscription([FromBody]SubscriptionChangeResponseViewModel responce) {
+
+            if (!ModelState.IsValid) {
+                return BadRequest();
+            }
+
+            try {
+                await _userService.UpdateSubscription(responce.UserId, responce.Type);
+            }
+            catch (Exception ex) {
+                return BadRequest();
+            }
+
+            return Ok();
+        }
+        
+        [HttpPut]
+        [Route("update")]
+        [Authorize]
+        public async Task<IActionResult> UpdateUserAccount(UserToUpdateViewModel viewModel) {
+
+            if (!ModelState.IsValid) {
+                return BadRequest();
+            }
+
+            try {
+                var dto = _mapper.Map<UserToUpdateViewModel, UserDto>(viewModel);
+                await _userService.UpdateUserAsync(dto);
+            }
+            catch (Exception ex) {
+                return BadRequest();
+            }
+            
+            return Ok();
         }
     }
 }

@@ -1,0 +1,29 @@
+<ng-container *ngIf="user != undefined">
+
+    <div class="container">
+        <div class="row">
+            <h2 class="col-12 mb-3">Your friends:</h2>
+            <div class="col-12 mb-3">
+                <app-input [inputParameters]="searchInput" (input)="getUsersByName($event)"></app-input>
+            </div>
+        </div>
+
+        <ng-container *ngIf="user.friends.length else noFriendsTemplate">
+            <div class="row">
+                <ng-container *ngFor="let friend of user.friends">
+                    <div class="col-4">
+                        {{friend.name}}
+                    </div>
+                </ng-container>
+            </div>
+        </ng-container>
+        <ng-template #noFriendsTemplate>
+            <div class="row">
+                <h4 class="col-12">
+                    It looks like you haven't added any friends yet. You can find friends using the field above.
+                </h4>
+            </div>
+        </ng-template>
+    </div>
+
+</ng-container>

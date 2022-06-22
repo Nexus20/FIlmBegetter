@@ -299,13 +299,13 @@ export class SelectionComponent implements OnInit {
 
     public getMovies = () => {
         this.movieService.getMovies("api/movies").subscribe({
-            next: (data: {$id: string, $values: MovieViewModel[]}) => {
+            next: (data: MovieViewModel[]) => {
 
                 this.movies = new Array<IMovieCard>();
 
-                for (let i = 0; i < data.$values.length; i++) {
+                for (let i = 0; i < data.length; i++) {
 
-                    this.movies.push(<IMovieCard>{info: data.$values[i], type: "defaultPreview"})
+                    this.movies.push(<IMovieCard>{info: data[i], type: "defaultPreview"})
                 }
             },
             error: (err: HttpErrorResponse) => {
@@ -318,4 +318,16 @@ export class SelectionComponent implements OnInit {
         this.getMovies();
     }
 
+    public getMoviesByTitle = (event: any) => {
+        let movieTitle: string = event.target.value;
+
+        this.movieService.getMovies("api/movies", {title: movieTitle}).subscribe({
+            next: (data: MovieViewModel[]) => {
+                console.log(data);
+            },
+            error: (err: HttpErrorResponse) => {
+                console.log(err);
+            }
+        });
+    }
 }

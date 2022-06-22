@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FilmBegetter.BLL.Services;
 
-class UserService : IUserService {
+public class UserService : IUserService {
 
     private readonly IMapper _mapper;
 
@@ -67,9 +67,66 @@ class UserService : IUserService {
 
     public async Task<UserDto> GetUserByIdAsync(string id) {
 
-        var source = await _userManager.Users.Include(u => u.UserRoles).ThenInclude(ur => ur.Role)
-            .Include(u => u.Subscription).FirstOrDefaultAsync(u => u.Id == id);
+        var source = await _userManager.Users
+            .Include(u => u.UserRoles)
+            .ThenInclude(ur => ur.Role)
+            .Include(u => u.Subscription)
+            .Include(m => m.MovieCollections)
+            .ThenInclude(mc => mc.MovieCollections)
+            .ThenInclude(mmc => mmc.Movie)
+            .AsNoTracking()
+            .FirstOrDefaultAsync(u => u.Id == id);
 
         return _mapper.Map<User, UserDto>(source);
+    }
+
+    public async Task UpdateSubscription(string userId, string type) {
+
+        var user = await _userManager.FindByIdAsync(userId);
+
+        var subscription = await _unitOfWork.GetRepository<IRepository<Subscription>, Subscription>()
+            .FirstOrDefaultAsync(s => s.Type == type);
+
+        user.SubscriptionId = subscription.Id;
+        
+        if (type == SubscriptionTypes.Premium) {
+            user.SubscriptionExpirationDare = user.SubscriptionExpirationDare?.AddMonths(1) ?? DateTime.Now.AddMonths(1);
+        }
+        else {
+            user.SubscriptionExpirationDare = null;
+        }
+
+        await _userManager.UpdateAsync(user);
+    }
+
+    public async Task CheckSubscriptionExpiration(string userId) {
+
+        var user = await _userManager.FindByIdAsync(userId);
+
+        var currentSubscription = await _unitOfWork.GetRepository<IRepository<Subscription>, Subscription>()
+            .FirstOrDefaultAsync(s => s.Id == user.SubscriptionId);
+
+        if (currentSubscription.Type == SubscriptionTypes.Premium && DateTime.Now >= user.SubscriptionExpirationDare) {
+
+            var basicSubscription = await _unitOfWork.GetRepository<IRepository<Subscription>, Subscription>()
+                .FirstOrDefaultAsync(s => s.Type == SubscriptionTypes.Basic);
+
+            user.SubscriptionId = basicSubscription.Id;
+            user.SubscriptionExpirationDare = null;
+
+            await _userManager.UpdateAsync(user);
+        }
+    }
+
+    public async Task UpdateUserAsync(UserDto dto) {
+        
+        var user = await _userManager.FindByIdAsync(dto.Id);
+
+        user.Name = dto.Name;
+        user.Surname = dto.Surname;
+        user.Email = dto.Email;
+        user.UserName = dto.UserName;
+
+        await _userManager.UpdateAsync(user);
     }
 }
