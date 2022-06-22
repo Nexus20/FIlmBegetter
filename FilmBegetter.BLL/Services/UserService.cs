@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FilmBegetter.BLL.Services;
 
-class UserService : IUserService {
+public class UserService : IUserService {
 
     private readonly IMapper _mapper;
 
@@ -67,8 +67,15 @@ class UserService : IUserService {
 
     public async Task<UserDto> GetUserByIdAsync(string id) {
 
-        var source = await _userManager.Users.Include(u => u.UserRoles).ThenInclude(ur => ur.Role)
-            .Include(u => u.Subscription).FirstOrDefaultAsync(u => u.Id == id);
+        var source = await _userManager.Users
+            .Include(u => u.UserRoles)
+            .ThenInclude(ur => ur.Role)
+            .Include(u => u.Subscription)
+            .Include(m => m.MovieCollections)
+            .ThenInclude(mc => mc.MovieCollections)
+            .ThenInclude(mmc => mmc.Movie)
+            .AsNoTracking()
+            .FirstOrDefaultAsync(u => u.Id == id);
 
         return _mapper.Map<User, UserDto>(source);
     }

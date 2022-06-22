@@ -12,7 +12,7 @@ export class MovieService {
     constructor(private http: HttpClient, private envUrl: EnvironmentUrlService) { }
 
     public getMovies = (route: string, queryParams?: {}) => {
-        return this.http.get<{$id: string, $values: MovieViewModel[]}>(this.createCompleteRoute(route, this.envUrl.urlAddress), {params: queryParams});
+        return this.http.get<MovieViewModel[]>(this.createCompleteRoute(route, this.envUrl.urlAddress), {params: queryParams});
     }
 
     private createCompleteRoute = (route: string, envAddress: string) => {

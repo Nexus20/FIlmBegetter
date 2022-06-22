@@ -48,7 +48,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
         let movieTitle: string = event.target.value;
 
         this.movieService.getMovies("api/movies", {title: movieTitle}).subscribe({
-            next: (data: {$id: string, $values: MovieViewModel[]}) => {
+            next: (data: MovieViewModel[]) => {
                 console.log(data);
             },
             error: (err: HttpErrorResponse) => {

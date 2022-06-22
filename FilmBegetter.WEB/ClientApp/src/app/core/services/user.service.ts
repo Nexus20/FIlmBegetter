@@ -13,7 +13,7 @@ export class UserService {
     constructor(private http: HttpClient, private envUrl: EnvironmentUrlService) { }
 
     public getUsers = (route: string, queryParams?: {}) => {
-        return this.http.get<{$id: string, $values: UserViewModel[]}>(this.createCompleteRoute(route, this.envUrl.urlAddress), {params: queryParams});
+        return this.http.get<UserViewModel[]>(this.createCompleteRoute(route, this.envUrl.urlAddress), {params: queryParams});
     }
 
     public getCurrentUser(route: string) {

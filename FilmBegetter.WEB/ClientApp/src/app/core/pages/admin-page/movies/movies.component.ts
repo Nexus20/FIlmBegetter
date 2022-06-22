@@ -14,7 +14,7 @@ export class MoviesComponent implements OnInit {
 
     public getMovies = () => {
         this.movieService.getMovies("api/movies").subscribe({
-            next: (data: {$id: string, $values: MovieViewModel[]}) => {
+            next: (data: MovieViewModel[]) => {
                 console.log(data);
             },
             error: (err: HttpErrorResponse) => {

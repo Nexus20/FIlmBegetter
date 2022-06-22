@@ -14,7 +14,7 @@ export class UsersComponent implements OnInit {
 
     public getUsers = () => {
         this.userService.getUsers("api/users").subscribe({
-            next: (data: {$id: string, $values: UserViewModel[]}) => {
+            next: (data: UserViewModel[]) => {
                console.log(data);
             },
             error: (err: HttpErrorResponse) => {
