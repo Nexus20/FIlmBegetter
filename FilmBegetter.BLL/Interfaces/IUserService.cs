@@ -14,4 +14,6 @@ public interface IUserService {
     Task UpdateSubscription(string userId, string type);
 
     Task CheckSubscriptionExpiration(string userId);
+    
+    Task UpdateUserAsync(UserDto dto);
 }

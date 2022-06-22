@@ -39,6 +39,10 @@ public class AutomapperWebProfile : Profile {
         CreateMap<UserDto, RegistrationViewModel>()
             .ReverseMap()
             .ForMember(d => d.UserName, o => o.MapFrom(s => s.Email));
+        
+        CreateMap<UserDto, UserToUpdateViewModel>()
+            .ReverseMap()
+            .ForMember(d => d.UserName, o => o.MapFrom(s => s.Email));
 
         CreateMap<UserDto, UserViewModel>()
             .ReverseMap();

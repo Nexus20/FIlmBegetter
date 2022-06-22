@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { EnvironmentUrlService } from "../../shared/services/environment-url.service";
 import { UserViewModel } from "../models/user-view-model.interface";
 import { SubscriptionChangeResponse } from "../models/subscription-change-response.interface";
+import {UserToUpdateViewModel} from "../models/user-to-update-view-model.interface";
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +25,7 @@ export class UserService {
         return this.http.put(this.createCompleteRoute(route, this.envUrl.urlAddress), body);
     }
 
-    public updateCurrentUser(route: string, body: any) {
+    public updateCurrentUser(route: string, body: UserToUpdateViewModel) {
 
         return this.http.put(this.createCompleteRoute(route, this.envUrl.urlAddress), body);
     }

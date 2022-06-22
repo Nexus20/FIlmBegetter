@@ -21,11 +21,11 @@ export class EditProfileComponent implements OnInit {
     constructor(private userService: UserService) {
 
         this.editUserForm = new FormGroup({
+            id: new FormControl('', [Validators.required]),
             name: new FormControl('', [Validators.required]),
             surname: new FormControl('', [Validators.required]),
             email: new FormControl('', [Validators.required, Validators.email])
         })
-
     }
 
     ngOnInit(): void {
@@ -47,6 +47,7 @@ export class EditProfileComponent implements OnInit {
                 this.user = data;
 
                 this.editUserForm = new FormGroup({
+                    id: new FormControl(this.user.id, [Validators.required]),
                     name: new FormControl(this.user.name, [Validators.required]),
                     surname: new FormControl(this.user.surname, [Validators.required]),
                     email: new FormControl(this.user.email, [Validators.required, Validators.email])
@@ -61,10 +62,11 @@ export class EditProfileComponent implements OnInit {
 
     editUser = (editUserFormValue: any) => {
 
-        this.userService.updateCurrentUser("api/accounts/update", editUserFormValue).subscribe({
+        this.userService.updateCurrentUser("api/users/update", editUserFormValue).subscribe({
 
             next: (res: any) => {
-                console.log(res)
+
+                this.getUserProfile();
             },
 
             error: (err: HttpErrorResponse) => {

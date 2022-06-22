@@ -110,4 +110,16 @@ class UserService : IUserService {
             await _userManager.UpdateAsync(user);
         }
     }
+
+    public async Task UpdateUserAsync(UserDto dto) {
+        
+        var user = await _userManager.FindByIdAsync(dto.Id);
+
+        user.Name = dto.Name;
+        user.Surname = dto.Surname;
+        user.Email = dto.Email;
+        user.UserName = dto.UserName;
+
+        await _userManager.UpdateAsync(user);
+    }
 }

@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using System.Security.Claims;
 using AutoMapper;
 using FilmBegetter.BLL.Dto;
@@ -93,6 +94,26 @@ namespace FilmBegetter.WEB.Controllers
                 return BadRequest();
             }
 
+            return Ok();
+        }
+        
+        [HttpPut]
+        [Route("update")]
+        [Authorize]
+        public async Task<IActionResult> UpdateUserAccount(UserToUpdateViewModel viewModel) {
+
+            if (!ModelState.IsValid) {
+                return BadRequest();
+            }
+
+            try {
+                var dto = _mapper.Map<UserToUpdateViewModel, UserDto>(viewModel);
+                await _userService.UpdateUserAsync(dto);
+            }
+            catch (Exception ex) {
+                return BadRequest();
+            }
+            
             return Ok();
         }
     }
