@@ -27,7 +27,7 @@ namespace FilmBegetter.WEB.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = UserRoles.Admin)]
+        [Authorize]
         public async Task<IEnumerable<UserViewModel>> Get([FromQuery]UserFilterViewModel filter) {
             
             filter.PageNumber ??= 1;

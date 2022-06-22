@@ -8,6 +8,7 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { MovieCollectionsComponent } from './movie-collections/movie-collections.component';
 import { CollectionFormComponent } from './collection-form/collection-form.component';
 import { FriendsComponent } from './friends/friends.component';
+import {SharedModule} from "../../../shared/shared.module";
 
 
 
@@ -23,13 +24,14 @@ import { FriendsComponent } from './friends/friends.component';
     imports: [
         CommonModule,
         RouterModule.forChild([
-            { path: '', component: ProfileComponent },
-            { path: 'edit', component: EditProfileComponent },
-            { path: 'subscriptions', component: ChangeSubscriptionComponent },
-            { path: 'collections', component: MovieCollectionsComponent },
-            { path: 'friends', component: FriendsComponent }
+            {path: '', component: ProfileComponent},
+            {path: 'edit', component: EditProfileComponent},
+            {path: 'subscriptions', component: ChangeSubscriptionComponent},
+            {path: 'collections', component: MovieCollectionsComponent},
+            {path: 'friends', component: FriendsComponent}
         ]),
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        SharedModule
     ]
 })
 export class UserProfileModule { }
