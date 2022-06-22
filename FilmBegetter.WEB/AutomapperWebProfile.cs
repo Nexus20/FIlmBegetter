@@ -29,7 +29,10 @@ public class AutomapperWebProfile : Profile {
         
         CreateMap<MovieCollectionDto, MovieCollectionViewModel>()
             .ReverseMap();
-        
+
+        CreateMap<MovieCollectionDto, MovieCollectionToCreateViewModel>()
+            .ReverseMap();
+
         CreateMap<RatingDto, RatingViewModel>()
             .ReverseMap();
 

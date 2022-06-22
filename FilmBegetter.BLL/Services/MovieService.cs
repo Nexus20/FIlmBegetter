@@ -8,7 +8,7 @@ using FilmBegetter.DAL.Interfaces;
 
 namespace FilmBegetter.BLL.Services;
 
-class MovieService : IMovieService {
+public class MovieService : IMovieService {
 
     private readonly IUnitOfWork _unitOfWork;
 

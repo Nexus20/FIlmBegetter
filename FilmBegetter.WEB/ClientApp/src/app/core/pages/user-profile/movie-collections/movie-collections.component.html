@@ -16,7 +16,7 @@
         </div>
         <div class="row">
             <div class="col-12">
-                <app-collection-form [authorId]="user.id"></app-collection-form>
+                <app-collection-form (getUserProfile)="getUserProfile()" [authorId]="user.id"></app-collection-form>
             </div>
         </div>
     </div>

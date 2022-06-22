@@ -1,7 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
-import {HttpErrorResponse} from "@angular/common/http";
-import {MovieCollectionService} from "../../../services/movie-collection.service";
+import { HttpErrorResponse } from "@angular/common/http";
+import { MovieCollectionService } from "../../../services/movie-collection.service";
 
 @Component({
   selector: 'app-collection-form',
@@ -12,22 +12,24 @@ export class CollectionFormComponent implements OnInit {
 
     @Input() authorId: string = '';
 
+    @Output("getUserProfile") getUserProfile: EventEmitter<any> = new EventEmitter();
+
     collectionForm: FormGroup;
 
     constructor(private collectionService: MovieCollectionService) {
         this.collectionForm = new FormGroup({
-            id: new FormControl('', [Validators.required]),
+            id: new FormControl(''),
             name: new FormControl('', [Validators.required]),
-            authorId: new FormControl('', [Validators.required]),
+            authorId: new FormControl(this.authorId, [Validators.required]),
         });
     }
 
     ngOnInit(): void {
 
         this.collectionForm = new FormGroup({
-            id: new FormControl('', [Validators.required]),
+            id: new FormControl(''),
             name: new FormControl('', [Validators.required]),
-            authorId: new FormControl('', [Validators.required]),
+            authorId: new FormControl(this.authorId, [Validators.required]),
         });
     }
 
@@ -41,10 +43,11 @@ export class CollectionFormComponent implements OnInit {
 
     sendCollectionForm(collectionFormValue: any) {
 
-        if(collectionFormValue.id.value) {
-            this.collectionService.update("api/collections/update", collectionFormValue).subscribe({
+        if(collectionFormValue.id) {
+            this.collectionService.update(`api/collections/${collectionFormValue.id}`, collectionFormValue).subscribe({
                 next: (res: any) => {
                     console.log(res);
+                    this.getUserProfile.emit();
                 },
                 error: (err: HttpErrorResponse) => {
                     console.log(err)
@@ -53,9 +56,10 @@ export class CollectionFormComponent implements OnInit {
                 }
             });
         } else {
-            this.collectionService.create("api/collections/update", collectionFormValue).subscribe({
+            this.collectionService.create("api/collections", collectionFormValue).subscribe({
                 next: (res: any) => {
                     console.log(res);
+                    this.getUserProfile.emit();
                 },
                 error: (err: HttpErrorResponse) => {
                     console.log(err)
