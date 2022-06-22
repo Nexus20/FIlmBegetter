@@ -7,6 +7,7 @@ import { RouterModule } from "@angular/router";
 import { ReactiveFormsModule } from "@angular/forms";
 import { MovieCollectionsComponent } from './movie-collections/movie-collections.component';
 import { CollectionFormComponent } from './collection-form/collection-form.component';
+import { FriendsComponent } from './friends/friends.component';
 
 
 
@@ -16,7 +17,8 @@ import { CollectionFormComponent } from './collection-form/collection-form.compo
     EditProfileComponent,
     ChangeSubscriptionComponent,
     MovieCollectionsComponent,
-    CollectionFormComponent
+    CollectionFormComponent,
+    FriendsComponent
   ],
     imports: [
         CommonModule,
@@ -24,7 +26,8 @@ import { CollectionFormComponent } from './collection-form/collection-form.compo
             { path: '', component: ProfileComponent },
             { path: 'edit', component: EditProfileComponent },
             { path: 'subscriptions', component: ChangeSubscriptionComponent },
-            { path: 'collections', component: MovieCollectionsComponent }
+            { path: 'collections', component: MovieCollectionsComponent },
+            { path: 'friends', component: FriendsComponent }
         ]),
         ReactiveFormsModule
     ]
