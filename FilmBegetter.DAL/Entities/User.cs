@@ -4,6 +4,12 @@ namespace FilmBegetter.DAL.Entities;
 
 public class User : IdentityUser {
 
+    public string Name { get; set; }
+
+    public string Surname { get; set; }
+
+    public DateTime? SubscriptionExpirationDare { get; set; }
+
     public virtual ICollection<MovieCollection> MovieCollections { get; set; }
 
     public virtual ICollection<Rating> Ratings { get; set; }

@@ -3,8 +3,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthenticationService } from "../../shared/services/authentication.service";
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
-import {AuthenticationViewModel} from "../../shared/models/authenticationViewModel.interface";
-import {AuthenticationResponseViewModel} from "../../shared/models/authenticationResponseViewModel.interface";
+import { AuthenticationViewModel} from "../../core/models/authenticationViewModel.interface";
+import { AuthenticationResponseViewModel} from "../../core/models/authenticationResponseViewModel.interface";
 
 @Component({
   selector: 'app-login',

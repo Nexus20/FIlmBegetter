@@ -18,6 +18,11 @@ export class CollectionComponent implements OnInit {
     }
 
     public getTotalMoviesNumber(): number {
+
+        if(this.movies == undefined) {
+            return 0;
+        }
+
         return this.movies.length;
     }
 

@@ -52,6 +52,10 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : class {
     public Task<TEntity> FirstOrDefaultAsync(Expression<Func<TEntity, bool>> filter) {
         return _dbSet.FirstOrDefaultAsync(filter);
     }
+    
+    public TEntity FirstOrDefault(Expression<Func<TEntity, bool>> filter) {
+        return _dbSet.FirstOrDefault(filter);
+    }
 
     public Task<TEntity> FirstOrDefaultWithDetailsAsync(Expression<Func<TEntity, bool>> filter) {
         return FindAllWithDetailsWithoutFilter().FirstOrDefaultAsync(filter);
@@ -95,7 +99,7 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : class {
             query = query.Take(expressions.TakeCount);
         }
 
-        return query.AsNoTracking().ToListAsync();
+        return query.AsSplitQuery().AsNoTracking().ToListAsync();
     }
     
     protected virtual IQueryable<TEntity> FindAllWithDetailsWithoutFilter() {

@@ -34,6 +34,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="ClientApp\.angular\cache\angular-webpack\a9021c9e266ff00b503a7a65d3f915fba5290e71" />
       <Folder Include="ClientApp\.angular\cache\angular-webpack\d43003bda06bb66c4aae30490d53670394d4bc25" />
     </ItemGroup>
 

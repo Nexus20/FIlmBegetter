@@ -88,49 +88,49 @@ namespace FilmBegetter.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "02b791d1-712d-48c3-b9f0-c48e1b2cab3d",
+                            Id = "f8291155-66c8-478c-bbdf-9aa99a2800ac",
                             CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Action"
                         },
                         new
                         {
-                            Id = "4260e720-3fc1-4b53-9c24-b44ddec3ff0b",
+                            Id = "903aefb6-bf6f-40fe-a4cc-c443a4cf08b1",
                             CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Comedy"
                         },
                         new
                         {
-                            Id = "bfca2d42-d8a8-44fa-8b8a-1720c0268ce4",
+                            Id = "f54439f0-ac54-4690-bf93-f8f23d31e4bb",
                             CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Drama"
                         },
                         new
                         {
-                            Id = "2c1ac564-f191-4449-90cb-3c107613da20",
+                            Id = "c36a5e4b-cba8-49cb-9e79-fd699348b813",
                             CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Fantasy"
                         },
                         new
                         {
-                            Id = "9e59d843-df20-415a-af90-9b2083dbb66e",
+                            Id = "9708a973-9d46-40f6-a360-8ea6c5786906",
                             CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Horror"
                         },
                         new
                         {
-                            Id = "4663b2f8-0c4e-4285-9a9b-28a104bc9213",
+                            Id = "5a7ce7f6-a716-4f7d-8089-a87b24f7ef9d",
                             CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Mystery"
                         },
                         new
                         {
-                            Id = "47e87a18-6a7f-49d6-ba1c-792c56463978",
+                            Id = "835dda6e-aba6-4afa-aba4-28b94ab7dc0b",
                             CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Romance"
                         },
                         new
                         {
-                            Id = "ede884ea-ff17-4196-b561-ec38dfeae55f",
+                            Id = "4bfc3a03-2e2a-40e7-b41d-37a31b02fb41",
                             CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Thriller"
                         });
@@ -290,22 +290,22 @@ namespace FilmBegetter.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "e7e17cdb-1c31-4470-811b-7ff69642a9fe",
-                            ConcurrencyStamp = "3548e679-d5a4-419d-a2e8-b0f8fdedce83",
+                            Id = "426093c7-7290-477f-8271-3ecdf990827b",
+                            ConcurrencyStamp = "921e9bbd-3356-4a31-a19d-ec099f64f7e4",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "108cb068-c39d-4eee-be50-90a33b3c475f",
-                            ConcurrencyStamp = "77b7cf23-0812-4a0b-bd0f-bef853641845",
+                            Id = "514bc406-e101-482e-bc0a-66296a9d9903",
+                            ConcurrencyStamp = "eccc4f35-a20a-4aae-94d0-24028f548d84",
                             Name = "Moderator",
                             NormalizedName = "MODERATOR"
                         },
                         new
                         {
-                            Id = "88c70a4c-eea5-40e4-a7c9-cec2f6872a38",
-                            ConcurrencyStamp = "c307dad7-aaa1-40fb-82f2-2f496e79de7a",
+                            Id = "885987aa-b724-40f3-b33b-1de2f5d8558b",
+                            ConcurrencyStamp = "f34abfbb-aaa0-4ae6-aaa3-ad4f477ad15e",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -336,13 +336,13 @@ namespace FilmBegetter.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "68a3c4c8-f379-4bf0-b0d9-de026c6d1f7f",
+                            Id = "cce04694-bf6b-4bb9-8131-6c961c7583ab",
                             CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Type = "Basic"
                         },
                         new
                         {
-                            Id = "4dc7b828-fccb-435e-9ec6-e93ac6501cea",
+                            Id = "b444166e-f5f2-4e38-940e-07e32c60700e",
                             CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Type = "Premium"
                         });
@@ -377,6 +377,10 @@ namespace FilmBegetter.DAL.Migrations
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("datetimeoffset");
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -397,9 +401,16 @@ namespace FilmBegetter.DAL.Migrations
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime?>("SubscriptionExpirationDare")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("SubscriptionId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Surname")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");

@@ -15,6 +15,7 @@ class MovieRepository : Repository<Movie>, IMovieRepository {
             .Include(m => m.Ratings)
             .Include(m => m.MovieGenres)
             .ThenInclude(mg => mg.Genre)
+            .AsSplitQuery()
             .AsNoTracking();
     }
 }

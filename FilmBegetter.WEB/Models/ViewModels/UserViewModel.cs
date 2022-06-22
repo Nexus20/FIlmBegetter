@@ -3,6 +3,12 @@ namespace FilmBegetter.WEB.Models.ViewModels;
 public class UserViewModel {
     
     public string Id { get; set; }
+    
+    public string Name { get; set; }
+
+    public string Surname { get; set; }
+
+    public DateTime? SubscriptionExpirationDare { get; set; }
 
     public string UserName { get; set; }
 

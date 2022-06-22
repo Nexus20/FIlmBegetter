@@ -22,5 +22,8 @@ public class AutomapperBllProfile : Profile {
 
         CreateMap<User, UserDto>()
             .ReverseMap();
+
+        CreateMap<Subscription, SubscriptionDto>()
+            .ReverseMap();
     }
 }
