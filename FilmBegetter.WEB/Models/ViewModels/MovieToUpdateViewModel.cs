@@ -24,4 +24,6 @@ public class MovieToUpdateViewModel {
 
     [Required]
     public string Genres { get; set; }
+
+    public string ImagePath { get; set; }
 }

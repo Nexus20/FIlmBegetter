@@ -49,7 +49,7 @@ namespace FilmBegetter.WEB.Controllers
         //
         // // DELETE: api/Genres/5
         // [HttpDelete("{id}")]
-        // public void Delete(int id)
+        // public void DeleteAsync(int id)
         // {
         // }
     }

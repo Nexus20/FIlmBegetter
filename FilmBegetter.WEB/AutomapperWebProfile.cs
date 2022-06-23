@@ -28,6 +28,14 @@ public class AutomapperWebProfile : Profile {
                     s => s.Genres.Split(',', StringSplitOptions.None).Select(g => new GenreDto() {
                 Id = g
             })));
+        
+        CreateMap<MovieDto, MovieToUpdateViewModel>()
+            .ReverseMap()
+            .ForMember(d => d.Genres, 
+                o => o.MapFrom(
+                    s => s.Genres.Split(',', StringSplitOptions.None).Select(g => new GenreDto() {
+                        Id = g
+                    })));
 
         CreateMap<GenreDto, GenreViewModel>()
             .ReverseMap();

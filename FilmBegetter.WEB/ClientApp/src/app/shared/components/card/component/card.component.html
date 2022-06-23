@@ -68,8 +68,12 @@
 
         <div class="card-admin__controls">
             <div class="controls-content">
-                <span class="icon-edit"></span>
-                <span class="icon-delete"></span>
+
+                <a [routerLink]="[cardParameters.info.id+'/update']" class="icon-edit"></a>
+                <a [routerLink]="[cardParameters.info.id+'/delete']" class="icon-delete"></a>
+
+<!--                <span class="icon-edit"></span>-->
+<!--                <span class="icon-delete"></span>-->
             </div>
         </div>
     </div>

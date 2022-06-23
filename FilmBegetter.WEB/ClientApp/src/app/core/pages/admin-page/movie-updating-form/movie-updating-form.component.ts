@@ -1,41 +1,79 @@
 import { Component, OnInit } from '@angular/core';
-import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {ActivatedRoute, Router} from "@angular/router";
+import { MovieService } from "../../../services/movie.service";
+import { MovieViewModel } from "../../../models/movieViewModel.interface";
+import { HttpErrorResponse } from "@angular/common/http";
 import { GenreViewModel } from "../../../models/genreViewModel.interface";
 import { GenreService } from "../../../services/genre.service";
-import { HttpErrorResponse } from "@angular/common/http";
-import { MovieService } from "../../../services/movie.service";
-import {Router} from "@angular/router";
+import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
-  selector: 'app-movie-creation-form',
-  templateUrl: './movie-creation-form.component.html',
-  styleUrls: ['./movie-creation-form.component.scss']
+  selector: 'app-movie-updating-form',
+  templateUrl: './movie-updating-form.component.html',
+  styleUrls: ['./movie-updating-form.component.css']
 })
-export class MovieCreationFormComponent implements OnInit {
+export class MovieUpdatingFormComponent implements OnInit {
 
-    movieForm!: FormGroup;
+    private movieId!: string;
+
+    movie!: MovieViewModel;
 
     genres!: GenreViewModel[];
 
+    movieForm!: FormGroup;
+
     file: File | null = null;
 
-    constructor(private genreService: GenreService, private movieService: MovieService, private formBuilder: FormBuilder, private router: Router) { }
-
-    ngOnInit(): void {
+    constructor(private route: ActivatedRoute,
+                private movieService: MovieService,
+                private genreService: GenreService,
+                private formBuilder: FormBuilder,
+                private router: Router) {
 
         this.movieForm = new FormGroup( {
+            id: new FormControl('', [Validators.required]),
             title: new FormControl('', [Validators.required]),
             description: new FormControl('', [Validators.required]),
             country: new FormControl('', [Validators.required]),
             director:  new FormControl('', [Validators.required]),
             publicationDate:  new FormControl('', [Validators.required]),
-            // genres: new FormControl('', [Validators.required]),
             genres: this.formBuilder.array([], [Validators.required]),
-
+            imagePath: new FormControl(''),
             image: new FormControl()
         });
+    }
 
-        this.getGenres();
+    ngOnInit(): void {
+
+        this.route.params.subscribe(params => {
+          this.movieId = params.id;
+
+          console.log(this.movieId);
+
+          this.getMovie();
+          this.getGenres();
+
+        });
+    }
+
+    public getMovie = () => {
+        this.movieService.getMovie(`api/movies/${this.movieId}`).subscribe({
+            next: (data: MovieViewModel) => {
+
+                this.movie = data;
+
+                this.movieForm.controls['id'].setValue(this.movie.id);
+                this.movieForm.controls['title'].setValue(this.movie.title);
+                this.movieForm.controls['description'].setValue(this.movie.description);
+                this.movieForm.controls['country'].setValue(this.movie.country);
+                this.movieForm.controls['director'].setValue(this.movie.director);
+                this.movieForm.controls['publicationDate'].setValue(this.movie.publicationDate.toString().split('T')[0]);
+                this.movieForm.controls['imagePath'].setValue(this.movie.imagePath);
+            },
+            error: (err: HttpErrorResponse) => {
+                console.log(err);
+            }
+        });
     }
 
     public getGenres = () => {
@@ -53,23 +91,23 @@ export class MovieCreationFormComponent implements OnInit {
     sendForm() {
 
         const formData = new FormData();
+        formData.append('id', this.movieForm.get('id')?.value);
         formData.append('title', this.movieForm.get('title')?.value);
         formData.append('country', this.movieForm.get('country')?.value);
         formData.append('description', this.movieForm.get('description')?.value);
         formData.append('director', this.movieForm.get('director')?.value);
         formData.append('publicationDate', this.movieForm.get('publicationDate')?.value);
-        console.log(this.movieForm.get('genres')?.value);
-
+        formData.append('imagePath', this.movieForm.get('imagePath')?.value);
         formData.append('genres', this.movieForm.get('genres')?.value);
 
         if(this.file != null) {
             formData.append('file', this.file, this.file.name);
         }
 
-        this.movieService.create("api/movies", formData).subscribe({
+        this.movieService.update(`api/movies/${this.movieId}`, formData).subscribe({
             next: (data: any) => {
                 console.log(data);
-                this.router.navigate(['/admin/movies']);
+                this.router.navigate([`/admin/movies/${this.movieId}/update`]);
             },
             error: (err: HttpErrorResponse) => {
                 console.log(err);
@@ -105,5 +143,9 @@ export class MovieCreationFormComponent implements OnInit {
                 i++;
             });
         }
+    }
+
+    hasGenre(id: string) : boolean {
+        return this.movie.genres.some(v => v.id == id);
     }
 }

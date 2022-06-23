@@ -90,7 +90,7 @@ public class MoviesController : ControllerBase {
     // PUT: api/Movies/5
     [HttpPut("{id}")]
     [Authorize(Roles = UserRoles.Admin)]
-    public async Task<IActionResult> Put(string id, [FromBody] MovieToUpdateViewModel model) {
+    public async Task<IActionResult> Put(string id, [FromForm] MovieToUpdateViewModel model) {
         
         if (!ModelState.IsValid) {
             return BadRequest();
