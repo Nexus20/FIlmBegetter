@@ -15,6 +15,10 @@ export class MovieService {
         return this.http.get<MovieViewModel[]>(this.createCompleteRoute(route, this.envUrl.urlAddress), {params: queryParams});
     }
 
+    public create = (route: string, body: FormData) => {
+        return this.http.post(this.createCompleteRoute(route, this.envUrl.urlAddress), body);
+    }
+
     private createCompleteRoute = (route: string, envAddress: string) => {
         return `${envAddress}/${route}`;
     }

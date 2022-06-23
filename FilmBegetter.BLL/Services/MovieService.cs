@@ -30,6 +30,17 @@ public class MovieService : IMovieService {
 
         await _unitOfWork.GetRepository<IRepository<Movie>, Movie>().CreateAsync(movie);
 
+
+        foreach (var genreDto in dto.Genres) {
+
+            var movieGenre = new MovieGenre() {
+                GenreId = genreDto.Id,
+                MovieId = movie.Id
+            };
+
+            await _unitOfWork.GetRepository<IRepository<MovieGenre>, MovieGenre>().CreateAsync(movieGenre);
+        }
+        
         await _unitOfWork.SaveChangesAsync();
     }
 

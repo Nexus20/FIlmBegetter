@@ -5,6 +5,7 @@ import { MoviesComponent } from './movies/movies.component';
 import { UsersComponent } from './users/users.component';
 import {RouterModule} from "@angular/router";
 import { MovieCreationFormComponent } from './movie-creation-form/movie-creation-form.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 
@@ -15,13 +16,15 @@ import { MovieCreationFormComponent } from './movie-creation-form/movie-creation
     UsersComponent,
     MovieCreationFormComponent
   ],
-  imports: [
-    CommonModule,
-      RouterModule.forChild([
-          { path: 'home', component: HomeComponent },
-          { path: 'movies', component: MoviesComponent },
-          { path: 'users', component: UsersComponent }
-      ])
-  ]
+    imports: [
+        CommonModule,
+        RouterModule.forChild([
+            { path: '', component: HomeComponent },
+            { path: 'movies', component: MoviesComponent },
+            { path: 'users', component: UsersComponent },
+            { path: 'movies/new', component: MovieCreationFormComponent }
+        ]),
+        ReactiveFormsModule
+    ]
 })
 export class AdminPageModule { }

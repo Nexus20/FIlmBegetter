@@ -22,7 +22,12 @@ public class AutomapperWebProfile : Profile {
             .ReverseMap();
         
         CreateMap<MovieDto, MovieToCreateViewModel>()
-            .ReverseMap();
+            .ReverseMap()
+            .ForMember(d => d.Genres, 
+                o => o.MapFrom(
+                    s => s.Genres.Split(',', StringSplitOptions.None).Select(g => new GenreDto() {
+                Id = g
+            })));
 
         CreateMap<GenreDto, GenreViewModel>()
             .ReverseMap();
