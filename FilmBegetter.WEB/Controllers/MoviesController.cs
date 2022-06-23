@@ -56,8 +56,8 @@ public class MoviesController : ControllerBase {
     // POST: api/Movies
     [HttpPost]
     [Authorize(Roles = UserRoles.Admin)]
-    public async Task<IActionResult> Post([FromBody] MovieToCreateViewModel model) {
-        
+    public async Task<IActionResult> Post([FromForm]MovieToCreateViewModel model) {
+
         if (!ModelState.IsValid) {
             return BadRequest();
         }
@@ -65,12 +65,16 @@ public class MoviesController : ControllerBase {
         var dto = _mapper.Map<MovieToCreateViewModel, MovieDto>(model);
 
         try {
+            
+            var files = Request.Form.Files;
+            
+            if (files.Count > 0) {
 
-            if (model.ImageFile != null) {
-
-                await UploadImage(model.ImageFile);
-
-                var path = $"/img/movies/{model.ImageFile.FileName}";
+                var image = files[0];
+                
+                await UploadImage(image);
+            
+                var path = $"/img/movies/{image.FileName}";
                 dto.ImagePath = path;
             }
 
@@ -86,7 +90,7 @@ public class MoviesController : ControllerBase {
     // PUT: api/Movies/5
     [HttpPut("{id}")]
     [Authorize(Roles = UserRoles.Admin)]
-    public async Task<IActionResult> Put(string id, [FromBody] MovieToUpdateViewModel model) {
+    public async Task<IActionResult> Put(string id, [FromForm] MovieToUpdateViewModel model) {
         
         if (!ModelState.IsValid) {
             return BadRequest();
@@ -96,11 +100,15 @@ public class MoviesController : ControllerBase {
 
         try {
 
-            if (model.ImageFile != null) {
+            var files = Request.Form.Files;
+            
+            if (files.Count > 0) {
 
-                await UploadImage(model.ImageFile);
-
-                var path = $"/img/movies/{model.ImageFile.FileName}";
+                var image = files[0];
+                
+                await UploadImage(image);
+            
+                var path = $"/img/movies/{image.FileName}";
                 dto.ImagePath = path;
             }
 

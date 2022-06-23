@@ -4,6 +4,10 @@ import { HomeComponent } from './home/home.component';
 import { MoviesComponent } from './movies/movies.component';
 import { UsersComponent } from './users/users.component';
 import {RouterModule} from "@angular/router";
+import { MovieCreationFormComponent } from './movie-creation-form/movie-creation-form.component';
+import {ReactiveFormsModule} from "@angular/forms";
+import {SharedModule} from "../../../shared/shared.module";
+import { MovieUpdatingFormComponent } from './movie-updating-form/movie-updating-form.component';
 
 
 
@@ -11,15 +15,21 @@ import {RouterModule} from "@angular/router";
   declarations: [
     HomeComponent,
     MoviesComponent,
-    UsersComponent
+    UsersComponent,
+    MovieCreationFormComponent,
+    MovieUpdatingFormComponent
   ],
-  imports: [
-    CommonModule,
-      RouterModule.forChild([
-          { path: 'home', component: HomeComponent },
-          { path: 'movies', component: MoviesComponent },
-          { path: 'users', component: UsersComponent }
-      ])
-  ]
+    imports: [
+        CommonModule,
+        RouterModule.forChild([
+            {path: '', component: HomeComponent},
+            {path: 'movies', component: MoviesComponent},
+            {path: 'users', component: UsersComponent},
+            {path: 'movies/new', component: MovieCreationFormComponent},
+            {path: 'movies/:id/update', component: MovieUpdatingFormComponent}
+        ]),
+        ReactiveFormsModule,
+        SharedModule
+    ]
 })
 export class AdminPageModule { }

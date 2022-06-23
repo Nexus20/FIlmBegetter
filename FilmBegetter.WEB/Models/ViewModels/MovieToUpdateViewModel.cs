@@ -23,7 +23,7 @@ public class MovieToUpdateViewModel {
     public DateTime PublicationDate { get; set; }
 
     [Required]
-    public ICollection<string> Genres { get; set; }
+    public string Genres { get; set; }
 
-    public IFormFile ImageFile { get; set; }
+    public string ImagePath { get; set; }
 }
