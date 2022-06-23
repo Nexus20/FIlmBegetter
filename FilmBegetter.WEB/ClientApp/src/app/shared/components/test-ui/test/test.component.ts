@@ -4,6 +4,7 @@ import { IMovieCard } from './../../../models/card.interface';
 import { IInput } from './../../../models/input.interface';
 import { IButton } from './../../../models/button.interface';
 import { Component, OnInit } from '@angular/core';
+import {SubscriptionViewModel} from "../../../../core/models/subscription-view-model.interface";
 
 @Component({
     selector: 'app-test',
@@ -193,18 +194,23 @@ export class TestComponent implements OnInit {
         type: 'user',
         info: {
             id: '1',
-            passwotd: 'qwe',
+            // passwotd: 'qwe',
             email: 'qwe@wqe',
             movieCollections: [],
             friends: [],
             comments: [],
-            userRoles: [],
-            subscription: 'Premium',
+            // userRoles: [],
+            // subscription: 'Premium',
             isBanned: false,
-            subscriptionId: '1',
-            subscriptionUntil: new Date(),
+            // subscriptionId: '1',
+            subscriptionExpirationDare: new Date(),
             name: 'John',
             surname: 'Doe',
+            username: '',
+            subscription: {} as SubscriptionViewModel,
+            ratings: [],
+            roles: [],
+            unbanDate: undefined
         }
     }
 }
