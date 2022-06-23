@@ -6,6 +6,7 @@ import { UsersComponent } from './users/users.component';
 import {RouterModule} from "@angular/router";
 import { MovieCreationFormComponent } from './movie-creation-form/movie-creation-form.component';
 import {ReactiveFormsModule} from "@angular/forms";
+import {SharedModule} from "../../../shared/shared.module";
 
 
 
@@ -19,12 +20,13 @@ import {ReactiveFormsModule} from "@angular/forms";
     imports: [
         CommonModule,
         RouterModule.forChild([
-            { path: '', component: HomeComponent },
-            { path: 'movies', component: MoviesComponent },
-            { path: 'users', component: UsersComponent },
-            { path: 'movies/new', component: MovieCreationFormComponent }
+            {path: '', component: HomeComponent},
+            {path: 'movies', component: MoviesComponent},
+            {path: 'users', component: UsersComponent},
+            {path: 'movies/new', component: MovieCreationFormComponent}
         ]),
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        SharedModule
     ]
 })
 export class AdminPageModule { }

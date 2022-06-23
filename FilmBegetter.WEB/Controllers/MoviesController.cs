@@ -100,11 +100,15 @@ public class MoviesController : ControllerBase {
 
         try {
 
-            if (model.ImageFile != null) {
+            var files = Request.Form.Files;
+            
+            if (files.Count > 0) {
 
-                await UploadImage(model.ImageFile);
-
-                var path = $"/img/movies/{model.ImageFile.FileName}";
+                var image = files[0];
+                
+                await UploadImage(image);
+            
+                var path = $"/img/movies/{image.FileName}";
                 dto.ImagePath = path;
             }
 
