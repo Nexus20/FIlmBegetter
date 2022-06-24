@@ -2,6 +2,9 @@
   background: rgba(0, 0, 0, 0.2);
   border-radius: 15px;
   max-width: 400px;
+  position: absolute;
+  background: #121829;
+  border: 2px solid #323b54;
 }
 .search-results .search-result__item {
   padding: 10px 15px;
