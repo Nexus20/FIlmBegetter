@@ -1,10 +1,63 @@
+<app-side-menu></app-side-menu>
 <ng-container *ngIf="user != undefined">
 
-    <div class="container">
+<div class="container">
         <div class="row">
             <h2 class="col-12 mb-3">Your friends:</h2>
             <div class="col-12 mb-3">
-                <app-input [inputParameters]="searchInput" (input)="getUsersByName($event)"></app-input>
+                <div class="search-input-wrapper">
+                    <app-input [inputParameters]="searchInput" (input)="getUsersByName($event)"></app-input>
+                    <ul class="search-results" *ngFor="let friend of friendsSearchResults">
+                        <li class="search-result__item">
+                            <div>{{friend.name}} {{friend.surname}} ({{friend.email}})</div>
+                            <app-button [buttonConfig]="{type: 'default', size: 'small', text: '+', disabled: false}"></app-button>
+                        </li>
+                    </ul>
+<!--                <ul class="search-results">-->
+<!--                    <li class="search-result__item">-->
+<!--                        <div>Code Code (Code@code2.com)</div>-->
+<!--                        <app-button [buttonConfig]="{type: 'default', size: 'small', text: '+', disabled: false}"></app-button>-->
+<!--                    </li>-->
+<!--                    <li class="search-result__item">-->
+<!--                        <div>Code Code (Code@code2.com)</div>-->
+<!--                        <app-button [buttonConfig]="{type: 'default', size: 'small', text: '+', disabled: false}"></app-button>-->
+<!--                    </li>-->
+<!--                    <li class="search-result__item">-->
+<!--                        <div>Code Code (Code@code2.com)</div>-->
+<!--                        <app-button [buttonConfig]="{type: 'default', size: 'small', text: '+', disabled: false}"></app-button>-->
+<!--                    </li>-->
+<!--                    <li class="search-result__item">-->
+<!--                        <div>Code Code (Code@code2.com)</div>-->
+<!--                        <app-button [buttonConfig]="{type: 'default', size: 'small', text: '+', disabled: false}"></app-button>-->
+<!--                    </li>-->
+<!--                    <li class="search-result__item">-->
+<!--                        <div>Code Code (Code@code2.com)</div>-->
+<!--                        <app-button [buttonConfig]="{type: 'default', size: 'small', text: '+', disabled: false}"></app-button>-->
+<!--                    </li>-->
+<!--                    <li class="search-result__item">-->
+<!--                        <div>Code Code (Code@code2.com)</div>-->
+<!--                        <app-button [buttonConfig]="{type: 'default', size: 'small', text: '+', disabled: false}"></app-button>-->
+<!--                    </li>-->
+<!--                    <li class="search-result__item">-->
+<!--                        <div>Code Code (Code@code2.com)</div>-->
+<!--                        <app-button [buttonConfig]="{type: 'default', size: 'small', text: '+', disabled: false}"></app-button>-->
+<!--                    </li>-->
+<!--                    <li class="search-result__item">-->
+<!--                        <div>Code Code (Code@code2.com)</div>-->
+<!--                        <app-button [buttonConfig]="{type: 'default', size: 'small', text: '+', disabled: false}"></app-button>-->
+<!--                    </li>-->
+<!--                    <li class="search-result__item">-->
+<!--                        <div>Code Code (Code@code2.com)</div>-->
+<!--                        <app-button [buttonConfig]="{type: 'default', size: 'small', text: '+', disabled: false}"></app-button>-->
+<!--                    </li>-->
+<!--                    <li class="search-result__item">-->
+<!--                        <div>Code Code (Code@code2.com)</div>-->
+<!--                        <app-button [buttonConfig]="{type: 'default', size: 'small', text: '+', disabled: false}"></app-button>-->
+<!--                    </li>-->
+<!--                </ul>-->
+                </div>
+
+
             </div>
         </div>
 
@@ -24,6 +77,6 @@
                 </h4>
             </div>
         </ng-template>
-    </div>
 
+</div>
 </ng-container>

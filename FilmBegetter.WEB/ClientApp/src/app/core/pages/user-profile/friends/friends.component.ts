@@ -12,6 +12,8 @@ export class FriendsComponent implements OnInit {
 
     user!: UserViewModel;
 
+    friendsSearchResults: UserViewModel[] = [];
+
     searchInput =  {
         placeholder: "Find users by name, surname or email",
         icon: "search-normal",
@@ -41,14 +43,19 @@ export class FriendsComponent implements OnInit {
     getUsersByName(event: any) {
 
         let username = event.target.value;
+        console.log(username);
+
+        if(username === '') {
+            this.friendsSearchResults = [];
+            return;
+        }
 
         this.userService.getUsers('api/users/', {name: username, email: username}).subscribe({
 
             next: (data: UserViewModel[]) => {
 
                 if(data.length) {
-                    let friends = data.filter(val => val.id != this.user.id);
-                    console.log(friends);
+                    this.friendsSearchResults = data.filter(val => val.id != this.user.id);
                 }
             },
             error: (err: HttpErrorResponse) => {
