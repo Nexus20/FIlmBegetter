@@ -22,14 +22,30 @@ public class AutomapperWebProfile : Profile {
             .ReverseMap();
         
         CreateMap<MovieDto, MovieToCreateViewModel>()
-            .ReverseMap();
+            .ReverseMap()
+            .ForMember(d => d.Genres, 
+                o => o.MapFrom(
+                    s => s.Genres.Split(',', StringSplitOptions.None).Select(g => new GenreDto() {
+                Id = g
+            })));
+        
+        CreateMap<MovieDto, MovieToUpdateViewModel>()
+            .ReverseMap()
+            .ForMember(d => d.Genres, 
+                o => o.MapFrom(
+                    s => s.Genres.Split(',', StringSplitOptions.None).Select(g => new GenreDto() {
+                        Id = g
+                    })));
 
         CreateMap<GenreDto, GenreViewModel>()
             .ReverseMap();
         
         CreateMap<MovieCollectionDto, MovieCollectionViewModel>()
             .ReverseMap();
-        
+
+        CreateMap<MovieCollectionDto, MovieCollectionToCreateViewModel>()
+            .ReverseMap();
+
         CreateMap<RatingDto, RatingViewModel>()
             .ReverseMap();
 
@@ -37,6 +53,10 @@ public class AutomapperWebProfile : Profile {
             .ReverseMap();
 
         CreateMap<UserDto, RegistrationViewModel>()
+            .ReverseMap()
+            .ForMember(d => d.UserName, o => o.MapFrom(s => s.Email));
+        
+        CreateMap<UserDto, UserToUpdateViewModel>()
             .ReverseMap()
             .ForMember(d => d.UserName, o => o.MapFrom(s => s.Email));
 

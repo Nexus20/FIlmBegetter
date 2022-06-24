@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { ButtonComponent } from './components/button/button.component';
 import { HeaderModule } from './components/header/header.module';
 import { CollectionComponent } from './components/collection/collection.component';
+import { SideMenuComponent } from './components/side-menu/side-menu.component';
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import { CollectionComponent } from './components/collection/collection.componen
         ButtonComponent,
         InputComponent,
         CollectionComponent,
+        SideMenuComponent,
     ],
     imports: [
         CommonModule,
@@ -26,7 +28,8 @@ import { CollectionComponent } from './components/collection/collection.componen
         ButtonComponent,
         HeaderModule,
         InputComponent,
-        CollectionComponent
+        CollectionComponent,
+        SideMenuComponent
     ]
 })
 export class SharedModule { }

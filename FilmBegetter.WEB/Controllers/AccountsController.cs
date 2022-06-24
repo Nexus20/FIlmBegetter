@@ -2,6 +2,7 @@ using AutoMapper;
 using FilmBegetter.BLL.Dto;
 using FilmBegetter.BLL.Interfaces;
 using FilmBegetter.WEB.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FilmBegetter.WEB.Controllers; 

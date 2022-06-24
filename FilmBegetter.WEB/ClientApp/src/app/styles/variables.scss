@@ -65,3 +65,15 @@ $card-background: #20283e;
     font-size: 14px;
     line-height: 24px;
 }
+
+@mixin heading5 {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    /* identical to box height, or 120% */
+    letter-spacing: -0.015em;
+    /* Grey/50 */
+    color: #EBEEF5;
+}

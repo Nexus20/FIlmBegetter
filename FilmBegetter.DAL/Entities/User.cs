@@ -27,4 +27,6 @@ public class User : IdentityUser {
     public bool IsBanned { get; set; }
 
     public DateTime? UnbanDate { get; set; }
+    
+    public ICollection<CommentRatingUser> CommentRatings { get; set; }
 }

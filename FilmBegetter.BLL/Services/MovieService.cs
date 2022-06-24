@@ -8,7 +8,7 @@ using FilmBegetter.DAL.Interfaces;
 
 namespace FilmBegetter.BLL.Services;
 
-class MovieService : IMovieService {
+public class MovieService : IMovieService {
 
     private readonly IUnitOfWork _unitOfWork;
 
@@ -30,18 +30,41 @@ class MovieService : IMovieService {
 
         await _unitOfWork.GetRepository<IRepository<Movie>, Movie>().CreateAsync(movie);
 
+
+        foreach (var genreDto in dto.Genres) {
+
+            var movieGenre = new MovieGenre() {
+                GenreId = genreDto.Id,
+                MovieId = movie.Id
+            };
+
+            await _unitOfWork.GetRepository<IRepository<MovieGenre>, MovieGenre>().CreateAsync(movieGenre);
+        }
+        
         await _unitOfWork.SaveChangesAsync();
     }
 
-    public Task UpdateMovieAsync(MovieDto dto) {
+    public async Task UpdateMovieAsync(MovieDto dto) {
         
         // ValidateMovie(dto);
 
         var movie = _mapper.Map<MovieDto, Movie>(dto);
 
         _unitOfWork.GetRepository<IRepository<Movie>, Movie>().Update(movie);
+        
+        await _unitOfWork.GetRepository<IRepository<MovieGenre>, MovieGenre>().DeleteAsync(mg => mg.MovieId == movie.Id);
+        
+        foreach (var genreDto in dto.Genres) {
 
-        return _unitOfWork.SaveChangesAsync();
+            var movieGenre = new MovieGenre() {
+                GenreId = genreDto.Id,
+                MovieId = movie.Id
+            };
+
+            await _unitOfWork.GetRepository<IRepository<MovieGenre>, MovieGenre>().CreateAsync(movieGenre);
+        }
+
+        await _unitOfWork.SaveChangesAsync();
     }
 
     public Task DeleteMovieAsync(string id) {

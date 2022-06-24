@@ -1,7 +1,7 @@
 ﻿using FilmBegetter.BLL.Dto;
 using FilmBegetter.BLL.FilterModels;
 
-namespace FilmBegetter.BLL.Interfaces; 
+namespace FilmBegetter.BLL.Interfaces;
 
 public interface IMovieService {
 

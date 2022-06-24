@@ -68,8 +68,12 @@
 
         <div class="card-admin__controls">
             <div class="controls-content">
-                <span class="icon-edit"></span>
-                <span class="icon-delete"></span>
+
+                <a [routerLink]="[cardParameters.info.id+'/update']" class="icon-edit"></a>
+                <a [routerLink]="[cardParameters.info.id+'/delete']" class="icon-delete"></a>
+
+<!--                <span class="icon-edit"></span>-->
+<!--                <span class="icon-delete"></span>-->
             </div>
         </div>
     </div>
@@ -112,21 +116,21 @@
 
         <div
             class="content-subscription"
-            [class.default]="cardParameters.info.subscription === 'Default'"
+            [class.default]="cardParameters.info.subscription.type === 'Default'"
         >
             <span class="icon-user-square"></span>
-            <span> {{ cardParameters.info.subscription }}</span>
+            <span> {{ cardParameters.info.subscription.type }}</span>
         </div>
 
         <div
             class="content-deadline"
-            *ngIf="cardParameters.info.subscriptionUntil"
+            *ngIf="cardParameters.info.subscriptionExpirationDare"
         >
             <span class="icon-clock"></span>
             <span
                 >Until:
                 {{
-                    cardParameters.info.subscriptionUntil | date: "dd.mm.YY"
+                    cardParameters.info.subscriptionExpirationDare | date: "dd.mm.YY"
                 }}</span
             >
         </div>

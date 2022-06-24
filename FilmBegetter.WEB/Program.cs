@@ -2,6 +2,7 @@ using System.Text;
 using System.Text.Json.Serialization;
 using FilmBegetter.BLL;
 using FilmBegetter.WEB;
+using FilmBegetter.WEB.Middlewares;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 
@@ -30,7 +31,10 @@ builder.Services.AddAuthentication(opt => {
         };
     });
 
-builder.Services.AddControllersWithViews().AddJsonOptions(o => o.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
+// builder.Services.AddControllersWithViews().AddJsonOptions(o => o.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
+builder.Services.AddControllersWithViews().AddNewtonsoftJson(options => {
+    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+});
 
 var app = builder.Build();
 
@@ -51,6 +55,8 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseMiddleware<SubscriptionExpirationChecking>();
 
 app.MapControllerRoute(
     name: "default",

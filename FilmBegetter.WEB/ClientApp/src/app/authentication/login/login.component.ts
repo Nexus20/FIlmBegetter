@@ -15,13 +15,11 @@ export class LoginComponent implements OnInit {
 
   private returnUrl: string = '';
 
-  loginForm: FormGroup;
+  loginForm!: FormGroup;
   errorMessage: string = '';
   showError: boolean = false;
 
-  constructor(private authService: AuthenticationService, private router: Router, private route: ActivatedRoute) {
-    this.loginForm = new FormGroup({}, undefined, undefined);;
-  }
+  constructor(private authService: AuthenticationService, private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
@@ -34,6 +32,7 @@ export class LoginComponent implements OnInit {
   validateControl = (controlName: string) => {
     return this.loginForm.get(controlName)?.invalid && this.loginForm.get(controlName)?.touched
   }
+
   hasError = (controlName: string, errorName: string) => {
     return this.loginForm.get(controlName)?.hasError(errorName)
   }

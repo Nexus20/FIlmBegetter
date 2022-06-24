@@ -3,6 +3,7 @@ import { PipeModule } from './../../pipes/pipe.module';
 import { CardComponent } from './component/card.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {RouterModule} from "@angular/router";
 
 
 
@@ -10,7 +11,8 @@ import { CommonModule } from '@angular/common';
     declarations: [CardComponent],
     imports: [
         CommonModule,
-        PipeModule
+        PipeModule,
+        RouterModule
     ],
     exports: [CardComponent]
 })

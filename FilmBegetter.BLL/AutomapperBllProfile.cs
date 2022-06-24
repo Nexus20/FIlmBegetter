@@ -17,6 +17,9 @@ public class AutomapperBllProfile : Profile {
             .ForMember(d => d.MovieGenres, o => o.Ignore())
             .ForMember(d => d.MovieCollections, o => o.Ignore());
 
+        CreateMap<Genre, GenreDto>()
+            .ReverseMap();
+        
         CreateMap<Rating, RatingDto>()
             .ReverseMap();
 
@@ -25,5 +28,11 @@ public class AutomapperBllProfile : Profile {
 
         CreateMap<Subscription, SubscriptionDto>()
             .ReverseMap();
+
+        CreateMap<MovieCollection, MovieCollectionDto>()
+            .ForMember(d => d.Movies, 
+                o => o.MapFrom(s => s.MovieCollections.Select(mmc => mmc.Movie)))
+            .ReverseMap()
+            .ForMember(d => d.MovieCollections, o => o.Ignore());
     }
 }

@@ -32,6 +32,8 @@ public class ApplicationDbContext : IdentityDbContext<User, Role, string, Identi
     
     public DbSet<MovieGenre> MovieGenres { get; set; }
     
+    public DbSet<CommentRatingUser> CommentRatingUsers { get; set; }
+    
     protected override void OnModelCreating(ModelBuilder builder) {
 
         base.OnModelCreating(builder);
@@ -46,6 +48,7 @@ public class ApplicationDbContext : IdentityDbContext<User, Role, string, Identi
         builder.Entity<Subscription>().Configure();
         builder.Entity<User>().Configure();
         builder.Entity<Role>().Configure();
+        builder.Entity<CommentRatingUser>().Configure();
         builder.Entity<UserRole>().HasKey(p => new { p.UserId, p.RoleId });
     }
 }
