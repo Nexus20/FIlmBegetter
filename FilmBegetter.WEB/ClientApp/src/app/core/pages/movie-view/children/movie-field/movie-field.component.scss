@@ -1,0 +1,12 @@
+@import "../../../../../styles/variables.scss";
+
+.field {
+  &-title {
+    @include bodyRegular;
+    color: $gray-400;
+    margin-bottom: 6px;
+  }
+  &-value {
+    @include bodyLarge;
+  }
+}

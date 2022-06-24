@@ -1,0 +1,26 @@
+<div class="field">
+    <ng-container *ngIf="fieldConfig.type === 'default'">
+        <div class="field-title">{{ fieldConfig.label }}</div>
+        <div class="field-value">{{ fieldConfig.value }}</div>
+    </ng-container>
+    <ng-container *ngIf="fieldConfig.type === 'date'">
+        <div class="field-title">{{ fieldConfig.label }}</div>
+        <div class="field-value">
+            {{ transformTodate(fieldConfig.value) | date: "YYYY-MM-DD" }}
+        </div>
+    </ng-container>
+    <ng-container *ngIf="fieldConfig.type === 'duration'">
+        <div class="field-title">{{ fieldConfig.label }}</div>
+        <div class="field-value">{{ fieldConfig.value }} min</div>
+    </ng-container>
+    <ng-container *ngIf="fieldConfig.type === 'genres'">
+        <div class="field-title">{{ fieldConfig.label }}</div>
+        <div class="field-value">
+            <ng-container
+                *ngFor="let genre of transformToArray(fieldConfig.value)"
+            >
+                {{ genre }}
+            </ng-container>
+        </div>
+    </ng-container>
+</div>
