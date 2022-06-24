@@ -6,7 +6,12 @@
 @import "./app/styles/normalize.scss";
 @import "./app/styles/variables.scss";
 
+html {
+    height: 100%;
+}
+
 body {
+    height: 100%;
   font-family: "Poppins", sans-serif;
   overflow-x: hidden;
   color: $gray-200;
@@ -16,5 +21,6 @@ body {
 }
 
 .wrapper {
+    height: 100%;
   position: relative;
 }

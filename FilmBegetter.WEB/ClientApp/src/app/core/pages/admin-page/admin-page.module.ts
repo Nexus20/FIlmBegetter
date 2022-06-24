@@ -8,6 +8,7 @@ import { MovieCreationFormComponent } from './movie-creation-form/movie-creation
 import {ReactiveFormsModule} from "@angular/forms";
 import {SharedModule} from "../../../shared/shared.module";
 import { MovieUpdatingFormComponent } from './movie-updating-form/movie-updating-form.component';
+import { AdminMenuComponent } from './admin-menu/admin-menu.component';
 
 
 
@@ -17,7 +18,8 @@ import { MovieUpdatingFormComponent } from './movie-updating-form/movie-updating
     MoviesComponent,
     UsersComponent,
     MovieCreationFormComponent,
-    MovieUpdatingFormComponent
+    MovieUpdatingFormComponent,
+    AdminMenuComponent
   ],
     imports: [
         CommonModule,
