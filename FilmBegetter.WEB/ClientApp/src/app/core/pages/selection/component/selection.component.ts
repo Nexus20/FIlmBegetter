@@ -1,3 +1,4 @@
+import { UserViewModel } from './../../../models/user-view-model.interface';
 import { IMovieCard } from '../../../../shared/models/card.interface';
 import { CSelectionPage } from '../selection.config';
 import { Component, OnInit } from '@angular/core';
@@ -7,327 +8,514 @@ import { MovieService } from "../../../services/movie.service";
 
 
 @Component({
-    selector: 'app-selection',
-    templateUrl: './selection.component.html',
-    styleUrls: ['./selection.component.scss']
+  selector: 'app-selection',
+  templateUrl: './selection.component.html',
+  styleUrls: ['./selection.component.scss']
 })
 export class SelectionComponent implements OnInit {
 
-    public selectionConfig = CSelectionPage;
+  public selectionConfig = CSelectionPage;
 
-    public bestOptions: IMovieCard[] = [
-        {
-            type: 'smallPreview',
-            info: {
-                id: '2',
-                title: 'Black Widow',
-                description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem voluptates dolorem temporibus optio tempore, voluptate nesciunt blanditiis placeat maiores aut.`,
-                country: 'Ukraine',
-                director: 'Horkun Dmytro',
-                imagePath: '../../../../../assets/images/card-preview.png',
-                comments: [`Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis nulla, fuga quas laborum numquam illum.`, 'Lorem ipsum dolor sit amet'],
-                commonRating: 6.8,
-                //movieCollections: ['New realizes', 'Best June'],
-                genres: [],
-                publicationDate: new Date()
-            }
-        },
-        {
-            type: 'smallPreview',
-            info: {
-                id: '3',
-                title: 'Black Widow',
-                description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem voluptates dolorem temporibus optio tempore, voluptate nesciunt blanditiis placeat maiores aut.`,
-                country: 'Ukraine',
-                director: 'Horkun Dmytro',
-                imagePath: '../../../../../assets/images/card-preview.png',
-                comments: [`Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis nulla, fuga quas laborum numquam illum.`, 'Lorem ipsum dolor sit amet'],
-                commonRating: 6.8,
-                //movieCollections: ['New realizes', 'Best June'],
-                genres: [],
-                publicationDate: new Date()
-            }
-        },
-        {
-            type: 'smallPreview',
-            info: {
-                id: '4',
-                title: 'Black Widow',
-                description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem voluptates dolorem temporibus optio tempore, voluptate nesciunt blanditiis placeat maiores aut.`,
-                country: 'Ukraine',
-                director: 'Horkun Dmytro',
-                imagePath: '../../../../../assets/images/card-preview.png',
-                comments: [`Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis nulla, fuga quas laborum numquam illum.`, 'Lorem ipsum dolor sit amet'],
-                commonRating: 6.8,
-                //movieCollections: ['New realizes', 'Best June'],
-                genres: [],
-                publicationDate: new Date()
-            }
-        },
-        {
-            type: 'smallPreview',
-            info: {
-                id: '5',
-                title: 'Black Widow',
-                description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem voluptates dolorem temporibus optio tempore, voluptate nesciunt blanditiis placeat maiores aut.`,
-                country: 'Ukraine',
-                director: 'Horkun Dmytro',
-                imagePath: '../../../../../assets/images/card-preview.png',
-                comments: [`Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis nulla, fuga quas laborum numquam illum.`, 'Lorem ipsum dolor sit amet'],
-                commonRating: 6.8,
-                //movieCollections: ['New realizes', 'Best June'],
-                genres: [],
-                publicationDate: new Date()
-            }
-        },
-        {
-            type: 'smallPreview',
-            info: {
-                id: '6',
-                title: 'Black Widow',
-                description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem voluptates dolorem temporibus optio tempore, voluptate nesciunt blanditiis placeat maiores aut.`,
-                country: 'Ukraine',
-                director: 'Horkun Dmytro',
-                imagePath: '../../../../../assets/images/card-preview.png',
-                comments: [`Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis nulla, fuga quas laborum numquam illum.`, 'Lorem ipsum dolor sit amet'],
-                commonRating: 6.8,
-                //movieCollections: ['New realizes', 'Best June'],
-                genres: [],
-                publicationDate: new Date()
-            }
-        },
-        {
-            type: 'smallPreview',
-            info: {
-                id: '7',
-                title: 'Black Widow',
-                description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem voluptates dolorem temporibus optio tempore, voluptate nesciunt blanditiis placeat maiores aut.`,
-                country: 'Ukraine',
-                director: 'Horkun Dmytro',
-                imagePath: '../../../../../assets/images/card-preview.png',
-                comments: [`Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis nulla, fuga quas laborum numquam illum.`, 'Lorem ipsum dolor sit amet'],
-                commonRating: 6.8,
-                //movieCollections: ['New realizes', 'Best June'],
-                genres: [],
-                publicationDate: new Date()
-            }
-        },
-        {
-            type: 'smallPreview',
-            info: {
-                id: '8',
-                title: 'Black Widow',
-                description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem voluptates dolorem temporibus optio tempore, voluptate nesciunt blanditiis placeat maiores aut.`,
-                country: 'Ukraine',
-                director: 'Horkun Dmytro',
-                imagePath: '../../../../../assets/images/card-preview.png',
-                comments: [`Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis nulla, fuga quas laborum numquam illum.`, 'Lorem ipsum dolor sit amet'],
-                commonRating: 6.8,
-                //movieCollections: ['New realizes', 'Best June'],
-                genres: [],
-                publicationDate: new Date()
-            }
-        },
-        {
-            type: 'smallPreview',
-            info: {
-                id: '9',
-                title: 'Black Widow',
-                description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem voluptates dolorem temporibus optio tempore, voluptate nesciunt blanditiis placeat maiores aut.`,
-                country: 'Ukraine',
-                director: 'Horkun Dmytro',
-                imagePath: '../../../../../assets/images/card-preview.png',
-                comments: [`Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis nulla, fuga quas laborum numquam illum.`, 'Lorem ipsum dolor sit amet'],
-                commonRating: 6.8,
-                //movieCollections: ['New realizes', 'Best June'],
-                genres: [],
-                publicationDate: new Date()
-            }
-        },
-        {
-            type: 'smallPreview',
-            info: {
-                id: '10',
-                title: 'Black Widow',
-                description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem voluptates dolorem temporibus optio tempore, voluptate nesciunt blanditiis placeat maiores aut.`,
-                country: 'Ukraine',
-                director: 'Horkun Dmytro',
-                imagePath: '../../../../../assets/images/card-preview.png',
-                comments: [`Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis nulla, fuga quas laborum numquam illum.`, 'Lorem ipsum dolor sit amet'],
-                commonRating: 6.8,
-                //movieCollections: ['New realizes', 'Best June'],
-                genres: [],
-                publicationDate: new Date()
-            }
-        },
-    ];
+  public bestOptions: IMovieCard[] = [
+    {
+      type: 'smallPreview',
+      info: {
+        id: '2',
+        title: 'Black Widow',
+        description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem voluptates dolorem temporibus optio tempore, voluptate nesciunt blanditiis placeat maiores aut.`,
+        country: 'Ukraine',
+        director: 'Horkun Dmytro',
+        imagePath: '../../../../../assets/images/card-preview.png',
+        comments: [{
+          authorId: '1',
+          movieId: '2',
+          movie: {} as MovieViewModel,// bad practice, but only for test
+          author: {
+            name: "Joe",
+            surname: "Dou"
+          } as UserViewModel,// bad practice, but only for test
+          creationDate: new Date(),
+          body: 'Cool movie! The actress is extremely beautiful. Spent a great hour and a half and the mood is on the rise!',
+          rate: 2
+        }],
+        commonRating: 6.8,
+        //movieCollections: ['New realizes', 'Best June'],
+        genres: [],
+        publicationDate: new Date()
+      }
+    },
+    {
+      type: 'smallPreview',
+      info: {
+        id: '3',
+        title: 'Black Widow',
+        description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem voluptates dolorem temporibus optio tempore, voluptate nesciunt blanditiis placeat maiores aut.`,
+        country: 'Ukraine',
+        director: 'Horkun Dmytro',
+        imagePath: '../../../../../assets/images/card-preview.png',
+        comments: [{
+          authorId: '1',
+          movieId: '2',
+          movie: {} as MovieViewModel,// bad practice, but only for test
+          author: {
+            name: "Joe",
+            surname: "Dou"
+          } as UserViewModel,// bad practice, but only for test
+          creationDate: new Date(),
+          body: 'Cool movie! The actress is extremely beautiful. Spent a great hour and a half and the mood is on the rise!',
+          rate: 2
+        }],
+        commonRating: 6.8,
+        //movieCollections: ['New realizes', 'Best June'],
+        genres: [],
+        publicationDate: new Date()
+      }
+    },
+    {
+      type: 'smallPreview',
+      info: {
+        id: '4',
+        title: 'Black Widow',
+        description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem voluptates dolorem temporibus optio tempore, voluptate nesciunt blanditiis placeat maiores aut.`,
+        country: 'Ukraine',
+        director: 'Horkun Dmytro',
+        imagePath: '../../../../../assets/images/card-preview.png',
+        comments: [{
+          authorId: '1',
+          movieId: '2',
+          movie: {} as MovieViewModel,// bad practice, but only for test
+          author: {
+            name: "Joe",
+            surname: "Dou"
+          } as UserViewModel,// bad practice, but only for test
+          creationDate: new Date(),
+          body: 'Cool movie! The actress is extremely beautiful. Spent a great hour and a half and the mood is on the rise!',
+          rate: 2
+        }],
+        commonRating: 6.8,
+        //movieCollections: ['New realizes', 'Best June'],
+        genres: [],
+        publicationDate: new Date()
+      }
+    },
+    {
+      type: 'smallPreview',
+      info: {
+        id: '5',
+        title: 'Black Widow',
+        description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem voluptates dolorem temporibus optio tempore, voluptate nesciunt blanditiis placeat maiores aut.`,
+        country: 'Ukraine',
+        director: 'Horkun Dmytro',
+        imagePath: '../../../../../assets/images/card-preview.png',
+        comments: [{
+          authorId: '1',
+          movieId: '2',
+          movie: {} as MovieViewModel,// bad practice, but only for test
+          author: {
+            name: "Joe",
+            surname: "Dou"
+          } as UserViewModel,// bad practice, but only for test
+          creationDate: new Date(),
+          body: 'Cool movie! The actress is extremely beautiful. Spent a great hour and a half and the mood is on the rise!',
+          rate: 2
+        }],
+        commonRating: 6.8,
+        //movieCollections: ['New realizes', 'Best June'],
+        genres: [],
+        publicationDate: new Date()
+      }
+    },
+    {
+      type: 'smallPreview',
+      info: {
+        id: '6',
+        title: 'Black Widow',
+        description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem voluptates dolorem temporibus optio tempore, voluptate nesciunt blanditiis placeat maiores aut.`,
+        country: 'Ukraine',
+        director: 'Horkun Dmytro',
+        imagePath: '../../../../../assets/images/card-preview.png',
+        comments: [{
+          authorId: '1',
+          movieId: '2',
+          movie: {} as MovieViewModel,// bad practice, but only for test
+          author: {
+            name: "Joe",
+            surname: "Dou"
+          } as UserViewModel,// bad practice, but only for test
+          creationDate: new Date(),
+          body: 'Cool movie! The actress is extremely beautiful. Spent a great hour and a half and the mood is on the rise!',
+          rate: 2
+        }],
+        commonRating: 6.8,
+        //movieCollections: ['New realizes', 'Best June'],
+        genres: [],
+        publicationDate: new Date()
+      }
+    },
+    {
+      type: 'smallPreview',
+      info: {
+        id: '7',
+        title: 'Black Widow',
+        description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem voluptates dolorem temporibus optio tempore, voluptate nesciunt blanditiis placeat maiores aut.`,
+        country: 'Ukraine',
+        director: 'Horkun Dmytro',
+        imagePath: '../../../../../assets/images/card-preview.png',
+        comments: [{
+          authorId: '1',
+          movieId: '2',
+          movie: {} as MovieViewModel,// bad practice, but only for test
+          author: {
+            name: "Joe",
+            surname: "Dou"
+          } as UserViewModel,// bad practice, but only for test
+          creationDate: new Date(),
+          body: 'Cool movie! The actress is extremely beautiful. Spent a great hour and a half and the mood is on the rise!',
+          rate: 2
+        }],
+        commonRating: 6.8,
+        //movieCollections: ['New realizes', 'Best June'],
+        genres: [],
+        publicationDate: new Date()
+      }
+    },
+    {
+      type: 'smallPreview',
+      info: {
+        id: '8',
+        title: 'Black Widow',
+        description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem voluptates dolorem temporibus optio tempore, voluptate nesciunt blanditiis placeat maiores aut.`,
+        country: 'Ukraine',
+        director: 'Horkun Dmytro',
+        imagePath: '../../../../../assets/images/card-preview.png',
+        comments: [{
+          authorId: '1',
+          movieId: '2',
+          movie: {} as MovieViewModel,// bad practice, but only for test
+          author: {
+            name: "Joe",
+            surname: "Dou"
+          } as UserViewModel,// bad practice, but only for test
+          creationDate: new Date(),
+          body: 'Cool movie! The actress is extremely beautiful. Spent a great hour and a half and the mood is on the rise!',
+          rate: 2
+        }],
+        commonRating: 6.8,
+        //movieCollections: ['New realizes', 'Best June'],
+        genres: [],
+        publicationDate: new Date()
+      }
+    },
+    {
+      type: 'smallPreview',
+      info: {
+        id: '9',
+        title: 'Black Widow',
+        description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem voluptates dolorem temporibus optio tempore, voluptate nesciunt blanditiis placeat maiores aut.`,
+        country: 'Ukraine',
+        director: 'Horkun Dmytro',
+        imagePath: '../../../../../assets/images/card-preview.png',
+        comments: [{
+          authorId: '1',
+          movieId: '2',
+          movie: {} as MovieViewModel,// bad practice, but only for test
+          author: {
+            name: "Joe",
+            surname: "Dou"
+          } as UserViewModel,// bad practice, but only for test
+          creationDate: new Date(),
+          body: 'Cool movie! The actress is extremely beautiful. Spent a great hour and a half and the mood is on the rise!',
+          rate: 2
+        }],
+        commonRating: 6.8,
+        //movieCollections: ['New realizes', 'Best June'],
+        genres: [],
+        publicationDate: new Date()
+      }
+    },
+    {
+      type: 'smallPreview',
+      info: {
+        id: '10',
+        title: 'Black Widow',
+        description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem voluptates dolorem temporibus optio tempore, voluptate nesciunt blanditiis placeat maiores aut.`,
+        country: 'Ukraine',
+        director: 'Horkun Dmytro',
+        imagePath: '../../../../../assets/images/card-preview.png',
+        comments: [{
+          authorId: '1',
+          movieId: '2',
+          movie: {} as MovieViewModel,// bad practice, but only for test
+          author: {
+            name: "Joe",
+            surname: "Dou"
+          } as UserViewModel,// bad practice, but only for test
+          creationDate: new Date(),
+          body: 'Cool movie! The actress is extremely beautiful. Spent a great hour and a half and the mood is on the rise!',
+          rate: 2
+        }],
+        commonRating: 6.8,
+        //movieCollections: ['New realizes', 'Best June'],
+        genres: [],
+        publicationDate: new Date()
+      }
+    },
+  ];
 
-    public bestOptionsDefaultSize: IMovieCard[] = [
-        {
-            type: 'defaultPreview',
-            info: {
-                id: '2',
-                title: 'Black Widow',
-                description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem voluptates dolorem temporibus optio tempore, voluptate nesciunt blanditiis placeat maiores aut.`,
-                country: 'Ukraine',
-                director: 'Horkun Dmytro',
-                imagePath: '../../../../../assets/images/card-preview.png',
-                comments: [`Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis nulla, fuga quas laborum numquam illum.`, 'Lorem ipsum dolor sit amet'],
-                commonRating: 6.8,
-                // movieCollections: ['New realizes', 'Best June'],
-                genres: [],
-                publicationDate: new Date()
-            }
-        },
-        {
-            type: 'defaultPreview',
-            info: {
-                id: '3',
-                title: 'Black Widow',
-                description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem voluptates dolorem temporibus optio tempore, voluptate nesciunt blanditiis placeat maiores aut.`,
-                country: 'Ukraine',
-                director: 'Horkun Dmytro',
-                imagePath: '../../../../../assets/images/card-preview.png',
-                comments: [`Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis nulla, fuga quas laborum numquam illum.`, 'Lorem ipsum dolor sit amet'],
-                commonRating: 6.8,
-                // movieCollections: ['New realizes', 'Best June'],
-                genres: [],
-                publicationDate: new Date()
-            }
-        },
-        {
-            type: 'defaultPreview',
-            info: {
-                id: '4',
-                title: 'Black Widow',
-                description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem voluptates dolorem temporibus optio tempore, voluptate nesciunt blanditiis placeat maiores aut.`,
-                country: 'Ukraine',
-                director: 'Horkun Dmytro',
-                imagePath: '../../../../../assets/images/card-preview.png',
-                comments: [`Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis nulla, fuga quas laborum numquam illum.`, 'Lorem ipsum dolor sit amet'],
-                commonRating: 6.8,
-                // movieCollections: ['New realizes', 'Best June'],
-                genres: [],
-                publicationDate: new Date()
-            }
-        },
-        {
-            type: 'defaultPreview',
-            info: {
-                id: '5',
-                title: 'Black Widow',
-                description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem voluptates dolorem temporibus optio tempore, voluptate nesciunt blanditiis placeat maiores aut.`,
-                country: 'Ukraine',
-                director: 'Horkun Dmytro',
-                imagePath: '../../../../../assets/images/card-preview.png',
-                comments: [`Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis nulla, fuga quas laborum numquam illum.`, 'Lorem ipsum dolor sit amet'],
-                commonRating: 6.8,
-                // movieCollections: ['New realizes', 'Best June'],
-                genres: [],
-                publicationDate: new Date()
-            }
-        },
-        {
-            type: 'defaultPreview',
-            info: {
-                id: '6',
-                title: 'Black Widow',
-                description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem voluptates dolorem temporibus optio tempore, voluptate nesciunt blanditiis placeat maiores aut.`,
-                country: 'Ukraine',
-                director: 'Horkun Dmytro',
-                imagePath: '../../../../../assets/images/card-preview.png',
-                comments: [`Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis nulla, fuga quas laborum numquam illum.`, 'Lorem ipsum dolor sit amet'],
-                commonRating: 6.8,
-                // movieCollections: ['New realizes', 'Best June'],
-                genres: [],
-                publicationDate: new Date()
-            }
-        },
-        {
-            type: 'defaultPreview',
-            info: {
-                id: '7',
-                title: 'Black Widow',
-                description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem voluptates dolorem temporibus optio tempore, voluptate nesciunt blanditiis placeat maiores aut.`,
-                country: 'Ukraine',
-                director: 'Horkun Dmytro',
-                imagePath: '../../../../../assets/images/card-preview.png',
-                comments: [`Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis nulla, fuga quas laborum numquam illum.`, 'Lorem ipsum dolor sit amet'],
-                commonRating: 6.8,
-                // movieCollections: ['New realizes', 'Best June'],
-                genres: [],
-                publicationDate: new Date()
-            }
-        },
-        {
-            type: 'defaultPreview',
-            info: {
-                id: '8',
-                title: 'Black Widow',
-                description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem voluptates dolorem temporibus optio tempore, voluptate nesciunt blanditiis placeat maiores aut.`,
-                country: 'Ukraine',
-                director: 'Horkun Dmytro',
-                imagePath: '../../../../../assets/images/card-preview.png',
-                comments: [`Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis nulla, fuga quas laborum numquam illum.`, 'Lorem ipsum dolor sit amet'],
-                commonRating: 6.8,
-                // movieCollections: ['New realizes', 'Best June'],
-                genres: [],
-                publicationDate: new Date()
-            }
-        },
-        {
-            type: 'defaultPreview',
-            info: {
-                id: '9',
-                title: 'Black Widow',
-                description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem voluptates dolorem temporibus optio tempore, voluptate nesciunt blanditiis placeat maiores aut.`,
-                country: 'Ukraine',
-                director: 'Horkun Dmytro',
-                imagePath: '../../../../../assets/images/card-preview.png',
-                comments: [`Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis nulla, fuga quas laborum numquam illum.`, 'Lorem ipsum dolor sit amet'],
-                commonRating: 6.8,
-                // movieCollections: ['New realizes', 'Best June'],
-                genres: [],
-                publicationDate: new Date()
-            }
-        },
-    ];
+  public bestOptionsDefaultSize: IMovieCard[] = [
+    {
+      type: 'defaultPreview',
+      info: {
+        id: '2',
+        title: 'Black Widow',
+        description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem voluptates dolorem temporibus optio tempore, voluptate nesciunt blanditiis placeat maiores aut.`,
+        country: 'Ukraine',
+        director: 'Horkun Dmytro',
+        imagePath: '../../../../../assets/images/card-preview.png',
+        comments: [{
+          authorId: '1',
+          movieId: '2',
+          movie: {} as MovieViewModel,// bad practice, but only for test
+          author: {
+            name: "Joe",
+            surname: "Dou"
+          } as UserViewModel,// bad practice, but only for test
+          creationDate: new Date(),
+          body: 'Cool movie! The actress is extremely beautiful. Spent a great hour and a half and the mood is on the rise!',
+          rate: 2
+        }],
+        commonRating: 6.8,
+        // movieCollections: ['New realizes', 'Best June'],
+        genres: [],
+        publicationDate: new Date()
+      }
+    },
+    {
+      type: 'defaultPreview',
+      info: {
+        id: '3',
+        title: 'Black Widow',
+        description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem voluptates dolorem temporibus optio tempore, voluptate nesciunt blanditiis placeat maiores aut.`,
+        country: 'Ukraine',
+        director: 'Horkun Dmytro',
+        imagePath: '../../../../../assets/images/card-preview.png',
+        comments: [{
+          authorId: '1',
+          movieId: '2',
+          movie: {} as MovieViewModel,// bad practice, but only for test
+          author: {
+            name: "Joe",
+            surname: "Dou"
+          } as UserViewModel,// bad practice, but only for test
+          creationDate: new Date(),
+          body: 'Cool movie! The actress is extremely beautiful. Spent a great hour and a half and the mood is on the rise!',
+          rate: 2
+        }],
+        commonRating: 6.8,
+        // movieCollections: ['New realizes', 'Best June'],
+        genres: [],
+        publicationDate: new Date()
+      }
+    },
+    {
+      type: 'defaultPreview',
+      info: {
+        id: '4',
+        title: 'Black Widow',
+        description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem voluptates dolorem temporibus optio tempore, voluptate nesciunt blanditiis placeat maiores aut.`,
+        country: 'Ukraine',
+        director: 'Horkun Dmytro',
+        imagePath: '../../../../../assets/images/card-preview.png',
+        comments: [{
+          authorId: '1',
+          movieId: '2',
+          movie: {} as MovieViewModel,// bad practice, but only for test
+          author: {
+            name: "Joe",
+            surname: "Dou"
+          } as UserViewModel,// bad practice, but only for test
+          creationDate: new Date(),
+          body: 'Cool movie! The actress is extremely beautiful. Spent a great hour and a half and the mood is on the rise!',
+          rate: 2
+        }],
+        commonRating: 6.8,
+        // movieCollections: ['New realizes', 'Best June'],
+        genres: [],
+        publicationDate: new Date()
+      }
+    },
+    {
+      type: 'defaultPreview',
+      info: {
+        id: '5',
+        title: 'Black Widow',
+        description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem voluptates dolorem temporibus optio tempore, voluptate nesciunt blanditiis placeat maiores aut.`,
+        country: 'Ukraine',
+        director: 'Horkun Dmytro',
+        imagePath: '../../../../../assets/images/card-preview.png',
+        comments: [{
+          authorId: '1',
+          movieId: '2',
+          movie: {} as MovieViewModel,// bad practice, but only for test
+          author: {
+            name: "Joe",
+            surname: "Dou"
+          } as UserViewModel,// bad practice, but only for test
+          creationDate: new Date(),
+          body: 'Cool movie! The actress is extremely beautiful. Spent a great hour and a half and the mood is on the rise!',
+          rate: 2
+        }],
+        commonRating: 6.8,
+        // movieCollections: ['New realizes', 'Best June'],
+        genres: [],
+        publicationDate: new Date()
+      }
+    },
+    {
+      type: 'defaultPreview',
+      info: {
+        id: '6',
+        title: 'Black Widow',
+        description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem voluptates dolorem temporibus optio tempore, voluptate nesciunt blanditiis placeat maiores aut.`,
+        country: 'Ukraine',
+        director: 'Horkun Dmytro',
+        imagePath: '../../../../../assets/images/card-preview.png',
+        comments: [{
+          authorId: '1',
+          movieId: '2',
+          movie: {} as MovieViewModel,// bad practice, but only for test
+          author: {
+            name: "Joe",
+            surname: "Dou"
+          } as UserViewModel,// bad practice, but only for test
+          creationDate: new Date(),
+          body: 'Cool movie! The actress is extremely beautiful. Spent a great hour and a half and the mood is on the rise!',
+          rate: 2
+        }],
+        commonRating: 6.8,
+        // movieCollections: ['New realizes', 'Best June'],
+        genres: [],
+        publicationDate: new Date()
+      }
+    },
+    {
+      type: 'defaultPreview',
+      info: {
+        id: '7',
+        title: 'Black Widow',
+        description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem voluptates dolorem temporibus optio tempore, voluptate nesciunt blanditiis placeat maiores aut.`,
+        country: 'Ukraine',
+        director: 'Horkun Dmytro',
+        imagePath: '../../../../../assets/images/card-preview.png',
+        comments: [{
+          authorId: '1',
+          movieId: '2',
+          movie: {} as MovieViewModel,// bad practice, but only for test
+          author: {
+            name: "Joe",
+            surname: "Dou"
+          } as UserViewModel,// bad practice, but only for test
+          creationDate: new Date(),
+          body: 'Cool movie! The actress is extremely beautiful. Spent a great hour and a half and the mood is on the rise!',
+          rate: 2
+        }],
+        commonRating: 6.8,
+        // movieCollections: ['New realizes', 'Best June'],
+        genres: [],
+        publicationDate: new Date()
+      }
+    },
+    {
+      type: 'defaultPreview',
+      info: {
+        id: '8',
+        title: 'Black Widow',
+        description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem voluptates dolorem temporibus optio tempore, voluptate nesciunt blanditiis placeat maiores aut.`,
+        country: 'Ukraine',
+        director: 'Horkun Dmytro',
+        imagePath: '../../../../../assets/images/card-preview.png',
+        comments: [{
+          authorId: '1',
+          movieId: '2',
+          movie: {} as MovieViewModel,// bad practice, but only for test
+          author: {
+            name: "Joe",
+            surname: "Dou"
+          } as UserViewModel,// bad practice, but only for test
+          creationDate: new Date(),
+          body: 'Cool movie! The actress is extremely beautiful. Spent a great hour and a half and the mood is on the rise!',
+          rate: 2
+        }],
+        commonRating: 6.8,
+        // movieCollections: ['New realizes', 'Best June'],
+        genres: [],
+        publicationDate: new Date()
+      }
+    },
+    {
+      type: 'defaultPreview',
+      info: {
+        id: '9',
+        title: 'Black Widow',
+        description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem voluptates dolorem temporibus optio tempore, voluptate nesciunt blanditiis placeat maiores aut.`,
+        country: 'Ukraine',
+        director: 'Horkun Dmytro',
+        imagePath: '../../../../../assets/images/card-preview.png',
+        comments: [{
+          authorId: '1',
+          movieId: '2',
+          movie: {} as MovieViewModel,// bad practice, but only for test
+          author: {
+            name: "Joe",
+            surname: "Dou"
+          } as UserViewModel,// bad practice, but only for test
+          creationDate: new Date(),
+          body: 'Cool movie! The actress is extremely beautiful. Spent a great hour and a half and the mood is on the rise!',
+          rate: 2
+        }],
+        commonRating: 6.8,
+        // movieCollections: ['New realizes', 'Best June'],
+        genres: [],
+        publicationDate: new Date()
+      }
+    },
+  ];
 
-    constructor(private movieService: MovieService) { }
+  constructor(private movieService: MovieService) { }
 
-    public movies!: IMovieCard[];
+  public movies!: IMovieCard[];
 
-    public getMovies = () => {
-        this.movieService.getMovies("api/movies").subscribe({
-            next: (data: MovieViewModel[]) => {
+  public getMovies = () => {
+    this.movieService.getMovies("api/movies").subscribe({
+      next: (data: MovieViewModel[]) => {
 
-                this.movies = new Array<IMovieCard>();
+        this.movies = new Array<IMovieCard>();
 
-                for (let i = 0; i < data.length; i++) {
+        for (let i = 0; i < data.length; i++) {
 
-                    this.movies.push(<IMovieCard>{info: data[i], type: "defaultPreview"})
-                }
-            },
-            error: (err: HttpErrorResponse) => {
-                console.log(err);
-            }
-        });
-    }
+          this.movies.push(<IMovieCard>{ info: data[i], type: "defaultPreview" })
+        }
+      },
+      error: (err: HttpErrorResponse) => {
+        console.log(err);
+      }
+    });
+  }
 
-    ngOnInit(): void {
-        this.getMovies();
-    }
+  ngOnInit(): void {
+    this.getMovies();
+  }
 
-    public getMoviesByTitle = (event: any) => {
-        let movieTitle: string = event.target.value;
+  public getMoviesByTitle = (event: any) => {
+    let movieTitle: string = event.target.value;
 
-        this.movieService.getMovies("api/movies", {title: movieTitle}).subscribe({
-            next: (data: MovieViewModel[]) => {
-                console.log(data);
-            },
-            error: (err: HttpErrorResponse) => {
-                console.log(err);
-            }
-        });
-    }
+    this.movieService.getMovies("api/movies", { title: movieTitle }).subscribe({
+      next: (data: MovieViewModel[]) => {
+        console.log(data);
+      },
+      error: (err: HttpErrorResponse) => {
+        console.log(err);
+      }
+    });
+  }
 }

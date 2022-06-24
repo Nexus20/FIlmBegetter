@@ -25,15 +25,16 @@
     </div> -->
 </div>
 
-<div class="input-block" *ngIf="inputParameters.type === 'textarea'">
+<div class="textarea-block" *ngIf="inputParameters.type === 'textarea'">
     <textarea
+        rows="4"
         [ngClass]="{
             'input-icon': inputParameters.icon
         }"
         class="textarea field"
         [placeholder]="inputParameters.placeholder"
         (input)="change($event)"
-        [value]="value"
+        [(ngModel)]="value"
         [disabled]="inputParameters.isdisabled"
     ></textarea>
 

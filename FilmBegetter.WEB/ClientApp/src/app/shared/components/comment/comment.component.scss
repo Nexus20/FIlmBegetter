@@ -1,0 +1,61 @@
+@import "../../../styles/variables.scss";
+
+.wrapper {
+  .comment {
+    padding: 16px 16px 10px;
+    border-radius: $button-radius;
+    background-color: rgba($color: $card-background, $alpha: 0.6);
+    &-title {
+      font-size: 16px;
+      @include bodyLarge;
+      font-weight: 600;
+      color: $gray-300;
+      margin-bottom: 9px;
+    }
+    p {
+      font-size: 12px;
+      color: $white;
+      line-height: 16px;
+      margin-bottom: 5px;
+    }
+    &__controlers {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      [class^="icon-"] {
+        cursor: pointer;
+        transition: 0.2s;
+        color: $gray-300;
+      }
+
+      .icon {
+        &-like {
+          margin-right: 8px;
+          &:hover {
+            color: $success-500;
+          }
+        }
+        &-dislike {
+          margin-left: 8px;
+          &:hover {
+            color: $error-500;
+          }
+        }
+      }
+    }
+  }
+}
+
+.minus {
+  color: $error-500;
+}
+
+.plus {
+  color: $success-500;
+}
+
+.rate {
+  text-align: center;
+  width: 25px;
+  pointer-events: none;
+}

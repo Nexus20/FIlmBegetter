@@ -6,7 +6,7 @@
     <ng-container *ngIf="fieldConfig.type === 'date'">
         <div class="field-title">{{ fieldConfig.label }}</div>
         <div class="field-value">
-            {{ transformTodate(fieldConfig.value) | date: "YYYY-MM-DD" }}
+            {{ transformTodate(fieldConfig.value) | date: "YYYY-MM-dd" }}
         </div>
     </ng-container>
     <ng-container *ngIf="fieldConfig.type === 'duration'">

@@ -1,3 +1,8 @@
+import { Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { IInput } from './../../../../../shared/models/input.interface';
+import { MovieViewModel } from './../../../../models/movieViewModel.interface';
+import { UserViewModel } from './../../../../models/user-view-model.interface';
 import { IButton } from './../../../../../shared/models/button.interface';
 import { ImovieField } from './../../entity/movie-field.interface';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -13,11 +18,27 @@ import { EMovieFieldType } from '../../entity/movie-field.enum';
 export class MovieViewComponent implements OnInit {
 
   public configuration!: { type: ImovieField, date: ImovieField, duration: ImovieField, genres: ImovieField };
+  public addCommentForm!: FormGroup;
+
   public btnConfig: IButton = {
     type: 'default',
     size: 'default',
     text: 'See later',
     disabled: false
+  }
+
+  public addCommentButton: IButton = {
+    type: 'default',
+    size: 'default',
+    text: 'Comment',
+    disabled: false
+  }
+
+  public addCommentinput: IInput = {
+    type: 'textarea',
+    placeholder: 'Start typing...',
+    isdisabled: false,
+    icon: 'logo'
   }
 
   @Input() movie: IMovieCard = {
@@ -29,7 +50,18 @@ export class MovieViewComponent implements OnInit {
       country: 'Ukraine',
       director: 'Horkun Dmytro',
       imagePath: '../../../../../assets/images/movie-background.png',
-      comments: [`Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis nulla, fuga quas laborum numquam illum.`, 'Lorem ipsum dolor sit amet'],
+      comments: [{
+        authorId: '1',
+        movieId: '2',
+        movie: {} as MovieViewModel,// bad practice, but only for test
+        author: {
+          name: "Joe",
+          surname: "Dou"
+        } as UserViewModel,// bad practice, but only for test
+        creationDate: new Date(),
+        body: 'Cool movie! The actress is extremely beautiful. Spent a great hour and a half and the mood is on the rise!',
+        rate: 2
+      }],
       commonRating: 6.8,
       //movieCollections: ['New realizes', 'Best June'],
       genres: [],
@@ -37,10 +69,10 @@ export class MovieViewComponent implements OnInit {
     }
   };
 
-
   constructor(
     private route: ActivatedRoute,
-    private router: Router) {
+    private router: Router,
+    private formBuilder: FormBuilder) {
   }
 
   public generateConfig(): { type: ImovieField, date: ImovieField, duration: ImovieField, genres: ImovieField } {
@@ -65,13 +97,26 @@ export class MovieViewComponent implements OnInit {
       genres: {
         label: 'Genres',
         type: EMovieFieldType.genres,
-        value: ['Adventure', 'Action']
+        value: ['Adventure', 'Action'] //TODO: create a function for retrive genres
       }
     }
   }
 
   public ngOnInit(): void {
     this.configuration = this.generateConfig();
+    this.initForm();
+  }
+
+  public onSubmit(): void {
+    if (this.addCommentForm.valid) {
+      this.addCommentForm.reset();
+    }
+  }
+
+  private initForm(): void {
+    this.addCommentForm = this.formBuilder.group({
+      comment: this.formBuilder.control('', [Validators.required, Validators.minLength(10)])
+    });
   }
 
 }

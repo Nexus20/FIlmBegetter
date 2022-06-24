@@ -42,10 +42,11 @@ app-header {
     background-color: rgba($color: $card-background, $alpha: 0.8);
   }
 }
-
+section {
+  padding: 30px 50px;
+}
 .info {
   margin-top: 100px;
-  padding: 30px 50px;
   display: flex;
   justify-content: space-between;
 
@@ -70,5 +71,39 @@ app-header {
     &-fields {
       margin-bottom: 28px;
     }
+  }
+}
+
+.see-later {
+  max-width: 220px;
+}
+
+.comment-block {
+  margin-bottom: 70px;
+  h3 {
+    color: $white;
+    margin-bottom: 40px;
+  }
+  .comment-list {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -12px;
+    width: 100%;
+    justify-content: center;
+    .comment {
+      width: 33%;
+      padding: 0 12px;
+      margin-bottom: 24px;
+    }
+  }
+  .comment-btn {
+    max-width: 170px;
+  }
+  .comment__controls {
+    text-align: right;
+  }
+  .comment-create {
+    max-width: 780px;
+    margin: 0 auto;
   }
 }

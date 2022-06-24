@@ -1,3 +1,4 @@
+import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from './../../../shared/shared.module';
 import { HeaderModule } from './../../../shared/components/header/header.module';
 import { NgModule } from '@angular/core';
@@ -17,7 +18,8 @@ import { MovieViewRoutingModule } from './moview-view-routing.module';
     CommonModule,
     MovieViewRoutingModule,
     HeaderModule,
-    SharedModule
+    SharedModule,
+    ReactiveFormsModule
   ],
   exports: [
     MovieViewComponent

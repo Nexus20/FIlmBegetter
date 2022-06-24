@@ -13,7 +13,7 @@
 </div>
 
 <div class="container">
-    <div class="info">
+    <section class="info">
         <div class="info-img">
             <img [src]="movie.info.imagePath" width="480" height="720" />
         </div>
@@ -48,9 +48,43 @@
                     ></app-movie-field>
                 </div>
                 <div class="row">
-                    <app-button [buttonConfig]="btnConfig"></app-button>
+                    <app-button
+                        class="see-later"
+                        [buttonConfig]="btnConfig"
+                    ></app-button>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
+    <section class="comment-block">
+        <h3>Comments</h3>
+        <div class="comment-block mb-3">
+            <div class="comment-list">
+                <ng-container *ngFor="let comment of movie.info.comments">
+                    <div class="comment">
+                        <app-comment [comment]="comment"></app-comment>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+        <form
+            [formGroup]="addCommentForm"
+            (ngSubmit)="onSubmit()"
+            class="comment-create d-flex flex-column"
+        >
+            <app-input
+                formControlName="comment"
+                class="mb-3"
+                [inputParameters]="addCommentinput"
+            ></app-input>
+            <div class="comment__controls">
+                <app-button
+                    [disabled]="addCommentForm.invalid"
+                    type="submit"
+                    class="comment-btn"
+                    [buttonConfig]="addCommentButton"
+                ></app-button>
+            </div>
+        </form>
+    </section>
 </div>
