@@ -1,7 +1,9 @@
 <ng-container *ngIf="buttonConfig">
     <button
+        [type]="type"
         *ngIf="!buttonConfig.href"
         class="button"
+        [disabled]="disabled"
         [ngClass]="{
             defaultType: buttonConfig.type === 'default',
             success: buttonConfig.type === 'success',

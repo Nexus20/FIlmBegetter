@@ -14,31 +14,31 @@ export function tokenGetter() {
 }
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        ForbiddenComponent
-    ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        SharedModule,
+  declarations: [
+    AppComponent,
+    ForbiddenComponent,
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    SharedModule,
 
-        HttpClientModule,
-        JwtModule.forRoot({
-            config: {
-                tokenGetter: tokenGetter,
-                allowedDomains: ["localhost:44404"],
-                // disallowedRoutesRoutes: []
-            }
-        })
-    ],
-    providers: [
-        {
-          provide: HTTP_INTERCEPTORS,
-          useClass: ErrorHandlerService,
-          multi: true
-        }
-    ],
-    bootstrap: [AppComponent]
+    HttpClientModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: ["localhost:44404"],
+        // disallowedRoutesRoutes: []
+      }
+    })
+  ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorHandlerService,
+      multi: true
+    }
+  ],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

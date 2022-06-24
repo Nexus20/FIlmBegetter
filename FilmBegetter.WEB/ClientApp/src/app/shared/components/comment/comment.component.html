@@ -1,0 +1,20 @@
+<div class="wrapper">
+    <div class="comment">
+        <div class="comment-title">{{ comment.author.name }}</div>
+        <p>
+            {{ comment.body }}
+        </p>
+        <div class="comment__controlers">
+            <span class="icon-like" (click)="updateRate(comment.rate + 1)"></span>
+            <span
+                [ngClass]="{
+                    minus: comment.rate <= 0,
+                    plus: comment.rate > 0
+                }"
+                class="rate"
+                >{{ comment.rate }}</span
+            >
+            <span (click)="updateRate(comment.rate - 1)" class="icon-dislike"></span>
+        </div>
+    </div>
+</div>

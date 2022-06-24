@@ -10,8 +10,12 @@
         smallSize: cardParameters.type === 'smallPreview'
     }"
 >
-    <div class="card__content">
-        <div class="card__preview">
+    <div rout class="card__content">
+        <a
+            routerLink="movie/{{ 1 }}"
+            routerLinkActive="router-link-active"
+            class="card__preview"
+        >
             <img
                 class="preview-img"
                 width="266"
@@ -31,7 +35,7 @@
                     <span class="icon-heart"></span>
                 </div>
             </div>
-        </div>
+        </a>
         <div class="card__description">
             {{ cardParameters.info.title }}
         </div>

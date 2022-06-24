@@ -1,0 +1,18 @@
+@import "../../../styles/variables.scss";
+
+:host {
+  display: block;
+  max-width: fit-content;
+}
+
+.preview-rate {
+  [class^="icon"] {
+    margin-right: 3px;
+  }
+  color: $warning-400;
+  font-size: 12px;
+  margin-bottom: 7px;
+  padding: 5px 8px;
+  border-radius: 8px;
+  background-color: rgba($color: $black, $alpha: 0.65);
+}
