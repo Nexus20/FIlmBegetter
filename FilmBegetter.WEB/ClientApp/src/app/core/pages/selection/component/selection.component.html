@@ -5,10 +5,18 @@
         <div class="container">
             <form [formGroup]="selectionForm" class="selection__control">
                 <div class="selection__option">
-                    <div class="choice-content">
+                    <div
+                        class="choice-content"
+                        [ngStyle]="{
+                            padding: selectedFirst ? 0 : '7px'
+                        }"
+                        [ngClass]="{
+                            isSelected: selectedFirst
+                        }"
+                    >
                         <!-- change conditional in future after implementing dynamic search list -->
                         <ng-container
-                            *ngIf="firstResults.length === 0; else firstResult"
+                            *ngIf="firstResults.length === 0 && !selectedFirst"
                         >
                             <img
                                 class="preview-logo"
@@ -18,16 +26,41 @@
                             />
                         </ng-container>
 
-                        <ng-template #firstResult>
+                        <ng-container
+                            *ngIf="firstResults.length > 0 && !selectedFirst"
+                        >
                             <ng-container
                                 *ngFor="let searchResult of firstResults"
                             >
                                 <app-search-item
+                                    (onClickItem)="
+                                        onClickmovie('first', $event)
+                                    "
+                                    matTooltipPosition="before"
+                                    [matTooltip]="searchResult.title"
                                     @fade
                                     [searchItem]="searchResult"
                                 ></app-search-item>
                             </ng-container>
-                        </ng-template>
+                        </ng-container>
+
+                        <ng-container *ngIf="selectedFirst">
+                            <div
+                                @fade
+                                class="selected"
+                                [ngClass]="{
+                                    transBack: !selectedFirst.imagePath
+                                }"
+                            >
+                                <img
+                                    [src]="
+                                        selectedFirst.imagePath ||
+                                        placeholderImage
+                                    "
+                                />
+                                <h3>{{ selectedFirst.title }}</h3>
+                            </div>
+                        </ng-container>
                     </div>
                     <app-input
                         formControlName="firstSection"
@@ -38,12 +71,19 @@
                     <span class="icon-logo"></span>
                 </div>
                 <div class="selection__option">
-                    <div class="choice-content">
+                    <div
+                        class="choice-content"
+                        [ngStyle]="{
+                            padding: selectedSecond ? 0 : '7px'
+                        }"
+                        [ngClass]="{
+                            isSelected: selectedSecond
+                        }"
+                    >
                         <!-- change conditional in future after implementing dynamic search list -->
                         <ng-container
                             *ngIf="
-                                secondResults.length === 0;
-                                else secondResult
+                                secondResults.length === 0 && !selectedSecond
                             "
                         >
                             <img
@@ -54,16 +94,41 @@
                             />
                         </ng-container>
 
-                        <ng-template #secondResult>
+                        <ng-container
+                            *ngIf="secondResults.length > 0 && !selectedSecond"
+                        >
                             <ng-container
                                 *ngFor="let searchResult of secondResults"
                             >
                                 <app-search-item
+                                    (onClickItem)="
+                                        onClickmovie('second', $event)
+                                    "
+                                    matTooltipPosition="after"
+                                    [matTooltip]="searchResult.title"
                                     @fade
                                     [searchItem]="searchResult"
                                 ></app-search-item>
                             </ng-container>
-                        </ng-template>
+                        </ng-container>
+
+                        <ng-container *ngIf="selectedSecond">
+                            <div
+                                @fade
+                                class="selected"
+                                [ngClass]="{
+                                    transBack: !selectedSecond.imagePath
+                                }"
+                            >
+                                <img
+                                    [src]="
+                                        selectedSecond.imagePath ||
+                                        placeholderImage
+                                    "
+                                />
+                                <h3>{{ selectedSecond.title }}</h3>
+                            </div>
+                        </ng-container>
                     </div>
                     <app-input
                         formControlName="secondSection"

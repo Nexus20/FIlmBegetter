@@ -1,6 +1,6 @@
 import { MovieViewModel } from './../../../../models/movieViewModel.interface';
 import { MovieViewComponent } from './../../../movie-view/component/movie-view/movie-view.component';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-search-item',
@@ -10,6 +10,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class SearchItemComponent implements OnInit {
 
   @Input() searchItem!: MovieViewModel;
+  @Output() onClickItem = new EventEmitter<MovieViewModel>();
 
   constructor() { }
 

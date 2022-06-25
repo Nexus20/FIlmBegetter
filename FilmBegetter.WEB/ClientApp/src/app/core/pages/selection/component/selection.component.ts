@@ -1,3 +1,4 @@
+import { DEFAULT_CARD } from './../../../../shared/enums/placeholder-card.config';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { UserViewModel } from './../../../models/user-view-model.interface';
 import { IMovieCard } from '../../../../shared/models/card.interface';
@@ -6,7 +7,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { HttpErrorResponse } from "@angular/common/http";
 import { MovieViewModel } from "../../../models/movieViewModel.interface";
 import { MovieService } from "../../../services/movie.service";
-import { debounceTime, distinctUntilChanged, forkJoin, of, Subject, switchMap, takeUntil } from 'rxjs';
+import { debounceTime, distinctUntilChanged, forkJoin, of, Subject, switchMap, takeUntil, tap } from 'rxjs';
 import { animate, style, transition, trigger } from '@angular/animations';
 
 
@@ -29,10 +30,12 @@ export class SelectionComponent implements OnInit, OnDestroy {
 
   public firstResults: MovieViewModel[] = [];
   public secondResults: MovieViewModel[] = [];
+  public selectedFirst!: MovieViewModel | null;
+  public selectedSecond!: MovieViewModel | null;
+  public placeholderImage = DEFAULT_CARD;
   public selectionForm!: FormGroup;
 
   private destroy$: Subject<void> = new Subject();
-  private term$ = new Subject<string>();
 
   public selectionConfig = CSelectionPage;
 
@@ -526,11 +529,12 @@ export class SelectionComponent implements OnInit, OnDestroy {
       debounceTime(300),
       distinctUntilChanged(),
       switchMap(values => {
+
         let [firstSearchString, secondSearchString] = [values['firstSection'], values['secondSection']];
 
         return forkJoin(
-          firstSearchString ? this.movieService.getMovies("api/movies", { title: firstSearchString }) : of([]),
-          secondSearchString ? this.movieService.getMovies("api/movies", { title: secondSearchString }) : of([])
+          [firstSearchString ? this.movieService.getMovies("api/movies", { title: firstSearchString }) : of([]),
+          secondSearchString ? this.movieService.getMovies("api/movies", { title: secondSearchString }) : of([])]
         )
       })
     )
@@ -539,9 +543,11 @@ export class SelectionComponent implements OnInit, OnDestroy {
 
         if (this.isChanged(this.firstResults, resultFirst)) {
           this.firstResults = resultFirst;
+          this.selectedFirst = null;
         }
         if (this.isChanged(this.secondResults, resultSecond)) {
           this.secondResults = resultSecond;
+          this.selectedSecond = null;
         }
       });
   }
@@ -551,6 +557,15 @@ export class SelectionComponent implements OnInit, OnDestroy {
       firstSection: this.fb.control(''),
       secondSection: this.fb.control(''),
     });
+  }
+
+  public onClickmovie(value: 'first' | 'second', movie: MovieViewModel): void {
+    if (value === 'first') {
+      this.selectedFirst = movie;
+    }
+    else {
+      this.selectedSecond = movie;
+    }
   }
 
   private isChanged(previous: any[], current: any[]): boolean {

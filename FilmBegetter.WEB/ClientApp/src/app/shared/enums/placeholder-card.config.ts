@@ -1,0 +1,1 @@
+export const DEFAULT_CARD = "../../../../../assets/images/prloaderImg.png";
