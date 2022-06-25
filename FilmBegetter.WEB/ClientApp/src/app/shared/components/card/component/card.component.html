@@ -12,7 +12,7 @@
 >
     <div rout class="card__content">
         <a
-            routerLink="movie/{{ 1 }}"
+            routerLink="movie/{{ cardParameters.info.id }}"
             routerLinkActive="router-link-active"
             class="card__preview"
         >
@@ -72,12 +72,17 @@
 
         <div class="card-admin__controls">
             <div class="controls-content">
+                <a
+                    [routerLink]="[cardParameters.info.id + '/update']"
+                    class="icon-edit"
+                ></a>
+                <a
+                    [routerLink]="[cardParameters.info.id + '/delete']"
+                    class="icon-delete"
+                ></a>
 
-                <a [routerLink]="[cardParameters.info.id+'/update']" class="icon-edit"></a>
-                <a [routerLink]="[cardParameters.info.id+'/delete']" class="icon-delete"></a>
-
-<!--                <span class="icon-edit"></span>-->
-<!--                <span class="icon-delete"></span>-->
+                <!--                <span class="icon-edit"></span>-->
+                <!--                <span class="icon-delete"></span>-->
             </div>
         </div>
     </div>
@@ -120,7 +125,9 @@
 
         <div
             class="content-subscription"
-            [class.default]="cardParameters.info.subscription.type === 'Default'"
+            [class.default]="
+                cardParameters.info.subscription.type === 'Default'
+            "
         >
             <span class="icon-user-square"></span>
             <span> {{ cardParameters.info.subscription.type }}</span>
@@ -134,7 +141,8 @@
             <span
                 >Until:
                 {{
-                    cardParameters.info.subscriptionExpirationDare | date: "dd.mm.YY"
+                    cardParameters.info.subscriptionExpirationDare
+                        | date: "dd.mm.YY"
                 }}</span
             >
         </div>

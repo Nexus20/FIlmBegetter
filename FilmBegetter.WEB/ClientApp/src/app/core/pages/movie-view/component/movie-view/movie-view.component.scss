@@ -52,9 +52,13 @@ section {
 
   &-img {
     margin-right: 60px;
-    flex: 1 0 40%;
+    flex: 0 0 50%;
     border-radius: 24px;
     overflow: hidden;
+  }
+
+  &-description {
+    flex: 0 0 50%;
   }
   .description {
     &-main {

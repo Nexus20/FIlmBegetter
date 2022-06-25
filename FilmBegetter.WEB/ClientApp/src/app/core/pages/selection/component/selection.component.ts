@@ -506,20 +506,15 @@ export class SelectionComponent implements OnInit, OnDestroy {
   public movies!: IMovieCard[];
 
   public getMovies = () => {
-    this.movieService.getMovies("api/movies").subscribe({
-      next: (data: MovieViewModel[]) => {
-
-        this.movies = new Array<IMovieCard>();
-
-        for (let i = 0; i < data.length; i++) {
-
-          this.movies.push(<IMovieCard>{ info: data[i], type: "defaultPreview" })
+    this.movieService.getMovies("api/movies", { takeCount: 8 }).pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (data: MovieViewModel[]) => {
+          this.movies = data.map(elem => { return { info: elem, type: "defaultPreview" } });
+        },
+        error: (err: HttpErrorResponse) => {
+          console.log(err);
         }
-      },
-      error: (err: HttpErrorResponse) => {
-        console.log(err);
-      }
-    });
+      });
   }
 
   public ngOnInit(): void {
@@ -530,15 +525,24 @@ export class SelectionComponent implements OnInit, OnDestroy {
       takeUntil(this.destroy$),
       debounceTime(300),
       distinctUntilChanged(),
-      switchMap(values =>
-        forkJoin(
-          this.movieService.getMovies("api/movies", { title: values['firstSection'] }),
-          this.movieService.getMovies("api/movies", { title: values['secondSection'] })
-        ))
+      switchMap(values => {
+        let [firstSearchString, secondSearchString] = [values['firstSection'], values['secondSection']];
+
+        return forkJoin(
+          firstSearchString ? this.movieService.getMovies("api/movies", { title: firstSearchString }) : of([]),
+          secondSearchString ? this.movieService.getMovies("api/movies", { title: secondSearchString }) : of([])
+        )
+      })
     )
       .subscribe(resulstValues => {
-        this.firstResults = resulstValues[0];
-        this.secondResults = resulstValues[1];
+        let [resultFirst, resultSecond] = resulstValues;
+
+        if (this.isChanged(this.firstResults, resultFirst)) {
+          this.firstResults = resultFirst;
+        }
+        if (this.isChanged(this.secondResults, resultSecond)) {
+          this.secondResults = resultSecond;
+        }
       });
   }
 
@@ -547,6 +551,10 @@ export class SelectionComponent implements OnInit, OnDestroy {
       firstSection: this.fb.control(''),
       secondSection: this.fb.control(''),
     });
+  }
+
+  private isChanged(previous: any[], current: any[]): boolean {
+    return JSON.stringify(previous) !== JSON.stringify(current);
   }
 
   public ngOnDestroy(): void {

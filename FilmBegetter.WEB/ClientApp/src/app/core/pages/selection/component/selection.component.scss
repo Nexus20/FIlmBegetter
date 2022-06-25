@@ -67,7 +67,7 @@ section {
       &-content {
         border-radius: $button-radius;
         background-color: rgba($color: $card-background, $alpha: 0.8);
-        min-width: 280px;
+        max-width: 280px;
         height: 480px;
         overflow-y: auto;
         margin-bottom: 24px;
