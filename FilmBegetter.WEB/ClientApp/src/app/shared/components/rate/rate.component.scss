@@ -11,8 +11,12 @@
   }
   color: $warning-400;
   font-size: 12px;
-  margin-bottom: 7px;
   padding: 5px 8px;
   border-radius: 8px;
   background-color: rgba($color: $black, $alpha: 0.65);
+}
+.transparent {
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
 }

@@ -29,7 +29,7 @@ import { SideMenuComponent } from './components/side-menu/side-menu.component';
     HeaderModule,
     CardModule,
     PipeModule,
-    FormsModule
+    FormsModule,
   ],
   exports: [
     ButtonComponent,

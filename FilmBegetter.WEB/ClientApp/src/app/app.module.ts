@@ -1,3 +1,4 @@
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { JwtModule } from "@auth0/angular-jwt";
@@ -22,7 +23,7 @@ export function tokenGetter() {
     BrowserModule,
     AppRoutingModule,
     SharedModule,
-
+    BrowserAnimationsModule,
     HttpClientModule,
     JwtModule.forRoot({
       config: {
