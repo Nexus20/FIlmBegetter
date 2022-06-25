@@ -1,8 +1,8 @@
-import { Subject } from 'rxjs';
-import {FormBuilder, FormGroup, ɵFormGroupValue, ɵTypedOrUntyped} from '@angular/forms';
+import { Subject, takeUntil } from 'rxjs';
+import { FormBuilder, FormGroup, ɵFormGroupValue, ɵTypedOrUntyped } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { IInput } from './../../../../../shared/models/input.interface';
 import { MovieViewModel } from './../../../../models/movieViewModel.interface';
@@ -19,7 +19,9 @@ import { CommentViewModel } from "../../../../models/commentViewModel.interface"
   templateUrl: './movie-view.component.html',
   styleUrls: ['./movie-view.component.scss']
 })
-export class MovieViewComponent implements OnInit {
+export class MovieViewComponent implements OnInit, OnDestroy {
+
+  private destroy$: Subject<void> = new Subject();
 
   public configuration!: { type: ImovieField, date: ImovieField, duration: ImovieField, genres: ImovieField };
   public addCommentForm!: FormGroup;
@@ -56,11 +58,17 @@ export class MovieViewComponent implements OnInit {
   public ngOnInit(): void {
     this.route.data.subscribe(response => {
       this.movie = response.movie;
+      this.commentService.setComments(this.movie.comments);
     })
 
     this.configuration = this.generateConfig();
     this.initForm();
 
+    this.commentService.comments$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(comments => {
+        this.movie.comments = comments;
+      })
   }
 
 
@@ -95,25 +103,16 @@ export class MovieViewComponent implements OnInit {
 
     if (this.addCommentForm.valid) {
 
-        const formValues = {...formValue};
+      const formValues = { ...formValue };
 
-        const comment: CommentToCreateViewModel = {
-            body: formValues.comment,
-            movieId: this.movie.id
-        }
+      const comment: CommentToCreateViewModel = {
+        body: formValues.comment,
+        movieId: this.movie.id
+      }
 
-        this.commentService.create("api/comments", comment).subscribe({
-            next: (data: CommentViewModel) => {
-                console.log(data);
-            },
-            error: (err: HttpErrorResponse) => {
-                console.log(err);
-                console.log(err.message);
-                console.log(err.error);
-            }
-        });
+      this.commentService.addComment("api/comments", comment);
 
-        this.addCommentForm.reset();
+      this.addCommentForm.reset();
     }
   }
 
@@ -123,4 +122,8 @@ export class MovieViewComponent implements OnInit {
     });
   }
 
+  public ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
 }

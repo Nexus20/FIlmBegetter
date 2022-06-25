@@ -53,10 +53,8 @@
                                 }"
                             >
                                 <img
-                                    [src]="
-                                        selectedFirst.imagePath ||
-                                        placeholderImage
-                                    "
+                                    appMissingImage
+                                    [src]="selectedFirst.imagePath"
                                 />
                                 <h3>{{ selectedFirst.title }}</h3>
                             </div>
@@ -67,7 +65,7 @@
                         [inputParameters]="selectionConfig.inputs.searchInput"
                     ></app-input>
                 </div>
-                <div class="button-find">
+                <div (click)="onSubmit()" class="button-find">
                     <span class="icon-logo"></span>
                 </div>
                 <div class="selection__option">
@@ -121,10 +119,8 @@
                                 }"
                             >
                                 <img
-                                    [src]="
-                                        selectedSecond.imagePath ||
-                                        placeholderImage
-                                    "
+                                    [src]="selectedSecond.imagePath"
+                                    appMissingImage
                                 />
                                 <h3>{{ selectedSecond.title }}</h3>
                             </div>
