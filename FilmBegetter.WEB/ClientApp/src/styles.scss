@@ -5,7 +5,7 @@
 @import "./app/styles/icon-fonts.css";
 @import "./app/styles/normalize.scss";
 @import "./app/styles/variables.scss";
-
+@import "../node_modules/@angular/material/prebuilt-themes/indigo-pink.css";
 html {
   height: 100%;
 }
@@ -17,7 +17,7 @@ body {
   color: $gray-200;
   min-height: 100vh;
   background: #121829 url(./assets/images/background-min.png) center center/cover no-repeat;
-  @include bodyLarge;
+  @include bodyLaPrge;
 
   * {
     scrollbar-color: $primary-500 transparent; /* «цвет ползунка» «цвет полосы скроллбара» */
