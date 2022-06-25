@@ -1,3 +1,4 @@
+@charset "UTF-8";
 section {
   margin-bottom: 100px;
 }
@@ -55,15 +56,25 @@ section {
 .wrapper .selection__option .choice-content {
   border-radius: 12px;
   background-color: rgba(32, 40, 62, 0.8);
-  min-width: 280px;
-  min-height: 480px;
+  max-width: 280px;
+  height: 480px;
+  overflow-y: auto;
   margin-bottom: 24px;
   position: relative;
   transition: 0.3s;
   border: 2px solid transparent;
+  scrollbar-color: #7b6ef6 transparent; /* «цвет ползунка» «цвет полосы скроллбара» */
+  scrollbar-width: none; /* толщина */
+  padding: 10px;
+}
+.wrapper .selection__option .choice-content::-webkit-scrollbar {
+  width: 0px; /* ширина для вертикального скролла */
 }
 .wrapper .selection__option .choice-content:hover {
   border: 2px solid #7b6ef6;
+}
+.wrapper .selection__option .choice-content app-search-item + app-search-item {
+  margin-top: 20px;
 }
 .wrapper .selection__option .choice-content .preview-logo {
   position: absolute;

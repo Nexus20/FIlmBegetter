@@ -29,6 +29,8 @@
         <Content Remove="$(SpaRoot)**" />
         <None Remove="$(SpaRoot)**" />
         <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+        <None Remove="ClientApp\src\assets\MLP-20M\**" />
+        <Content Remove="ClientApp\src\assets\MLP-20M\**" />
     </ItemGroup>
 
     <ItemGroup>
@@ -38,6 +40,14 @@
     <ItemGroup>
       <Folder Include="ClientApp\.angular\cache\angular-webpack\a9021c9e266ff00b503a7a65d3f915fba5290e71" />
       <Folder Include="ClientApp\.angular\cache\angular-webpack\d43003bda06bb66c4aae30490d53670394d4bc25" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="ClientApp\src\assets\MLP-20M\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="ClientApp\src\assets\MLP-20M\**" />
     </ItemGroup>
 
     <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

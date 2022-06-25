@@ -1,0 +1,107 @@
+app-header {
+  margin-bottom: 40px;
+  display: block;
+}
+
+.movie-preview {
+  position: relative;
+}
+.movie-preview .image-block {
+  overflow: hidden;
+  position: relative;
+  border-radius: 40px;
+  max-height: 480px;
+}
+.movie-preview .image-block::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, rgba(54, 44, 146, 0.4) 0%, rgba(18, 98, 151, 0.4) 100%);
+}
+.movie-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.movie-name {
+  transform: translateY(-50%);
+  left: 80px;
+  min-width: 500px;
+  position: absolute;
+  display: inline-block;
+  color: #fff;
+  padding: 40px;
+  border-radius: 24px;
+  background-color: rgba(32, 40, 62, 0.8);
+}
+
+section {
+  padding: 30px 50px;
+}
+
+.info {
+  margin-top: 100px;
+  display: flex;
+  justify-content: space-between;
+}
+.info-img {
+  margin-right: 60px;
+  flex: 0 0 50%;
+  border-radius: 24px;
+  overflow: hidden;
+}
+.info-description {
+  flex: 0 0 50%;
+}
+.info .description-main h4 {
+  color: #fff;
+  margin-bottom: 24px;
+}
+.info .description-main p {
+  font-family: Poppins;
+  font-size: 20px;
+  line-height: 32px;
+  margin-bottom: 28px;
+}
+.info .description-fields {
+  margin-bottom: 28px;
+}
+
+.see-later {
+  max-width: 220px;
+}
+
+.comment-block {
+  margin-bottom: 70px;
+}
+.comment-block h3 {
+  color: #fff;
+  margin-bottom: 40px;
+}
+.comment-block .comment-list {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -12px;
+  width: 100%;
+  justify-content: center;
+}
+.comment-block .comment-list .comment {
+  width: 33%;
+  padding: 0 12px;
+  margin-bottom: 24px;
+}
+.comment-block .comment-btn {
+  max-width: 170px;
+}
+.comment-block .comment__controls {
+  text-align: right;
+}
+.comment-block .comment-create {
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+/*# sourceMappingURL=movie-view.component.css.map */

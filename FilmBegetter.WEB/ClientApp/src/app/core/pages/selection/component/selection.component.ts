@@ -56,7 +56,7 @@ export class SelectionComponent implements OnInit, OnDestroy {
           } as UserViewModel,// bad practice, but only for test
           creationDate: new Date(),
           body: 'Cool movie! The actress is extremely beautiful. Spent a great hour and a half and the mood is on the rise!',
-          rate: 2
+          rating: 2
         }],
         commonRating: 6.8,
         //movieCollections: ['New realizes', 'Best June'],
@@ -83,7 +83,7 @@ export class SelectionComponent implements OnInit, OnDestroy {
           } as UserViewModel,// bad practice, but only for test
           creationDate: new Date(),
           body: 'Cool movie! The actress is extremely beautiful. Spent a great hour and a half and the mood is on the rise!',
-          rate: 2
+          rating: 2
         }],
         commonRating: 6.8,
         //movieCollections: ['New realizes', 'Best June'],
@@ -110,7 +110,7 @@ export class SelectionComponent implements OnInit, OnDestroy {
           } as UserViewModel,// bad practice, but only for test
           creationDate: new Date(),
           body: 'Cool movie! The actress is extremely beautiful. Spent a great hour and a half and the mood is on the rise!',
-          rate: 2
+          rating: 2
         }],
         commonRating: 6.8,
         //movieCollections: ['New realizes', 'Best June'],
@@ -137,7 +137,7 @@ export class SelectionComponent implements OnInit, OnDestroy {
           } as UserViewModel,// bad practice, but only for test
           creationDate: new Date(),
           body: 'Cool movie! The actress is extremely beautiful. Spent a great hour and a half and the mood is on the rise!',
-          rate: 2
+          rating: 2
         }],
         commonRating: 6.8,
         //movieCollections: ['New realizes', 'Best June'],
@@ -164,7 +164,7 @@ export class SelectionComponent implements OnInit, OnDestroy {
           } as UserViewModel,// bad practice, but only for test
           creationDate: new Date(),
           body: 'Cool movie! The actress is extremely beautiful. Spent a great hour and a half and the mood is on the rise!',
-          rate: 2
+          rating: 2
         }],
         commonRating: 6.8,
         //movieCollections: ['New realizes', 'Best June'],
@@ -191,7 +191,7 @@ export class SelectionComponent implements OnInit, OnDestroy {
           } as UserViewModel,// bad practice, but only for test
           creationDate: new Date(),
           body: 'Cool movie! The actress is extremely beautiful. Spent a great hour and a half and the mood is on the rise!',
-          rate: 2
+          rating: 2
         }],
         commonRating: 6.8,
         //movieCollections: ['New realizes', 'Best June'],
@@ -218,7 +218,7 @@ export class SelectionComponent implements OnInit, OnDestroy {
           } as UserViewModel,// bad practice, but only for test
           creationDate: new Date(),
           body: 'Cool movie! The actress is extremely beautiful. Spent a great hour and a half and the mood is on the rise!',
-          rate: 2
+          rating: 2
         }],
         commonRating: 6.8,
         //movieCollections: ['New realizes', 'Best June'],
@@ -245,7 +245,7 @@ export class SelectionComponent implements OnInit, OnDestroy {
           } as UserViewModel,// bad practice, but only for test
           creationDate: new Date(),
           body: 'Cool movie! The actress is extremely beautiful. Spent a great hour and a half and the mood is on the rise!',
-          rate: 2
+          rating: 2
         }],
         commonRating: 6.8,
         //movieCollections: ['New realizes', 'Best June'],
@@ -272,7 +272,7 @@ export class SelectionComponent implements OnInit, OnDestroy {
           } as UserViewModel,// bad practice, but only for test
           creationDate: new Date(),
           body: 'Cool movie! The actress is extremely beautiful. Spent a great hour and a half and the mood is on the rise!',
-          rate: 2
+          rating: 2
         }],
         commonRating: 6.8,
         //movieCollections: ['New realizes', 'Best June'],
@@ -302,7 +302,7 @@ export class SelectionComponent implements OnInit, OnDestroy {
           } as UserViewModel,// bad practice, but only for test
           creationDate: new Date(),
           body: 'Cool movie! The actress is extremely beautiful. Spent a great hour and a half and the mood is on the rise!',
-          rate: 2
+          rating: 2
         }],
         commonRating: 6.8,
         // movieCollections: ['New realizes', 'Best June'],
@@ -329,7 +329,7 @@ export class SelectionComponent implements OnInit, OnDestroy {
           } as UserViewModel,// bad practice, but only for test
           creationDate: new Date(),
           body: 'Cool movie! The actress is extremely beautiful. Spent a great hour and a half and the mood is on the rise!',
-          rate: 2
+          rating: 2
         }],
         commonRating: 6.8,
         // movieCollections: ['New realizes', 'Best June'],
@@ -356,7 +356,7 @@ export class SelectionComponent implements OnInit, OnDestroy {
           } as UserViewModel,// bad practice, but only for test
           creationDate: new Date(),
           body: 'Cool movie! The actress is extremely beautiful. Spent a great hour and a half and the mood is on the rise!',
-          rate: 2
+          rating: 2
         }],
         commonRating: 6.8,
         // movieCollections: ['New realizes', 'Best June'],
@@ -383,7 +383,7 @@ export class SelectionComponent implements OnInit, OnDestroy {
           } as UserViewModel,// bad practice, but only for test
           creationDate: new Date(),
           body: 'Cool movie! The actress is extremely beautiful. Spent a great hour and a half and the mood is on the rise!',
-          rate: 2
+          rating: 2
         }],
         commonRating: 6.8,
         // movieCollections: ['New realizes', 'Best June'],
@@ -410,7 +410,7 @@ export class SelectionComponent implements OnInit, OnDestroy {
           } as UserViewModel,// bad practice, but only for test
           creationDate: new Date(),
           body: 'Cool movie! The actress is extremely beautiful. Spent a great hour and a half and the mood is on the rise!',
-          rate: 2
+          rating: 2
         }],
         commonRating: 6.8,
         // movieCollections: ['New realizes', 'Best June'],
@@ -437,7 +437,7 @@ export class SelectionComponent implements OnInit, OnDestroy {
           } as UserViewModel,// bad practice, but only for test
           creationDate: new Date(),
           body: 'Cool movie! The actress is extremely beautiful. Spent a great hour and a half and the mood is on the rise!',
-          rate: 2
+          rating: 2
         }],
         commonRating: 6.8,
         // movieCollections: ['New realizes', 'Best June'],
@@ -464,7 +464,7 @@ export class SelectionComponent implements OnInit, OnDestroy {
           } as UserViewModel,// bad practice, but only for test
           creationDate: new Date(),
           body: 'Cool movie! The actress is extremely beautiful. Spent a great hour and a half and the mood is on the rise!',
-          rate: 2
+          rating: 2
         }],
         commonRating: 6.8,
         // movieCollections: ['New realizes', 'Best June'],
@@ -491,7 +491,7 @@ export class SelectionComponent implements OnInit, OnDestroy {
           } as UserViewModel,// bad practice, but only for test
           creationDate: new Date(),
           body: 'Cool movie! The actress is extremely beautiful. Spent a great hour and a half and the mood is on the rise!',
-          rate: 2
+          rating: 2
         }],
         commonRating: 6.8,
         // movieCollections: ['New realizes', 'Best June'],

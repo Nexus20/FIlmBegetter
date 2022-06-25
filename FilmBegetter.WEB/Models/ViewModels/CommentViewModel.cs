@@ -19,4 +19,6 @@ public class CommentViewModel : BaseViewModel {
     public string Body { get; set; }
 
     public ICollection<CommentRatingViewModel> CommentRatings { get; set; }
+    
+    public int Rating => CommentRatings.Any() ? CommentRatings.Sum(x => x.Rating) : 0;
 }

@@ -8,5 +8,5 @@ export interface CommentViewModel {
   author: UserViewModel,
   creationDate: Date,
   body: string,
-  rate: number
+  rating: number
 }

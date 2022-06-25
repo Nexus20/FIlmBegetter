@@ -1,5 +1,5 @@
 import { Subject } from 'rxjs';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import {FormBuilder, FormGroup, ɵFormGroupValue, ɵTypedOrUntyped} from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
@@ -9,6 +9,9 @@ import { MovieViewModel } from './../../../../models/movieViewModel.interface';
 import { IButton } from './../../../../../shared/models/button.interface';
 import { ImovieField } from './../../entity/movie-field.interface';
 import { EMovieFieldType } from '../../entity/movie-field.enum';
+import {CommentService} from "../../../../services/comment.service";
+import {HttpErrorResponse} from "@angular/common/http";
+import {CommentToCreateViewModel} from "../../../../models/commentToCreateViewModel.interface";
 
 @Component({
   selector: 'app-movie-view',
@@ -45,7 +48,8 @@ export class MovieViewComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private formBuilder: FormBuilder) {
+    private formBuilder: FormBuilder,
+    private commentService: CommentService) {
   }
 
   public ngOnInit(): void {
@@ -86,8 +90,30 @@ export class MovieViewComponent implements OnInit {
     }
   }
 
-  public onSubmit(): void {
+  public onSubmit(formValue: any): void {
+
     if (this.addCommentForm.valid) {
+
+        console.log(formValue);
+
+        const formValues = {...formValue};
+
+        const comment: CommentToCreateViewModel = {
+            body: formValues.comment,
+            movieId: this.movie.id
+        }
+
+        this.commentService.create("api/comments", comment).subscribe({
+            next: (data: any) => {
+                console.log(data);
+            },
+            error: (err: HttpErrorResponse) => {
+                console.log(err);
+            }
+        });
+
+        console.log(formValue);
+
       this.addCommentForm.reset();
     }
   }

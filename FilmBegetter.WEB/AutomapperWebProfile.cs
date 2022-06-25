@@ -51,6 +51,9 @@ public class AutomapperWebProfile : Profile {
 
         CreateMap<CommentDto, CommentViewModel>()
             .ReverseMap();
+        
+        CreateMap<CommentDto, CommentToCreateViewModel>()
+            .ReverseMap();
 
         CreateMap<UserDto, RegistrationViewModel>()
             .ReverseMap()

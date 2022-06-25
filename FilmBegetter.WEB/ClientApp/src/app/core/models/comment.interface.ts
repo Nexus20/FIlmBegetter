@@ -1,5 +1,5 @@
-import { IMovie } from './movie.interface';
-import { IUser } from './user.interface';
+import {IMovie} from './movie.interface';
+import {IUser} from './user.interface';
 
 export interface IComment {
     autorId: string,
@@ -13,3 +13,4 @@ export interface IComment {
     body: string
     parentCommentId?: string
 }
+

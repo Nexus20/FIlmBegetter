@@ -28,6 +28,7 @@ public static class BllDependencyInjectionExtensions {
         services.AddScoped<ISignInService, SignInService>();
         
         services.AddScoped<IGenreService, GenreService>();
+        services.AddScoped<ICommentService, CommentService>();
         services.AddScoped<IMovieService, MovieService>();
         services.AddScoped<IMovieCollectionService, MovieCollectionService>();
         

@@ -60,9 +60,19 @@
   color: #ffad49;
 }
 .card__preview .preview-like {
+  display: block;
   border-radius: 50%;
   cursor: pointer;
   transition: 0.3s;
+  position: relative;
+  width: 35px;
+  height: 35px;
+}
+.card__preview .preview-like span {
+  position: absolute;
+  top: 56%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 .card__preview .preview-like:hover {
   color: #37d8a7;

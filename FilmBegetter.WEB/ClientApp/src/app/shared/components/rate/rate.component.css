@@ -1,0 +1,23 @@
+﻿:host {
+  display: block;
+  max-width: fit-content;
+}
+
+.preview-rate {
+  color: #ffbd6d;
+  font-size: 12px;
+  padding: 5px 8px;
+  border-radius: 8px;
+  background-color: rgba(0, 0, 0, 0.65);
+}
+.preview-rate [class^=icon] {
+  margin-right: 3px;
+}
+
+.transparent {
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+}
+
+/*# sourceMappingURL=rate.component.css.map */

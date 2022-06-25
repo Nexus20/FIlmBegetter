@@ -70,7 +70,7 @@
         </div>
         <form
             [formGroup]="addCommentForm"
-            (ngSubmit)="onSubmit()"
+            (ngSubmit)="onSubmit(addCommentForm.value)"
             class="comment-create d-flex flex-column"
         >
             <app-input

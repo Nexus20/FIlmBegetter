@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FilmBegetter.DAL.Repositories;
 
-class MovieRepository : Repository<Movie>, IMovieRepository {
+public class MovieRepository : Repository<Movie>, IMovieRepository {
     
     public MovieRepository(ApplicationDbContext context) : base(context) {
     }
@@ -12,6 +12,7 @@ class MovieRepository : Repository<Movie>, IMovieRepository {
     protected override IQueryable<Movie> FindAllWithDetailsWithoutFilter() {
         return Context.Movies
             .Include(m => m.Comments)
+            .ThenInclude(c => c.Author)
             .Include(m => m.Ratings)
             .Include(m => m.MovieGenres)
             .ThenInclude(mg => mg.Genre)

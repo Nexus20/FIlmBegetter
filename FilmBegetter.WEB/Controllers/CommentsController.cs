@@ -1,7 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using AutoMapper;
+using FilmBegetter.BLL.Dto;
+using FilmBegetter.BLL.Interfaces;
+using FilmBegetter.WEB.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,9 +16,18 @@ namespace FilmBegetter.WEB.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CommentsController : ControllerBase
-    {
+    public class CommentsController : ControllerBase {
+
+        private readonly IMapper _mapper;
+        
+        private readonly ICommentService _commentService;
+
         // GET: api/Comments
+        public CommentsController(IMapper mapper, ICommentService commentService) {
+            _mapper = mapper;
+            _commentService = commentService;
+        }
+
         [HttpGet]
         public IEnumerable<string> Get()
         {
@@ -27,8 +43,22 @@ namespace FilmBegetter.WEB.Controllers
 
         // POST: api/Comments
         [HttpPost]
-        public void Post([FromBody] string value)
-        {
+        [Authorize]
+        public async Task<IActionResult> Post([FromBody] CommentToCreateViewModel viewModel) {
+
+            if (!ModelState.IsValid) {
+                return BadRequest();
+            }
+
+            var dto = _mapper.Map<CommentToCreateViewModel, CommentDto>(viewModel);
+
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            dto.AuthorId = userId;
+
+            var commentId = await _commentService.CreateCommentAsync(dto);
+
+            return Ok(commentId);
         }
 
         // PUT: api/Comments/5

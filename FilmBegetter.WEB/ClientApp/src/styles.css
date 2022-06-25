@@ -196,6 +196,20 @@ body {
   font-size: 20px;
   line-height: 32px;
 }
+body * {
+  scrollbar-color: #5a4af4 transparent; /* «цвет ползунка» «цвет полосы скроллбара» */
+  scrollbar-width: thin; /* толщина */
+  /* ползунок скроллбара */
+}
+body *::-webkit-scrollbar {
+  width: 9px; /* ширина для вертикального скролла */
+  height: 8px; /* высота для горизонтального скролла */
+  background-color: transparent;
+}
+body *::-webkit-scrollbar-thumb {
+  background-color: #5a4af4;
+  border-radius: 9em;
+}
 
 .wrapper {
   height: 100%;
