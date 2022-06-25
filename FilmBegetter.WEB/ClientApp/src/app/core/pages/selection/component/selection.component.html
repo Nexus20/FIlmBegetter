@@ -3,11 +3,13 @@
 
     <section class="control">
         <div class="container">
-            <div class="selection__control">
+            <form [formGroup]="selectionForm" class="selection__control">
                 <div class="selection__option">
                     <div class="choice-content">
                         <!-- change conditional in future after implementing dynamic search list -->
-                        <ng-container *ngIf="true">
+                        <ng-container
+                            *ngIf="firstResults.length === 0; else firstResult"
+                        >
                             <img
                                 class="preview-logo"
                                 src="../../../../../assets/images/logo-large.png"
@@ -15,8 +17,20 @@
                                 height="80"
                             />
                         </ng-container>
+
+                        <ng-template #firstResult>
+                            <ng-container
+                                *ngFor="let searchResult of firstResults"
+                            >
+                                <app-search-item
+                                    @fade
+                                    [searchItem]="searchResult"
+                                ></app-search-item>
+                            </ng-container>
+                        </ng-template>
                     </div>
-                    <app-input (input)="getMoviesByTitle($event)"
+                    <app-input
+                        formControlName="firstSection"
                         [inputParameters]="selectionConfig.inputs.searchInput"
                     ></app-input>
                 </div>
@@ -26,7 +40,12 @@
                 <div class="selection__option">
                     <div class="choice-content">
                         <!-- change conditional in future after implementing dynamic search list -->
-                        <ng-container *ngIf="true">
+                        <ng-container
+                            *ngIf="
+                                secondResults.length === 0;
+                                else secondResult
+                            "
+                        >
                             <img
                                 class="preview-logo"
                                 src="../../../../../assets/images/logo-large.png"
@@ -34,12 +53,24 @@
                                 height="80"
                             />
                         </ng-container>
+
+                        <ng-template #secondResult>
+                            <ng-container
+                                *ngFor="let searchResult of secondResults"
+                            >
+                                <app-search-item
+                                    @fade
+                                    [searchItem]="searchResult"
+                                ></app-search-item>
+                            </ng-container>
+                        </ng-template>
                     </div>
                     <app-input
+                        formControlName="secondSection"
                         [inputParameters]="selectionConfig.inputs.searchInput"
                     ></app-input>
                 </div>
-            </div>
+            </form>
         </div>
     </section>
 

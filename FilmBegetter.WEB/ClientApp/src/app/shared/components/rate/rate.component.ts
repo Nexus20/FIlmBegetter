@@ -7,5 +7,5 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class RateComponent {
   @Input() rateValue!: number;
-
+  @Input() transparentBackground: boolean = false;
 }

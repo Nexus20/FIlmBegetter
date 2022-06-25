@@ -1,18 +1,38 @@
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { UserViewModel } from './../../../models/user-view-model.interface';
 import { IMovieCard } from '../../../../shared/models/card.interface';
 import { CSelectionPage } from '../selection.config';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { HttpErrorResponse } from "@angular/common/http";
 import { MovieViewModel } from "../../../models/movieViewModel.interface";
 import { MovieService } from "../../../services/movie.service";
+import { debounceTime, distinctUntilChanged, forkJoin, of, Subject, switchMap, takeUntil } from 'rxjs';
+import { animate, style, transition, trigger } from '@angular/animations';
 
 
 @Component({
   selector: 'app-selection',
   templateUrl: './selection.component.html',
-  styleUrls: ['./selection.component.scss']
+  styleUrls: ['./selection.component.scss'],
+  animations: [
+    trigger('fade', [
+      transition(':enter', [
+        style({ opacity: 0 }), animate('300ms', style({ opacity: 1 }))]
+      ),
+      transition(':leave',
+        [style({ opacity: 1 }), animate('300ms', style({ opacity: 0 }))]
+      )
+    ])
+  ]
 })
-export class SelectionComponent implements OnInit {
+export class SelectionComponent implements OnInit, OnDestroy {
+
+  public firstResults: MovieViewModel[] = [];
+  public secondResults: MovieViewModel[] = [];
+  public selectionForm!: FormGroup;
+
+  private destroy$: Subject<void> = new Subject();
+  private term$ = new Subject<string>();
 
   public selectionConfig = CSelectionPage;
 
@@ -481,7 +501,7 @@ export class SelectionComponent implements OnInit {
     },
   ];
 
-  constructor(private movieService: MovieService) { }
+  constructor(private movieService: MovieService, private fb: FormBuilder) { }
 
   public movies!: IMovieCard[];
 
@@ -502,20 +522,35 @@ export class SelectionComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.getMovies();
+    this.initForm();
+
+    this.selectionForm.valueChanges.pipe(
+      takeUntil(this.destroy$),
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap(values =>
+        forkJoin(
+          this.movieService.getMovies("api/movies", { title: values['firstSection'] }),
+          this.movieService.getMovies("api/movies", { title: values['secondSection'] })
+        ))
+    )
+      .subscribe(resulstValues => {
+        this.firstResults = resulstValues[0];
+        this.secondResults = resulstValues[1];
+      });
   }
 
-  public getMoviesByTitle = (event: any) => {
-    let movieTitle: string = event.target.value;
-
-    this.movieService.getMovies("api/movies", { title: movieTitle }).subscribe({
-      next: (data: MovieViewModel[]) => {
-        console.log(data);
-      },
-      error: (err: HttpErrorResponse) => {
-        console.log(err);
-      }
+  private initForm(): void {
+    this.selectionForm = this.fb.group({
+      firstSection: this.fb.control(''),
+      secondSection: this.fb.control(''),
     });
+  }
+
+  public ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }
