@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {EnvironmentUrlService} from "../../shared/services/environment-url.service";
 import {CommentToCreateViewModel} from "../models/commentToCreateViewModel.interface";
-import {CommentCreatedResponse} from "../models/commentCreatedResponse.interface";
 import {CommentViewModel} from "../models/commentViewModel.interface";
 
 @Injectable({
