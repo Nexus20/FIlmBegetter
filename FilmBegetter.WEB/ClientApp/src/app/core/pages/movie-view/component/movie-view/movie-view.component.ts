@@ -9,9 +9,10 @@ import { MovieViewModel } from './../../../../models/movieViewModel.interface';
 import { IButton } from './../../../../../shared/models/button.interface';
 import { ImovieField } from './../../entity/movie-field.interface';
 import { EMovieFieldType } from '../../entity/movie-field.enum';
-import {CommentService} from "../../../../services/comment.service";
-import {HttpErrorResponse} from "@angular/common/http";
-import {CommentToCreateViewModel} from "../../../../models/commentToCreateViewModel.interface";
+import { CommentService } from "../../../../services/comment.service";
+import { HttpErrorResponse } from "@angular/common/http";
+import { CommentToCreateViewModel } from "../../../../models/commentToCreateViewModel.interface";
+import { CommentViewModel } from "../../../../models/commentViewModel.interface";
 
 @Component({
   selector: 'app-movie-view',
@@ -94,8 +95,6 @@ export class MovieViewComponent implements OnInit {
 
     if (this.addCommentForm.valid) {
 
-        console.log(formValue);
-
         const formValues = {...formValue};
 
         const comment: CommentToCreateViewModel = {
@@ -104,17 +103,17 @@ export class MovieViewComponent implements OnInit {
         }
 
         this.commentService.create("api/comments", comment).subscribe({
-            next: (data: any) => {
+            next: (data: CommentViewModel) => {
                 console.log(data);
             },
             error: (err: HttpErrorResponse) => {
                 console.log(err);
+                console.log(err.message);
+                console.log(err.error);
             }
         });
 
-        console.log(formValue);
-
-      this.addCommentForm.reset();
+        this.addCommentForm.reset();
     }
   }
 

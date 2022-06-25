@@ -3,6 +3,7 @@ using FilmBegetter.BLL.Dto;
 using FilmBegetter.BLL.Interfaces;
 using FilmBegetter.DAL.Entities;
 using FilmBegetter.DAL.Interfaces;
+using Microsoft.AspNetCore.Identity;
 
 namespace FilmBegetter.BLL.Services;
 
@@ -12,12 +13,15 @@ public class CommentService : ICommentService {
 
     private readonly IMapper _mapper;
 
-    public CommentService(IUnitOfWork unitOfWork, IMapper mapper) {
+    private readonly UserManager<User> _userManager;
+
+    public CommentService(IUnitOfWork unitOfWork, IMapper mapper, UserManager<User> userManager) {
         _unitOfWork = unitOfWork;
         _mapper = mapper;
+        _userManager = userManager;
     }
 
-    public async Task<string> CreateCommentAsync(CommentDto dto) {
+    public async Task<CommentDto> CreateCommentAsync(CommentDto dto) {
 
         var comment = _mapper.Map<CommentDto, Comment>(dto);
 
@@ -25,6 +29,8 @@ public class CommentService : ICommentService {
 
         await _unitOfWork.SaveChangesAsync();
 
-        return comment.Id;
+        comment.Author = await _userManager.FindByIdAsync(comment.AuthorId);        
+
+        return _mapper.Map<Comment, CommentDto>(comment);
     }
 }

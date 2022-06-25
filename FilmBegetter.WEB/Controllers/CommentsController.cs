@@ -55,10 +55,10 @@ namespace FilmBegetter.WEB.Controllers
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             dto.AuthorId = userId;
+            
+            var resultDto = await _commentService.CreateCommentAsync(dto);
 
-            var commentId = await _commentService.CreateCommentAsync(dto);
-
-            return Ok(commentId);
+            return Ok(_mapper.Map<CommentDto, CommentViewModel>(resultDto));
         }
 
         // PUT: api/Comments/5
