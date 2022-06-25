@@ -1,12 +1,13 @@
 <app-header></app-header>
+
 <div class="container">
     <div class="movie-preview">
         <div class="image-block">
-            <img class="img" [src]="movie.info.imagePath" />
+            <img class="img" [src]="movie.imagePath" />
         </div>
         <div class="movie-name">
             <h3>
-                {{ movie.info.title }}
+                {{ movie.title }}
             </h3>
         </div>
     </div>
@@ -15,15 +16,15 @@
 <div class="container">
     <section class="info">
         <div class="info-img">
-            <img [src]="movie.info.imagePath" width="480" height="720" />
+            <img [src]="movie.imagePath" width="480" height="720" />
         </div>
         <div class="info-description">
             <div class="description-main">
-                <h4>{{ movie.info.director }}</h4>
-                <p>{{ movie.info.description }}</p>
+                <h4>{{ movie.director }}</h4>
+                <p>{{ movie.description }}</p>
             </div>
             <div class="description-fields">
-                <app-rate class="mb-4" [rateValue]="movie.info.commonRating">
+                <app-rate class="mb-4" [rateValue]="movie.commonRating">
                 </app-rate>
                 <div class="row mb-4">
                     <app-movie-field
@@ -60,7 +61,7 @@
         <h3>Comments</h3>
         <div class="comment-block mb-3">
             <div class="comment-list">
-                <ng-container *ngFor="let comment of movie.info.comments">
+                <ng-container *ngFor="let comment of movie.comments">
                     <div class="comment">
                         <app-comment [comment]="comment"></app-comment>
                     </div>

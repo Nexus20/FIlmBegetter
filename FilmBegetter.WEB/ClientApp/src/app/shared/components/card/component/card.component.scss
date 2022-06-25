@@ -1,284 +1,294 @@
 @import "../../../../styles/variables.scss";
 
 .card {
-    border-radius: $button-radius;
-    background-color: $card-background;
-    @include bodyRegular;
-    padding: 8px 8px 16px 8px;
+  border-radius: $button-radius;
+  background-color: $card-background;
+  @include bodyRegular;
+  padding: 8px 8px 16px 8px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+
+  &.defaultSize {
+    // max-width: 280px; //temp style
+    width: 100%;
+    min-height: 480px;
+  }
+  &.smallSize {
+    min-width: 150px;
+    min-height: 280px;
+    .card__description {
+      margin-top: 10px;
+    }
+  }
+
+  &__content {
+    width: 100%;
+    flex: 1 1 auto;
     display: flex;
     flex-direction: column;
-    box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.4);
-    cursor: pointer;
+  }
 
-    &.defaultSize {
-        // max-width: 280px; //temp style
-        width: 100%;
-        min-height: 480px;
-    }
-    &.smallSize {
-        min-width: 150px;
-        min-height: 280px;
-        .card__description {
-            margin-top: 10px;
-        }
-    }
+  &__preview {
+    flex: 1 1 auto;
+    position: relative;
+    overflow: hidden;
+    border-radius: $button-radius;
 
-    &__content {
-        width: 100%;
-        flex: 1 1 auto;
-        display: flex;
-        flex-direction: column;
-    }
-
-    &__preview {
-        flex: 1 1 auto;
+    .preview {
+      &__controller {
         position: relative;
-        overflow: hidden;
-        border-radius: $button-radius;
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        padding: 10px 10px 0;
+        justify-content: space-between;
+      }
 
-        .preview {
-            &__controller {
-                position: relative;
-                z-index: 2;
-                display: flex;
-                align-items: center;
-                padding: 10px 10px 0;
-                justify-content: space-between;
-            }
+      &-img {
+        position: absolute;
+        transition: 0.3s;
+        height: 100%;
+        object-fit: cover;
 
-            &-img {
-                position: absolute;
-                transition: 0.3s;
-                height: 100%;
-                object-fit: cover;
-
-                &:hover {
-                    transform: scale(1.05);
-                }
-            }
-
-            &-like {
-                margin-left: 10px;
-            }
-
-            &-rate,
-            &-like {
-                padding: 8px;
-                border-radius: 8px;
-                background-color: rgba($color: $black, $alpha: 0.65);
-                color: $warning-500;
-            }
-
-            &-like {
-                border-radius: 50%;
-                cursor: pointer;
-                transition: 0.3s;
-
-                &:hover {
-                    color: $success-400;
-                }
-            }
+        &:hover {
+          transform: scale(1.05);
         }
-    }
+      }
 
-    &__description {
-        color: $white;
-        font-weight: 500;
-        margin-top: 16px;
+      &-like {
+        margin-left: 10px;
+      }
+
+      &-rate,
+      &-like {
+        padding: 8px;
+        border-radius: 8px;
+        background-color: rgba($color: $black, $alpha: 0.65);
+        color: $warning-500;
+      }
+
+      &-like {
+        display: block;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: 0.3s;
+        position: relative;
+        width: 35px;
+        height: 35px;
+        span {
+          position: absolute;
+          top: 56%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+
+        &:hover {
+          color: $success-400;
+        }
+      }
     }
+  }
+
+  &__description {
+    color: $white;
+    font-weight: 500;
+    margin-top: 16px;
+  }
 }
 
 .card-admin {
-    @include bodyRegular;
+  @include bodyRegular;
+  border-radius: $button-radius;
+  background-color: $card-background;
+  padding: 25px;
+  max-width: 395px; //temp variables
+  transition: 0.3s;
+  border: 2px solid transparent;
+
+  &:hover {
+    border: 2px solid $primary-400;
+  }
+
+  &__content {
+    display: flex;
+    height: 100%;
+    width: 100%;
+  }
+
+  &__preview {
     border-radius: $button-radius;
-    background-color: $card-background;
-    padding: 25px;
-    max-width: 395px; //temp variables
-    transition: 0.3s;
-    border: 2px solid transparent;
+    overflow: hidden;
+    flex: 1 0 30%;
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+  }
 
-    &:hover {
-        border: 2px solid $primary-400;
+  &__info {
+    margin: 0 10px 0 20px;
+    h3 {
+      color: $white;
+      font-size: 18px;
+    }
+    .preview-rate {
+      [class^="icon"] {
+        margin-right: 3px;
+      }
+      color: $warning-400;
+      font-size: 12px;
+      margin-bottom: 7px;
+    }
+  }
+
+  &__controls {
+    .controls-content {
+      background: rgba(32, 40, 62, 0.2);
+      box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.25);
+      border-radius: 25px;
+      padding: 5px 10px;
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
     }
 
-    &__content {
-        display: flex;
-        height: 100%;
-        width: 100%;
+    .icon-edit {
+      cursor: pointer;
+      color: $primary-400;
+    }
+    .icon-delete {
+      cursor: pointer;
+      color: $error-600;
     }
 
-    &__preview {
-        border-radius: $button-radius;
-        overflow: hidden;
-        flex: 1 0 30%;
-        img {
-            height: 100%;
-            width: 100%;
-            object-fit: cover;
-        }
-    }
-
-    &__info {
-        margin: 0 10px 0 20px;
-        h3 {
-            color: $white;
-            font-size: 18px;
-        }
-        .preview-rate {
-            [class^="icon"] {
-                margin-right: 3px;
-            }
-            color: $warning-400;
-            font-size: 12px;
-            margin-bottom: 7px;
-        }
-    }
-
-    &__controls {
-        .controls-content {
-            background: rgba(32, 40, 62, 0.2);
-            box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.25);
-            border-radius: 25px;
-            padding: 5px 10px;
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-        }
-
-        .icon-edit {
-            cursor: pointer;
-            color: $primary-400;
-        }
-        .icon-delete {
-            cursor: pointer;
-            color: $error-600;
-        }
-
-        flex: 1 0 20%;
-        display: flex;
-        align-items: flex-end;
-    }
+    flex: 1 0 20%;
+    display: flex;
+    align-items: flex-end;
+  }
 }
 
 //card for statics
 .card-statistics {
-    transition: 0.3s;
-    border: 2px solid transparent;
-    padding: 40px;
-    width: 280px; //temp style
-    border-radius: $button-radius;
-    background-color: $gray-900;
-    box-shadow: 0px 7px 12px rgba(0, 0, 0, 0.25);
-    opacity: 0.8;
+  transition: 0.3s;
+  border: 2px solid transparent;
+  padding: 40px;
+  width: 280px; //temp style
+  border-radius: $button-radius;
+  background-color: $gray-900;
+  box-shadow: 0px 7px 12px rgba(0, 0, 0, 0.25);
+  opacity: 0.8;
 
-    &:hover {
-        opacity: 1;
-        border: 2px solid $primary-400;
-    }
-    .statistics {
-        &__content {
-            text-align: center;
-            h1 {
-                font-size: 32px;
-                font-weight: 600;
-                line-height: 40px;
-                letter-spacing: -0.02em;
-                color: $gray-100;
-                margin-bottom: 10px;
-            }
+  &:hover {
+    opacity: 1;
+    border: 2px solid $primary-400;
+  }
+  .statistics {
+    &__content {
+      text-align: center;
+      h1 {
+        font-size: 32px;
+        font-weight: 600;
+        line-height: 40px;
+        letter-spacing: -0.02em;
+        color: $gray-100;
+        margin-bottom: 10px;
+      }
 
-            h3 {
-                color: $gray-400;
-                font-size: 16px;
-                line-height: 24px;
-                @include bodyRegular;
-                font-weight: 14px;
-            }
-        }
+      h3 {
+        color: $gray-400;
+        font-size: 16px;
+        line-height: 24px;
+        @include bodyRegular;
+        font-weight: 14px;
+      }
     }
+  }
 }
 
 //card for user data in admin page
 
 .card-user {
-    background-color: $card-background;
-    border-radius: $button-radius;
-    padding: 20px 35px 35px;
-    max-width: 280px;
-    transition: 0.3s;
-    border: 2px solid transparent;
-    position: relative;
-    box-shadow: 0px 7px 12px rgba(0, 0, 0, 0.25);
-    opacity: 0.8;
+  background-color: $card-background;
+  border-radius: $button-radius;
+  padding: 20px 35px 35px;
+  max-width: 280px;
+  transition: 0.3s;
+  border: 2px solid transparent;
+  position: relative;
+  box-shadow: 0px 7px 12px rgba(0, 0, 0, 0.25);
+  opacity: 0.8;
 
-    &:hover {
-        opacity: 1;
-        border: 2px solid $primary-400;
+  &:hover {
+    opacity: 1;
+    border: 2px solid $primary-400;
+  }
+
+  .user__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .content {
+    &-logo,
+    &-name,
+    &-subscription {
+      margin-bottom: 15px;
     }
 
-    .user__content {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+    &-name {
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 24px;
+      letter-spacing: 0.02em;
+      color: $white;
     }
-    .content {
-        &-logo,
-        &-name,
-        &-subscription {
-            margin-bottom: 15px;
-        }
 
-        &-name {
-            font-size: 18px;
-            font-weight: 600;
-            line-height: 24px;
-            letter-spacing: 0.02em;
-            color: $white;
-        }
-
-        &-subscription,
-        &-deadline {
-            display: flex;
-            align-items: center;
-            font-size: 12px;
-            line-height: 16px;
-            [class^="icon-"] {
-                margin-right: 12px;
-                font-size: 18px;
-            }
-        }
-
-        &-subscription {
-            color: $success-400;
-
-            &.default {
-                color: $warning-500;
-            }
-        }
-
-        &-deadline {
-            color: $primary-400;
-        }
-
-        &-controller {
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-            background: rgba(32, 40, 62, 0.2);
-            box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.25);
-            border-radius: 25px;
-            padding: 7px;
-            display: flex;
-            justify-content: space-between;
-            flex-direction: column;
-
-            .icon-eye {
-                margin-bottom: 5px;
-                color: $primary-400;
-            }
-            [class^="icon-"] {
-                cursor: pointer;
-            }
-        }
+    &-subscription,
+    &-deadline {
+      display: flex;
+      align-items: center;
+      font-size: 12px;
+      line-height: 16px;
+      [class^="icon-"] {
+        margin-right: 12px;
+        font-size: 18px;
+      }
     }
+
+    &-subscription {
+      color: $success-400;
+
+      &.default {
+        color: $warning-500;
+      }
+    }
+
+    &-deadline {
+      color: $primary-400;
+    }
+
+    &-controller {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(32, 40, 62, 0.2);
+      box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.25);
+      border-radius: 25px;
+      padding: 7px;
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;
+
+      .icon-eye {
+        margin-bottom: 5px;
+        color: $primary-400;
+      }
+      [class^="icon-"] {
+        cursor: pointer;
+      }
+    }
+  }
 }

@@ -1,14 +1,16 @@
-<div class="wrapper">
-    <a class="item" routerLink="movie/{{ searchItem.id }}">
-        <div class="img-block me-3">
-            <img width="35" height="35" [src]="searchItem.imagePath" />
-        </div>
-        <span class="item-title me-3">
-            {{ searchItem.title }}
-        </span>
-        <app-rate
-            [transparentBackground]="true"
-            [rateValue]="searchItem.commonRating"
-        ></app-rate>
-    </a>
-</div>
+<a class="item" routerLink="movie/{{ searchItem.id }}">
+    <div class="img-block me-3">
+        <img
+            width="35"
+            height="35"
+            src="../../../../../../assets/images/card-preview.png"
+        />
+    </div>
+    <span class="item-title me-3">
+        {{ searchItem.title | crop: 12 }}
+    </span>
+    <app-rate
+        [transparentBackground]="true"
+        [rateValue]="searchItem.commonRating"
+    ></app-rate>
+</a>
