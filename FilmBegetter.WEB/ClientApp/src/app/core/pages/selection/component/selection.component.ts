@@ -1,3 +1,4 @@
+import { IPreloaderCard } from './../../../../shared/models/card-preloader.interface';
 import { AuthenticationService } from './../../../../shared/services/authentication.service';
 import { DEFAULT_CARD } from './../../../../shared/enums/placeholder-card.config';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -48,7 +49,40 @@ export class SelectionComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private authService: AuthenticationService) { }
 
-  public movies!: IMovieCard[];
+  public movies: IMovieCard[] = [{
+    type: 'preloader',
+    info: {} as MovieViewModel
+  },
+  {
+    type: 'preloader',
+    info: {} as MovieViewModel
+  },
+  {
+    type: 'preloader',
+    info: {} as MovieViewModel
+  },
+  {
+    type: 'preloader',
+    info: {} as MovieViewModel
+  },
+  {
+    type: 'preloader',
+    info: {} as MovieViewModel
+  },
+  {
+    type: 'preloader',
+    info: {} as MovieViewModel
+  },
+  {
+    type: 'preloader',
+    info: {} as MovieViewModel
+  },
+  {
+    type: 'preloader',
+    info: {} as MovieViewModel
+  },
+  ];
+
 
   public onSubmit(): void {
     if (this.selectedFirst && this.selectedSecond) {

@@ -1,5 +1,17 @@
 @import "../../../../styles/variables.scss";
 
+@keyframes blick {
+  0% {
+    transform: translate(-100%, -25%) rotate(10deg);
+  }
+  20% {
+    transform: translate(300%, -25%) rotate(10deg);
+  }
+  100% {
+    transform: translate(300%, -25%) rotate(10deg);
+  }
+}
+
 .card {
   border-radius: $button-radius;
   background-color: $card-background;
@@ -290,5 +302,24 @@
         cursor: pointer;
       }
     }
+  }
+}
+
+.preloader {
+  overflow: hidden;
+  position: relative;
+
+  &::before {
+    content: "";
+    width: 40%;
+    height: 200%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.3;
+    filter: blur;
+    background: linear-gradient(to left, transparent 0%, #fff 40%, #fff 60%, transparent 100%);
+    transform: translate(-100%, -25%) rotate(10deg);
+    animation: blick 2s infinite;
   }
 }
