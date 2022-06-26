@@ -16,7 +16,7 @@ export class CommentComponent implements OnInit {
   }
 
 
-  public updateRate(rate: number): void {
+  public updateRate(id: string, rate: number): void {
     this.comment.rating = rate;// here only for change view. Delete after service implementation
     //here service for change rate
   }

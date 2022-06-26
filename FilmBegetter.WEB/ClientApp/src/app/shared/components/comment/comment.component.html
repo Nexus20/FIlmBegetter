@@ -5,7 +5,7 @@
             {{ comment.body }}
         </p>
         <div class="comment__controlers">
-            <span class="icon-like" (click)="updateRate(comment.rating + 1)"></span>
+            <span class="icon-like" (click)="updateRate(comment.id, comment.rating + 1)"></span>
             <span
                 [ngClass]="{
                     minus: comment.rating <= 0,
@@ -14,7 +14,7 @@
                 class="rate"
                 >{{ comment.rating }}</span
             >
-            <span (click)="updateRate(comment.rating - 1)" class="icon-dislike"></span>
+            <span (click)="updateRate(comment.id,comment.rating - 1)" class="icon-dislike"></span>
         </div>
     </div>
 </div>

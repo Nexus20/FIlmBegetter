@@ -63,8 +63,18 @@ namespace FilmBegetter.WEB.Controllers
 
         // PUT: api/Comments/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
+        [Authorize]
+        public async Task<IActionResult> Put(string id, [FromBody] UpdateCommentRatingViewModel viewModel) {
+
+            if (!ModelState.IsValid) {
+                return BadRequest();
+            }
+
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            
+            await _commentService.UpdateRatingAsync(userId, viewModel.CommentId, viewModel.Rating);
+
+            return Ok();
         }
 
         // DELETE: api/Comments/5

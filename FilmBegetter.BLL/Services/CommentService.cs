@@ -33,4 +33,14 @@ public class CommentService : ICommentService {
 
         return _mapper.Map<Comment, CommentDto>(comment);
     }
+
+    public async Task UpdateRatingAsync(string userId, string commentId, int rating) {
+
+        var comment = await _unitOfWork.GetRepository<IRepository<Comment>, Comment>()
+            .FirstOrDefaultAsync(c => c.Id == commentId);
+
+        if (comment.AuthorId == userId) {
+        }
+
+    }
 }
