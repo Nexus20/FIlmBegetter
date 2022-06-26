@@ -53,8 +53,10 @@ section {
   &-img {
     margin-right: 60px;
     flex: 0 0 50%;
-    border-radius: 24px;
     overflow: hidden;
+    img {
+      border-radius: 24px;
+    }
   }
 
   &-description {

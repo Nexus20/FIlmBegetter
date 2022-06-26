@@ -508,6 +508,15 @@ export class SelectionComponent implements OnInit, OnDestroy {
 
   public movies!: IMovieCard[];
 
+  public onSubmit(): void {
+    if (this.selectedFirst && this.selectedSecond) {
+      console.log(this.selectedFirst);
+      console.log(this.selectedSecond);
+
+
+    }
+  }
+
   public getMovies = () => {
     this.movieService.getMovies("api/movies", { takeCount: 8 }).pipe(takeUntil(this.destroy$))
       .subscribe({
