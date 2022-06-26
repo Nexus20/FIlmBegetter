@@ -12,6 +12,7 @@ import { CollectionComponent } from './components/collection/collection.componen
 import { RateComponent } from './components/rate/rate.component';
 import { CommentComponent } from './components/comment/comment.component';
 import { SideMenuComponent } from './components/side-menu/side-menu.component';
+import { MissingImageDirective } from './directives/missing-image.directive';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { SideMenuComponent } from './components/side-menu/side-menu.component';
     CollectionComponent,
     RateComponent,
     CommentComponent,
-    SideMenuComponent
+    SideMenuComponent,
+    MissingImageDirective
   ],
   imports: [
     CommonModule,
@@ -38,7 +40,8 @@ import { SideMenuComponent } from './components/side-menu/side-menu.component';
     CollectionComponent,
     RateComponent,
     CommentComponent,
-    SideMenuComponent
+    SideMenuComponent,
+    MissingImageDirective
   ]
 })
 export class SharedModule { }

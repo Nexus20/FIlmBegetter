@@ -3,7 +3,7 @@
 <div class="container">
     <div class="movie-preview">
         <div class="image-block">
-            <img class="img" [src]="movie.imagePath" />
+            <img class="img" appMissingImage [src]="movie.imagePath" />
         </div>
         <div class="movie-name">
             <h3>
@@ -16,7 +16,12 @@
 <div class="container">
     <section class="info">
         <div class="info-img">
-            <img [src]="movie.imagePath" width="480" height="720" />
+            <img
+                [src]="movie.imagePath"
+                appMissingImage
+                width="480"
+                height="720"
+            />
         </div>
         <div class="info-description">
             <div class="description-main">
