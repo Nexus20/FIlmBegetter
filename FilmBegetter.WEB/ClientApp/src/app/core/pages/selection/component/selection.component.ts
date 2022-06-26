@@ -1,3 +1,4 @@
+import { AuthenticationService } from './../../../../shared/services/authentication.service';
 import { DEFAULT_CARD } from './../../../../shared/enums/placeholder-card.config';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { UserViewModel } from './../../../models/user-view-model.interface';
@@ -36,21 +37,31 @@ export class SelectionComponent implements OnInit, OnDestroy {
   public selectedSecond!: MovieViewModel | null;
   public placeholderImage = DEFAULT_CARD;
   public selectionForm!: FormGroup;
+  public isAuth!: boolean
+  public selectionConfig = CSelectionPage;
+  public isSearch!: boolean;
 
   private destroy$: Subject<void> = new Subject();
 
-  public selectionConfig = CSelectionPage;
-
-  constructor(private movieService: MovieService, private fb: FormBuilder) { }
+  constructor(
+    private movieService: MovieService,
+    private fb: FormBuilder,
+    private authService: AuthenticationService) { }
 
   public movies!: IMovieCard[];
 
   public onSubmit(): void {
     if (this.selectedFirst && this.selectedSecond) {
+
+      if (!this.isAuth) {
+        this.authService.openModal(true);
+        return;
+      }
+      this.isSearch = true;
+
       const selectedMoviesIds: SelectedMoviesViewModel = {
         firstMovieId: this.selectedFirst.id, secondMovieId: this.selectedSecond.id
       }
-
       this.movieService.getRecommendations("api/movies/recommend", selectedMoviesIds)
         .pipe(takeUntil(this.destroy$))
         .subscribe({
@@ -61,8 +72,8 @@ export class SelectionComponent implements OnInit, OnDestroy {
                 info: element
               }
             });
-
             this.bestOptions = resultMovies;
+            this.isSearch = false;
           },
           error: (err: HttpErrorResponse) => {
             console.log(err);
@@ -86,6 +97,10 @@ export class SelectionComponent implements OnInit, OnDestroy {
   public ngOnInit(): void {
     this.getMovies();
     this.initForm();
+    this.authService.authChanged.pipe(takeUntil(this.destroy$))
+      .subscribe(isAuth => {
+        this.isAuth = isAuth;
+      })
 
     this.selectionForm.valueChanges.pipe(
       takeUntil(this.destroy$),

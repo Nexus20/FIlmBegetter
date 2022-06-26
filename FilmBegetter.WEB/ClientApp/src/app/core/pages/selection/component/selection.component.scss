@@ -28,6 +28,11 @@ section {
       justify-content: center;
       cursor: pointer;
 
+      &.disabled {
+        opacity: 0.2;
+        pointer-events: none;
+      }
+
       &:hover {
         .icon-logo {
           color: $secondary-400;

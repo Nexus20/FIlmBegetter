@@ -65,8 +65,13 @@
                         [inputParameters]="selectionConfig.inputs.searchInput"
                     ></app-input>
                 </div>
-                <div (click)="onSubmit()" class="button-find">
-                    <span class="icon-logo"></span>
+                <div
+                    (click)="onSubmit()"
+                    [ngClass]="{ disabled: !selectedFirst && !selectedSecond }"
+                    class="button-find"
+                >
+                    <app-loader *ngIf="isSearch"></app-loader>
+                    <span *ngIf="!isSearch" class="icon-logo"></span>
                 </div>
                 <div class="selection__option">
                     <div
