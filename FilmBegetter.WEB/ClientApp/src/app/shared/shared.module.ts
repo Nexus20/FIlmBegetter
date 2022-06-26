@@ -24,8 +24,7 @@ import { OverlayModule } from '@angular/cdk/overlay';
     CollectionComponent,
     RateComponent,
     CommentComponent,
-    SideMenuComponent,
-    MissingImageDirective
+    SideMenuComponent
   ],
   imports: [
     CommonModule,
@@ -34,7 +33,7 @@ import { OverlayModule } from '@angular/cdk/overlay';
     CardModule,
     PipeModule,
     FormsModule,
-    OverlayModule
+    OverlayModule,
   ],
   exports: [
     ButtonComponent,
@@ -44,7 +43,6 @@ import { OverlayModule } from '@angular/cdk/overlay';
     RateComponent,
     CommentComponent,
     SideMenuComponent,
-    MissingImageDirective
   ],
   providers: [DialogService]
 })

@@ -52,6 +52,7 @@
                         'mb-4': !isLogginMode
                     }"
                     [inputParameters]="passwordConfig"
+                    matTooltipClass="default-tooltip"
                     [matTooltip]="
                         password.errors?.pattern ? passwordPattern : ''
                     "

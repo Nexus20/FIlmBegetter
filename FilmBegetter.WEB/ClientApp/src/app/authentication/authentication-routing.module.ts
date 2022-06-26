@@ -1,4 +1,3 @@
-import { AuthenticationComponent } from './component/authentication/authentication.component';
 import { NgModule } from '@angular/core';
 import { RegisterUserComponent } from './register-user/register-user.component';
 import { RouterModule, Routes } from '@angular/router';

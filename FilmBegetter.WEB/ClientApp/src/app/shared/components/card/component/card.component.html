@@ -37,9 +37,16 @@
                 </div>
             </div>
         </a>
-        <div class="card__description">
-            {{ cardParameters.info.title }}
-        </div>
+        <ng-container *ngIf="cardParameters.type === 'defaultPreview'">
+            <div class="card__description">
+                {{ cardParameters.info.title | crop: 25 }}
+            </div>
+        </ng-container>
+        <ng-container *ngIf="cardParameters.type === 'smallPreview'">
+            <div class="card__description">
+                {{ cardParameters.info.title | crop: 10 }}
+            </div>
+        </ng-container>
     </div>
 </div>
 

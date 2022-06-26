@@ -16,7 +16,7 @@
     min-height: 480px;
   }
   &.smallSize {
-    min-width: 150px;
+    width: 150px;
     min-height: 280px;
     .card__description {
       margin-top: 10px;
@@ -51,7 +51,7 @@
         transition: 0.3s;
         height: 100%;
         object-fit: cover;
-
+        width: 100%;
         &:hover {
           transform: scale(1.05);
         }

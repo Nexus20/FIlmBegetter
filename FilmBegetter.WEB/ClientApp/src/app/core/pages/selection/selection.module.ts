@@ -1,3 +1,4 @@
+import { DirectivesModule } from './../../../shared/directives/directives.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -24,7 +25,8 @@ import { SearchItemComponent } from './children/search-item/search-item.componen
     ReactiveFormsModule,
     PipeModule,
     MatTooltipModule,
-    MatSliderModule
+    MatSliderModule,
+    DirectivesModule
   ],
   exports: [
     SelectionComponent

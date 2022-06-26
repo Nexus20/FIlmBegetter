@@ -135,14 +135,16 @@
         </div>
     </section>
 
-    <section>
-        <app-collection
-            class="selected-movies"
-            [direction]="selectionConfig.bestOptions.direction"
-            [label]="selectionConfig.bestOptions.label"
-            [movies]="bestOptions"
-        ></app-collection>
-    </section>
+    <ng-container *ngIf="bestOptions">
+        <section>
+            <app-collection
+                class="selected-movies"
+                [direction]="selectionConfig.bestOptions.direction"
+                [label]="selectionConfig.bestOptions.label"
+                [movies]="bestOptions"
+            ></app-collection>
+        </section>
+    </ng-container>
 
     <section class="mightlike">
         <div class="container">
