@@ -13,6 +13,8 @@ public class MovieRepository : Repository<Movie>, IMovieRepository {
         return Context.Movies
             .Include(m => m.Comments)
             .ThenInclude(c => c.Author)
+            .Include(m => m.Comments)
+            .ThenInclude(c => c.CommentRatings)
             .Include(m => m.Ratings)
             .Include(m => m.MovieGenres)
             .ThenInclude(mg => mg.Genre)

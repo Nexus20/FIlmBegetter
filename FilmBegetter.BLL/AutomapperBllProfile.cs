@@ -23,7 +23,9 @@ public class AutomapperBllProfile : Profile {
         CreateMap<Comment, CommentDto>()
             .ReverseMap()
             .ForMember(d => d.CommentRatings, o => o.Ignore());
-        
+
+        CreateMap<CommentRatingUser, CommentRatingDto>();
+
         CreateMap<Rating, RatingDto>()
             .ReverseMap();
 
