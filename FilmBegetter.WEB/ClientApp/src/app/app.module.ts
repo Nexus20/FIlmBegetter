@@ -1,3 +1,5 @@
+import { AuthenticationModule } from './authentication/authentication.module';
+import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -9,6 +11,7 @@ import { SharedModule } from './shared/shared.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorHandlerService } from "./shared/services/error-handler.service";
 import { ForbiddenComponent } from './forbidden/forbidden.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -25,6 +28,7 @@ export function tokenGetter() {
     SharedModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    AuthenticationModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,

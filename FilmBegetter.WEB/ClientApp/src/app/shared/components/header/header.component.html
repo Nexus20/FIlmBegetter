@@ -18,49 +18,26 @@
                         <li class="header__list-item">
                             <a href="#news"> Contacts</a>
                         </li>
-                        <ng-container *ngIf="isUserAuthenticated == true;">
+                        <ng-container *ngIf="isUserAuthenticated == true">
                             <li class="header__list-item">
-                                <button class="btn btn-link" style="color: #ffffff80;" (click)="logout()">Logout</button>
+                                <button
+                                    class="btn btn-link"
+                                    style="color: #ffffff80"
+                                    (click)="logout()"
+                                >
+                                    Logout
+                                </button>
                             </li>
                         </ng-container>
-                        <ng-container *ngIf="isUserAuthenticated == false;">
+                        <ng-container *ngIf="isUserAuthenticated == false">
                             <li class="header__list-item">
-                                <a [routerLink]="['/authentication/register']" routerLinkActive="active"
-                                   [routerLinkActiveOptions]="{exact: true}">Register</a>
+                                <a (click)="openLogin(false)">Register</a>
                             </li>
                             <li class="header__list-item">
-                                <a [routerLink]="['/authentication/login']" routerLinkActive="active"
-                                   [routerLinkActiveOptions]="{exact: true}">Sign in</a>
+                                <a (click)="openLogin(true)">Sign in</a>
                                 <span class="icon-arrow-right"></span>
                             </li>
                         </ng-container>
-<!--                        <ng-template #userIsNotAuthenticatedTemplateA>-->
-<!--                            <li class="header__list-item">-->
-<!--                                <a [routerLink]="['/authentication/register']" routerLinkActive="active"-->
-<!--                                   [routerLinkActiveOptions]="{exact: true}">Register</a>-->
-<!--                            </li>-->
-<!--                            <li class="header__list-item">-->
-<!--                                <a [routerLink]="['/authentication/login']" routerLinkActive="active"-->
-<!--                                   [routerLinkActiveOptions]="{exact: true}">Sign in</a>-->
-<!--                                <span class="icon-arrow-right"></span>-->
-<!--                            </li>-->
-<!--                        </ng-template>-->
-<!--&lt;!&ndash;                        <li *[ngIf]="!isUserAuthenticated" class="header__list-item">&ndash;&gt;-->
-<!--                        <li class="header__list-item">-->
-<!--                            <a [routerLink]="['/authentication/register']" routerLinkActive="active"-->
-<!--                              [routerLinkActiveOptions]="{exact: true}">Register</a>-->
-<!--                        </li>-->
-<!--&lt;!&ndash;                        <li *[ngIf]="!isUserAuthenticated" class="header__list-item">&ndash;&gt;-->
-<!--                        <li class="header__list-item">-->
-<!--                            <a [routerLink]="['/authentication/login']" routerLinkActive="active"-->
-<!--                               [routerLinkActiveOptions]="{exact: true}">Sign in</a>-->
-<!--                                <span class="icon-arrow-right"></span>-->
-<!--                        </li>-->
-
-<!--                        <li *[ngIf]="isUserAuthenticated" class="header__list-item">-->
-<!--                        <li class="header__list-item">-->
-<!--                            <button class="btn btn-link" style="color: #ffffff80;" (click)="logout()">Logout</button>-->
-<!--                        </li>-->
                     </ul>
                 </nav>
             </div>

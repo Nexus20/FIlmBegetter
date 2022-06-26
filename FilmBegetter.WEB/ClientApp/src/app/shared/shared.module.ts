@@ -13,6 +13,8 @@ import { RateComponent } from './components/rate/rate.component';
 import { CommentComponent } from './components/comment/comment.component';
 import { SideMenuComponent } from './components/side-menu/side-menu.component';
 import { MissingImageDirective } from './directives/missing-image.directive';
+import { DialogService } from './components/dialog/dialog.service';
+import { OverlayModule } from '@angular/cdk/overlay';
 
 
 @NgModule({
@@ -32,6 +34,7 @@ import { MissingImageDirective } from './directives/missing-image.directive';
     CardModule,
     PipeModule,
     FormsModule,
+    OverlayModule
   ],
   exports: [
     ButtonComponent,
@@ -42,6 +45,7 @@ import { MissingImageDirective } from './directives/missing-image.directive';
     CommentComponent,
     SideMenuComponent,
     MissingImageDirective
-  ]
+  ],
+  providers: [DialogService]
 })
 export class SharedModule { }
