@@ -9,6 +9,7 @@ import { MovieViewModel } from "../../../models/movieViewModel.interface";
 import { MovieService } from "../../../services/movie.service";
 import { debounceTime, distinctUntilChanged, forkJoin, of, Subject, switchMap, takeUntil, tap } from 'rxjs';
 import { animate, style, transition, trigger } from '@angular/animations';
+import {SelectedMoviesViewModel} from "../../../models/selectedMoviesViewModel.interface";
 
 
 @Component({
@@ -513,7 +514,20 @@ export class SelectionComponent implements OnInit, OnDestroy {
       console.log(this.selectedFirst);
       console.log(this.selectedSecond);
 
+        const selectedMoviesIds : SelectedMoviesViewModel = {
+            firstMovieId: this.selectedFirst.id, secondMovieId: this.selectedSecond.id
+        }
 
+        this.movieService.getRecommendations("api/movies/recommend", selectedMoviesIds)
+            .pipe(takeUntil(this.destroy$))
+            .subscribe({
+                next: (data: MovieViewModel[]) => {
+                   console.log(data)
+                },
+                error: (err: HttpErrorResponse) => {
+                    console.log(err);
+                }
+            });
     }
   }
 
