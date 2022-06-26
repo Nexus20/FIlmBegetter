@@ -3,8 +3,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthenticationService } from "../../shared/services/authentication.service";
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AuthenticationViewModel} from "../../core/models/authenticationViewModel.interface";
-import { AuthenticationResponseViewModel} from "../../core/models/authenticationResponseViewModel.interface";
+import { AuthenticationViewModel } from "../../core/models/authenticationViewModel.interface";
+import { AuthenticationResponseViewModel } from "../../core/models/authenticationResponseViewModel.interface";
 
 @Component({
   selector: 'app-login',
@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   errorMessage: string = '';
   showError: boolean = false;
 
-  constructor(private authService: AuthenticationService, private router: Router, private route: ActivatedRoute) {}
+  constructor(private authService: AuthenticationService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
@@ -37,10 +37,10 @@ export class LoginComponent implements OnInit {
     return this.loginForm.get(controlName)?.hasError(errorName)
   }
 
-  loginUser = (loginFormValue : any) => {
+  loginUser = (loginFormValue: any) => {
 
     this.showError = false;
-    const login = {... loginFormValue };
+    const login = { ...loginFormValue };
 
     const userForAuth: AuthenticationViewModel = {
       email: login.username,
@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
 
     this.authService.loginUser('api/accounts/login', userForAuth)
       .subscribe({
-        next: (res:AuthenticationResponseViewModel) => {
+        next: (res: AuthenticationResponseViewModel) => {
           localStorage.setItem("token", res.token);
           this.authService.sendAuthStateChangeNotification(res.isAuthSuccessful);
           this.router.navigate([this.returnUrl]);
@@ -57,6 +57,7 @@ export class LoginComponent implements OnInit {
         error: (err: HttpErrorResponse) => {
           this.errorMessage = err.message;
           this.showError = true;
-        }});
+        }
+      });
   }
 }

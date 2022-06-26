@@ -1,10 +1,11 @@
 <div class="input-block" *ngIf="inputParameters.type === 'default'">
     <input
         [ngClass]="{
-            'input-icon': inputParameters.icon
+            'input-icon': inputParameters.icon,
+            small: inputParameters.size === 'small'
         }"
         class="input field"
-        type="text"
+        [type]="type"
         [placeholder]="inputParameters.placeholder"
         (input)="change($event)"
         [value]="value"
@@ -17,12 +18,9 @@
     ></span>
 
     <!-- uncomment this block when you'll implement the reactive form -->
-    <!-- <div
-        class="input-error"
-        *ngIf="control!.invalid && control!.touched && control!.dirty"
-    >
-        <span>{{ inputParameters.error }}</span>
-    </div> -->
+    <div class="input-error" *ngIf="inputParameters.error || error">
+        <span>{{ error || inputParameters.error }}</span>
+    </div>
 </div>
 
 <div class="textarea-block" *ngIf="inputParameters.type === 'textarea'">

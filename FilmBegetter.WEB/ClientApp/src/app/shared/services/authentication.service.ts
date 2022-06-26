@@ -1,3 +1,5 @@
+import { AuthenticationComponent } from './../../authentication/component/authentication/authentication.component';
+import { DialogService } from './../components/dialog/dialog.service';
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { EnvironmentUrlService } from './environment-url.service';
@@ -13,51 +15,59 @@ import { RegistrationViewModel } from "../../core/models/registrationViewModel.i
 })
 export class AuthenticationService {
 
-    private authChangeSub = new BehaviorSubject<boolean>(false)
+  private authChangeSub = new BehaviorSubject<boolean>(false)
 
-    public authChanged = this.authChangeSub.asObservable();
+  public authChanged = this.authChangeSub.asObservable();
 
-    constructor(private http: HttpClient, private envUrl: EnvironmentUrlService, private jwtHelper: JwtHelperService) { }
+  constructor(
+    private http: HttpClient,
+    private envUrl: EnvironmentUrlService,
+    private jwtHelper: JwtHelperService,
+    private dialog: DialogService) { }
 
-    public registerUser = (route: string, body: RegistrationViewModel) => {
-        return this.http.post<RegistrationResponseViewModel> (this.createCompleteRoute(route, this.envUrl.urlAddress), body);
-    }
+  public registerUser = (route: string, body: RegistrationViewModel) => {
+    return this.http.post<RegistrationResponseViewModel>(this.createCompleteRoute(route, this.envUrl.urlAddress), body);
+  }
 
-    public loginUser = (route: string, body: AuthenticationViewModel) => {
-        return this.http.post<AuthenticationResponseViewModel> (this.createCompleteRoute(route, this.envUrl.urlAddress), body);
-    }
+  public loginUser = (route: string, body: AuthenticationViewModel) => {
+    return this.http.post<AuthenticationResponseViewModel>(this.createCompleteRoute(route, this.envUrl.urlAddress), body);
+  }
 
-    public logout = () => {
-        localStorage.removeItem("token");
-        this.sendAuthStateChangeNotification(false);
-    }
+  public logout = () => {
+    localStorage.removeItem("token");
+    this.sendAuthStateChangeNotification(false);
+  }
 
-    public sendAuthStateChangeNotification = (isAuthenticated: boolean) => {
-      this.authChangeSub.next(isAuthenticated);
-    }
+  public sendAuthStateChangeNotification = (isAuthenticated: boolean) => {
+    this.authChangeSub.next(isAuthenticated);
+  }
 
-    public isUserAuthenticated = (): boolean => {
+  public isUserAuthenticated = (): boolean => {
 
-      const token = localStorage.getItem("token");
+    const token = localStorage.getItem("token");
 
-      return token != null && token != '' && !this.jwtHelper.isTokenExpired(token!);
-    }
+    return token != null && token != '' && !this.jwtHelper.isTokenExpired(token!);
+  }
 
-    public isUserAdmin = (): boolean => {
-        const token = localStorage.getItem("token");
-        const decodedToken = this.jwtHelper.decodeToken(token!);
-        const role = decodedToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/role']
-        return role === 'Admin';
-    }
+  public isUserAdmin = (): boolean => {
+    const token = localStorage.getItem("token");
+    const decodedToken = this.jwtHelper.decodeToken(token!);
+    const role = decodedToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/role']
+    return role === 'Admin';
+  }
 
-    public isUserModerator = (): boolean => {
-      const token = localStorage.getItem("token");
-      const decodedToken = this.jwtHelper.decodeToken(token!);
-      const role = decodedToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/role']
-      return role === 'Moderator';
-    }
+  public isUserModerator = (): boolean => {
+    const token = localStorage.getItem("token");
+    const decodedToken = this.jwtHelper.decodeToken(token!);
+    const role = decodedToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/role']
+    return role === 'Moderator';
+  }
 
-    private createCompleteRoute = (route: string, envAddress: string) => {
-        return `${envAddress}/${route}`;
-    }
+  public openModal(state: boolean): void {
+    this.dialog.open(AuthenticationComponent, { state });
+  }
+
+  private createCompleteRoute = (route: string, envAddress: string) => {
+    return `${envAddress}/${route}`;
+  }
 }

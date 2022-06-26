@@ -1,0 +1,115 @@
+@import "../../../styles/variables.scss";
+
+::ng-deep {
+  .cdk-overlay-dark-backdrop {
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+}
+
+::ng-deep {
+  .mat-tooltip {
+    background-color: $error-400;
+    white-space: pre-line;
+  }
+}
+
+.wrapper {
+  position: relative;
+  border: 2px solid $primary-400;
+  border-radius: 10px;
+  color: $gray-100;
+  padding: 50px 80px;
+  background-color: rgba($color: $gray-900, $alpha: 0.8);
+  overflow-y: auto;
+  max-height: 625px;
+}
+.auth {
+  display: flex;
+  flex-direction: column;
+
+  &-close {
+    display: flex;
+    padding: 8px;
+    border-radius: 8px;
+    position: absolute;
+    right: 28px;
+    width: 40px;
+    height: 40px;
+    top: 28px;
+    background-color: rgba($color: #000000, $alpha: 0.3);
+    cursor: pointer;
+
+    &:hover span {
+      color: $primary-400;
+    }
+    span {
+      font-size: 24px;
+      color: $gray-400;
+      margin: -2px auto auto;
+      transition: 0.2s;
+    }
+  }
+
+  &-switch {
+    font-size: 12px;
+    margin-bottom: 45px;
+    span:last-child {
+      color: $primary-400;
+      margin-left: 10px;
+      cursor: pointer;
+    }
+  }
+
+  &-form {
+    display: flex;
+    flex-direction: column;
+
+    app-input + app-input {
+      margin-top: 6px;
+    }
+
+    h3 {
+      @include bodyLarge;
+      font-size: 24px;
+      text-align: center;
+      margin-bottom: 45px;
+    }
+  }
+
+  &-alternative {
+    font-size: 12px;
+    position: relative;
+    text-align: center;
+    .alternative-separate {
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      .line {
+        flex: 1 1 auto;
+        height: 1px;
+        background: $gray-300;
+        border-radius: 10px;
+      }
+      span {
+        margin: 0 20px;
+      }
+    }
+  }
+}
+
+.error {
+  h2 {
+    text-align: center;
+    color: $error-500;
+    margin-bottom: 20px;
+    font-size: 32px;
+  }
+  .message {
+    margin-bottom: 20px;
+  }
+  app-button {
+    max-width: 150px;
+    margin: 0 auto;
+    display: block;
+  }
+}

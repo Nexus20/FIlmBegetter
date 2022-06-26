@@ -1,0 +1,111 @@
+<div class="wrapper">
+    <div class="auth">
+        <div class="auth-close" (click)="close()">
+            <span class="icon-close-square"></span>
+        </div>
+
+        <ng-container *ngIf="!error; else errorMessage">
+            <div class="auth-switch">
+                <span>{{
+                    isLogginMode ? "First time here?" : "Have an account?"
+                }}</span>
+                <span (click)="changeState()">
+                    {{ isLogginMode ? "Sign Up" : "Sign In" }}
+                </span>
+            </div>
+
+            <form
+                (ngSubmit)="onSubmit()"
+                [formGroup]="isLogginMode ? loginForm : registerForm"
+                class="auth-form"
+            >
+                <h3 class="auth-title">
+                    {{ isLogginMode ? "Sign In" : "Sign Up" }}
+                </h3>
+                <app-input
+                    (focusout)="setError(loginConfig, username)"
+                    formControlName="username"
+                    class="mb-4"
+                    [inputParameters]="loginConfig"
+                ></app-input>
+                <app-input
+                    *ngIf="!isLogginMode"
+                    (focusout)="setError(surnameConfig, username)"
+                    formControlName="surname"
+                    class="mb-4"
+                    [inputParameters]="surnameConfig"
+                ></app-input>
+                <app-input
+                    type="email"
+                    *ngIf="!isLogginMode"
+                    (focusout)="setError(emailConfig, email)"
+                    formControlName="email"
+                    class="mb-4"
+                    [inputParameters]="emailConfig"
+                ></app-input>
+                <app-input
+                    type="password"
+                    (focusout)="setError(passwordConfig, password)"
+                    formControlName="password"
+                    [ngClass]="{
+                        'mb-5': isLogginMode,
+                        'mb-4': !isLogginMode
+                    }"
+                    [inputParameters]="passwordConfig"
+                    [matTooltip]="
+                        password.errors?.pattern ? passwordPattern : ''
+                    "
+                ></app-input>
+                <app-input
+                    type="password"
+                    *ngIf="!isLogginMode"
+                    (focusout)="
+                        setError(confirmPasswordConfig, confirmPassword)
+                    "
+                    formControlName="confirmPassword"
+                    class="mb-5"
+                    [inputParameters]="confirmPasswordConfig"
+                    [error]="
+                        registerForm.errors?.mustMatch
+                            ? 'Passwords must match'
+                            : ''
+                    "
+                ></app-input>
+                <app-button
+                    [text]="isLogginMode ? 'Login' : 'Create an account'"
+                    class="mb-4"
+                    type="submit"
+                    [buttonConfig]="submitButton"
+                ></app-button>
+                <div class="auth-alternative">
+                    <div class="alternative-separate mb-3">
+                        <div class="line"></div>
+                        <span>
+                            Or sign {{ isLogginMode ? "In" : "Up" }} with
+                        </span>
+                        <div class="line"></div>
+                    </div>
+                    <app-button
+                        [text]="
+                            'Sign ' +
+                            (isLogginMode ? 'In' : 'Up') +
+                            ' with Google'
+                        "
+                        image="../../../../assets/images/google.png"
+                        [buttonConfig]="authByGoogle"
+                    ></app-button>
+                </div>
+            </form>
+        </ng-container>
+        <ng-template #errorMessage>
+            <div class="error">
+                <h2>Error 😢</h2>
+                <div class="message">{{ error }}</div>
+                <app-button
+                    (click)="error = null"
+                    [buttonConfig]="errorButton"
+                ></app-button>
+            </div>
+        </ng-template>
+    </div>
+</div>
