@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using FilmBegetter.BLL.Dto;
 using FilmBegetter.BLL.Interfaces;
+using FilmBegetter.BLL.Utils.Exceptions;
 using FilmBegetter.DAL.Entities;
 using FilmBegetter.DAL.Interfaces;
 using Microsoft.AspNetCore.Identity;
@@ -40,7 +41,27 @@ public class CommentService : ICommentService {
             .FirstOrDefaultAsync(c => c.Id == commentId);
 
         if (comment.AuthorId == userId) {
+            throw new UnableToUpdateCommentRatingException(
+                "Unable to update comment rating! Comment author can't rate his own comments");
         }
 
+        var commentRating = await _unitOfWork.GetRepository<IRepository<CommentRatingUser>, CommentRatingUser>()
+            .FirstOrDefaultAsync(cru => cru.UserId == userId && cru.CommentId == commentId);
+
+        if (commentRating != null) {
+            throw new UnableToUpdateCommentRatingException(
+                "Unable to update comment rating! You have already rated this comment");
+        }
+
+        commentRating = new CommentRatingUser {
+            CommentId = commentId,
+            UserId = userId,
+            Rating = rating
+        };
+
+        await _unitOfWork.GetRepository<IRepository<CommentRatingUser>, CommentRatingUser>()
+            .CreateAsync(commentRating);
+
+        await _unitOfWork.SaveChangesAsync();
     }
 }

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using FilmBegetter.BLL.Dto;
 using FilmBegetter.BLL.Interfaces;
+using FilmBegetter.BLL.Utils.Exceptions;
 using FilmBegetter.WEB.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -69,10 +70,15 @@ namespace FilmBegetter.WEB.Controllers
             if (!ModelState.IsValid) {
                 return BadRequest();
             }
-
+        
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            
-            await _commentService.UpdateRatingAsync(userId, viewModel.CommentId, viewModel.Rating);
+
+            try {
+                await _commentService.UpdateRatingAsync(userId, viewModel.CommentId, viewModel.Rating);
+            }
+            catch (Exception ex) {
+                return BadRequest();
+            }
 
             return Ok();
         }
