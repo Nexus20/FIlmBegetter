@@ -15,6 +15,7 @@ import { SideMenuComponent } from './components/side-menu/side-menu.component';
 import { MissingImageDirective } from './directives/missing-image.directive';
 import { DialogService } from './components/dialog/dialog.service';
 import { OverlayModule } from '@angular/cdk/overlay';
+import { LoaderComponent } from './components/loader/loader.component';
 
 
 @NgModule({
@@ -25,7 +26,7 @@ import { OverlayModule } from '@angular/cdk/overlay';
     RateComponent,
     CommentComponent,
     SideMenuComponent,
-    MissingImageDirective
+    LoaderComponent
   ],
   imports: [
     CommonModule,
@@ -34,7 +35,7 @@ import { OverlayModule } from '@angular/cdk/overlay';
     CardModule,
     PipeModule,
     FormsModule,
-    OverlayModule
+    OverlayModule,
   ],
   exports: [
     ButtonComponent,
@@ -44,7 +45,7 @@ import { OverlayModule } from '@angular/cdk/overlay';
     RateComponent,
     CommentComponent,
     SideMenuComponent,
-    MissingImageDirective
+    LoaderComponent
   ],
   providers: [DialogService]
 })

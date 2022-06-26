@@ -1,3 +1,4 @@
+import { DirectivesModule } from './../../directives/directives.module';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -12,7 +13,8 @@ import { CardComponent } from './component/card.component';
     CommonModule,
     PipeModule,
     RouterModule,
-    RouterModule
+    RouterModule,
+    DirectivesModule
   ],
   exports: [CardComponent]
 })

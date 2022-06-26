@@ -65,8 +65,13 @@
                         [inputParameters]="selectionConfig.inputs.searchInput"
                     ></app-input>
                 </div>
-                <div (click)="onSubmit()" class="button-find">
-                    <span class="icon-logo"></span>
+                <div
+                    (click)="onSubmit()"
+                    [ngClass]="{ disabled: !selectedFirst && !selectedSecond }"
+                    class="button-find"
+                >
+                    <app-loader *ngIf="isSearch"></app-loader>
+                    <span *ngIf="!isSearch" class="icon-logo"></span>
                 </div>
                 <div class="selection__option">
                     <div
@@ -135,14 +140,16 @@
         </div>
     </section>
 
-    <section>
-        <app-collection
-            class="selected-movies"
-            [direction]="selectionConfig.bestOptions.direction"
-            [label]="selectionConfig.bestOptions.label"
-            [movies]="bestOptions"
-        ></app-collection>
-    </section>
+    <ng-container *ngIf="bestOptions">
+        <section>
+            <app-collection
+                class="selected-movies"
+                [direction]="selectionConfig.bestOptions.direction"
+                [label]="selectionConfig.bestOptions.label"
+                [movies]="bestOptions"
+            ></app-collection>
+        </section>
+    </ng-container>
 
     <section class="mightlike">
         <div class="container">

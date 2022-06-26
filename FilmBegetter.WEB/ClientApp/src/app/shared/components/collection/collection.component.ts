@@ -1,31 +1,31 @@
 import { IMovieCard } from './../../models/card.interface';
 import { Component, Input, OnInit } from '@angular/core';
-import {IUserCard} from "../../models/card-user.interface";
+import { IUserCard } from "../../models/card-user.interface";
 
 @Component({
-    selector: 'app-collection',
-    templateUrl: './collection.component.html',
-    styleUrls: ['./collection.component.scss']
+  selector: 'app-collection',
+  templateUrl: './collection.component.html',
+  styleUrls: ['./collection.component.scss']
 })
 export class CollectionComponent implements OnInit {
 
-    @Input() direction: 'default' | 'horizontal' = 'default';
-    @Input() label!: string;
-    @Input() movies!: IMovieCard[];
-    @Input() users!: IUserCard[];
+  @Input() direction: 'default' | 'horizontal' = 'default';
+  @Input() label!: string;
+  @Input() movies!: IMovieCard[];
+  @Input() users!: IUserCard[];
 
-    constructor() { }
+  constructor() { }
 
-    ngOnInit(): void {
+  ngOnInit(): void {
+  }
+
+  public getTotalMoviesNumber(): number {
+
+    if (this.movies == undefined) {
+      return 0;
     }
 
-    public getTotalMoviesNumber(): number {
-
-        if(this.movies == undefined) {
-            return 0;
-        }
-
-        return this.movies.length;
-    }
+    return this.movies.length;
+  }
 
 }
