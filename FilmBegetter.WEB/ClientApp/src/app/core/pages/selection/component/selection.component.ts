@@ -51,6 +51,7 @@ export class SelectionComponent implements OnInit, OnDestroy {
         director: 'Horkun Dmytro',
         imagePath: '../../../../../assets/images/card-preview.png',
         comments: [{
+            id: '1',
           authorId: '1',
           movieId: '2',
           movie: {} as MovieViewModel,// bad practice, but only for test
@@ -78,6 +79,7 @@ export class SelectionComponent implements OnInit, OnDestroy {
         director: 'Horkun Dmytro',
         imagePath: '../../../../../assets/images/card-preview.png',
         comments: [{
+            id: '1',
           authorId: '1',
           movieId: '2',
           movie: {} as MovieViewModel,// bad practice, but only for test
@@ -105,6 +107,7 @@ export class SelectionComponent implements OnInit, OnDestroy {
         director: 'Horkun Dmytro',
         imagePath: '../../../../../assets/images/card-preview.png',
         comments: [{
+            id: '1',
           authorId: '1',
           movieId: '2',
           movie: {} as MovieViewModel,// bad practice, but only for test
@@ -132,6 +135,7 @@ export class SelectionComponent implements OnInit, OnDestroy {
         director: 'Horkun Dmytro',
         imagePath: '../../../../../assets/images/card-preview.png',
         comments: [{
+            id: '1',
           authorId: '1',
           movieId: '2',
           movie: {} as MovieViewModel,// bad practice, but only for test
@@ -159,6 +163,7 @@ export class SelectionComponent implements OnInit, OnDestroy {
         director: 'Horkun Dmytro',
         imagePath: '../../../../../assets/images/card-preview.png',
         comments: [{
+            id: '1',
           authorId: '1',
           movieId: '2',
           movie: {} as MovieViewModel,// bad practice, but only for test
@@ -186,6 +191,7 @@ export class SelectionComponent implements OnInit, OnDestroy {
         director: 'Horkun Dmytro',
         imagePath: '../../../../../assets/images/card-preview.png',
         comments: [{
+            id: '1',
           authorId: '1',
           movieId: '2',
           movie: {} as MovieViewModel,// bad practice, but only for test
@@ -213,6 +219,7 @@ export class SelectionComponent implements OnInit, OnDestroy {
         director: 'Horkun Dmytro',
         imagePath: '../../../../../assets/images/card-preview.png',
         comments: [{
+            id: '1',
           authorId: '1',
           movieId: '2',
           movie: {} as MovieViewModel,// bad practice, but only for test
@@ -240,6 +247,7 @@ export class SelectionComponent implements OnInit, OnDestroy {
         director: 'Horkun Dmytro',
         imagePath: '../../../../../assets/images/card-preview.png',
         comments: [{
+            id: '1',
           authorId: '1',
           movieId: '2',
           movie: {} as MovieViewModel,// bad practice, but only for test
@@ -267,6 +275,7 @@ export class SelectionComponent implements OnInit, OnDestroy {
         director: 'Horkun Dmytro',
         imagePath: '../../../../../assets/images/card-preview.png',
         comments: [{
+            id: '1',
           authorId: '1',
           movieId: '2',
           movie: {} as MovieViewModel,// bad practice, but only for test
@@ -297,6 +306,7 @@ export class SelectionComponent implements OnInit, OnDestroy {
         director: 'Horkun Dmytro',
         imagePath: '../../../../../assets/images/card-preview.png',
         comments: [{
+            id: '1',
           authorId: '1',
           movieId: '2',
           movie: {} as MovieViewModel,// bad practice, but only for test
@@ -324,6 +334,7 @@ export class SelectionComponent implements OnInit, OnDestroy {
         director: 'Horkun Dmytro',
         imagePath: '../../../../../assets/images/card-preview.png',
         comments: [{
+            id: '1',
           authorId: '1',
           movieId: '2',
           movie: {} as MovieViewModel,// bad practice, but only for test
@@ -351,6 +362,7 @@ export class SelectionComponent implements OnInit, OnDestroy {
         director: 'Horkun Dmytro',
         imagePath: '../../../../../assets/images/card-preview.png',
         comments: [{
+            id: '1',
           authorId: '1',
           movieId: '2',
           movie: {} as MovieViewModel,// bad practice, but only for test
@@ -378,6 +390,7 @@ export class SelectionComponent implements OnInit, OnDestroy {
         director: 'Horkun Dmytro',
         imagePath: '../../../../../assets/images/card-preview.png',
         comments: [{
+            id: '1',
           authorId: '1',
           movieId: '2',
           movie: {} as MovieViewModel,// bad practice, but only for test
@@ -405,6 +418,7 @@ export class SelectionComponent implements OnInit, OnDestroy {
         director: 'Horkun Dmytro',
         imagePath: '../../../../../assets/images/card-preview.png',
         comments: [{
+            id: '1',
           authorId: '1',
           movieId: '2',
           movie: {} as MovieViewModel,// bad practice, but only for test
@@ -432,6 +446,7 @@ export class SelectionComponent implements OnInit, OnDestroy {
         director: 'Horkun Dmytro',
         imagePath: '../../../../../assets/images/card-preview.png',
         comments: [{
+            id: '1',
           authorId: '1',
           movieId: '2',
           movie: {} as MovieViewModel,// bad practice, but only for test
@@ -459,6 +474,7 @@ export class SelectionComponent implements OnInit, OnDestroy {
         director: 'Horkun Dmytro',
         imagePath: '../../../../../assets/images/card-preview.png',
         comments: [{
+            id: '1',
           authorId: '1',
           movieId: '2',
           movie: {} as MovieViewModel,// bad practice, but only for test
@@ -486,6 +502,7 @@ export class SelectionComponent implements OnInit, OnDestroy {
         director: 'Horkun Dmytro',
         imagePath: '../../../../../assets/images/card-preview.png',
         comments: [{
+            id: '1',
           authorId: '1',
           movieId: '2',
           movie: {} as MovieViewModel,// bad practice, but only for test

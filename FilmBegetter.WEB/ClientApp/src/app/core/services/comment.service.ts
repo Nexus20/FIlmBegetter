@@ -4,6 +4,7 @@ import { HttpClient } from "@angular/common/http";
 import { EnvironmentUrlService } from "../../shared/services/environment-url.service";
 import { CommentToCreateViewModel } from "../models/commentToCreateViewModel.interface";
 import { CommentViewModel } from "../models/commentViewModel.interface";
+import {UpdateCommentRatingViewModel} from "../models/updateCommentRatingViewModel.interface";
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +26,10 @@ export class CommentService {
       .subscribe(comment => {
         this._comments.next([...this._comments.getValue(), comment])
       });
+  }
+
+  public rateComment(route: string, body: UpdateCommentRatingViewModel) {
+      return this.http.put(this.createCompleteRoute(route, this.envUrl.urlAddress), body);
   }
 
   private createCompleteRoute = (route: string, envAddress: string) => {

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using FilmBegetter.BLL.Dto;
 using FilmBegetter.BLL.Interfaces;
+using FilmBegetter.BLL.Utils.Exceptions;
 using FilmBegetter.WEB.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -63,8 +64,23 @@ namespace FilmBegetter.WEB.Controllers
 
         // PUT: api/Comments/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
+        [Authorize]
+        public async Task<IActionResult> Put(string id, [FromBody] UpdateCommentRatingViewModel viewModel) {
+
+            if (!ModelState.IsValid) {
+                return BadRequest();
+            }
+        
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            try {
+                await _commentService.UpdateRatingAsync(userId, viewModel.CommentId, viewModel.Rating);
+            }
+            catch (Exception ex) {
+                return BadRequest();
+            }
+
+            return Ok();
         }
 
         // DELETE: api/Comments/5
