@@ -1,4 +1,5 @@
 using System.Net;
+using System.Security.Claims;
 using AutoMapper;
 using FilmBegetter.BLL.Dto;
 using FilmBegetter.BLL.FilterModels;
@@ -24,13 +25,16 @@ public class MoviesController : ControllerBase {
     private readonly RequestResponseService _requestResponseService;
     
     private readonly IWebHostEnvironment _appEnvironment;
+
+    private readonly IUserService _userService;
     
     // GET: api/Movies
-    public MoviesController(IMovieService movieService, IMapper mapper, RequestResponseService requestResponseService, IWebHostEnvironment appEnvironment) {
+    public MoviesController(IMovieService movieService, IMapper mapper, RequestResponseService requestResponseService, IWebHostEnvironment appEnvironment, IUserService userService) {
         _movieService = movieService;
         _mapper = mapper;
         _requestResponseService = requestResponseService;
         _appEnvironment = appEnvironment;
+        _userService = userService;
     }
 
     [HttpGet]
@@ -127,22 +131,27 @@ public class MoviesController : ControllerBase {
     {
     }
 
-    [HttpGet]
+    [HttpPost]
+    [Authorize]
     [Route("recommend")]
-    public async Task<List<MovieViewModel>> Get() {
+    public async Task<IActionResult> Recommend(SelectedMoviesViewModel selectedMovies) {
 
-        var response = await _requestResponseService.Invoke();
+        if (!ModelState.IsValid) {
+            return BadRequest();
+        }
+
+        var response = await _requestResponseService.Invoke(selectedMovies.FirstMovieId, selectedMovies.SecondMovieId);
 
         var obj = JObject.Parse(response);
 
         var suggestedMoviesIds = obj["Results"]["output1"]["value"]["Values"][0]
-            .Select(i => i.Value<string>());
+            .Select(i => i.Value<string>()).Where(id => id != selectedMovies.FirstMovieId && id != selectedMovies.SecondMovieId);
 
         var model = new List<MovieViewModel>();
         
         foreach (var id in suggestedMoviesIds) {
             
-            if (id == null) {
+            if (id == null || id == selectedMovies.FirstMovieId || id == selectedMovies.SecondMovieId) {
                 continue;
             }
             
@@ -150,7 +159,15 @@ public class MoviesController : ControllerBase {
             model.Add(_mapper.Map<MovieDto, MovieViewModel>(movie));
         }
 
-        return model;
+        model = model.OrderByDescending(m => m.CommonRating).ToList();
+        
+        var user = await _userService.GetUserByIdAsync(User.FindFirstValue(ClaimTypes.NameIdentifier));
+
+        if (user.Subscription.Type == SubscriptionTypes.Basic) {
+            model = model.Take(5).ToList();
+        }
+
+        return Ok(model);
     }
     
     private async Task UploadImage(IFormFile file) {

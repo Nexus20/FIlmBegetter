@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { MovieViewModel } from "../models/movieViewModel.interface";
 import { EnvironmentUrlService } from "../../shared/services/environment-url.service";
 import {UserViewModel} from "../models/user-view-model.interface";
+import {SelectedMoviesViewModel} from "../models/selectedMoviesViewModel.interface";
 
 
 @Injectable({
@@ -14,6 +15,10 @@ export class MovieService {
 
     public getMovies = (route: string, queryParams?: {}) => {
         return this.http.get<MovieViewModel[]>(this.createCompleteRoute(route, this.envUrl.urlAddress), {params: queryParams});
+    }
+
+    public getRecommendations = (route: string, body: SelectedMoviesViewModel) => {
+        return this.http.post<MovieViewModel[]>(this.createCompleteRoute(route, this.envUrl.urlAddress), body);
     }
 
     public create = (route: string, body: FormData) => {

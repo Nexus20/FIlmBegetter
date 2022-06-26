@@ -17,7 +17,7 @@ body {
   color: $gray-200;
   min-height: 100vh;
   background: #121829 url(./assets/images/background-min.png) center center/cover no-repeat;
-  @include bodyLaPrge;
+  @include bodyLarge;
 
   * {
     scrollbar-color: $primary-500 transparent; /* «цвет ползунка» «цвет полосы скроллбара» */
