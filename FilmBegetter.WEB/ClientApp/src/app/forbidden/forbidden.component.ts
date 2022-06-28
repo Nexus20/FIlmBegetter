@@ -1,5 +1,6 @@
+import { AuthenticationService } from './../shared/services/authentication.service';
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
   selector: 'app-forbidden',
@@ -10,13 +11,16 @@ export class ForbiddenComponent implements OnInit {
 
   private returnUrl: string = '';
 
-  constructor( private router: Router, private route: ActivatedRoute) { }
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private authService: AuthenticationService) { }
 
   ngOnInit(): void {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
   public navigateToLogin = () => {
-    this.router.navigate(['/authentication/login'], { queryParams: { returnUrl: this.returnUrl }});
+    this.authService.openModal(true);
   }
 }

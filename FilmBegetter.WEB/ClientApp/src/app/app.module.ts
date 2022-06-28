@@ -12,6 +12,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorHandlerService } from "./shared/services/error-handler.service";
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { SubscriptionComponent } from './core/pages/subscription/subscription.component';
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -21,6 +22,7 @@ export function tokenGetter() {
   declarations: [
     AppComponent,
     ForbiddenComponent,
+    SubscriptionComponent,
   ],
   imports: [
     BrowserModule,
