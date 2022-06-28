@@ -3,15 +3,17 @@ import { Component, OnInit } from '@angular/core';
 import { UserViewModel } from "../../../models/user-view-model.interface";
 import { HttpErrorResponse } from "@angular/common/http";
 import { UserService } from "../../../services/user.service";
+import { IButton } from 'src/app/shared/models/button.interface';
 
 @Component({
   selector: 'app-change-subscription',
   templateUrl: './change-subscription.component.html',
-  styleUrls: ['./change-subscription.component.css']
+  styleUrls: ['./change-subscription.component.scss']
 })
 export class ChangeSubscriptionComponent implements OnInit {
 
   user!: UserViewModel;
+  button!: HTMLButtonElement;
 
   constructor(private userService: UserService) { }
 
@@ -24,9 +26,6 @@ export class ChangeSubscriptionComponent implements OnInit {
         currency: "USD",
         value: "100.00",
         onApprove: (details) => {
-          console.log('success');
-          console.log(details);
-
           this.userService.updateUserSubscription('api/users/updateSubscription', { userId: this.user.id, type: 'Premium' }).subscribe({
             next: (data: any) => {
               console.log(data);
@@ -52,6 +51,15 @@ export class ChangeSubscriptionComponent implements OnInit {
       }
 
     });
+  }
+
+
+
+  public buttonConfig: IButton = {
+    type: 'default',
+    size: 'default',
+    text: 'BUY NOW',
+    disabled: false
   }
 
 }

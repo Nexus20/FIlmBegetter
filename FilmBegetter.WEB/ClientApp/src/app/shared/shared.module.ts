@@ -16,6 +16,7 @@ import { MissingImageDirective } from './directives/missing-image.directive';
 import { DialogService } from './components/dialog/dialog.service';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { LoaderComponent } from './components/loader/loader.component';
+import { BlockViewComponent } from './components/block-view/block-view.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { LoaderComponent } from './components/loader/loader.component';
     RateComponent,
     CommentComponent,
     SideMenuComponent,
-    LoaderComponent
+    LoaderComponent,
+    BlockViewComponent
   ],
   imports: [
     CommonModule,
@@ -45,7 +47,8 @@ import { LoaderComponent } from './components/loader/loader.component';
     RateComponent,
     CommentComponent,
     SideMenuComponent,
-    LoaderComponent
+    LoaderComponent,
+    BlockViewComponent
   ],
   providers: [DialogService]
 })
