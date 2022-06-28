@@ -59,6 +59,7 @@ namespace FilmBegetter.DAL.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Type = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETDATE()")
                 },
                 constraints: table =>
@@ -116,6 +117,9 @@ namespace FilmBegetter.DAL.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Surname = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SubscriptionExpirationDare = table.Column<DateTime>(type: "datetime2", nullable: true),
                     SubscriptionId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     IsBanned = table.Column<bool>(type: "bit", nullable: false),
                     UnbanDate = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -243,8 +247,6 @@ namespace FilmBegetter.DAL.Migrations
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     AuthorId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     MovieId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ParentCommentId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Type = table.Column<int>(type: "int", nullable: false),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETDATE()"),
                     Body = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
@@ -255,12 +257,6 @@ namespace FilmBegetter.DAL.Migrations
                         name: "FK_Comments_AspNetUsers_AuthorId",
                         column: x => x.AuthorId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Comments_Comments_ParentCommentId",
-                        column: x => x.ParentCommentId,
-                        principalTable: "Comments",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
@@ -318,6 +314,31 @@ namespace FilmBegetter.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "CommentRatingUsers",
+                columns: table => new
+                {
+                    CommentId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Rating = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CommentRatingUsers", x => new { x.UserId, x.CommentId });
+                    table.ForeignKey(
+                        name: "FK_CommentRatingUsers_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_CommentRatingUsers_Comments_CommentId",
+                        column: x => x.CommentId,
+                        principalTable: "Comments",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "MovieMovieCollections",
                 columns: table => new
                 {
@@ -342,18 +363,22 @@ namespace FilmBegetter.DAL.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "Genres",
-                columns: new[] { "Id", "Name" },
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "2853a445-6368-42f3-ae98-6284afe18552", "Fantasy" },
-                    { "2c2f40c0-ed95-4f50-8c7a-30a23076e772", "Mystery" },
-                    { "2c33dba5-3b44-4f75-8895-64764467fc90", "Action" },
-                    { "65713510-be94-439f-ac56-f3b5242a867d", "Horror" },
-                    { "89843592-a214-4658-97d7-e2dd37b75e74", "Comedy" },
-                    { "a6e658d4-d87a-4cc7-80e2-4d19a063e671", "Drama" },
-                    { "bf9db786-18be-420f-916e-ab38557e685a", "Thriller" },
-                    { "efab3ed7-83ea-4382-ab06-6d5b50a3a029", "Romance" }
+                    { "7352beca-067b-415a-a6b3-37d6043c3f51", "8f24b663-e68e-4095-85c2-522fe97eca07", "Moderator", "MODERATOR" },
+                    { "de0c1822-f50a-41dc-bd09-0a5f1f852dc2", "4a59326a-9976-4b9c-858c-ef0cf6851867", "Admin", "ADMIN" },
+                    { "fa55fb73-33ba-486b-b952-a0fd1c952967", "5042ef68-9153-4268-a128-f83609e52e00", "User", "USER" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Subscriptions",
+                columns: new[] { "Id", "Type" },
+                values: new object[,]
+                {
+                    { "0deaa0b5-24f4-4ef1-bb92-9b2bda2e483a", "Premium" },
+                    { "3893e6fb-538f-4bfb-a2ae-dda951c17b58", "Basic" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -406,6 +431,11 @@ namespace FilmBegetter.DAL.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_CommentRatingUsers_CommentId",
+                table: "CommentRatingUsers",
+                column: "CommentId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Comments_AuthorId",
                 table: "Comments",
                 column: "AuthorId");
@@ -414,11 +444,6 @@ namespace FilmBegetter.DAL.Migrations
                 name: "IX_Comments_MovieId",
                 table: "Comments",
                 column: "MovieId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Comments_ParentCommentId",
-                table: "Comments",
-                column: "ParentCommentId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Genres_Name",
@@ -450,6 +475,12 @@ namespace FilmBegetter.DAL.Migrations
                 name: "IX_Ratings_UserId",
                 table: "Ratings",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Subscriptions_Type",
+                table: "Subscriptions",
+                column: "Type",
+                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -470,7 +501,7 @@ namespace FilmBegetter.DAL.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Comments");
+                name: "CommentRatingUsers");
 
             migrationBuilder.DropTable(
                 name: "MovieGenres");
@@ -483,6 +514,9 @@ namespace FilmBegetter.DAL.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "Comments");
 
             migrationBuilder.DropTable(
                 name: "Genres");

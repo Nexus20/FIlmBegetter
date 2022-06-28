@@ -1,10 +1,9 @@
-﻿using FilmBegetter.BLL.Dto;
-using FilmBegetter.DAL.Entities;
+﻿using FilmBegetter.DAL.Entities;
 using FilmBegetter.DAL.Interfaces;
 using FilmBegetter.Domain;
 using Microsoft.AspNetCore.Identity;
 
-namespace FilmBegetter.BLL; 
+namespace FilmBegetter.BLL;
 
 public class IdentityInitializer {
     

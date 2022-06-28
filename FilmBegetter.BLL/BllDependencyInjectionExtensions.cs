@@ -46,6 +46,7 @@ public static class BllDependencyInjectionExtensions {
         services.AddScoped(typeof(TakeObjectsDataHandler<,>));
 
         services.AddScoped<IdentityInitializer>();
+        services.AddScoped<DbInitializingService>();
         
         return services;
     }

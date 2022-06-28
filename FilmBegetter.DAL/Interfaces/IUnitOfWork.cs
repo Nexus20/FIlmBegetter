@@ -8,6 +8,8 @@ public interface IUnitOfWork {
         where TRepository : IRepository<TEntity> where TEntity : class;
 
     Task<int> SaveChangesAsync();
+    
+    int SaveChanges();
 
     IDbContextTransaction BeginTransaction();
 }
