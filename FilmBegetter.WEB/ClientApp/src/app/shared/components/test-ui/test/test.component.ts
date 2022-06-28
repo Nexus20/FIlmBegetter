@@ -190,27 +190,29 @@ export class TestComponent implements OnInit {
   }
 
   //cards:: user card for admin panel
-  // public userCard: IUserCard = {
-  //   type: 'user',
-  //   info: {
-  //     id: '1',
-  //     // passwotd: 'qwe',
-  //     email: 'qwe@wqe',
-  //     movieCollections: [],
-  //     friends: [],
-  //     comments: [],
-  //     // userRoles: [],
-  //     // subscription: 'Premium',
-  //     isBanned: false,
-  //     // subscriptionId: '1',
-  //     subscriptionExpirationDare: new Date(),
-  //     name: 'John',
-  //     surname: 'Doe',
-  //     username: '',
-  //     subscription: {} as SubscriptionViewModel,
-  //     ratings: [],
-  //     roles: [],
-  //     unbanDate: undefined
-  //   }
-  // }
+  public userCard: IUserCard = {
+    type: 'user',
+    info: {
+      id: '1',
+      // passwotd: 'qwe',
+      email: 'qwe@wqe',
+      movieCollections: [],
+      friends: [],
+      comments: [],
+      // userRoles: [],
+      // subscription: 'Premium',
+      isBanned: false,
+      // subscriptionId: '1',
+      subscriptionExpirationDare: new Date(),
+      name: 'John',
+      surname: 'Doe',
+      username: '',
+      subscription: {} as SubscriptionViewModel,
+      ratings: [],
+      roles: [],
+      unbanDate: undefined,
+        sentFriendRequests: [],
+        receivedFriendRequests: []
+    }
+  }
 }
