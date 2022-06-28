@@ -4,6 +4,7 @@ using FilmBegetter.BLL.FilterModels;
 using FilmBegetter.BLL.Interfaces;
 using FilmBegetter.BLL.Pipelines.Directors;
 using FilmBegetter.BLL.Utils;
+using FilmBegetter.DAL;
 using FilmBegetter.DAL.Entities;
 using FilmBegetter.DAL.Interfaces;
 using FilmBegetter.Domain;
@@ -22,11 +23,14 @@ public class UserService : IUserService {
     
     private readonly IPipelineBuilderDirector<User, UserFilterModel> _builderDirector;
 
-    public UserService(IMapper mapper, UserManager<User> userManager, IUnitOfWork unitOfWork, IPipelineBuilderDirector<User, UserFilterModel> builderDirector) {
+    private readonly ApplicationDbContext _applicationDbContext;
+
+    public UserService(IMapper mapper, UserManager<User> userManager, IUnitOfWork unitOfWork, IPipelineBuilderDirector<User, UserFilterModel> builderDirector, ApplicationDbContext applicationDbContext) {
         _mapper = mapper;
         _userManager = userManager;
         _unitOfWork = unitOfWork;
         _builderDirector = builderDirector;
+        _applicationDbContext = applicationDbContext;
     }
 
     public async Task<RegistrationResponseDto> CreateUserAccountAsync(UserDto userDto) {
@@ -75,11 +79,17 @@ public class UserService : IUserService {
             .ThenInclude(mc => mc.MovieCollections)
             .ThenInclude(mmc => mmc.Movie)
             .Include(u => u.SentFriendRequests)
-            .ThenInclude(r => r.Sender)
             .Include(u => u.RecievedFriendRequests)
-            .ThenInclude(u => u.Recipient)
-            .AsNoTracking()
+            // .AsNoTracking()
             .FirstOrDefaultAsync(u => u.Id == id);
+
+        foreach (var request in source.SentFriendRequests) {
+            await _applicationDbContext.Entry(request).Reference(x => x.Recipient).LoadAsync();
+        }
+        
+        foreach (var request in source.RecievedFriendRequests) {
+            await _applicationDbContext.Entry(request).Reference(x => x.Sender).LoadAsync();
+        }
 
         return _mapper.Map<User, UserDto>(source);
     }

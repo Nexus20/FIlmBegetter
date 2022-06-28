@@ -34,7 +34,7 @@ public class UserViewModel {
     
     public string SubscriptionId { get; set; }
     
-    public ICollection<FriendRequestDViewModel> SentFriendRequests { get; set; }
+    public ICollection<FriendRequestViewModel> SentFriendRequests { get; set; }
     
-    public ICollection<FriendRequestDViewModel> RecievedFriendRequests { get; set; }
+    public ICollection<FriendRequestViewModel> RecievedFriendRequests { get; set; }
 }

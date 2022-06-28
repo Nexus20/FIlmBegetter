@@ -10,6 +10,8 @@ public class AutomapperWebProfile : Profile {
 
     public AutomapperWebProfile() {
 
+        CreateMap<FriendRequestDto, FriendRequestViewModel>();
+
         CreateMap<MovieFilterViewModel, MovieFilterModel>()
             .ReverseMap();
         CreateMap<UserFilterViewModel, UserFilterModel>()

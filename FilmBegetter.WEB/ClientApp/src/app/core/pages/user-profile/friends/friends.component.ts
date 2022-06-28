@@ -33,6 +33,7 @@ export class FriendsComponent implements OnInit {
         this.userService.getCurrentUser("api/users/currentUser").subscribe({
 
             next: (data: UserViewModel) => {
+                console.log(data);
                 this.user = data;
             },
             error: (err: HttpErrorResponse) => {
