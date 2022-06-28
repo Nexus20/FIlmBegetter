@@ -1,3 +1,12 @@
-
+.wrapper {
+  position: relative;
+  border: 2px solid #7b6ef6;
+  border-radius: 10px;
+  color: #c3c8d4;
+  padding: 50px 80px;
+  background-color: rgba(18, 24, 41, 0.8);
+  overflow-y: auto;
+  max-height: 625px;
+}
 
 /*# sourceMappingURL=add-into-collection-dialog.component.css.map */

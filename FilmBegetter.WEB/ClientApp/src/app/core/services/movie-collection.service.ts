@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {EnvironmentUrlService} from "../../shared/services/environment-url.service";
+import {MovieCollectionViewModel} from "../models/movie-collection-view-model.interface";
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,10 @@ export class MovieCollectionService {
 
     public update = (route: string, body: any) => {
         return this.http.put(this.createCompleteRoute(route, this.envUrl.urlAddress), body);
+    }
+
+    public getCurrentUserCollections = (route: string) => {
+        return this.http.get<MovieCollectionViewModel[]>(this.createCompleteRoute(route, this.envUrl.urlAddress));
     }
 
     private createCompleteRoute = (route: string, envAddress: string) => {
