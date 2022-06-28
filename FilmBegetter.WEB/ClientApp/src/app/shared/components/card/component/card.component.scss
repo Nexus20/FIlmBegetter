@@ -110,6 +110,26 @@
   }
 }
 
+.card-collection {
+    @include bodyRegular;
+    border-radius: $button-radius;
+    background-color: $card-background;
+    padding: 25px;
+    max-width: 395px; //temp variables
+    transition: 0.3s;
+    border: 2px solid transparent;
+
+    &:hover {
+        border: 2px solid $primary-400;
+    }
+
+    &__content {
+        display: flex;
+        height: 100%;
+        width: 100%;
+    }
+}
+
 .card-admin {
   @include bodyRegular;
   border-radius: $button-radius;

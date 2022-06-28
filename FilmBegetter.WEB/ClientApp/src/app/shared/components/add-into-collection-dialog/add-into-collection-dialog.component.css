@@ -8,5 +8,9 @@
   overflow-y: auto;
   max-height: 625px;
 }
+.wrapper .collections-list {
+  display: flex;
+  flex-wrap: wrap;
+}
 
 /*# sourceMappingURL=add-into-collection-dialog.component.css.map */

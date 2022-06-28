@@ -6,6 +6,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import {DialogService} from "../../dialog/dialog.service";
 import {AddIntoCollectionDialogComponent} from "../../add-into-collection-dialog/add-into-collection-dialog.component";
 import {MovieCollectionService} from "../../../../core/services/movie-collection.service";
+import {ICollectionCard} from "../../../models/card-collection.interface";
 
 @Component({
   selector: 'app-card',
@@ -14,9 +15,9 @@ import {MovieCollectionService} from "../../../../core/services/movie-collection
 })
 export class CardComponent implements OnInit {
 
-  public cardParameters!: IMovieCard | IStatistics | IUserCard | IPreloaderCard;
+  public cardParameters!: IMovieCard | IStatistics | IUserCard | IPreloaderCard | ICollectionCard;
 
-  @Input() set movieCardParameters(value: IMovieCard | IStatistics | IUserCard | IPreloaderCard) {
+  @Input() set movieCardParameters(value: IMovieCard | IStatistics | IUserCard | IPreloaderCard | ICollectionCard) {
     this.cardParameters = value;
   }
 
@@ -25,7 +26,7 @@ export class CardComponent implements OnInit {
   ngOnInit(): void {
   }
 
-    openDialog(state: boolean) {
-        this.dialog.open(AddIntoCollectionDialogComponent, { state });
+    openDialog(state: boolean, movieId: string) {
+        this.dialog.open(AddIntoCollectionDialogComponent, { state, movieId });
     }
 }

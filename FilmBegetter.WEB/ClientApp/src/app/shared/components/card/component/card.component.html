@@ -33,7 +33,7 @@
                     {{ cardParameters.info.commonRating }}
                 </div>
                 <div class="preview-like">
-                    <span class="icon-heart" (click)="openDialog(true)"></span>
+                    <span class="icon-heart" (click)="openDialog(true, cardParameters.info.id)"></span>
                 </div>
             </div>
         </a>
@@ -102,6 +102,15 @@
     <div class="statistics__content">
         <h1>{{ cardParameters.value }}</h1>
         <h3>{{ cardParameters.title }}</h3>
+    </div>
+</div>
+
+<!-- collection card -->
+<div class="card-collection" *ngIf="cardParameters.type === 'collection'">
+    <div class="collection__content">
+        <h4 class="content-name">
+            {{cardParameters.info.name}}
+        </h4>
     </div>
 </div>
 

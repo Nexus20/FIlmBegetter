@@ -95,6 +95,26 @@
   margin-top: 16px;
 }
 
+.card-collection {
+  font-family: Poppins;
+  font-size: 16px;
+  line-height: 24px;
+  border-radius: 12px;
+  background-color: #20283e;
+  padding: 25px;
+  max-width: 395px;
+  transition: 0.3s;
+  border: 2px solid transparent;
+}
+.card-collection:hover {
+  border: 2px solid #7b6ef6;
+}
+.card-collection__content {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
 .card-admin {
   font-family: Poppins;
   font-size: 16px;

@@ -25,4 +25,47 @@ public class MovieCollectionService : IMovieCollectionService {
 
         await _unitOfWork.SaveChangesAsync();
     }
+
+    public async Task<List<MovieCollectionDto>> GetUserCollectionsAsync(string userId) {
+
+        var source = await _unitOfWork.GetRepository<IRepository<MovieCollection>, MovieCollection>()
+            .FindAsync(mc => mc.AuthorId == userId);
+
+        return _mapper.Map<List<MovieCollection>, List<MovieCollectionDto>>(source);
+    }
+
+    public async Task RemoveMovieAsync(string collectionId, string movieId) {
+        
+        var movieMovieCollection = await _unitOfWork.GetRepository<IRepository<MovieMovieCollection>, MovieMovieCollection>()
+            .FirstOrDefaultAsync(x => x.MovieCollectionId == collectionId && x.MovieId == movieId);
+
+        if (movieMovieCollection == null) {
+            return;
+        }
+
+        await _unitOfWork.GetRepository<IRepository<MovieMovieCollection>, MovieMovieCollection>()
+            .DeleteAsync(x => x.MovieCollectionId == collectionId && x.MovieId == movieId);
+
+        await _unitOfWork.SaveChangesAsync();
+    }
+    
+    public async Task AddMovieAsync(string collectionId, string movieId) {
+
+        var movieMovieCollection = await _unitOfWork.GetRepository<IRepository<MovieMovieCollection>, MovieMovieCollection>()
+            .FirstOrDefaultAsync(x => x.MovieCollectionId == collectionId && x.MovieId == movieId);
+
+        if (movieMovieCollection != null) {
+            return;
+        }
+
+        movieMovieCollection = new MovieMovieCollection() {
+            MovieId = movieId,
+            MovieCollectionId = collectionId
+        };
+
+        await _unitOfWork.GetRepository<IRepository<MovieMovieCollection>, MovieMovieCollection>()
+            .CreateAsync(movieMovieCollection);
+
+        await _unitOfWork.SaveChangesAsync();
+    }
 }
