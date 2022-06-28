@@ -2,7 +2,7 @@ using FilmBegetter.Domain;
 
 namespace FilmBegetter.WEB.Models.ViewModels;
 
-public class FriendRequestDViewModel : BaseViewModel {
+public class FriendRequestViewModel : BaseViewModel {
 
     public string User { get; set; }
 

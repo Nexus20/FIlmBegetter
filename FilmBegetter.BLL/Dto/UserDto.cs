@@ -36,5 +36,5 @@ public class UserDto {
     
     public ICollection<FriendRequestDto> SentFriendRequests { get; set; }
     
-    public ICollection<FriendRequestDto> RecievedFriendRequests { get; set; }
+    public ICollection<FriendRequestDto> ReceivedFriendRequests { get; set; }
 }

@@ -76,7 +76,7 @@ public class UserService : IUserService {
             .ThenInclude(mmc => mmc.Movie)
             .Include(u => u.SentFriendRequests)
             .ThenInclude(r => r.Sender)
-            .Include(u => u.RecievedFriendRequests)
+            .Include(u => u.ReceivedFriendRequests)
             .ThenInclude(u => u.Recipient)
             .AsNoTracking()
             .FirstOrDefaultAsync(u => u.Id == id);

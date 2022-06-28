@@ -9,7 +9,7 @@ public static class FriendRequestEntityExtensions {
     public static void Configure(this EntityTypeBuilder<FriendRequest> builder) {
 
         builder.HasOne(x => x.Recipient)
-            .WithMany(x => x.RecievedFriendRequests)
+            .WithMany(x => x.ReceivedFriendRequests)
             .HasForeignKey(x => x.RecipientId)
             .OnDelete(DeleteBehavior.Restrict);
         
