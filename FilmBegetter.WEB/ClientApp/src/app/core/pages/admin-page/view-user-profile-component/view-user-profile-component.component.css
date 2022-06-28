@@ -1,0 +1,24 @@
+.wrapper {
+  display: flex;
+  column-gap: 20px;
+  height: 100%;
+}
+.wrapper .side-menu-wrapper {
+  flex: 0 0 288px;
+  height: 100%;
+}
+.wrapper .users {
+  flex: 1 1 auto;
+}
+.wrapper .user-profile {
+  padding-top: 40px;
+}
+.wrapper .user-profile__title {
+  margin-bottom: 30px;
+}
+.wrapper .profile-item {
+  display: flex;
+  column-gap: 10px;
+}
+
+/*# sourceMappingURL=view-user-profile-component.component.css.map */

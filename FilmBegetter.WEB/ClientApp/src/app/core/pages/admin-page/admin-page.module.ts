@@ -9,6 +9,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {SharedModule} from "../../../shared/shared.module";
 import { MovieUpdatingFormComponent } from './movie-updating-form/movie-updating-form.component';
 import { AdminMenuComponent } from './admin-menu/admin-menu.component';
+import { ViewUserProfileComponentComponent } from './view-user-profile-component/view-user-profile-component.component';
 
 
 
@@ -19,16 +20,18 @@ import { AdminMenuComponent } from './admin-menu/admin-menu.component';
     UsersComponent,
     MovieCreationFormComponent,
     MovieUpdatingFormComponent,
-    AdminMenuComponent
+    AdminMenuComponent,
+    ViewUserProfileComponentComponent
   ],
     imports: [
         CommonModule,
         RouterModule.forChild([
-            {path: '', component: HomeComponent},
-            {path: 'movies', component: MoviesComponent},
-            {path: 'users', component: UsersComponent},
-            {path: 'movies/new', component: MovieCreationFormComponent},
-            {path: 'movies/:id/update', component: MovieUpdatingFormComponent}
+            { path: '', component: HomeComponent },
+            { path: 'movies', component: MoviesComponent },
+            { path: 'users', component: UsersComponent },
+            { path: 'movies/new', component: MovieCreationFormComponent },
+            { path: 'movies/:id/update', component: MovieUpdatingFormComponent },
+            { path: 'users/:id', component: ViewUserProfileComponentComponent }
         ]),
         ReactiveFormsModule,
         SharedModule

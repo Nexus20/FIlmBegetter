@@ -1,3 +1,14 @@
-
+.wrapper {
+  display: flex;
+  column-gap: 20px;
+  height: 100%;
+}
+.wrapper .side-menu-wrapper {
+  flex: 0 0 288px;
+  height: 100%;
+}
+.wrapper .users {
+  flex: 1 1 auto;
+}
 
 /*# sourceMappingURL=users.component.css.map */

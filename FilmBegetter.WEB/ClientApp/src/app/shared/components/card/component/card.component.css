@@ -1,3 +1,14 @@
+@keyframes blick {
+  0% {
+    transform: translate(-100%, -25%) rotate(10deg);
+  }
+  20% {
+    transform: translate(300%, -25%) rotate(10deg);
+  }
+  100% {
+    transform: translate(300%, -25%) rotate(10deg);
+  }
+}
 .card {
   border-radius: 12px;
   background-color: #20283e;
@@ -15,7 +26,7 @@
   min-height: 480px;
 }
 .card.smallSize {
-  min-width: 150px;
+  width: 150px;
   min-height: 280px;
 }
 .card.smallSize .card__description {
@@ -46,6 +57,7 @@
   transition: 0.3s;
   height: 100%;
   object-fit: cover;
+  width: 100%;
 }
 .card__preview .preview-img:hover {
   transform: scale(1.05);
@@ -252,6 +264,24 @@
 }
 .card-user .content-controller [class^=icon-] {
   cursor: pointer;
+}
+
+.preloader {
+  overflow: hidden;
+  position: relative;
+}
+.preloader::before {
+  content: "";
+  width: 40%;
+  height: 200%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.3;
+  filter: blur;
+  background: linear-gradient(to left, transparent 0%, #fff 40%, #fff 60%, transparent 100%);
+  transform: translate(-100%, -25%) rotate(10deg);
+  animation: blick 2s infinite;
 }
 
 /*# sourceMappingURL=card.component.css.map */

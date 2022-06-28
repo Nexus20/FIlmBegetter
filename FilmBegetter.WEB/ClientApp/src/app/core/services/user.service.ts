@@ -16,6 +16,10 @@ export class UserService {
         return this.http.get<UserViewModel[]>(this.createCompleteRoute(route, this.envUrl.urlAddress), {params: queryParams});
     }
 
+    public getUser = (route: string) => {
+        return this.http.get<UserViewModel>(this.createCompleteRoute(route, this.envUrl.urlAddress));
+    }
+
     public getCurrentUser(route: string) {
         return this.http.get<UserViewModel>(this.createCompleteRoute(route, this.envUrl.urlAddress));
     }
