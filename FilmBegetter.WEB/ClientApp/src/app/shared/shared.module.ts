@@ -17,6 +17,7 @@ import { DialogService } from './components/dialog/dialog.service';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { LoaderComponent } from './components/loader/loader.component';
 import { BlockViewComponent } from './components/block-view/block-view.component';
+import { AddIntoCollectionDialogComponent } from './components/add-into-collection-dialog/add-into-collection-dialog.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { BlockViewComponent } from './components/block-view/block-view.component
     CommentComponent,
     SideMenuComponent,
     LoaderComponent,
-    BlockViewComponent
+    BlockViewComponent,
+    AddIntoCollectionDialogComponent
   ],
   imports: [
     CommonModule,
