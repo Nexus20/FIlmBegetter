@@ -1,4 +1,4 @@
-﻿namespace FilmBegetter.WEB.Controllers;
+﻿namespace FilmBegetter.WEB.Models.ViewModels;
 
 public class FriendRequestToCreateViewModel {
 

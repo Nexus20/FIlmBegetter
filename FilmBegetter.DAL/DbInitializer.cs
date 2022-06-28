@@ -1,9 +1,4 @@
-﻿using System.Text.RegularExpressions;
-using FilmBegetter.DAL.Entities;
-using FilmBegetter.DAL.Interfaces;
-using Microsoft.Data.SqlClient;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.VisualBasic.FileIO;
+﻿using FilmBegetter.DAL.Interfaces;
 
 namespace FilmBegetter.DAL; 
 
