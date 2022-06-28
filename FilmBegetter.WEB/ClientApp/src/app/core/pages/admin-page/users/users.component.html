@@ -1,15 +1,8 @@
-<div class="container">
-
-    <div class="row">
-
-        <div class="col-12">
-
-            <app-collection [users]="users">
-
-            </app-collection>
-
-        </div>
-
+<div class="wrapper">
+    <div class="side-menu-wrapper">
+        <app-side-menu></app-side-menu>
     </div>
-
+    <section class="users">
+        <app-collection [users]="users"></app-collection>
+    </section>
 </div>
