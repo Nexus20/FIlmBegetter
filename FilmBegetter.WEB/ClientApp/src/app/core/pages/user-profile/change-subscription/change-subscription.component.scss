@@ -1,0 +1,106 @@
+@import "../../../../styles/container.scss";
+@import "../../../../styles/variables.scss";
+
+app-header {
+  margin-bottom: 40px;
+  display: block;
+}
+
+:ng-deep {
+  .paypal-powered-by {
+    display: none !important;
+  }
+  .paypal-button.paypal-button-color-gold,
+  .paypal-button-row.paypal-button-color-gold .menu-button {
+    background-color: $primary-400 !important;
+  }
+}
+
+.subscription {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &-card {
+    padding: 40px 0;
+    border-radius: 15px;
+    overflow: hidden;
+    background: url(../../../../../assets/images/elipse.png);
+    background-color: $gray-900;
+    color: $white;
+    background-position: top;
+    background-repeat: no-repeat;
+    min-width: 480px;
+  }
+  .sub-card-header {
+    text-align: center;
+    padding: 0 40px;
+    margin-bottom: 85px;
+    h2 {
+      max-width: 330px;
+      border-bottom: 1px solid $white;
+      font-weight: 600;
+      line-height: 40px;
+      font-size: 32px;
+      text-transform: uppercase;
+      margin: 0 auto 25px auto;
+    }
+  }
+  .sub-card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 380px;
+    margin: 0 auto;
+    h2 {
+      margin-bottom: 20px;
+      font-weight: 400;
+    }
+    span {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 35px 0;
+      li {
+        display: flex;
+        align-items: center;
+        padding: 15px 0;
+        &:not(:last-child) {
+          border-bottom: 1px solid $primary-400;
+        }
+        .icon-check {
+          font-size: 35px;
+          color: $success-500;
+          margin: 0 20px 0 0;
+        }
+      }
+    }
+  }
+  .sub-card-price {
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    h2 {
+      font-size: 64px;
+      border-bottom: 0;
+      margin: 0;
+    }
+    .price-sub {
+      display: flex;
+      flex-direction: column;
+      h2 {
+        margin-top: 2px;
+        text-align: left;
+        font-size: 32px;
+        margin: 0;
+      }
+      span {
+        font-size: 12px;
+        line-height: 12px;
+      }
+    }
+  }
+}
