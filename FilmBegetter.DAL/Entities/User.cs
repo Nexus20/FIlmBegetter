@@ -32,5 +32,5 @@ public class User : IdentityUser {
     
     public ICollection<FriendRequest> SentFriendRequests { get; set; }
     
-    public ICollection<FriendRequest> RecievedFriendRequests { get; set; }
+    public ICollection<FriendRequest> ReceivedFriendRequests { get; set; }
 }
