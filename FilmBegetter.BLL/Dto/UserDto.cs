@@ -33,4 +33,8 @@ public class UserDto {
     public SubscriptionDto Subscription { get; set; }
     
     public string SubscriptionId { get; set; }
+    
+    public ICollection<FriendRequestDto> SentFriendRequests { get; set; }
+    
+    public ICollection<FriendRequestDto> RecievedFriendRequests { get; set; }
 }
