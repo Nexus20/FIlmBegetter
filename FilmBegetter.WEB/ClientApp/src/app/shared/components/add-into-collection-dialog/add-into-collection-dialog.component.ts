@@ -2,11 +2,11 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {DialogRef} from "../dialog/dialog-ref";
 import {DIALOG_DATA} from "../dialog/dialog-token";
 import {MovieCollectionService} from "../../../core/services/movie-collection.service";
-import {MovieCollectionViewModel} from "../../../core/models/movie-collection-view-model.interface";
 import {HttpErrorResponse} from "@angular/common/http";
 import {ICollectionCard} from "../../models/card-collection.interface";
 import {IButton} from "../../models/button.interface";
-import {AddMovieToCollectionViewModel} from "../../../core/models/add-movie-to-collection-view-model.interface";
+import {MovieCollectionViewModel} from "../../../core/models/movie-collection-view-model.interface";
+import {MovieMovieCollectionViewModel} from "../../../core/models/movie-movie-collection-view-model.interface";
 
 @Component({
   selector: 'app-add-into-collection-dialog',
@@ -63,15 +63,34 @@ export class AddIntoCollectionDialogComponent implements OnInit {
         });
     }
 
+    removeFromCollection(collectionId: string) {
+
+        const body : MovieMovieCollectionViewModel = {
+            collectionId: collectionId,
+            movieId: this.movieId
+        };
+
+        this.movieCollectionService.removeMovie(`api/collections/${collectionId}/remove-movie`, body).subscribe({
+            next: (data: any) => {
+                this.dialogRef.close();
+                console.log(data);
+            },
+            error: (error: HttpErrorResponse) => {
+                console.log(error);
+            }
+        });
+    }
+
     addIntoCollection(collectionId: string) {
 
-        const body : AddMovieToCollectionViewModel = {
+        const body : MovieMovieCollectionViewModel = {
             collectionId: collectionId,
             movieId: this.movieId
         };
 
         this.movieCollectionService.addMovie(`api/collections/${collectionId}/add-movie`, body).subscribe({
             next: (data: any) => {
+                this.dialogRef.close();
                 console.log(data);
             },
             error: (error: HttpErrorResponse) => {

@@ -1,6 +1,6 @@
 ﻿namespace FilmBegetter.WEB.Models.ViewModels;
 
-public class AddMovieToCollectionViewModel {
+public class MovieMovieCollectionViewModel {
 
     public string CollectionId { get; set; }
     

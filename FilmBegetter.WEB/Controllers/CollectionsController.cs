@@ -38,7 +38,7 @@ public class CollectionsController : ControllerBase {
     [HttpPost]
     [Authorize]
     [Route("{id}/add-movie")]
-    public async Task<IActionResult> Post(string collectionId, AddMovieToCollectionViewModel viewModel) {
+    public async Task<IActionResult> AddMovie(string id, MovieMovieCollectionViewModel viewModel) {
 
         if (!ModelState.IsValid) {
             return BadRequest();
@@ -46,6 +46,25 @@ public class CollectionsController : ControllerBase {
 
         try {
             await _movieCollectionService.AddMovieAsync(viewModel.CollectionId, viewModel.MovieId);
+        }
+        catch (Exception ex) {
+            return BadRequest(ex);
+        }
+        
+        return Ok();
+    }
+    
+    [HttpPost]
+    [Authorize]
+    [Route("{id}/remove-movie")]
+    public async Task<IActionResult> RemoveMovie(string id, MovieMovieCollectionViewModel viewModel) {
+
+        if (!ModelState.IsValid) {
+            return BadRequest();
+        }
+
+        try {
+            await _movieCollectionService.RemoveMovieAsync(viewModel.CollectionId, viewModel.MovieId);
         }
         catch (Exception ex) {
             return BadRequest(ex);
