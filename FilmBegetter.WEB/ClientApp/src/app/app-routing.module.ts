@@ -21,6 +21,10 @@ const routes: Routes = [
     loadChildren: () => import('./core/pages/movie-view/movie-view.module').then(m => m.MovieViewModule)
   },
   {
+    path: 'subscription',
+    loadChildren: () => import('./core/pages/subscription/subscription.module').then(m => m.SubscriptionModule)
+  },
+  {
     path: 'admin',
     loadChildren: () => import('./core/pages/admin-page/admin-page.module').then(m => m.AdminPageModule)
   },

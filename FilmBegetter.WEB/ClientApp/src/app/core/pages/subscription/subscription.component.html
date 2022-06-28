@@ -1,1 +1,35 @@
-<p>subscription works!</p>
+<app-header></app-header>
+<div class="container">
+    <div class="subscription">
+        <div class="subscription-img">
+            <img
+                src="../../../../assets/images/subscription-img.png"
+                width="480"
+                height="560"
+            />
+        </div>
+        <div class="subscription-card">
+            <div class="sub-card-header">
+                <h2>premium</h2>
+                <div class="sub-card-price">
+                    <h2>4</h2>
+                    <div class="price-sub">
+                        <h2>.99</h2>
+                        <span>/month</span>
+                    </div>
+                </div>
+            </div>
+            <div class="sub-card-body">
+                <h4>Pick your Premium</h4>
+                <span>Premium subscription will unlock new features</span>
+                <ul>
+                    <li><span class="icon-check"></span>More selected films</li>
+                    <li>
+                        <span class="icon-check"></span>Best selection of films
+                    </li>
+                </ul>
+                <app-button [buttonConfig]="buttonConfig"></app-button>
+            </div>
+        </div>
+    </div>
+</div>

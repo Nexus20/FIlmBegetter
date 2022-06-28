@@ -1,3 +1,4 @@
+import { DirectivesModule } from './../../../shared/directives/directives.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProfileComponent } from './profile/profile.component';
@@ -8,7 +9,7 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { MovieCollectionsComponent } from './movie-collections/movie-collections.component';
 import { CollectionFormComponent } from './collection-form/collection-form.component';
 import { FriendsComponent } from './friends/friends.component';
-import {SharedModule} from "../../../shared/shared.module";
+import { SharedModule } from "../../../shared/shared.module";
 
 
 
@@ -21,17 +22,18 @@ import {SharedModule} from "../../../shared/shared.module";
     CollectionFormComponent,
     FriendsComponent
   ],
-    imports: [
-        CommonModule,
-        RouterModule.forChild([
-            {path: '', component: ProfileComponent},
-            {path: 'edit', component: EditProfileComponent},
-            {path: 'subscriptions', component: ChangeSubscriptionComponent},
-            {path: 'collections', component: MovieCollectionsComponent},
-            {path: 'friends', component: FriendsComponent}
-        ]),
-        ReactiveFormsModule,
-        SharedModule
-    ]
+  imports: [
+    CommonModule,
+    RouterModule.forChild([
+      { path: '', component: ProfileComponent },
+      { path: 'edit', component: EditProfileComponent },
+      { path: 'subscriptions', component: ChangeSubscriptionComponent },
+      { path: 'collections', component: MovieCollectionsComponent },
+      { path: 'friends', component: FriendsComponent }
+    ]),
+    ReactiveFormsModule,
+    SharedModule,
+    DirectivesModule
+  ]
 })
 export class UserProfileModule { }
