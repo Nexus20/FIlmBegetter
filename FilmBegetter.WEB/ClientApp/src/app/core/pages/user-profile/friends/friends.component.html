@@ -1,38 +1,82 @@
-<div class="wrapper">
-    <div class="side-menu-wrapper">
-        <app-side-menu></app-side-menu>
-    </div>
-    <section class="friends">
-        <ng-container *ngIf="user != undefined">
-            <h2>Your friends:</h2>
-            <div>
+<app-side-menu></app-side-menu>
+<ng-container *ngIf="user != undefined">
+
+<div class="container">
+        <div class="row">
+            <h2 class="col-12 mb-3">Your friends:</h2>
+            <div class="col-12 mb-3">
                 <div class="search-input-wrapper">
                     <app-input [inputParameters]="searchInput" (input)="getUsersByName($event)"></app-input>
                     <ul class="search-results" *ngFor="let friend of friendsSearchResults">
                         <li class="search-result__item">
                             <div>{{friend.name}} {{friend.surname}} ({{friend.email}})</div>
-                            <app-button [buttonConfig]="{type: 'default', size: 'small', text: '+', disabled: false}" (click)="sendFriendRequest($event, friend.id)"></app-button>
+                            <app-button [buttonConfig]="{type: 'default', size: 'small', text: '+', disabled: false}"></app-button>
                         </li>
                     </ul>
+<!--                <ul class="search-results">-->
+<!--                    <li class="search-result__item">-->
+<!--                        <div>Code Code (Code@code2.com)</div>-->
+<!--                        <app-button [buttonConfig]="{type: 'default', size: 'small', text: '+', disabled: false}"></app-button>-->
+<!--                    </li>-->
+<!--                    <li class="search-result__item">-->
+<!--                        <div>Code Code (Code@code2.com)</div>-->
+<!--                        <app-button [buttonConfig]="{type: 'default', size: 'small', text: '+', disabled: false}"></app-button>-->
+<!--                    </li>-->
+<!--                    <li class="search-result__item">-->
+<!--                        <div>Code Code (Code@code2.com)</div>-->
+<!--                        <app-button [buttonConfig]="{type: 'default', size: 'small', text: '+', disabled: false}"></app-button>-->
+<!--                    </li>-->
+<!--                    <li class="search-result__item">-->
+<!--                        <div>Code Code (Code@code2.com)</div>-->
+<!--                        <app-button [buttonConfig]="{type: 'default', size: 'small', text: '+', disabled: false}"></app-button>-->
+<!--                    </li>-->
+<!--                    <li class="search-result__item">-->
+<!--                        <div>Code Code (Code@code2.com)</div>-->
+<!--                        <app-button [buttonConfig]="{type: 'default', size: 'small', text: '+', disabled: false}"></app-button>-->
+<!--                    </li>-->
+<!--                    <li class="search-result__item">-->
+<!--                        <div>Code Code (Code@code2.com)</div>-->
+<!--                        <app-button [buttonConfig]="{type: 'default', size: 'small', text: '+', disabled: false}"></app-button>-->
+<!--                    </li>-->
+<!--                    <li class="search-result__item">-->
+<!--                        <div>Code Code (Code@code2.com)</div>-->
+<!--                        <app-button [buttonConfig]="{type: 'default', size: 'small', text: '+', disabled: false}"></app-button>-->
+<!--                    </li>-->
+<!--                    <li class="search-result__item">-->
+<!--                        <div>Code Code (Code@code2.com)</div>-->
+<!--                        <app-button [buttonConfig]="{type: 'default', size: 'small', text: '+', disabled: false}"></app-button>-->
+<!--                    </li>-->
+<!--                    <li class="search-result__item">-->
+<!--                        <div>Code Code (Code@code2.com)</div>-->
+<!--                        <app-button [buttonConfig]="{type: 'default', size: 'small', text: '+', disabled: false}"></app-button>-->
+<!--                    </li>-->
+<!--                    <li class="search-result__item">-->
+<!--                        <div>Code Code (Code@code2.com)</div>-->
+<!--                        <app-button [buttonConfig]="{type: 'default', size: 'small', text: '+', disabled: false}"></app-button>-->
+<!--                    </li>-->
+<!--                </ul>-->
                 </div>
-            </div>
 
-            <ng-container *ngIf="user.friends.length else noFriendsTemplate">
-                <div class="">
-                    <ng-container *ngFor="let friend of user.friends">
-                        <div class="col-4">
-                            {{friend.name}}
-                        </div>
-                    </ng-container>
-                </div>
-            </ng-container>
-            <ng-template #noFriendsTemplate>
+
+            </div>
+        </div>
+
+        <ng-container *ngIf="user.friends.length else noFriendsTemplate">
+            <div class="row">
+                <ng-container *ngFor="let friend of user.friends">
+                    <div class="col-4">
+                        {{friend.name}}
+                    </div>
+                </ng-container>
+            </div>
+        </ng-container>
+        <ng-template #noFriendsTemplate>
+            <div class="row">
                 <h4 class="col-12">
                     It looks like you haven't added any friends yet. You can find friends using the field above.
                 </h4>
-            </ng-template>
-        </ng-container>
-    </section>
+            </div>
+        </ng-template>
+
 </div>
-
-
+</ng-container>
