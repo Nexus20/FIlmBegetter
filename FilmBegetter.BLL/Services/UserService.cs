@@ -79,7 +79,7 @@ public class UserService : IUserService {
             .ThenInclude(mc => mc.MovieCollections)
             .ThenInclude(mmc => mmc.Movie)
             .Include(u => u.SentFriendRequests)
-            .Include(u => u.RecievedFriendRequests)
+            .Include(u => u.ReceivedFriendRequests)
             // .AsNoTracking()
             .FirstOrDefaultAsync(u => u.Id == id);
 
@@ -87,7 +87,7 @@ public class UserService : IUserService {
             await _applicationDbContext.Entry(request).Reference(x => x.Recipient).LoadAsync();
         }
         
-        foreach (var request in source.RecievedFriendRequests) {
+        foreach (var request in source.ReceivedFriendRequests) {
             await _applicationDbContext.Entry(request).Reference(x => x.Sender).LoadAsync();
         }
 
