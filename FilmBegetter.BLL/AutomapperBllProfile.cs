@@ -30,7 +30,25 @@ public class AutomapperBllProfile : Profile {
             .ReverseMap();
 
         CreateMap<User, UserDto>()
-            .ReverseMap();
+            .ForMember(d => d.SentFriendRequests,
+                o =>
+                    o.MapFrom(s => s.SentFriendRequests.Select(r => new FriendRequestDto()
+                    {
+                        Id = r.Id,
+                        User = $"{r.Recipient.Name} {r.Recipient.Surname} {r.Recipient.Email}",
+                        Status = r.Status
+                    })))
+            .ForMember(d => d.RecievedFriendRequests,
+                o =>
+                    o.MapFrom(s => s.RecievedFriendRequests.Select(r => new FriendRequestDto()
+                    {
+                        Id = r.Id,
+                        User = $"{r.Recipient.Name} {r.Recipient.Surname} {r.Recipient.Email}",
+                        Status = r.Status
+                    })))
+            .ReverseMap()
+            .ForMember(d => d.RecievedFriendRequests, o => o.Ignore())
+            .ForMember(d => d.SentFriendRequests, o => o.Ignore());
 
         CreateMap<Subscription, SubscriptionDto>()
             .ReverseMap();
