@@ -22,3 +22,17 @@
         </div>
     </div>
 </div>
+
+<ng-container *ngIf="users != undefined">
+    <div class="collection-default" *ngIf="direction === 'default'">
+        <div class="collection-title">
+            <h2>{{ label }}</h2>
+        </div>
+
+        <div class="collection__list">
+            <div class="collection-item" *ngFor="let user of users">
+                <app-card [movieCardParameters]="user"></app-card>
+            </div>
+        </div>
+    </div>
+</ng-container>

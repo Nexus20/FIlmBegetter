@@ -3,6 +3,7 @@ import {SubscriptionViewModel} from "./subscription-view-model.interface";
 import {RoleViewModel} from "./role-view-model.interface";
 import {RatingViewModel} from "./rating-view-model.interface";
 import {MovieCollectionViewModel} from "./movie-collection-view-model.interface";
+import {FriendRequestViewModel} from "./friendRequestViewModel.interface";
 
 export interface UserViewModel {
 
@@ -20,5 +21,7 @@ export interface UserViewModel {
     friends: UserViewModel[];
     ratings: RatingViewModel[];
     movieCollections: MovieCollectionViewModel[];
+    sentFriendRequests: FriendRequestViewModel[];
+    receivedFriendRequests: FriendRequestViewModel[];
 }
 

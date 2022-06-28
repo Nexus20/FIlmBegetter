@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { UserViewModel } from "../../../models/user-view-model.interface";
-import { HttpErrorResponse } from "@angular/common/http";
-import { UserService } from "../../../services/user.service";
+import {Component, OnInit} from '@angular/core';
+import {UserViewModel} from "../../../models/user-view-model.interface";
+import {HttpErrorResponse} from "@angular/common/http";
+import {UserService} from "../../../services/user.service";
+import {FriendRequestsService} from "../../../services/friend-requests.service";
+import {FriendRequestToCreateViewModel} from "../../../models/friendRequestToCreateViewModel.interface";
 
 @Component({
   selector: 'app-friends',
@@ -21,7 +23,7 @@ export class FriendsComponent implements OnInit {
         isdisabled: false
     };
 
-    constructor(private userService: UserService) { }
+    constructor(private userService: UserService, private friendRequestsService: FriendRequestsService) { }
 
     ngOnInit(): void {
         this.getUserProfile();
@@ -62,5 +64,25 @@ export class FriendsComponent implements OnInit {
                 console.log(err);
             }
         });
+    }
+
+    sendFriendRequest(event: any, recipientId: string) {
+
+        const body: FriendRequestToCreateViewModel = {
+            senderId: this.user.id,
+            recipientId: recipientId
+        }
+
+        this.friendRequestsService.create("api/friendRequests", body).subscribe({
+                next: (data: any) => {
+                    console.log(data);
+                },
+                error: (error: HttpErrorResponse) => {
+                    console.log(error)
+                }
+            }
+        );
+
+        console.log(recipientId, event);
     }
 }

@@ -11,4 +11,17 @@
     .users {
         flex: 1 1 auto;
     }
+
+    .user-profile {
+        padding-top: 40px;
+    }
+
+    .user-profile__title {
+        margin-bottom: 30px;
+    }
+
+    .profile-item {
+        display: flex;
+        column-gap: 10px;
+    }
 }

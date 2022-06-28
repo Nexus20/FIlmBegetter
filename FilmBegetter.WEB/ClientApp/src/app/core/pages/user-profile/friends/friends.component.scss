@@ -1,22 +1,28 @@
-.search-results {
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: 15px;
-    max-width: 400px;
-    position: absolute;
-    background: #121829;
-    border: 2px solid #323b54;
+.wrapper {
 
-    .search-result__item {
-        padding: 10px 15px;
-        border-bottom: 1px solid rgba(221, 197, 197, 0.06);
-        display: flex;
-        align-items: center;
-        column-gap: 5px;
-        justify-content: space-between;
-        font-size: 16px;
-    }
+    display: flex;
+    column-gap: 20px;
 
-    .search-result__item:last-child {
-        border-bottom: none;
+    .search-results {
+        background: rgba(0, 0, 0, 0.2);
+        border-radius: 15px;
+        max-width: 400px;
+        position: absolute;
+        background: #121829;
+        border: 2px solid #323b54;
+
+        .search-result__item {
+            padding: 10px 15px;
+            border-bottom: 1px solid rgba(221, 197, 197, 0.06);
+            display: flex;
+            align-items: center;
+            column-gap: 5px;
+            justify-content: space-between;
+            font-size: 16px;
+        }
+
+        .search-result__item:last-child {
+            border-bottom: none;
+        }
     }
 }
