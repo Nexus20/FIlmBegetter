@@ -16,16 +16,5 @@ public static class GenreEntityExtensions {
             .WithOne(mg => mg.Genre)
             .HasForeignKey(mg => mg.GenreId)
             .OnDelete(DeleteBehavior.Restrict);
-
-        builder.HasData(new[] {
-            new Genre() {Id = Guid.NewGuid().ToString(), Name = "Action"},
-            new Genre() {Id = Guid.NewGuid().ToString(), Name = "Comedy"},
-            new Genre() {Id = Guid.NewGuid().ToString(), Name = "Drama"},
-            new Genre() {Id = Guid.NewGuid().ToString(), Name = "Fantasy"},
-            new Genre() {Id = Guid.NewGuid().ToString(), Name = "Horror"},
-            new Genre() {Id = Guid.NewGuid().ToString(), Name = "Mystery"},
-            new Genre() {Id = Guid.NewGuid().ToString(), Name = "Romance"},
-            new Genre() {Id = Guid.NewGuid().ToString(), Name = "Thriller"},
-        });
     }
 }

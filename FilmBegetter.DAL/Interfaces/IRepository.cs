@@ -7,6 +7,8 @@ public interface IRepository<TEntity> where TEntity : class {
     Task<List<TEntity>> FindAllAsync();
     
     Task CreateAsync(TEntity entity);
+
+    void Create(TEntity entity);
     
     Task DeleteAsync(Expression<Func<TEntity, bool>> filter);
 

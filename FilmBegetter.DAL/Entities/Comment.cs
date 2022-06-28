@@ -1,6 +1,4 @@
-﻿using FilmBegetter.Domain;
-
-namespace FilmBegetter.DAL.Entities;
+﻿namespace FilmBegetter.DAL.Entities;
 
 public class Comment : BaseEntity {
 
@@ -11,8 +9,6 @@ public class Comment : BaseEntity {
     public string MovieId { get; set; }
 
     public virtual Movie Movie { get; set; }
-    
-    public CommentType Type { get; set; }
 
     public DateTime CreationDate { get; set; }
 

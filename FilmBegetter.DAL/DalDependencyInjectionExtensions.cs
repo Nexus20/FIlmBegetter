@@ -24,6 +24,8 @@ public static class DalDependencyInjectionExtensions {
             .AddSignInManager<SignInManager<User>>()
             .AddRoleManager<RoleManager<Role>>();
 
+        services.AddScoped<DbInitializer>();
+        
         return services;
     }
 }

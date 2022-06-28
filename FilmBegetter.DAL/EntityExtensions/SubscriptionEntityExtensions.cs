@@ -13,12 +13,12 @@ public static class SubscriptionEntityExtensions {
 
         builder.HasIndex(s => s.Type).IsUnique();
         
-        builder.HasData(new List<Subscription>() {
-            new Subscription() {
+        builder.HasData(new List<Subscription> {
+            new() {
                 Id = Guid.NewGuid().ToString(),
                 Type = SubscriptionTypes.Basic
             },
-            new Subscription() {
+            new() {
                 Id = Guid.NewGuid().ToString(),
                 Type = SubscriptionTypes.Premium
             }

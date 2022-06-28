@@ -1,8 +1,8 @@
 using System.Text;
-using System.Text.Json.Serialization;
 using FilmBegetter.BLL;
 using FilmBegetter.WEB;
 using FilmBegetter.WEB.Middlewares;
+using FilmBegetter.WEB.Util;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 
@@ -31,7 +31,8 @@ builder.Services.AddAuthentication(opt => {
         };
     });
 
-// builder.Services.AddControllersWithViews().AddJsonOptions(o => o.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
+builder.Services.AddHostedService<DbSeederService>();
+
 builder.Services.AddControllersWithViews().AddNewtonsoftJson(options => {
     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
 });
@@ -40,6 +41,7 @@ var app = builder.Build();
 
 using (var scopedServices = app.Services.CreateScope()) {
     var serviceProvider = scopedServices.ServiceProvider;
+    // serviceProvider.GetRequiredService<DbInitializingService>().Initialize();
     serviceProvider.GetRequiredService<IdentityInitializer>().Initialize();
 }
 

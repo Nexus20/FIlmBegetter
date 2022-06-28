@@ -23,6 +23,10 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : class {
         return _dbSet.AddAsync(entity).AsTask();
     }
 
+    public void Create(TEntity entity) {
+        _dbSet.Add(entity);
+    }
+
     public async Task DeleteAsync(Expression<Func<TEntity, bool>> filter) {
         
         var entitiesToDelete = await FindAsync(filter);
