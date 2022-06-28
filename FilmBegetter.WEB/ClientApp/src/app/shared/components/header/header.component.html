@@ -20,6 +20,9 @@
                         </li>
                         <ng-container *ngIf="isUserAuthenticated == true">
                             <li class="header__list-item">
+                                <a [routerLink]="['profile']" class="href">Profile</a>
+                            </li>
+                            <li class="header__list-item">
                                 <button
                                     class="btn btn-link"
                                     style="color: #ffffff80"
