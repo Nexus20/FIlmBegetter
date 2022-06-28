@@ -1,6 +1,7 @@
 export interface FriendRequestViewModel {
 
     id: string;
-    status: string;
+    userId: string;
+    status: number;
     user: string;
 }

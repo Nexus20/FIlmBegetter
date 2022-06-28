@@ -14,8 +14,6 @@ public class User : IdentityUser {
 
     public virtual ICollection<Rating> Ratings { get; set; }
 
-    public virtual ICollection<User> Friends { get; set; }
-
     public virtual ICollection<Comment> Comments { get; set; }
     
     public virtual ICollection<UserRole> UserRoles { get; set; }

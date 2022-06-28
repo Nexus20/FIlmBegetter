@@ -36,5 +36,5 @@ public class UserViewModel {
     
     public ICollection<FriendRequestViewModel> SentFriendRequests { get; set; }
     
-    public ICollection<FriendRequestViewModel> RecievedFriendRequests { get; set; }
+    public ICollection<FriendRequestViewModel> ReceivedFriendRequests { get; set; }
 }

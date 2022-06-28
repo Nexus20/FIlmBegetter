@@ -39,7 +39,7 @@ namespace FilmBegetter.WEB.Controllers
 
         // GET: api/Users/5
         [HttpGet("{id}")]
-        [Authorize(Roles = UserRoles.Admin)]
+        [Authorize]
         public async Task<UserViewModel> Get(string id) {
             
             var source = await _userService.GetUserByIdAsync(id);

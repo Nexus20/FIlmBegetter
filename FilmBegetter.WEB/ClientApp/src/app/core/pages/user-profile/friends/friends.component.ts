@@ -4,6 +4,8 @@ import {HttpErrorResponse} from "@angular/common/http";
 import {UserService} from "../../../services/user.service";
 import {FriendRequestsService} from "../../../services/friend-requests.service";
 import {FriendRequestToCreateViewModel} from "../../../models/friendRequestToCreateViewModel.interface";
+import {IButton} from "../../../../shared/models/button.interface";
+import {FriendRequestToUpdateViewModel} from "../../../models/friendRequestToUpdateViewModel.interface";
 
 @Component({
   selector: 'app-friends',
@@ -11,6 +13,20 @@ import {FriendRequestToCreateViewModel} from "../../../models/friendRequestToCre
   styleUrls: ['./friends.component.scss']
 })
 export class FriendsComponent implements OnInit {
+
+    addFriendButtonConfig: IButton = {
+        disabled: false,
+        size: "small",
+        text: "+",
+        type: "success",
+    };
+
+    rejectFriendButtonConfig: IButton = {
+        disabled: false,
+        size: "small",
+        text: "-",
+        type: "danger",
+    }
 
     user!: UserViewModel;
 
@@ -35,6 +51,7 @@ export class FriendsComponent implements OnInit {
             next: (data: UserViewModel) => {
                 console.log(data);
                 this.user = data;
+                console.log(this.user);
             },
             error: (err: HttpErrorResponse) => {
                 console.log(err);
@@ -86,4 +103,52 @@ export class FriendsComponent implements OnInit {
 
         console.log(recipientId, event);
     }
+
+    addFriend(requestId: string, userId: string) {
+
+        const body: FriendRequestToUpdateViewModel = {
+            id: requestId, status: 1
+        }
+
+        this.friendRequestsService.changeRequestStatus(`api/friendRequests/${requestId}`, body)
+            .subscribe({
+                next: (data: any) => {
+                    this.user.receivedFriendRequests = this.user.receivedFriendRequests.filter(e => e.id != requestId);
+                    this.getFriend(userId);
+                },
+                error: (error: HttpErrorResponse) => {
+                    console.log(error)
+                },
+            });
+    }
+
+    rejectFriend(requestId: string) {
+
+        const body: FriendRequestToUpdateViewModel = {
+            id: requestId, status: 2
+        }
+
+        this.friendRequestsService.changeRequestStatus(`api/friendRequests/${requestId}`, body)
+            .subscribe({
+                next: (data: any) => {
+                    this.user.receivedFriendRequests = this.user.receivedFriendRequests.filter(e => e.id != requestId);
+                },
+                error: (error: HttpErrorResponse) => {
+                    console.log(error)
+                },
+            });
+    }
+
+    private getFriend(userId: string) {
+
+        this.userService.getUser(`api/users/${userId}`).subscribe({
+            next: (data: UserViewModel) => {
+                this.user.friends.push(data);
+            },
+            error: (error: HttpErrorResponse) => {
+                console.log(error);
+            }
+        });
+    }
 }
+

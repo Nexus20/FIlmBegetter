@@ -1,6 +1,7 @@
 using AutoMapper;
 using FilmBegetter.BLL.Dto;
 using FilmBegetter.DAL.Entities;
+using FilmBegetter.Domain;
 
 namespace FilmBegetter.BLL;
 
@@ -35,17 +36,21 @@ public class AutomapperBllProfile : Profile {
                     o.MapFrom(s => s.SentFriendRequests.Select(r => new FriendRequestDto()
                     {
                         Id = r.Id,
+                        UserId = r.RecipientId,
                         User = $"{r.Recipient.Name} {r.Recipient.Surname} {r.Recipient.Email}",
                         Status = r.Status
                     })))
             .ForMember(d => d.ReceivedFriendRequests,
                 o =>
-                    o.MapFrom(s => s.ReceivedFriendRequests.Select(r => new FriendRequestDto()
+                    o.MapFrom(s => s.ReceivedFriendRequests.Where(r => r.Status == FriendRequestStatus.New).Select(r => new FriendRequestDto()
                     {
                         Id = r.Id,
-                        User = $"{r.Recipient.Name} {r.Recipient.Surname} {r.Recipient.Email}",
+                        UserId = r.SenderId,
+                        User = $"{r.Sender.Name} {r.Sender.Surname} {r.Sender.Email}",
                         Status = r.Status
                     })))
+            .ForMember(d => d.Friends, o => 
+                    o.MapFrom(s => s.ReceivedFriendRequests.Where(r => r.Status == FriendRequestStatus.Accepted).Select(r => r.Sender)))
             .ReverseMap()
             .ForMember(d => d.ReceivedFriendRequests, o => o.Ignore())
             .ForMember(d => d.SentFriendRequests, o => o.Ignore());

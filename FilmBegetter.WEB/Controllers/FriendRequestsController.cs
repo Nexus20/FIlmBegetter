@@ -47,8 +47,20 @@ namespace FilmBegetter.WEB.Controllers
 
         // PUT: api/FriendRequests/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
+        public async Task<IActionResult> Put(string id, [FromBody] FriendRequestToUpdateViewModel viewModel) {
+
+            if (!ModelState.IsValid) {
+                return BadRequest();
+            }
+
+            try {
+                await _friendRequestService.UpdateRequestAsync(id, viewModel.Status);
+            }
+            catch (Exception ex) {
+                return BadRequest(ex);
+            }
+
+            return Ok();
         }
 
         // DELETE: api/FriendRequests/5

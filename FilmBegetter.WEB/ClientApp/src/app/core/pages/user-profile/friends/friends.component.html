@@ -2,9 +2,38 @@
     <div class="side-menu-wrapper">
         <app-side-menu></app-side-menu>
     </div>
-    <section class="friends">
+    <section class="content">
         <ng-container *ngIf="user != undefined">
-            <h2>Your friends:</h2>
+
+            <ng-container *ngIf="user.sentFriendRequests != null && user.sentFriendRequests.length">
+            <section class="sent-requests">
+                <h3>Your sent friends requests</h3>
+                <div class="">
+                    <ul class="sent-requests__list" *ngFor="let request of user.sentFriendRequests">
+                        <li class="sent-requests__item">
+                            User: {{request.user}}
+                        </li>
+                    </ul>
+                </div>
+            </section>
+            </ng-container>
+
+            <ng-container *ngIf="user.receivedFriendRequests != null && user.receivedFriendRequests.length">
+            <section class="received-requests">
+                <h3>Your received friends requests</h3>
+                <div class="">
+                    <ul class="received-requests__list" *ngFor="let request of user.receivedFriendRequests">
+                        <li class="received-requests__item">
+                            User: {{request.user}}
+                            <app-button [buttonConfig]="addFriendButtonConfig" (click)="addFriend(request.id, request.userId)"></app-button> &nbsp;
+                            <app-button [buttonConfig]="rejectFriendButtonConfig" (click)="rejectFriend(request.id)"></app-button>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+            </ng-container>
+
+            <h3>Your friends:</h3>
             <div>
                 <div class="search-input-wrapper">
                     <app-input [inputParameters]="searchInput" (input)="getUsersByName($event)"></app-input>
