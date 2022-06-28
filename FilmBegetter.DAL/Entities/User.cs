@@ -29,4 +29,8 @@ public class User : IdentityUser {
     public DateTime? UnbanDate { get; set; }
     
     public ICollection<CommentRatingUser> CommentRatings { get; set; }
+    
+    public ICollection<FriendRequest> SentFriendRequests { get; set; }
+    
+    public ICollection<FriendRequest> RecievedFriendRequests { get; set; }
 }
