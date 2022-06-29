@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from "./shared/guards/auth.guard";
+import {AdminGuard} from "./shared/guards/admin.guard";
 
 const routes: Routes = [
   {
@@ -26,13 +27,18 @@ const routes: Routes = [
   },
   {
     path: 'admin',
-    loadChildren: () => import('./core/pages/admin-page/admin-page.module').then(m => m.AdminPageModule)
+    loadChildren: () => import('./core/pages/admin-page/admin-page.module').then(m => m.AdminPageModule),
+      canActivate: [AuthGuard, AdminGuard]
   },
   {
     path: 'profile',
     loadChildren: () => import('./core/pages/user-profile/user-profile.module').then(m => m.UserProfileModule),
     canActivate: [AuthGuard]
-  }
+  },
+    {
+        path: 'catalog',
+        loadChildren: () => import('./core/pages/catalog/catalog.module').then(m => m.CatalogModule)
+    }
 ];
 
 @NgModule({
