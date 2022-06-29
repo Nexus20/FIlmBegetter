@@ -142,8 +142,8 @@ export class CatalogSearchComponent implements OnInit {
         });
     }
 
-    sendForm(value: any) {
-
+    sendForm(formValue: any) {
+        console.log(formValue)
     }
 
     onGenreSelect(event: any) {
