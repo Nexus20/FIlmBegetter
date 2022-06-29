@@ -19,6 +19,8 @@ public class MovieSelectionPipelineBuilderDirector  : IPipelineBuilderDirector<M
         _selectionPipelineBuilder.SetFirstChainPart<MovieTitleFilterDataHandler>()
             .SetNextChainPart<MovieYearFilterDataHandler>()
             .SetNextChainPart<MovieGenresFilterDataHandler>()
+            .SetNextChainPart<MovieCountryFilterDataHandler>()
+            .SetNextChainPart<MovieDirectorFilterDataHandler>()
             .SetNextChainPart<MovieOrderDataHandler>()
             .SetNextChainPart<SkipObjectsDataHandler<Movie, MovieFilterModel>>()
             .SetNextChainPart<TakeObjectsDataHandler<Movie, MovieFilterModel>>();

@@ -11,4 +11,8 @@ public class MovieFilterViewModel : BaseFilterViewModel {
     public List<MovieOrderType>? OrderTypes { get; set; }
     
     public int? Year { get; set; }
+
+    public string? Country { get; set; }
+    
+    public string? Director { get; set; }
 }
