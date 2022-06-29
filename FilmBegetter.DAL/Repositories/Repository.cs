@@ -78,7 +78,10 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : class {
         var query = FindAllWithDetailsWithoutFilter();
 
         if (expressions.FilterExpressions.Any()) {
-            query = expressions.FilterExpressions.Aggregate(query, (current, expression) => current.Where(expression));
+            
+            foreach (var expression in expressions.FilterExpressions) {
+                query = query.Where(expression);
+            }
         }
 
         if (expressions.AscendingOrderExpressions.Any()) {

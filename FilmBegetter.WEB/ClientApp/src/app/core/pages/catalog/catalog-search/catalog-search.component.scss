@@ -27,15 +27,28 @@
         font-size: 16px;
         letter-spacing: 0;
         line-height: 20px;
-    }
 
-    /* Hide the browser's default checkbox */
-    .custom-checkbox-container input {
-        position: absolute;
-        opacity: 0;
-        cursor: pointer;
-        height: 0;
-        width: 0;
+        /* Hide the browser's default checkbox */
+        input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+
+        /* Style the checkmark/indicator */
+        .custom-checkmark:after {
+            left: 7px;
+            top: 0;
+            width: 8px;
+            height: 14px;
+            border: solid #fff;
+            border-width: 0 3px 3px 0;
+            -webkit-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
     }
 
     /* Create a custom checkbox */
@@ -74,19 +87,6 @@
     /* Show the checkmark when checked */
     .custom-checkbox-container input:checked ~ .custom-checkmark:after {
         display: block;
-    }
-
-    /* Style the checkmark/indicator */
-    .custom-checkbox-container .custom-checkmark:after {
-        left: 7px;
-        top: 0;
-        width: 8px;
-        height: 14px;
-        border: solid #fff;
-        border-width: 0 3px 3px 0;
-        -webkit-transform: rotate(45deg);
-        -ms-transform: rotate(45deg);
-        transform: rotate(45deg);
     }
 
     .genres-section {

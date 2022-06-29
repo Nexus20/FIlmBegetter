@@ -2,13 +2,11 @@
   padding-top: 40px;
   display: flex;
   /* Customize the label (the container) */
-  /* Hide the browser's default checkbox */
   /* Create a custom checkbox */
   /* On mouse-over, add a grey background color */
   /* When the radio button is checked, add a blue background */
   /* Create the checkmark/indicator (hidden when not checked) */
   /* Show the checkmark when checked */
-  /* Style the checkmark/indicator */
 }
 .content-wrapper .filters {
   padding: 20px;
@@ -32,6 +30,8 @@
   font-size: 16px;
   letter-spacing: 0;
   line-height: 20px;
+  /* Hide the browser's default checkbox */
+  /* Style the checkmark/indicator */
 }
 .content-wrapper .custom-checkbox-container input {
   position: absolute;
@@ -39,6 +39,17 @@
   cursor: pointer;
   height: 0;
   width: 0;
+}
+.content-wrapper .custom-checkbox-container .custom-checkmark:after {
+  left: 7px;
+  top: 0;
+  width: 8px;
+  height: 14px;
+  border: solid #fff;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
 }
 .content-wrapper .custom-checkmark {
   position: absolute;
@@ -67,17 +78,6 @@
 }
 .content-wrapper .custom-checkbox-container input:checked ~ .custom-checkmark:after {
   display: block;
-}
-.content-wrapper .custom-checkbox-container .custom-checkmark:after {
-  left: 7px;
-  top: 0;
-  width: 8px;
-  height: 14px;
-  border: solid #fff;
-  border-width: 0 3px 3px 0;
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
 }
 .content-wrapper .genres-section {
   width: 100%;

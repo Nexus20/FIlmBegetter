@@ -7,9 +7,9 @@ import { IMovieCard } from "../../../../shared/models/card.interface";
 import { MovieOrderType } from "../../../../shared/enums/movieOrderType";
 import { GenreService } from "../../../services/genre.service";
 import { GenreViewModel } from "../../../models/genreViewModel.interface";
-import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {IInput} from "../../../../shared/models/input.interface";
-import {IButton} from "../../../../shared/models/button.interface";
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
+import { IInput } from "../../../../shared/models/input.interface";
+import { IButton } from "../../../../shared/models/button.interface";
 
 class QueryParams {
     takeCount?: number;
@@ -17,6 +17,9 @@ class QueryParams {
     year?: number;
     orderTypes?: Array<MovieOrderType>;
     pageNumber?: number;
+    country?: string;
+    title?: string;
+    director?: string;
 }
 
 @Component({
@@ -89,6 +92,7 @@ export class CatalogSearchComponent implements OnInit {
             }
             if('year' in params) {
                 this.queryParams.year = params['year'];
+                this.filterForm.controls['year'].setValue(this.queryParams.year);
             }
             if('orderTypes' in params) {
                 this.queryParams.orderTypes = [... params['orderTypes']].map(e => Number(e));
@@ -143,7 +147,18 @@ export class CatalogSearchComponent implements OnInit {
     }
 
     sendForm(formValue: any) {
-        console.log(formValue)
+        this.currentPage = 1;
+        this.queryParams.pageNumber = this.currentPage;
+        this.queryParams.genres = formValue.genres;
+        this.queryParams.title = formValue.title;
+        this.queryParams.country = formValue.country;
+        this.queryParams.director = formValue.director;
+        this.queryParams.year = Number(formValue.year);
+
+        console.log(this.queryParams);
+        console.log(formValue);
+
+        this.getMovies();
     }
 
     onGenreSelect(event: any) {
@@ -168,5 +183,26 @@ export class CatalogSearchComponent implements OnInit {
 
     hasGenre(id: string) : boolean {
         return false;
+    }
+
+    loadMore() {
+        this.currentPage++;
+        this.queryParams.pageNumber = this.currentPage;
+
+        console.log(this.queryParams);
+
+        this.movieService.getMovies('api/movies', this.queryParams).subscribe({
+            next: (data: MovieViewModel[]) => {
+
+                for (let i = 0; i < data.length; i++) {
+                    this.movies.push({type: 'defaultPreview', info: data[i]});
+                }
+
+                console.log(this.movies);
+            },
+            error: (err: HttpErrorResponse) => {
+                console.log(err)
+            }
+        });
     }
 }
