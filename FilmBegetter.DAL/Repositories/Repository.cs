@@ -27,13 +27,21 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : class {
         _dbSet.Add(entity);
     }
 
+    public void Delete(TEntity entity) {
+        _dbSet.Remove(entity);
+    }
+    
     public async Task DeleteAsync(Expression<Func<TEntity, bool>> filter) {
         
         var entitiesToDelete = await FindAsync(filter);
 
         foreach (var entityToDelete in entitiesToDelete) {
-            if (Context.Entry(entityToDelete).State == EntityState.Detached) {
-                _dbSet.Attach(entityToDelete);
+            try {
+                if (Context.Entry(entityToDelete).State == EntityState.Detached) {
+                    _dbSet.Attach(entityToDelete);
+                }
+            }
+            catch (InvalidOperationException ex) {
             }
             _dbSet.Remove(entityToDelete);
         }
@@ -50,7 +58,7 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : class {
     }
 
     public Task<List<TEntity>> FindAsync(Expression<Func<TEntity, bool>> filter) {
-        return _dbSet.Where(filter).AsNoTracking().ToListAsync();
+        return FindAllWithDetailsWithoutFilter().Where(filter).AsNoTracking().ToListAsync();
     }
 
     public Task<TEntity> FirstOrDefaultAsync(Expression<Func<TEntity, bool>> filter) {

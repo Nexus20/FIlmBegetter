@@ -28,7 +28,7 @@ public class MovieCollectionService : IMovieCollectionService {
 
     public async Task<List<MovieCollectionDto>> GetUserCollectionsAsync(string userId) {
 
-        var source = await _unitOfWork.GetRepository<IRepository<MovieCollection>, MovieCollection>()
+        var source = await _unitOfWork.GetRepository<IMovieCollectionRepository, MovieCollection>()
             .FindAsync(mc => mc.AuthorId == userId);
 
         return _mapper.Map<List<MovieCollection>, List<MovieCollectionDto>>(source);

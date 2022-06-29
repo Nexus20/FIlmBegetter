@@ -18,7 +18,12 @@
                 <ul class="collections-list" *ngFor="let collectionCard of movieCollectionCards">
                     <li class="collection-list__item">
                         <app-card [movieCardParameters]="collectionCard"></app-card>
-                        <app-button [buttonConfig]="addIntoCollectionButtonConfig" (click)="addIntoCollection(collectionCard.info.id)"></app-button>
+                        <ng-container *ngIf="!checkMovie(collectionCard.info) else movieInCollection">
+                            <app-button [buttonConfig]="addIntoCollectionButtonConfig" (click)="addIntoCollection(collectionCard.info.id)"></app-button>
+                        </ng-container>
+                        <ng-template #movieInCollection>
+                            <app-button [buttonConfig]="removeFromCollectionButtonConfig" (click)="removeFromCollection(collectionCard.info.id)"></app-button>
+                        </ng-template>
                     </li>
                 </ul>
 

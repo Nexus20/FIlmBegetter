@@ -24,6 +24,9 @@ export class AddIntoCollectionDialogComponent implements OnInit {
     addIntoCollectionButtonConfig: IButton = {
         disabled: false, size: "small", text: "+", type: "success"
     };
+    removeFromCollectionButtonConfig: IButton = {
+        disabled: false, size: "small", text: "-", type: "danger"
+    };
 
     constructor(private movieCollectionService: MovieCollectionService,
               private dialogRef: DialogRef,
@@ -97,6 +100,10 @@ export class AddIntoCollectionDialogComponent implements OnInit {
                 console.log(error);
             }
         });
+    }
+
+    checkMovie(collection: MovieCollectionViewModel) {
+        return collection.movies.some(e => e.id == this.movieId);
     }
 }
 
