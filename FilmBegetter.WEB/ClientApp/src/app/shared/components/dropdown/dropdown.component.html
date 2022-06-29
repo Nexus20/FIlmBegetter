@@ -1,0 +1,16 @@
+<ng-container *ngIf="selectContent">
+    <mat-form-field appearance="fill">
+        <mat-label
+            ><span [class]="selectContent.icon"></span>
+            {{ selectContent.title }}</mat-label
+        >
+        <mat-select [(ngModel)]="value" [name]="selectContent.title">
+            <mat-option
+                *ngFor="let element of selectContent.elements"
+                [value]="element.value"
+            >
+                {{ element.text }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+</ng-container>
