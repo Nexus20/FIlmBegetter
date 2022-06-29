@@ -1,0 +1,13 @@
+.content-wrapper {
+    padding-top: 40px;
+    display: flex;
+
+    .filters {
+        padding: 20px;
+        flex: 0 0 350px;
+    }
+
+    .movies {
+        flex: 1 1 auto;
+    }
+}

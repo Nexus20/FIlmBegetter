@@ -4,6 +4,7 @@ import { CatalogComponent } from './catalog/catalog.component';
 import { RouterModule } from "@angular/router";
 import { SharedModule } from "../../../shared/shared.module";
 import { CatalogSearchComponent } from './catalog-search/catalog-search.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -14,10 +15,11 @@ import { CatalogSearchComponent } from './catalog-search/catalog-search.componen
     imports: [
         CommonModule,
         RouterModule.forChild([
-            { path: '', component: CatalogComponent },
-            { path: 'search', component: CatalogSearchComponent }
+            {path: '', component: CatalogComponent},
+            {path: 'search', component: CatalogSearchComponent}
         ]),
-        SharedModule
+        SharedModule,
+        ReactiveFormsModule
     ]
 })
 export class CatalogModule { }

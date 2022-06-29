@@ -1,3 +1,13 @@
-
+.content-wrapper {
+  padding-top: 40px;
+  display: flex;
+}
+.content-wrapper .filters {
+  padding: 20px;
+  flex: 0 0 350px;
+}
+.content-wrapper .movies {
+  flex: 1 1 auto;
+}
 
 /*# sourceMappingURL=catalog-search.component.css.map */

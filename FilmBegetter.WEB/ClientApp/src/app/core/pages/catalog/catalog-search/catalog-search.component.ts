@@ -7,6 +7,9 @@ import { IMovieCard } from "../../../../shared/models/card.interface";
 import { MovieOrderType } from "../../../../shared/enums/movieOrderType";
 import { GenreService } from "../../../services/genre.service";
 import { GenreViewModel } from "../../../models/genreViewModel.interface";
+import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {IInput} from "../../../../shared/models/input.interface";
+import {IButton} from "../../../../shared/models/button.interface";
 
 class QueryParams {
     takeCount?: number;
@@ -19,7 +22,7 @@ class QueryParams {
 @Component({
   selector: 'app-catalog-search',
   templateUrl: './catalog-search.component.html',
-  styleUrls: ['./catalog-search.component.css']
+  styleUrls: ['./catalog-search.component.scss']
 })
 export class CatalogSearchComponent implements OnInit {
 
@@ -31,11 +34,49 @@ export class CatalogSearchComponent implements OnInit {
 
     genres!: GenreViewModel[];
 
+    filterForm!: FormGroup;
+
+    titleInputConfig: IInput = {
+        isdisabled: false,
+        placeholder: "Title",
+        type: "default",
+    };
+    countryInputConfig:  IInput = {
+        isdisabled: false,
+        placeholder: "Country",
+        type: "default",
+    };
+    directorInputConfig:  IInput = {
+        isdisabled: false,
+        placeholder: "Director",
+        type: "default",
+    };
+    yearInputConfig:  IInput = {
+        isdisabled: false,
+        placeholder: "Year",
+        type: "default",
+    };
+    submitButtonConfig: IButton = {
+        type: 'success',
+        size: 'default',
+        text: 'Apply filters',
+        disabled: false
+    };
+    loadMoreButtonConfig: IButton = {
+        type: 'default',
+        size: 'default',
+        text: 'Load more',
+        disabled: false
+    };
+
     constructor(private activatedRoute: ActivatedRoute,
                 private movieService: MovieService,
-                private genreService: GenreService) { }
+                private genreService: GenreService,
+                private formBuilder: FormBuilder) { }
 
     ngOnInit(): void {
+
+        this.initForm();
 
         this.getGenres();
 
@@ -91,4 +132,41 @@ export class CatalogSearchComponent implements OnInit {
         });
     }
 
+    private initForm() {
+        this.filterForm = new FormGroup({
+            title: new FormControl(""),
+            country: new FormControl(""),
+            director: new FormControl(""),
+            year: new FormControl("", [Validators.min(0)]),
+            genres: this.formBuilder.array([]),
+        });
+    }
+
+    sendForm(value: any) {
+
+    }
+
+    onGenreSelect(event: any) {
+
+        const checkboxes: FormArray = this.filterForm.get('genres') as FormArray;
+
+        console.log(checkboxes);
+
+        if (event.target.checked) {
+            checkboxes.push(new FormControl(event.target.value));
+        } else {
+            let i: number = 0;
+            checkboxes.controls.forEach((item: any) => {
+                if (item.value == event.target.value) {
+                    checkboxes.removeAt(i);
+                    return;
+                }
+                i++;
+            });
+        }
+    }
+
+    hasGenre(id: string) : boolean {
+        return false;
+    }
 }

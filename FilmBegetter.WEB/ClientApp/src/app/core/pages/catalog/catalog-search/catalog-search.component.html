@@ -1,9 +1,58 @@
 <div class="wrapper">
     <app-header></app-header>
 
-    <section class="filters">
+    <div class="content-wrapper">
 
-    </section>
+    <aside class="filters">
+
+        <div class="container">
+
+        <form [formGroup]="filterForm" (ngSubmit)="sendForm(filterForm.value)">
+
+            <div class="mb-3">
+                <app-input formControlName="username" class="mb-4" [inputParameters]="titleInputConfig"></app-input>
+            </div>
+            <div class="mb-3">
+                <app-input formControlName="country" class="mb-4" [inputParameters]="countryInputConfig"></app-input>
+            </div>
+            <div class="mb-3">
+                <app-input formControlName="director" class="mb-4" [inputParameters]="directorInputConfig"></app-input>
+            </div>
+            <div class="mb-3">
+                <app-input formControlName="year" class="mb-4" [inputParameters]="yearInputConfig"></app-input>
+            </div>
+
+            <div class="mb-3">
+                <label class="col-form-label col-sm-2">Genres:</label>
+                <div class="col-md-5">
+
+
+                    <ng-container *ngFor="let genre of genres">
+
+                        <label> {{genre.name}}
+                            <input [checked]="hasGenre(genre.id)" type="checkbox" class="form-check" value="{{genre.id}}" (change)="onGenreSelect($event)">
+                        </label>
+
+                    </ng-container>
+
+
+                </div>
+            </div>
+
+            <br>
+            <div class="mb-3 row">
+                <app-button
+                    [text]="'Apply filters'"
+                    class="col-12 mb-4"
+                    type="submit"
+                    [disabled]="!filterForm.valid"
+                    [buttonConfig]="submitButtonConfig"
+                ></app-button>
+            </div>
+        </form>
+
+        </div>
+    </aside>
 
     <ng-container *ngIf="movies">
         <section class="movies">
@@ -11,7 +60,16 @@
                 <app-collection
                     [movies]="movies"
                 ></app-collection>
+                <div class="row">
+                    <app-button
+                        [text]="'Load more'"
+                        class="col-12 mb-4"
+                        [buttonConfig]="loadMoreButtonConfig"
+                    ></app-button>
+                </div>
             </div>
         </section>
     </ng-container>
+
+    </div>
 </div>

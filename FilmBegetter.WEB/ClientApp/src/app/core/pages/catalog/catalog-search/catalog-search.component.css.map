@@ -1,1 +1,1 @@
-{"version":3,"sourceRoot":"","sources":[],"names":[],"mappings":"","file":"catalog-search.component.css"}
+{"version":3,"sourceRoot":"","sources":["catalog-search.component.scss"],"names":[],"mappings":"AAAA;EACI;EACA;;AAEA;EACI;EACA;;AAGJ;EACI","file":"catalog-search.component.css"}
