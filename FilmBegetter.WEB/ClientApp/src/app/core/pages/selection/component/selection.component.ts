@@ -1,3 +1,4 @@
+import { UserService } from './../../../services/user.service';
 import { IPreloaderCard } from './../../../../shared/models/card-preloader.interface';
 import { AuthenticationService } from './../../../../shared/services/authentication.service';
 import { DEFAULT_CARD } from './../../../../shared/enums/placeholder-card.config';
@@ -41,13 +42,15 @@ export class SelectionComponent implements OnInit, OnDestroy {
   public isAuth!: boolean
   public selectionConfig = CSelectionPage;
   public isSearch!: boolean;
+  public isDefaultUser!: boolean;
 
   private destroy$: Subject<void> = new Subject();
 
   constructor(
     private movieService: MovieService,
     private fb: FormBuilder,
-    private authService: AuthenticationService) { }
+    private authService: AuthenticationService,
+    private userService: UserService) { }
 
   public movies: IMovieCard[] = [{
     type: 'preloader',
@@ -92,6 +95,12 @@ export class SelectionComponent implements OnInit, OnDestroy {
         return;
       }
       this.isSearch = true;
+
+      this.userService.getCurrentUser("api/users/currentUser")
+        .pipe(takeUntil(this.destroy$))
+        .subscribe(user => {
+          this.isDefaultUser = user.subscription.type === "Basic";
+        });
 
       const selectedMoviesIds: SelectedMoviesViewModel = {
         firstMovieId: this.selectedFirst.id, secondMovieId: this.selectedSecond.id

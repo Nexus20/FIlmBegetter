@@ -1,7 +1,6 @@
 import { FormControl, FormGroup } from '@angular/forms';
 import { IUserCard } from './../../../models/card-user.interface';
 import { IStatistics } from './../../../models/card-statistics.interface copy';
-import { IMovieCard } from './../../../models/card.interface';
 import { IInput } from './../../../models/input.interface';
 import { IButton } from './../../../models/button.interface';
 import { Component, OnInit } from '@angular/core';
@@ -19,13 +18,6 @@ export class TestComponent implements OnInit {
   public test!: FormGroup;
 
   ngOnInit(): void {
-    this.test = new FormGroup({
-      dropdown: new FormControl()
-    })
-    this.test.valueChanges.subscribe(value => {
-      console.log(value);
-
-    })
   }
 
   //buttons

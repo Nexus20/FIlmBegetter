@@ -1,7 +1,14 @@
 <div class="collection" *ngIf="direction === 'horizontal'">
-    <span class="collection-title">
-        <h2>{{ label }}</h2>
-        <p>({{ getTotalMoviesNumber() }})</p>
+    <span class="collection-title d-flex justify-content-between">
+        <div class="d-flex align-items-center">
+            <h2>{{ label }}</h2>
+            <p>({{ getTotalMoviesNumber() }})</p>
+        </div>
+        <ng-container *ngIf="seeAll">
+            <a [routerLink]="seeAll.router" [queryParams]="seeAll.queryParams"
+                >See all <span class="icon-arrow-right"></span
+            ></a>
+        </ng-container>
     </span>
 
     <ul class="collection__list">
@@ -9,7 +16,7 @@
             <app-card [movieCardParameters]="movie"></app-card>
         </li>
     </ul>
-    <app-block-view></app-block-view>
+    <app-block-view *ngIf="showBlock"></app-block-view>
 </div>
 
 <div class="collection-default" *ngIf="direction === 'default'">

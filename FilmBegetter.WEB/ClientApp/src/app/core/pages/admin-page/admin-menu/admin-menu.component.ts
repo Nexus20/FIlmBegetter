@@ -1,3 +1,4 @@
+import { ISideMenu } from './../../../../shared/components/side-menu/side-menu.interface';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./admin-menu.component.scss']
 })
 export class AdminMenuComponent implements OnInit {
+
 
   constructor() { }
 
