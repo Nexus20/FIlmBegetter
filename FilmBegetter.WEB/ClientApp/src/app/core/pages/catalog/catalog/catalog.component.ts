@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {MovieViewModel} from "../../../models/movieViewModel.interface";
-import {MovieService} from "../../../services/movie.service";
-import {MovieOrderType} from "../../../../shared/enums/movieOrderType";
-import {MovieViewModule} from "../../movie-view/movie-view.module";
-import {HttpErrorResponse} from "@angular/common/http";
-import {CSelectionPage} from "../../selection/selection.config";
-import {IMovieCard} from "../../../../shared/models/card.interface";
+import { MovieViewModel } from "../../../models/movieViewModel.interface";
+import { MovieService } from "../../../services/movie.service";
+import { MovieOrderType } from "../../../../shared/enums/movieOrderType";
+import { HttpErrorResponse } from "@angular/common/http";
+import { CSelectionPage } from "../../selection/selection.config";
+import { IMovieCard } from "../../../../shared/models/card.interface";
 
 @Component({
   selector: 'app-catalog',
@@ -15,15 +14,33 @@ import {IMovieCard} from "../../../../shared/models/card.interface";
 export class CatalogComponent implements OnInit {
 
     bestCurrentYearMovies!: IMovieCard[];
+    bestCurrentYearMoviesQueryParams: object;
+
     bestMoviesOfAllTime!: IMovieCard[];
+    bestMoviesOfAllTimeQueryParams: object;
+
     bestComedies!: IMovieCard[];
+    bestComediesQueryParams: object;
+
     bestHorrors!: IMovieCard[];
+    bestHorrorsQueryParams: object;
+
     bestForChildren!: IMovieCard[];
+    bestForChildrenQueryParams: object;
+
     bestMysteries!: IMovieCard[];
+    bestMysteriesQueryParams: object;
 
     public selectionConfig = CSelectionPage;
 
-    constructor(private movieService: MovieService) {}
+    constructor(private movieService: MovieService) {
+        this.bestCurrentYearMoviesQueryParams = { takeCount: 8, orderTypes: [MovieOrderType.RatingDesc], year: new Date().getFullYear()};
+        this.bestMoviesOfAllTimeQueryParams   = { takeCount: 8, orderTypes: [MovieOrderType.RatingDesc] };
+        this.bestComediesQueryParams          = { takeCount: 8, orderTypes: [MovieOrderType.RatingDesc], genres: ['Comedy'] };
+        this.bestHorrorsQueryParams           = { takeCount: 8, orderTypes: [MovieOrderType.RatingDesc], genres: ['Horror'] };
+        this.bestForChildrenQueryParams       = { takeCount: 8, orderTypes: [MovieOrderType.RatingDesc], genres: ['Children'] };
+        this.bestMysteriesQueryParams         = { takeCount: 8, orderTypes: [MovieOrderType.RatingDesc], genres: ['Mystery'] };
+    }
 
     ngOnInit(): void {
         this.getBestCurrentYearMovies();
@@ -36,13 +53,7 @@ export class CatalogComponent implements OnInit {
 
     private getBestMysteriesOfAllTime() {
 
-        const queryParams = {
-            takeCount: 8,
-            orderTypes: [MovieOrderType.RatingDesc],
-            genres: ['Mystery']
-        }
-
-        this.movieService.getMovies('api/movies', queryParams).subscribe({
+        this.movieService.getMovies('api/movies', this.bestMysteriesQueryParams).subscribe({
             next: (data: MovieViewModel[]) => {
                 this.bestMysteries = data.map((element) => {
                     return {
@@ -59,13 +70,7 @@ export class CatalogComponent implements OnInit {
 
     private getBestForChildrenOfAllTime() {
 
-        const queryParams = {
-            takeCount: 8,
-            orderTypes: [MovieOrderType.RatingDesc],
-            genres: ['Children']
-        }
-
-        this.movieService.getMovies('api/movies', queryParams).subscribe({
+        this.movieService.getMovies('api/movies', this.bestForChildrenQueryParams).subscribe({
             next: (data: MovieViewModel[]) => {
                 this.bestForChildren = data.map((element) => {
                     return {
@@ -82,13 +87,7 @@ export class CatalogComponent implements OnInit {
 
     private getBestHorrorsOfAllTime() {
 
-        const queryParams = {
-            takeCount: 8,
-            orderTypes: [MovieOrderType.RatingDesc],
-            genres: ['Horror']
-        }
-
-        this.movieService.getMovies('api/movies', queryParams).subscribe({
+        this.movieService.getMovies('api/movies', this.bestHorrorsQueryParams).subscribe({
             next: (data: MovieViewModel[]) => {
                 this.bestHorrors = data.map((element) => {
                     return {
@@ -105,13 +104,7 @@ export class CatalogComponent implements OnInit {
 
     private getBestComediesOfAllTime() {
 
-        const queryParams = {
-            takeCount: 8,
-            orderTypes: [MovieOrderType.RatingDesc],
-            genres: ['Comedy']
-        }
-
-        this.movieService.getMovies('api/movies', queryParams).subscribe({
+        this.movieService.getMovies('api/movies', this.bestComediesQueryParams).subscribe({
             next: (data: MovieViewModel[]) => {
                 console.log(data);
                 this.bestComedies = data.map((element) => {
@@ -129,12 +122,7 @@ export class CatalogComponent implements OnInit {
 
     private getBestMoviesOfAllTime() {
 
-        const queryParams = {
-            takeCount: 8,
-            orderTypes: [MovieOrderType.RatingDesc],
-        }
-
-        this.movieService.getMovies('api/movies', queryParams).subscribe({
+        this.movieService.getMovies('api/movies', this.bestMoviesOfAllTimeQueryParams).subscribe({
             next: (data: MovieViewModel[]) => {
                 console.log(data);
                 this.bestMoviesOfAllTime = data.map((element) => {
@@ -153,13 +141,7 @@ export class CatalogComponent implements OnInit {
 
     private getBestCurrentYearMovies() {
 
-        const queryParams = {
-            takeCount: 8,
-            year: new Date().getFullYear(),
-            orderTypes: [MovieOrderType.RatingDesc],
-        }
-
-        this.movieService.getMovies('api/movies', queryParams).subscribe({
+        this.movieService.getMovies('api/movies', this.bestCurrentYearMoviesQueryParams).subscribe({
             next: (data: MovieViewModel[]) => {
                 console.log(data);
                 this.bestCurrentYearMovies = data.map((element) => {

@@ -1,1 +1,17 @@
-<p>catalog-search works!</p>
+<div class="wrapper">
+    <app-header></app-header>
+
+    <section class="filters">
+
+    </section>
+
+    <ng-container *ngIf="movies">
+        <section class="movies">
+            <div class="container">
+                <app-collection
+                    [movies]="movies"
+                ></app-collection>
+            </div>
+        </section>
+    </ng-container>
+</div>
