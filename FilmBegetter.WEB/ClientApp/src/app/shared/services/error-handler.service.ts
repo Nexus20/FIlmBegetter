@@ -61,9 +61,9 @@ export class ErrorHandlerService implements HttpInterceptor {
 
   private handleUnauthorized = (error: HttpErrorResponse) => {
 
-    if (error.status === 401) {
-      return 'Authentication failed. Wrong Username or Password';
-    }
+    // if (error.status === 401) {
+    //   return 'Authentication failed. Wrong Username or Password';
+    // }
 
     this.authService.openModal(true);
     return error.message;

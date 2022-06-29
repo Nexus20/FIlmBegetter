@@ -1,0 +1,39 @@
+@import "../../../styles/variables.scss";
+
+:host {
+  &::ng-deep {
+    .mat-form-field-appearance-fill .mat-form-field-flex {
+      max-width: fit-content;
+      border-radius: $button-radius;
+      border: 2px solid $primary-400;
+      background-color: transparent;
+    }
+    .mat-form-field-underline {
+      display: none;
+    }
+    .mat-select-value {
+      color: $primary-400;
+    }
+  }
+}
+
+::ng-deep {
+  .mat-select-panel {
+    background-color: rgba($card-background, 0.8);
+  }
+
+  .mat-option,
+  .mat-form-field-label,
+  .mat-form-field.mat-focused .mat-form-field-label,
+  .mat-select-arrow {
+    color: $primary-400;
+  }
+  .mat-primary .mat-option.mat-selected:not(.mat-option-disabled),
+  .mat-option.mat-active {
+    color: $primary-500;
+  }
+}
+
+.mat-form-field {
+  display: block;
+}

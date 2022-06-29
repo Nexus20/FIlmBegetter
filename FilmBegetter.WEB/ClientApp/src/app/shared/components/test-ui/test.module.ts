@@ -1,3 +1,4 @@
+import { ReactiveFormsModule } from '@angular/forms';
 import { CardModule } from './../card/card.module';
 import { SharedModule } from './../../shared.module';
 import { NgModule } from '@angular/core';
@@ -10,18 +11,19 @@ import { InputComponent } from '../input/input.component';
 
 
 @NgModule({
-    declarations: [
-        TestComponent,
+  declarations: [
+    TestComponent,
 
-    ],
-    imports: [
-        CommonModule,
-        TestRoutingModule,
-        SharedModule,
-        CardModule
-    ],
-    exports: [
-        TestComponent
-    ]
+  ],
+  imports: [
+    CommonModule,
+    TestRoutingModule,
+    SharedModule,
+    CardModule,
+    ReactiveFormsModule
+  ],
+  exports: [
+    TestComponent
+  ]
 })
 export class TestModule { }

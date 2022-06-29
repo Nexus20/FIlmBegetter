@@ -1,3 +1,4 @@
+import { FormControl, FormGroup } from '@angular/forms';
 import { IUserCard } from './../../../models/card-user.interface';
 import { IStatistics } from './../../../models/card-statistics.interface copy';
 import { IMovieCard } from './../../../models/card.interface';
@@ -15,7 +16,16 @@ export class TestComponent implements OnInit {
 
   constructor() { }
 
+  public test!: FormGroup;
+
   ngOnInit(): void {
+    this.test = new FormGroup({
+      dropdown: new FormControl()
+    })
+    this.test.valueChanges.subscribe(value => {
+      console.log(value);
+
+    })
   }
 
   //buttons
@@ -211,8 +221,8 @@ export class TestComponent implements OnInit {
       ratings: [],
       roles: [],
       unbanDate: undefined,
-        sentFriendRequests: [],
-        receivedFriendRequests: []
+      sentFriendRequests: [],
+      receivedFriendRequests: []
     }
   }
 }

@@ -4,7 +4,9 @@ import { CardModule } from './components/card/card.module';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { OverlayModule } from '@angular/cdk/overlay';
+import { MatSelectModule } from '@angular/material/select';
 
 import { ButtonComponent } from './components/button/button.component';
 import { HeaderModule } from './components/header/header.module';
@@ -12,12 +14,11 @@ import { CollectionComponent } from './components/collection/collection.componen
 import { RateComponent } from './components/rate/rate.component';
 import { CommentComponent } from './components/comment/comment.component';
 import { SideMenuComponent } from './components/side-menu/side-menu.component';
-import { MissingImageDirective } from './directives/missing-image.directive';
 import { DialogService } from './components/dialog/dialog.service';
-import { OverlayModule } from '@angular/cdk/overlay';
 import { LoaderComponent } from './components/loader/loader.component';
 import { BlockViewComponent } from './components/block-view/block-view.component';
 import { AddIntoCollectionDialogComponent } from './components/add-into-collection-dialog/add-into-collection-dialog.component';
+import { DropdownComponent } from './components/dropdown/dropdown.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { AddIntoCollectionDialogComponent } from './components/add-into-collecti
     SideMenuComponent,
     LoaderComponent,
     BlockViewComponent,
-    AddIntoCollectionDialogComponent
+    AddIntoCollectionDialogComponent,
+    DropdownComponent
   ],
   imports: [
     CommonModule,
@@ -40,6 +42,8 @@ import { AddIntoCollectionDialogComponent } from './components/add-into-collecti
     PipeModule,
     FormsModule,
     OverlayModule,
+    MatSelectModule,
+    ReactiveFormsModule
   ],
   exports: [
     ButtonComponent,
@@ -50,7 +54,8 @@ import { AddIntoCollectionDialogComponent } from './components/add-into-collecti
     CommentComponent,
     SideMenuComponent,
     LoaderComponent,
-    BlockViewComponent
+    BlockViewComponent,
+    DropdownComponent
   ],
   providers: [DialogService]
 })
