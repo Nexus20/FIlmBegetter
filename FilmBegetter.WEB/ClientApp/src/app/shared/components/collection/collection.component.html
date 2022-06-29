@@ -9,7 +9,7 @@
             <app-card [movieCardParameters]="movie"></app-card>
         </li>
     </ul>
-    <app-block-view></app-block-view>
+    <app-block-view *ngIf="showBlock"></app-block-view>
 </div>
 
 <div class="collection-default" *ngIf="direction === 'default'">

@@ -13,6 +13,7 @@ export class CollectionComponent implements OnInit {
   @Input() label!: string;
   @Input() movies!: IMovieCard[];
   @Input() users!: IUserCard[];
+  @Input() showBlock!: boolean;
 
   constructor() { }
 
