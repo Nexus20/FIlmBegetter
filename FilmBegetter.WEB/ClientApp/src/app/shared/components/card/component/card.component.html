@@ -12,7 +12,7 @@
 >
     <div rout class="card__content">
         <a
-            routerLink="movie/{{ cardParameters.info.id }}"
+            [routerLink]="['/movie', cardParameters.info.id]"
             routerLinkActive="router-link-active"
             class="card__preview"
         >
@@ -33,7 +33,10 @@
                     {{ cardParameters.info.commonRating }}
                 </div>
                 <div class="preview-like">
-                    <span class="icon-heart" (click)="openDialog(true, cardParameters.info.id)"></span>
+                    <span
+                        class="icon-heart"
+                        (click)="openDialog(true, cardParameters.info.id)"
+                    ></span>
                 </div>
             </div>
         </a>
@@ -109,7 +112,7 @@
 <div class="card-collection" *ngIf="cardParameters.type === 'collection'">
     <div class="collection__content">
         <h4 class="content-name">
-            {{cardParameters.info.name}}
+            {{ cardParameters.info.name }}
         </h4>
     </div>
 </div>
@@ -166,10 +169,7 @@
         </div>
 
         <div class="content-controller">
-            <a
-                [routerLink]="[cardParameters.info.id]"
-                class="icon-eye"
-            ></a>
+            <a [routerLink]="[cardParameters.info.id]" class="icon-eye"></a>
             <span class="icon-delete"></span>
         </div>
     </div>

@@ -14,6 +14,7 @@ export class CollectionComponent implements OnInit {
   @Input() movies!: IMovieCard[];
   @Input() users!: IUserCard[];
   @Input() showBlock!: boolean;
+  @Input() seeAll!: { router: string[], queryParams: object }
 
   constructor() { }
 

@@ -2,11 +2,10 @@
     <app-header></app-header>
     <div class="container mt-5 mb-5">
         <div class="row">
-            <h2 class="col-12 mb-4 title">
-                FilmBegetter
-            </h2>
+            <h2 class="col-12 mb-4 title">FilmBegetter</h2>
             <div class="col-12">
-                Hello! We have selected for you the most popular and interesting films that will brighten your pastime.
+                Hello! We have selected for you the most popular and interesting
+                films that will brighten your pastime.
             </div>
         </div>
     </div>
@@ -17,8 +16,11 @@
                     [direction]="selectionConfig.topMoviesOfTheYear.direction"
                     [label]="selectionConfig.topMoviesOfTheYear.label"
                     [movies]="bestCurrentYearMovies"
+                    [seeAll]="{
+                        router: ['search'],
+                        queryParams: bestCurrentYearMoviesQueryParams
+                    }"
                 ></app-collection>
-                <a class="see-all-link" [routerLink]="['search']" [queryParams]="bestCurrentYearMoviesQueryParams">See all</a>
             </section>
         </ng-container>
         <ng-container *ngIf="bestMoviesOfAllTime">
@@ -27,8 +29,11 @@
                     [direction]="selectionConfig.bestMoviesOfAllTime.direction"
                     [label]="selectionConfig.bestMoviesOfAllTime.label"
                     [movies]="bestMoviesOfAllTime"
+                    [seeAll]="{
+                        router: ['search'],
+                        queryParams: bestMoviesOfAllTimeQueryParams
+                    }"
                 ></app-collection>
-                <a class="see-all-link" [routerLink]="['search']" [queryParams]="bestMoviesOfAllTimeQueryParams">See all</a>
             </section>
         </ng-container>
         <ng-container *ngIf="bestComedies">
@@ -37,8 +42,11 @@
                     [direction]="selectionConfig.bestComedies.direction"
                     [label]="selectionConfig.bestComedies.label"
                     [movies]="bestComedies"
+                    [seeAll]="{
+                        router: ['search'],
+                        queryParams: bestComediesQueryParams
+                    }"
                 ></app-collection>
-                <a class="see-all-link" [routerLink]="['search']" [queryParams]="bestComediesQueryParams">See all</a>
             </section>
         </ng-container>
         <ng-container *ngIf="bestForChildren">
@@ -47,8 +55,11 @@
                     [direction]="selectionConfig.bestForChildren.direction"
                     [label]="selectionConfig.bestForChildren.label"
                     [movies]="bestForChildren"
+                    [seeAll]="{
+                        router: ['search'],
+                        queryParams: bestForChildrenQueryParams
+                    }"
                 ></app-collection>
-                <a class="see-all-link" [routerLink]="['search']" [queryParams]="bestForChildrenQueryParams">See all</a>
             </section>
         </ng-container>
         <ng-container *ngIf="bestMysteries">
@@ -57,8 +68,11 @@
                     [direction]="selectionConfig.bestMysteries.direction"
                     [label]="selectionConfig.bestMysteries.label"
                     [movies]="bestMysteries"
+                    [seeAll]="{
+                        router: ['search'],
+                        queryParams: bestMysteriesQueryParams
+                    }"
                 ></app-collection>
-                <a class="see-all-link" [routerLink]="['search']" [queryParams]="bestMysteriesQueryParams">See all</a>
             </section>
         </ng-container>
         <ng-container *ngIf="bestHorrors">
@@ -67,8 +81,11 @@
                     [direction]="selectionConfig.bestHorrors.direction"
                     [label]="selectionConfig.bestHorrors.label"
                     [movies]="bestHorrors"
+                    [seeAll]="{
+                        router: ['search'],
+                        queryParams: bestHorrorsQueryParams
+                    }"
                 ></app-collection>
-                <a class="see-all-link" [routerLink]="['search']" [queryParams]="bestHorrorsQueryParams">See all</a>
             </section>
         </ng-container>
     </div>
