@@ -5,7 +5,7 @@ import { MovieViewModel } from "../../../models/movieViewModel.interface";
 import { HttpErrorResponse } from "@angular/common/http";
 import { GenreViewModel } from "../../../models/genreViewModel.interface";
 import { GenreService } from "../../../services/genre.service";
-import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 
 @Component({
   selector: 'app-movie-updating-form',

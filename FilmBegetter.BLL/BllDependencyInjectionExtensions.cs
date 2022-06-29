@@ -38,6 +38,11 @@ public static class BllDependencyInjectionExtensions {
         services.AddScoped<IPipelineBuilderDirector<Movie, MovieFilterModel>, MovieSelectionPipelineBuilderDirector>();
 
         services.AddScoped<MovieTitleFilterDataHandler>();
+        services.AddScoped<MovieGenresFilterDataHandler>();
+        services.AddScoped<MovieYearFilterDataHandler>();
+        services.AddScoped<MovieCountryFilterDataHandler>();
+        services.AddScoped<MovieDirectorFilterDataHandler>();
+        services.AddScoped<MovieOrderDataHandler>();
         
         services.AddScoped<IPipelineBuilderDirector<User, UserFilterModel>, UserSelectionPipelineBuilderDirector>();
 

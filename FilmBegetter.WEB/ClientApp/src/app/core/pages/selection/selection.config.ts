@@ -14,6 +14,30 @@ export const CSelectionPage = {
         label: "Best options",
         direction: "horizontal" as 'horizontal',
     },
+    topMoviesOfTheYear: {
+        label: "Top movies of the " + new Date().getFullYear() + " year",
+        direction: "horizontal" as 'horizontal',
+    },
+    bestMoviesOfAllTime: {
+        label: "The best movies of all time",
+        direction: "horizontal" as 'horizontal',
+    },
+    bestComedies: {
+        label: "The funniest comedies",
+        direction: "horizontal" as 'horizontal',
+    },
+    bestHorrors: {
+        label: "The scariest horrors",
+        direction: "horizontal" as 'horizontal',
+    },
+    bestForChildren: {
+        label: "Best for children",
+        direction: "horizontal" as 'horizontal',
+    },
+    bestMysteries: {
+        label: "The most mysterious",
+        direction: "horizontal" as 'horizontal',
+    },
     mightLike: {
         label: "You might like"
     },
