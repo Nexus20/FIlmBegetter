@@ -57,7 +57,7 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : class {
         Context.Entry(entity).State = EntityState.Modified;
     }
 
-    public Task<List<TEntity>> FindAsync(Expression<Func<TEntity, bool>> filter) {
+    public virtual Task<List<TEntity>> FindAsync(Expression<Func<TEntity, bool>> filter) {
         return FindAllWithDetailsWithoutFilter().Where(filter).AsNoTracking().ToListAsync();
     }
 
@@ -69,14 +69,12 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : class {
         return _dbSet.FirstOrDefault(filter);
     }
 
-    public Task<TEntity> FirstOrDefaultWithDetailsAsync(Expression<Func<TEntity, bool>> filter) {
+    public virtual Task<TEntity> FirstOrDefaultWithDetailsAsync(Expression<Func<TEntity, bool>> filter) {
         return FindAllWithDetailsWithoutFilter().FirstOrDefaultAsync(filter);
     }
 
-    public Task<List<TEntity>> FindAllWithDetailsAsync(Expressions<TEntity> expressions) {
+    protected IQueryable<TEntity> ApplyFilters(IQueryable<TEntity> query, Expressions<TEntity> expressions) {
         
-        var query = FindAllWithDetailsWithoutFilter();
-
         if (expressions.FilterExpressions.Any()) {
             
             foreach (var expression in expressions.FilterExpressions) {
@@ -114,6 +112,12 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : class {
             query = query.Take(expressions.TakeCount);
         }
 
+        return query;
+    }
+    
+    public virtual Task<List<TEntity>> FindAllWithDetailsAsync(Expressions<TEntity> expressions) {
+        var query = FindAllWithDetailsWithoutFilter();
+        ApplyFilters(query, expressions);
         return query.AsSplitQuery().AsNoTracking().ToListAsync();
     }
     
