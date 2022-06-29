@@ -39,6 +39,14 @@
                 </div>
             </div>
 
+            <div class="mb-3">
+                <app-dropdown
+                    formControlName="order"
+                    label="Order by"
+                    [selectContent]="orderBySelectConfig"
+                ></app-dropdown>
+            </div>
+
             <br>
             <div class="mb-3 row">
                 <app-button

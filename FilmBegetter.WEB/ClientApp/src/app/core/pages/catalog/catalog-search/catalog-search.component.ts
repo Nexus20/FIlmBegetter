@@ -10,6 +10,7 @@ import { GenreViewModel } from "../../../models/genreViewModel.interface";
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 import { IInput } from "../../../../shared/models/input.interface";
 import { IButton } from "../../../../shared/models/button.interface";
+import {ICustomSelect} from "../../../../shared/models/custom-select.interface";
 
 class QueryParams {
     takeCount?: number;
@@ -71,6 +72,14 @@ export class CatalogSearchComponent implements OnInit {
         text: 'Load more',
         disabled: false
     };
+
+    orderBySelectConfig: ICustomSelect = {
+        title: 'Order by',
+        elements: [
+            { text: 'Rating: worst first', value: "0" },
+            { text: 'Rating: best first', value: "1" },
+        ]
+    }
 
     constructor(private activatedRoute: ActivatedRoute,
                 private movieService: MovieService,
@@ -143,6 +152,7 @@ export class CatalogSearchComponent implements OnInit {
             director: new FormControl(""),
             year: new FormControl("", [Validators.min(0)]),
             genres: this.formBuilder.array([]),
+            order: new FormControl()
         });
     }
 
@@ -155,8 +165,9 @@ export class CatalogSearchComponent implements OnInit {
         this.queryParams.director = formValue.director;
         this.queryParams.year = Number(formValue.year);
 
-        console.log(this.queryParams);
-        console.log(formValue);
+        if(formValue.order != null) {
+            this.queryParams.orderTypes = [Number(formValue.order)];
+        }
 
         this.getMovies();
     }
