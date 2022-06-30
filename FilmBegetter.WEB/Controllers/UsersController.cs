@@ -99,7 +99,7 @@ namespace FilmBegetter.WEB.Controllers
         [HttpPut]
         [Route("{id}/update-roles")]
         [Authorize(Roles = UserRoles.Admin)]
-        public async Task<IActionResult> UpdateUserRoles(UpdateUserRolesViewModel viewModel) {
+        public async Task<IActionResult> UpdateUserRoles(string id, UpdateUserRolesViewModel viewModel) {
 
             if (!ModelState.IsValid) {
                 return BadRequest();
