@@ -1,0 +1,94 @@
+@import "../../../styles/variables.scss";
+
+.collection-title {
+  display: flex;
+  align-items: center;
+  color: $gray-400;
+  margin-bottom: 20px;
+  h2 {
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 40px;
+    margin-right: 7px;
+  }
+
+  p {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+  }
+}
+
+a {
+  color: $gray-400;
+  transition: 0.2s;
+
+  &:hover {
+    color: $gray-100;
+  }
+}
+
+.collection {
+  position: relative;
+  padding: 7px 0 25px 20px;
+  border-radius: $button-radius;
+  background: linear-gradient(90.04deg, rgba(32, 40, 62, 0.4) 1.02%, rgba(32, 40, 62, 0) 99.97%);
+
+  &__list {
+    display: flex;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba($primary-400, 0.4) transparent; /* «цвет ползунка» «цвет полосы скроллбара» */
+    padding-bottom: 15px;
+
+    ::-webkit-scrollbar {
+      height: 8px; /* высота для горизонтального скролла */
+      background-color: transparent;
+    }
+
+    /* ползунок скроллбара */
+    ::-webkit-scrollbar-thumb {
+      background-color: rgba($primary-400, 0.4);
+      border-radius: 9em;
+    }
+    li + li {
+      margin-left: 20px;
+    }
+  }
+}
+
+.collection-default {
+  .collection {
+    &__list {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 0 -12px;
+    }
+
+    &-item {
+      padding: 0 12px;
+      margin-bottom: 24px;
+      width: 100%;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .collection-default {
+    .collection {
+      &-item {
+        width: 50%;
+      }
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  .collection-default {
+    .collection {
+      &-item {
+        width: 25%;
+      }
+    }
+  }
+}

@@ -23,13 +23,25 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : class {
         return _dbSet.AddAsync(entity).AsTask();
     }
 
-    public async Task Delete(Expression<Func<TEntity, bool>> filter) {
+    public void Create(TEntity entity) {
+        _dbSet.Add(entity);
+    }
+
+    public void Delete(TEntity entity) {
+        _dbSet.Remove(entity);
+    }
+    
+    public async Task DeleteAsync(Expression<Func<TEntity, bool>> filter) {
         
         var entitiesToDelete = await FindAsync(filter);
 
         foreach (var entityToDelete in entitiesToDelete) {
-            if (Context.Entry(entityToDelete).State == EntityState.Detached) {
-                _dbSet.Attach(entityToDelete);
+            try {
+                if (Context.Entry(entityToDelete).State == EntityState.Detached) {
+                    _dbSet.Attach(entityToDelete);
+                }
+            }
+            catch (InvalidOperationException ex) {
             }
             _dbSet.Remove(entityToDelete);
         }
@@ -45,24 +57,29 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : class {
         Context.Entry(entity).State = EntityState.Modified;
     }
 
-    public Task<List<TEntity>> FindAsync(Expression<Func<TEntity, bool>> filter) {
-        return _dbSet.Where(filter).AsNoTracking().ToListAsync();
+    public virtual Task<List<TEntity>> FindAsync(Expression<Func<TEntity, bool>> filter) {
+        return FindAllWithDetailsWithoutFilter().Where(filter).AsNoTracking().ToListAsync();
     }
 
     public Task<TEntity> FirstOrDefaultAsync(Expression<Func<TEntity, bool>> filter) {
         return _dbSet.FirstOrDefaultAsync(filter);
     }
+    
+    public TEntity FirstOrDefault(Expression<Func<TEntity, bool>> filter) {
+        return _dbSet.FirstOrDefault(filter);
+    }
 
-    public Task<TEntity> FirstOrDefaultWithDetailsAsync(Expression<Func<TEntity, bool>> filter) {
+    public virtual Task<TEntity> FirstOrDefaultWithDetailsAsync(Expression<Func<TEntity, bool>> filter) {
         return FindAllWithDetailsWithoutFilter().FirstOrDefaultAsync(filter);
     }
 
-    public Task<List<TEntity>> FindAllWithDetailsAsync(Expressions<TEntity> expressions) {
+    protected IQueryable<TEntity> ApplyFilters(IQueryable<TEntity> query, Expressions<TEntity> expressions) {
         
-        var query = FindAllWithDetailsWithoutFilter();
-
         if (expressions.FilterExpressions.Any()) {
-            query = expressions.FilterExpressions.Aggregate(query, (current, expression) => current.Where(expression));
+            
+            foreach (var expression in expressions.FilterExpressions) {
+                query = query.Where(expression);
+            }
         }
 
         if (expressions.AscendingOrderExpressions.Any()) {
@@ -95,7 +112,13 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : class {
             query = query.Take(expressions.TakeCount);
         }
 
-        return query.AsNoTracking().ToListAsync();
+        return query;
+    }
+    
+    public virtual Task<List<TEntity>> FindAllWithDetailsAsync(Expressions<TEntity> expressions) {
+        var query = FindAllWithDetailsWithoutFilter();
+        ApplyFilters(query, expressions);
+        return query.AsSplitQuery().AsNoTracking().ToListAsync();
     }
     
     protected virtual IQueryable<TEntity> FindAllWithDetailsWithoutFilter() {

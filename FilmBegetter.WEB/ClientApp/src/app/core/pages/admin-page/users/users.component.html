@@ -1,0 +1,10 @@
+<div class="wrapper">
+    <div class="side-menu-wrapper">
+        <app-side-menu [routes]="routes"></app-side-menu>
+    </div>
+    <section class="content">
+        <ng-container *ngIf="users">
+            <app-collection [users]="users"></app-collection>
+        </ng-container>
+    </section>
+</div>

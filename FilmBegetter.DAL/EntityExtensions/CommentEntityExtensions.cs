@@ -10,10 +10,9 @@ public static class CommentEntityExtensions {
 
         builder.Property(b => b.CreationDate).HasDefaultValueSql("GETDATE()");
 
-        builder
-            .HasMany(c => c.Answers)
-            .WithOne(c => c.ParentComment)
-            .HasForeignKey(c => c.ParentCommentId)
+        builder.HasMany(c => c.CommentRatings)
+            .WithOne(cru => cru.Comment)
+            .HasForeignKey(cru => cru.CommentId)
             .OnDelete(DeleteBehavior.Restrict);
     }
 }

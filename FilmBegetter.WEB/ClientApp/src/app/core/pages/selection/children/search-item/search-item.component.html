@@ -1,0 +1,17 @@
+<div class="item" (click)="onClickItem.emit(searchItem)">
+    <div class="img-block me-3">
+        <img
+            width="35"
+            height="35"
+            appMissingImage
+            src="{{ searchItem.imagePath }}"
+        />
+    </div>
+    <span class="item-title me-3">
+        {{ searchItem.title | crop: 12 }}
+    </span>
+    <app-rate
+        [transparentBackground]="true"
+        [rateValue]="searchItem.commonRating"
+    ></app-rate>
+</div>

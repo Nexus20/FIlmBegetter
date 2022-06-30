@@ -45,22 +45,60 @@ namespace FilmBegetter.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("ParentCommentId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("Type")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("AuthorId");
 
                     b.HasIndex("MovieId");
 
-                    b.HasIndex("ParentCommentId");
-
                     b.ToTable("Comments");
+                });
+
+            modelBuilder.Entity("FilmBegetter.DAL.Entities.CommentRatingUser", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("CommentId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("Rating")
+                        .HasColumnType("int");
+
+                    b.HasKey("UserId", "CommentId");
+
+                    b.HasIndex("CommentId");
+
+                    b.ToTable("CommentRatingUsers");
+                });
+
+            modelBuilder.Entity("FilmBegetter.DAL.Entities.FriendRequest", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("RecipientId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("SenderId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RecipientId");
+
+                    b.HasIndex("SenderId");
+
+                    b.ToTable("FriendRequests");
                 });
 
             modelBuilder.Entity("FilmBegetter.DAL.Entities.Genre", b =>
@@ -84,56 +122,6 @@ namespace FilmBegetter.DAL.Migrations
                         .IsUnique();
 
                     b.ToTable("Genres");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "02b791d1-712d-48c3-b9f0-c48e1b2cab3d",
-                            CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Action"
-                        },
-                        new
-                        {
-                            Id = "4260e720-3fc1-4b53-9c24-b44ddec3ff0b",
-                            CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Comedy"
-                        },
-                        new
-                        {
-                            Id = "bfca2d42-d8a8-44fa-8b8a-1720c0268ce4",
-                            CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Drama"
-                        },
-                        new
-                        {
-                            Id = "2c1ac564-f191-4449-90cb-3c107613da20",
-                            CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Fantasy"
-                        },
-                        new
-                        {
-                            Id = "9e59d843-df20-415a-af90-9b2083dbb66e",
-                            CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Horror"
-                        },
-                        new
-                        {
-                            Id = "4663b2f8-0c4e-4285-9a9b-28a104bc9213",
-                            CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Mystery"
-                        },
-                        new
-                        {
-                            Id = "47e87a18-6a7f-49d6-ba1c-792c56463978",
-                            CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Romance"
-                        },
-                        new
-                        {
-                            Id = "ede884ea-ff17-4196-b561-ec38dfeae55f",
-                            CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Thriller"
-                        });
                 });
 
             modelBuilder.Entity("FilmBegetter.DAL.Entities.Movie", b =>
@@ -290,22 +278,22 @@ namespace FilmBegetter.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "e7e17cdb-1c31-4470-811b-7ff69642a9fe",
-                            ConcurrencyStamp = "3548e679-d5a4-419d-a2e8-b0f8fdedce83",
+                            Id = "4993bbe6-4427-4583-8817-3f9d1f9d59fb",
+                            ConcurrencyStamp = "0094d926-77ef-4ed1-97a7-93c60049f89b",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "108cb068-c39d-4eee-be50-90a33b3c475f",
-                            ConcurrencyStamp = "77b7cf23-0812-4a0b-bd0f-bef853641845",
+                            Id = "3fb36f3a-90b2-4342-823d-1ca8d4b24539",
+                            ConcurrencyStamp = "dfa54036-755a-4b3e-8c16-5b531d361c8e",
                             Name = "Moderator",
                             NormalizedName = "MODERATOR"
                         },
                         new
                         {
-                            Id = "88c70a4c-eea5-40e4-a7c9-cec2f6872a38",
-                            ConcurrencyStamp = "c307dad7-aaa1-40fb-82f2-2f496e79de7a",
+                            Id = "ab93d092-3892-4a1d-a4cf-44e05fc5e9ee",
+                            ConcurrencyStamp = "fd611a4e-aa85-4bdf-8da2-929b74eab3a0",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -336,13 +324,13 @@ namespace FilmBegetter.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "68a3c4c8-f379-4bf0-b0d9-de026c6d1f7f",
+                            Id = "26f9dc90-3001-42ad-a778-808859c48395",
                             CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Type = "Basic"
                         },
                         new
                         {
-                            Id = "4dc7b828-fccb-435e-9ec6-e93ac6501cea",
+                            Id = "12831af1-5409-4677-a2cc-791365088523",
                             CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Type = "Premium"
                         });
@@ -377,6 +365,10 @@ namespace FilmBegetter.DAL.Migrations
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("datetimeoffset");
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -397,9 +389,16 @@ namespace FilmBegetter.DAL.Migrations
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime?>("SubscriptionExpirationDare")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("SubscriptionId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Surname")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
@@ -551,17 +550,47 @@ namespace FilmBegetter.DAL.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("FilmBegetter.DAL.Entities.Comment", "ParentComment")
-                        .WithMany("Answers")
-                        .HasForeignKey("ParentCommentId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.Navigation("Author");
 
                     b.Navigation("Movie");
+                });
 
-                    b.Navigation("ParentComment");
+            modelBuilder.Entity("FilmBegetter.DAL.Entities.CommentRatingUser", b =>
+                {
+                    b.HasOne("FilmBegetter.DAL.Entities.Comment", "Comment")
+                        .WithMany("CommentRatings")
+                        .HasForeignKey("CommentId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("FilmBegetter.DAL.Entities.User", "User")
+                        .WithMany("CommentRatings")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Comment");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("FilmBegetter.DAL.Entities.FriendRequest", b =>
+                {
+                    b.HasOne("FilmBegetter.DAL.Entities.User", "Recipient")
+                        .WithMany("RecievedFriendRequests")
+                        .HasForeignKey("RecipientId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("FilmBegetter.DAL.Entities.User", "Sender")
+                        .WithMany("SentFriendRequests")
+                        .HasForeignKey("SenderId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Recipient");
+
+                    b.Navigation("Sender");
                 });
 
             modelBuilder.Entity("FilmBegetter.DAL.Entities.MovieCollection", b =>
@@ -702,7 +731,7 @@ namespace FilmBegetter.DAL.Migrations
 
             modelBuilder.Entity("FilmBegetter.DAL.Entities.Comment", b =>
                 {
-                    b.Navigation("Answers");
+                    b.Navigation("CommentRatings");
                 });
 
             modelBuilder.Entity("FilmBegetter.DAL.Entities.Genre", b =>
@@ -733,6 +762,8 @@ namespace FilmBegetter.DAL.Migrations
 
             modelBuilder.Entity("FilmBegetter.DAL.Entities.User", b =>
                 {
+                    b.Navigation("CommentRatings");
+
                     b.Navigation("Comments");
 
                     b.Navigation("Friends");
@@ -740,6 +771,10 @@ namespace FilmBegetter.DAL.Migrations
                     b.Navigation("MovieCollections");
 
                     b.Navigation("Ratings");
+
+                    b.Navigation("RecievedFriendRequests");
+
+                    b.Navigation("SentFriendRequests");
 
                     b.Navigation("UserRoles");
                 });

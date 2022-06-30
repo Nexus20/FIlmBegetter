@@ -23,6 +23,10 @@ public class UnitOfWork : IUnitOfWork {
         return _context.SaveChangesAsync();
     }
 
+    public int SaveChanges() {
+        return _context.SaveChanges();
+    }
+
     public IDbContextTransaction BeginTransaction() {
         return _context.Database.BeginTransaction();
     }

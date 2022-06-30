@@ -1,0 +1,74 @@
+<ng-container *ngIf="genres != undefined && movie != undefined">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <form [formGroup]="movieForm" (ngSubmit)="sendForm()" enctype="multipart/form-data">
+                    <input type="hidden" formControlName="id">
+                    <input type="hidden" formControlName="imagePath">
+                    <div class="mb-3">
+                        <label for="title" class="col-form-label col-sm-2">Title:</label>
+                        <div class="col-md-5">
+                            <input type="text" id="title" formControlName="title" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="col-form-label col-sm-2">Desciption:</label>
+                        <div class="col-md-5">
+                            <textarea id="description" formControlName="description" class="form-control"></textarea>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="country" class="col-form-label col-sm-2">Country:</label>
+                        <div class="col-md-5">
+                            <input type="text" id="country" formControlName="country" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="director" class="col-form-label col-sm-2">Director:</label>
+                        <div class="col-md-5">
+                            <input type="text" id="director" formControlName="director" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="publicationDate" class="col-form-label col-sm-2">Publication Date:</label>
+                        <div class="col-md-5">
+                            <input type="date" id="publicationDate" formControlName="publicationDate" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="image" class="col-form-label col-sm-2">Image:</label>
+                        <div class="col-md-5">
+                            <input type="file" id="image" #file (change)="uploadFile(file.files)" formControlName="image" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="col-form-label col-sm-2">Genres:</label>
+                        <div class="col-md-5">
+
+
+
+
+                            <ng-container *ngFor="let genre of genres">
+
+                                <label> {{genre.name}}
+                                    <input [checked]="hasGenre(genre.id)" type="checkbox" class="form-check" value="{{genre.id}}" (change)="onGenreSelect($event)">
+                                </label>
+
+                            </ng-container>
+
+
+                        </div>
+                    </div>
+
+                    <br>
+                    <div class="mb-3 row">
+                        <div class="col-md-1">
+                            <button type="submit" class="btn btn-info" [disabled]="!movieForm.valid">Add movie</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</ng-container>

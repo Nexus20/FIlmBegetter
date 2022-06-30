@@ -1,0 +1,92 @@
+<div class="wrapper">
+    <app-header></app-header>
+    <div class="container mt-5 mb-5">
+        <div class="row">
+            <h2 class="col-12 mb-4 title">FilmBegetter</h2>
+            <div class="col-12">
+                Hello! We have selected for you the most popular and interesting
+                films that will brighten your pastime.
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <ng-container *ngIf="bestCurrentYearMovies">
+            <section>
+                <app-collection
+                    [direction]="selectionConfig.topMoviesOfTheYear.direction"
+                    [label]="selectionConfig.topMoviesOfTheYear.label"
+                    [movies]="bestCurrentYearMovies"
+                    [seeAll]="{
+                        router: ['search'],
+                        queryParams: bestCurrentYearMoviesQueryParams
+                    }"
+                ></app-collection>
+            </section>
+        </ng-container>
+        <ng-container *ngIf="bestMoviesOfAllTime">
+            <section>
+                <app-collection
+                    [direction]="selectionConfig.bestMoviesOfAllTime.direction"
+                    [label]="selectionConfig.bestMoviesOfAllTime.label"
+                    [movies]="bestMoviesOfAllTime"
+                    [seeAll]="{
+                        router: ['search'],
+                        queryParams: bestMoviesOfAllTimeQueryParams
+                    }"
+                ></app-collection>
+            </section>
+        </ng-container>
+        <ng-container *ngIf="bestComedies">
+            <section>
+                <app-collection
+                    [direction]="selectionConfig.bestComedies.direction"
+                    [label]="selectionConfig.bestComedies.label"
+                    [movies]="bestComedies"
+                    [seeAll]="{
+                        router: ['search'],
+                        queryParams: bestComediesQueryParams
+                    }"
+                ></app-collection>
+            </section>
+        </ng-container>
+        <ng-container *ngIf="bestForChildren">
+            <section>
+                <app-collection
+                    [direction]="selectionConfig.bestForChildren.direction"
+                    [label]="selectionConfig.bestForChildren.label"
+                    [movies]="bestForChildren"
+                    [seeAll]="{
+                        router: ['search'],
+                        queryParams: bestForChildrenQueryParams
+                    }"
+                ></app-collection>
+            </section>
+        </ng-container>
+        <ng-container *ngIf="bestMysteries">
+            <section>
+                <app-collection
+                    [direction]="selectionConfig.bestMysteries.direction"
+                    [label]="selectionConfig.bestMysteries.label"
+                    [movies]="bestMysteries"
+                    [seeAll]="{
+                        router: ['search'],
+                        queryParams: bestMysteriesQueryParams
+                    }"
+                ></app-collection>
+            </section>
+        </ng-container>
+        <ng-container *ngIf="bestHorrors">
+            <section>
+                <app-collection
+                    [direction]="selectionConfig.bestHorrors.direction"
+                    [label]="selectionConfig.bestHorrors.label"
+                    [movies]="bestHorrors"
+                    [seeAll]="{
+                        router: ['search'],
+                        queryParams: bestHorrorsQueryParams
+                    }"
+                ></app-collection>
+            </section>
+        </ng-container>
+    </div>
+</div>

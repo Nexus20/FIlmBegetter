@@ -12,7 +12,7 @@ public class RequestResponseService {
         _configuration = configuration;
     }
 
-    public async Task<string> Invoke() {
+    public async Task<string> Invoke(string firstMovieId, string secondMovieId) {
         
         using var client = new HttpClient();
 
@@ -24,7 +24,15 @@ public class RequestResponseService {
                     new StringTable()
                     {
                         ColumnNames = new[] {"userId", "movieId", "rating"},
-                        Values = new[,] {  { 0, 47, 5 } },
+                        Values = new[,] {  { "0", firstMovieId, "5" } },
+                    }
+                },
+                {
+                    "input2",
+                    new StringTable()
+                    {
+                        ColumnNames = new[] {"userId", "movieId", "rating"},
+                        Values = new[,] {  { "0", secondMovieId, "5" } },
                     }
                 },
             },

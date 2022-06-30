@@ -1,0 +1,101 @@
+<div class="wrapper">
+    <div class="side-menu-wrapper">
+        <app-side-menu [routes]="routes"></app-side-menu>
+    </div>
+    <section class="content">
+
+        <h1 class="mb-4">Add new movie</h1>
+
+        <ng-container *ngIf="genres != undefined">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <form [formGroup]="movieForm" (ngSubmit)="sendForm()" enctype="multipart/form-data">
+                            <div class="mb-3">
+                                <!--                    <label for="title" class="col-form-label col-sm-2">Title:</label>-->
+                                <div class="mb-3">
+                                    <app-input formControlName="title" class="mb-4"
+                                               [inputParameters]="titleInputConfig"></app-input>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <!--                    <label for="country" class="col-form-label col-sm-2">Country:</label>-->
+                                <div class="mb-3">
+                                    <app-input formControlName="country" class="mb-4"
+                                               [inputParameters]="countryInputConfig"></app-input>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <!--                    <label for="director" class="col-form-label col-sm-2">Director:</label>-->
+                                <div class="mb-3">
+                                    <app-input formControlName="director" class="mb-4"
+                                               [inputParameters]="directorInputConfig"></app-input>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <!--                    <label for="description" class="col-form-label col-sm-2">Desciption:</label>-->
+                                <div class="mb-3">
+                                    <app-input formControlName="description" class="mb-4"
+                                               [inputParameters]="descriptionInputConfig"></app-input>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <!--                    <label for="publicationDate" class="col-form-label col-sm-2">Publication Date:</label>-->
+                                <div class="mb-3">
+                                    <app-input formControlName="publicationDate" class="mb-4" [type]="'date'"
+                                               [inputParameters]="publicationDateInputConfig"></app-input>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="image" class="col-form-label col-sm-2">Image:</label>
+                                <div class="col-md-5">
+                                    <input type="file" id="image" #file (change)="uploadFile(file.files)"
+                                           formControlName="image" class="form-control"/>
+                                </div>
+                                <!--                    <div class="mb-3">-->
+                                <!--                        <app-input formControlName="publicationDate" class="mb-4" #file (change)="uploadFile(file.files)" [type]="'file'" [inputParameters]="imageInputConfig"></app-input>-->
+                                <!--                    </div>-->
+                            </div>
+
+                            <div class="mb-3">
+                                <div class="mb-3">Genres:</div>
+                                <div class="genres-section">
+
+
+                                    <ng-container *ngFor="let genre of genres">
+
+                                        <!--                            <label> {{genre.name}}-->
+                                        <!--                                <input type="checkbox" class="form-check" value="{{genre.id}}" (change)="onGenreSelect($event)">-->
+                                        <!--                            </label>-->
+
+                                        <div>
+                                            <label class="custom-checkbox-container"
+                                                   for="{{genre.name}}-check">{{genre.name}}
+                                                <input type="checkbox" (change)="onGenreSelect($event)"
+                                                       value="{{genre.name}}" id="{{genre.name}}-check">
+                                                <span class="custom-checkmark"></span>
+                                            </label>
+                                        </div>
+
+                                    </ng-container>
+
+                                </div>
+                            </div>
+
+                            <br>
+                            <div class="mb-3 row">
+                                <app-button
+                                    [text]="'Add new movie'"
+                                    class="col-12 mb-4"
+                                    type="submit"
+                                    [disabled]="!movieForm.valid"
+                                    [buttonConfig]="submitButtonConfig"
+                                ></app-button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+    </section>
+</div>

@@ -5,16 +5,39 @@
 @import "./app/styles/icon-fonts.css";
 @import "./app/styles/normalize.scss";
 @import "./app/styles/variables.scss";
+@import "../node_modules/@angular/material/prebuilt-themes/indigo-pink.css";
+html {
+  height: 100%;
+}
 
 body {
+  height: 100%;
   font-family: "Poppins", sans-serif;
   overflow-x: hidden;
   color: $gray-200;
   min-height: 100vh;
   background: #121829 url(./assets/images/background-min.png) center center/cover no-repeat;
   @include bodyLarge;
+
+  * {
+    scrollbar-color: $primary-500 transparent; /* «цвет ползунка» «цвет полосы скроллбара» */
+    scrollbar-width: thin; /* толщина */
+
+    &::-webkit-scrollbar {
+      width: 9px; /* ширина для вертикального скролла */
+      height: 8px; /* высота для горизонтального скролла */
+      background-color: transparent;
+    }
+
+    /* ползунок скроллбара */
+    &::-webkit-scrollbar-thumb {
+      background-color: $primary-500;
+      border-radius: 9em;
+    }
+  }
 }
 
 .wrapper {
+  height: 100%;
   position: relative;
 }

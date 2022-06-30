@@ -1,5 +1,6 @@
 ﻿using FilmBegetter.BLL.DataHandlers;
 using FilmBegetter.BLL.DataHandlers.MovieDataHandlers;
+using FilmBegetter.BLL.DataHandlers.UserDataHandlers;
 using FilmBegetter.BLL.FilterModels;
 using FilmBegetter.BLL.Interfaces;
 using FilmBegetter.BLL.Pipelines.Builders;
@@ -23,19 +24,36 @@ public static class BllDependencyInjectionExtensions {
         services.AddScoped<JwtHandler>();
         
         services.AddScoped<IUserService, UserService>();
+        services.AddScoped<IRoleService, RoleService>();
         
         services.AddScoped<ISignInService, SignInService>();
         
+        services.AddScoped<IGenreService, GenreService>();
+        services.AddScoped<ICommentService, CommentService>();
         services.AddScoped<IMovieService, MovieService>();
+        services.AddScoped<IMovieCollectionService, MovieCollectionService>();
+        services.AddScoped<IFriendRequestService, FriendRequestService>();
         
         services.AddScoped(typeof(IPipelineBuilder<,>), typeof(SelectionPipelineBuilder<,>));
 
         services.AddScoped<IPipelineBuilderDirector<Movie, MovieFilterModel>, MovieSelectionPipelineBuilderDirector>();
 
         services.AddScoped<MovieTitleFilterDataHandler>();
+        services.AddScoped<MovieGenresFilterDataHandler>();
+        services.AddScoped<MovieYearFilterDataHandler>();
+        services.AddScoped<MovieCountryFilterDataHandler>();
+        services.AddScoped<MovieDirectorFilterDataHandler>();
+        services.AddScoped<MovieOrderDataHandler>();
+        
+        services.AddScoped<IPipelineBuilderDirector<User, UserFilterModel>, UserSelectionPipelineBuilderDirector>();
+
+        services.AddScoped<UserEmailFilterDataHandler>();
 
         services.AddScoped(typeof(SkipObjectsDataHandler<,>));
         services.AddScoped(typeof(TakeObjectsDataHandler<,>));
+
+        services.AddScoped<IdentityInitializer>();
+        services.AddScoped<DbInitializingService>();
         
         return services;
     }

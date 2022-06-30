@@ -1,0 +1,27 @@
+.wrapper {
+    display: flex;
+    column-gap: 20px;
+    height: 100%;
+
+    .side-menu-wrapper {
+        flex: 0 0 288px;
+        height: 100%;
+    }
+
+    .users {
+        flex: 1 1 auto;
+    }
+
+    .user-profile {
+        padding-top: 40px;
+    }
+
+    .user-profile__title {
+        margin-bottom: 30px;
+    }
+
+    .profile-item {
+        display: flex;
+        column-gap: 10px;
+    }
+}

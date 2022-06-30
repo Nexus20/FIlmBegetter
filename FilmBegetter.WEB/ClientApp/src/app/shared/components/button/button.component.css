@@ -1,0 +1,70 @@
+:host {
+  display: inline-block;
+}
+
+.button {
+  min-width: 100%;
+  color: #fff;
+  transition: 0.2s ease-in;
+  cursor: pointer;
+  border-radius: 12px;
+  border: 2px solid transparent;
+  font-family: Poppins;
+  font-size: 16px;
+  line-height: 24px;
+}
+.button.iconActive {
+  display: flex;
+  align-items: center;
+}
+.button.iconActive [class^=icon-] {
+  margin-left: -5px;
+  display: flex;
+  margin-right: 5px;
+}
+.button.unHover {
+  opacity: 0.6;
+}
+.button.unHover:hover {
+  opacity: 1;
+  background-color: #7b6ef6;
+}
+.button.defaultType {
+  background-color: #7b6ef6;
+  border-color: #7b6ef6;
+}
+.button.success {
+  background-color: #37d8a7;
+  border-color: #37d8a7;
+}
+.button.danger {
+  background-color: #ff6161;
+  border-color: #ff6161;
+}
+.button.defaultSize {
+  padding: 16px 32px;
+}
+.button.big {
+  padding: 20px 36px;
+  font-family: Poppins;
+  font-size: 20px;
+  line-height: 32px;
+}
+.button.small {
+  padding: 8px 16px;
+  font-family: Poppins;
+  font-size: 14px;
+  line-height: 24px;
+}
+.button.disabled {
+  pointer-events: none;
+  opacity: 0.4;
+}
+.button:hover {
+  background-color: transparent;
+}
+.button.link {
+  display: block;
+}
+
+/*# sourceMappingURL=button.component.css.map */

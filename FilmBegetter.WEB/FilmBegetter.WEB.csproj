@@ -14,12 +14,14 @@
         <PackageReference Include="AutoMapper" Version="11.0.1" />
         <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
         <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.6" />
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.6" />
         <PackageReference Include="Microsoft.AspNetCore.SpaProxy" Version="6.0.5" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.6">
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
         <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.6" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     </ItemGroup>
 
     <ItemGroup>
@@ -27,10 +29,25 @@
         <Content Remove="$(SpaRoot)**" />
         <None Remove="$(SpaRoot)**" />
         <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+        <None Remove="ClientApp\src\assets\MLP-20M\**" />
+        <Content Remove="ClientApp\src\assets\MLP-20M\**" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\FilmBegetter.BLL\FilmBegetter.BLL.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="ClientApp\.angular\cache\angular-webpack\a9021c9e266ff00b503a7a65d3f915fba5290e71" />
+      <Folder Include="ClientApp\.angular\cache\angular-webpack\d43003bda06bb66c4aae30490d53670394d4bc25" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="ClientApp\src\assets\MLP-20M\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="ClientApp\src\assets\MLP-20M\**" />
     </ItemGroup>
 
     <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

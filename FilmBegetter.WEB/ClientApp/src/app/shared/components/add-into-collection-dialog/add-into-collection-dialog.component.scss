@@ -1,0 +1,20 @@
+@import "../../../styles/variables.scss";
+
+.wrapper {
+    position: relative;
+    border: 2px solid $primary-400;
+    border-radius: 10px;
+    color: $gray-100;
+    padding: 50px 80px;
+    background-color: rgba($color: $gray-900, $alpha: 0.8);
+    overflow-y: auto;
+    max-height: 625px;
+
+    .collections-list {
+        display: flex;
+        flex-wrap: wrap;
+
+        &__item {
+        }
+    }
+}

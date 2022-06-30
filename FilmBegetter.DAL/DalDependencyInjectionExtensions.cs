@@ -15,6 +15,7 @@ public static class DalDependencyInjectionExtensions {
         
         services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
         services.AddScoped<IMovieRepository, MovieRepository>();
+        services.AddScoped<IMovieCollectionRepository, MovieCollectionRepository>();
 
         services.AddDbContext<ApplicationDbContext>(options => options
             // .UseLazyLoadingProxies()
@@ -24,6 +25,8 @@ public static class DalDependencyInjectionExtensions {
             .AddSignInManager<SignInManager<User>>()
             .AddRoleManager<RoleManager<Role>>();
 
+        services.AddScoped<DbInitializer>();
+        
         return services;
     }
 }

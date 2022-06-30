@@ -1,7 +1,9 @@
 <ng-container *ngIf="buttonConfig">
     <button
-        *ngIf="!buttonConfig.href"
+        [type]="type"
+        *ngIf="!buttonConfig.href && !image"
         class="button"
+        [disabled]="disabled"
         [ngClass]="{
             defaultType: buttonConfig.type === 'default',
             success: buttonConfig.type === 'success',
@@ -17,11 +19,11 @@
             *ngIf="buttonConfig.icon"
             [ngClass]="'icon-' + buttonConfig.icon"
         ></span>
-        <span> {{ buttonConfig.text }}</span>
+        <span> {{ text || buttonConfig.text }}</span>
     </button>
 
     <a
-        *ngIf="buttonConfig.href"
+        *ngIf="buttonConfig.href && !image"
         [routerLink]="buttonConfig.href"
         class="button link"
         [ngClass]="{
@@ -39,6 +41,25 @@
             *ngIf="buttonConfig.icon"
             [ngClass]="'icon-' + buttonConfig.icon"
         ></span>
-        <span> {{ buttonConfig.text }}</span>
+        <span> {{ text || buttonConfig.text }}</span>
+    </a>
+
+    <a
+        *ngIf="image"
+        [routerLink]="buttonConfig.href"
+        class="button link"
+        [ngClass]="{
+            defaultType: buttonConfig.type === 'default',
+            success: buttonConfig.type === 'success',
+            danger: buttonConfig.type === 'danger',
+            defaultSize: buttonConfig.size === 'default',
+            small: buttonConfig.size === 'small',
+            disabled: buttonConfig.disabled,
+            unHover: buttonConfig.unactive,
+            iconActive: buttonConfig.icon
+        }"
+    >
+        <img class="me-2" [src]="image" />
+        <span> {{ text || buttonConfig.text }}</span>
     </a>
 </ng-container>

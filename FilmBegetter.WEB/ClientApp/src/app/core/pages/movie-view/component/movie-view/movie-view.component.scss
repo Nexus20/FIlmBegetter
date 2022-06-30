@@ -1,0 +1,115 @@
+@import "../../../../../styles/variables.scss";
+app-header {
+  margin-bottom: 40px;
+  display: block;
+}
+
+.movie {
+  &-preview {
+    position: relative;
+    .image-block {
+      overflow: hidden;
+      position: relative;
+      border-radius: 40px;
+      max-height: 480px;
+      &::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background: linear-gradient(180deg, rgba(54, 44, 146, 0.4) 0%, rgba(18, 98, 151, 0.4) 100%);
+      }
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &-name {
+    transform: translateY(-50%);
+    left: 80px;
+    min-width: 500px;
+    position: absolute;
+    display: inline-block;
+    color: $white;
+    padding: 40px;
+    border-radius: 24px;
+    background-color: rgba($color: $card-background, $alpha: 0.8);
+  }
+}
+section {
+  padding: 30px 50px;
+}
+.info {
+  margin-top: 100px;
+  display: flex;
+  justify-content: space-between;
+
+  &-img {
+    margin-right: 60px;
+    flex: 0 0 50%;
+    overflow: hidden;
+    img {
+      border-radius: 24px;
+    }
+  }
+
+  &-description {
+    flex: 0 0 50%;
+  }
+  .description {
+    &-main {
+      h4 {
+        color: $white;
+        margin-bottom: 24px;
+      }
+      p {
+        @include bodyLarge;
+        margin-bottom: 28px;
+      }
+    }
+
+    &-fields {
+      margin-bottom: 28px;
+    }
+  }
+}
+
+.see-later {
+  max-width: 220px;
+}
+
+.comment-block {
+  margin-bottom: 70px;
+  h3 {
+    color: $white;
+    margin-bottom: 40px;
+  }
+  .comment-list {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -12px;
+    width: 100%;
+    justify-content: center;
+    .comment {
+      width: 33%;
+      padding: 0 12px;
+      margin-bottom: 24px;
+    }
+  }
+  .comment-btn {
+    max-width: 170px;
+  }
+  .comment__controls {
+    text-align: right;
+  }
+  .comment-create {
+    max-width: 780px;
+    margin: 0 auto;
+  }
+}

@@ -1,0 +1,34 @@
+<div class="wrapper">
+    <div class="dialog-close" (click)="close()">
+        <span class="icon-close-square"></span>
+    </div>
+
+    <div>
+        <ng-container *ngIf="movieCollections != undefined">
+
+            <ng-container *ngIf="movieCollections == null || !movieCollections.length else hasCollections">
+
+                <div>
+                    It looks like you haven't created any collections yet.
+                </div>
+
+            </ng-container>
+            <ng-template #hasCollections>
+
+                <ul class="collections-list" *ngFor="let collectionCard of movieCollectionCards">
+                    <li class="collection-list__item">
+                        <app-card [movieCardParameters]="collectionCard"></app-card>
+                        <ng-container *ngIf="!checkMovie(collectionCard.info) else movieInCollection">
+                            <app-button [buttonConfig]="addIntoCollectionButtonConfig" (click)="addIntoCollection(collectionCard.info.id)"></app-button>
+                        </ng-container>
+                        <ng-template #movieInCollection>
+                            <app-button [buttonConfig]="removeFromCollectionButtonConfig" (click)="removeFromCollection(collectionCard.info.id)"></app-button>
+                        </ng-template>
+                    </li>
+                </ul>
+
+            </ng-template>
+
+        </ng-container>
+    </div>
+</div>

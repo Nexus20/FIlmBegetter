@@ -1,6 +1,4 @@
-﻿using FilmBegetter.Domain;
-
-namespace FilmBegetter.BLL.Dto;
+﻿namespace FilmBegetter.BLL.Dto;
 
 public class CommentDto : BaseDto {
 
@@ -12,15 +10,9 @@ public class CommentDto : BaseDto {
 
     public MovieDto Movie { get; set; }
 
-    public string? ParentCommentId { get; set; }
-
-    public CommentDto ParentComment { get; set; }
-
-    public ICollection<CommentDto> Answers { get; set; }
-    
-    public CommentType Type { get; set; }
-
     public DateTime CreationDate { get; set; }
 
     public string Body { get; set; }
+
+    public ICollection<CommentRatingDto> CommentRatings { get; set; }
 }

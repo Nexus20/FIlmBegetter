@@ -1,0 +1,180 @@
+<!-- view card for movie (small and default) -->
+<div
+    class="card"
+    *ngIf="
+        (cardParameters && cardParameters.type === 'defaultPreview') ||
+        cardParameters.type === 'smallPreview'
+    "
+    [ngClass]="{
+        defaultSize: cardParameters.type === 'defaultPreview',
+        smallSize: cardParameters.type === 'smallPreview'
+    }"
+>
+    <div rout class="card__content">
+        <a
+            [routerLink]="['/movie', cardParameters.info.id]"
+            routerLinkActive="router-link-active"
+            class="card__preview"
+        >
+            <img
+                class="preview-img"
+                width="266"
+                height="400"
+                appMissingImage
+                [src]="cardParameters.info.imagePath"
+                [alt]="cardParameters.info.title"
+            />
+            <div
+                class="preview__controller"
+                *ngIf="cardParameters.type === 'defaultPreview'"
+            >
+                <div class="preview-rate">
+                    <span class="icon-star"></span>
+                    {{ cardParameters.info.commonRating }}
+                </div>
+                <div class="preview-like">
+                    <span
+                        class="icon-heart"
+                        (click)="openDialog(true, cardParameters.info.id)"
+                    ></span>
+                </div>
+            </div>
+        </a>
+        <ng-container *ngIf="cardParameters.type === 'defaultPreview'">
+            <div class="card__description">
+                {{ cardParameters.info.title | crop: 25 }}
+            </div>
+        </ng-container>
+        <ng-container *ngIf="cardParameters.type === 'smallPreview'">
+            <div class="card__description">
+                {{ cardParameters.info.title | crop: 10 }}
+            </div>
+        </ng-container>
+    </div>
+</div>
+
+<!-- admin view card for movie -->
+<div class="card-admin" *ngIf="cardParameters.type === 'adminView'">
+    <div class="card-admin__content">
+        <div class="card-admin__preview">
+            <img
+                class="preview-img"
+                [src]="cardParameters.info.imagePath"
+                [alt]="cardParameters.info.title"
+                width="90"
+                height="140"
+                appMissingImage
+            />
+        </div>
+
+        <div class="card-admin__info">
+            <h3>
+                {{ cardParameters.info.title }}
+            </h3>
+            <div class="preview-rate">
+                <span class="icon-star"></span>
+                {{ cardParameters.info.commonRating }}
+            </div>
+            <div class="card-admin__description">
+                <p>
+                    {{ cardParameters.info.description | crop: 70 }}
+                </p>
+            </div>
+        </div>
+
+        <div class="card-admin__controls">
+            <div class="controls-content">
+                <a
+                    [routerLink]="[cardParameters.info.id + '/update']"
+                    class="icon-edit"
+                ></a>
+                <a
+                    [routerLink]="[cardParameters.info.id + '/delete']"
+                    class="icon-delete"
+                ></a>
+
+                <!--                <span class="icon-edit"></span>-->
+                <!--                <span class="icon-delete"></span>-->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- statistics card for admin panel -->
+<div class="card-statistics" *ngIf="cardParameters.type === 'statistics'">
+    <div class="statistics__content">
+        <h1>{{ cardParameters.value }}</h1>
+        <h3>{{ cardParameters.title }}</h3>
+    </div>
+</div>
+
+<!-- collection card -->
+<div class="card-collection" *ngIf="cardParameters.type === 'collection'">
+    <div class="collection__content">
+        <h4 class="content-name">
+            {{ cardParameters.info.name }}
+        </h4>
+    </div>
+</div>
+
+<!-- user card profile for admin panel -->
+<div class="card-user" *ngIf="cardParameters.type === 'user'">
+    <div class="user__content">
+        <div class="content-logo">
+            <img
+                src="../../../../../assets/images/user-preview.png"
+                width="65"
+                height="65"
+                alt="name"
+            />
+        </div>
+        <h2 class="content-name">
+            <ng-container
+                *ngIf="
+                    cardParameters.info.name && cardParameters.info.surname;
+                    else unknownUser
+                "
+            >
+                {{ cardParameters.info.name }}
+                {{ cardParameters.info.surname }}
+            </ng-container>
+
+            <ng-template #unknownUser>
+                {{ cardParameters.info.email }}
+            </ng-template>
+        </h2>
+
+        <div
+            class="content-subscription"
+            [class.default]="
+                cardParameters.info.subscription.type === 'Default'
+            "
+        >
+            <span class="icon-user-square"></span>
+            <span> {{ cardParameters.info.subscription.type }}</span>
+        </div>
+
+        <div
+            class="content-deadline"
+            *ngIf="cardParameters.info.subscriptionExpirationDare"
+        >
+            <span class="icon-clock"></span>
+            <span
+                >Until:
+                {{
+                    cardParameters.info.subscriptionExpirationDare
+                        | date: "dd.mm.YY"
+                }}</span
+            >
+        </div>
+
+        <div class="content-controller">
+            <a [routerLink]="[cardParameters.info.id]" class="icon-eye"></a>
+            <span class="icon-delete"></span>
+        </div>
+    </div>
+</div>
+
+<div class="preloader" *ngIf="cardParameters.type === 'preloader'">
+    <img src="../../../../../assets/images/prloaderImg.png" alt="preloader" />
+</div>

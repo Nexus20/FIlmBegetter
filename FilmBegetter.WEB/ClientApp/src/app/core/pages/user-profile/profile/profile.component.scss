@@ -1,0 +1,12 @@
+.wrapper {
+    display: flex;
+    column-gap: 20px;
+
+    .side-menu-wrapper {
+        flex: 0 0 290px;
+    }
+
+    .content {
+        padding-top: 40px;
+    }
+}

@@ -1,0 +1,84 @@
+<div class="wrapper">
+    <app-header></app-header>
+
+    <div class="content-wrapper">
+
+    <aside class="filters">
+
+        <div class="container">
+
+        <form [formGroup]="filterForm" (ngSubmit)="sendForm(filterForm.value)">
+
+            <div class="mb-3">
+                <app-input formControlName="title" class="mb-4" [inputParameters]="titleInputConfig"></app-input>
+            </div>
+            <div class="mb-3">
+                <app-input formControlName="country" class="mb-4" [inputParameters]="countryInputConfig"></app-input>
+            </div>
+            <div class="mb-3">
+                <app-input formControlName="director" class="mb-4" [inputParameters]="directorInputConfig"></app-input>
+            </div>
+            <div class="mb-4">
+                <app-input formControlName="year" class="mb-4" [inputParameters]="yearInputConfig"></app-input>
+            </div>
+
+            <div class="mb-3">
+                <div class="col-md-5 genres-section">
+
+                    <ng-container *ngFor="let genre of genres">
+                        <div>
+                            <label class="custom-checkbox-container" for="{{genre.name}}-check">{{genre.name}}
+                                <input [checked]="hasGenre(genre.id)" type="checkbox" (change)="onGenreSelect($event)" value="{{genre.name}}" id="{{genre.name}}-check">
+                                <span class="custom-checkmark"></span>
+                            </label>
+                        </div>
+
+                    </ng-container>
+
+
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <app-dropdown
+                    formControlName="order"
+                    label="Order by"
+                    [selectContent]="orderBySelectConfig"
+                ></app-dropdown>
+            </div>
+
+            <br>
+            <div class="mb-3 row">
+                <app-button
+                    [text]="'Apply filters'"
+                    class="col-12 mb-4"
+                    type="submit"
+                    [disabled]="!filterForm.valid"
+                    [buttonConfig]="submitButtonConfig"
+                ></app-button>
+            </div>
+        </form>
+
+        </div>
+    </aside>
+
+    <ng-container *ngIf="movies">
+        <section class="movies">
+            <div class="container">
+                <app-collection
+                    [movies]="movies"
+                ></app-collection>
+                <div class="row">
+                    <app-button
+                        [text]="'Load more'"
+                        class="col-12 mb-4"
+                        [buttonConfig]="loadMoreButtonConfig"
+                        (click)="loadMore()"
+                    ></app-button>
+                </div>
+            </div>
+        </section>
+    </ng-container>
+
+    </div>
+</div>

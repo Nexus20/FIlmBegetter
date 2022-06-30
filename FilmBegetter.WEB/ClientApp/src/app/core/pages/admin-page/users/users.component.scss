@@ -1,0 +1,14 @@
+.wrapper {
+    display: flex;
+    column-gap: 20px;
+    height: 100%;
+
+    .side-menu-wrapper {
+        flex: 0 0 288px;
+        height: 100%;
+    }
+
+    .content {
+        flex: 1 1 auto;
+    }
+}

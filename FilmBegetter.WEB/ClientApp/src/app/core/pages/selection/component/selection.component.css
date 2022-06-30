@@ -1,0 +1,160 @@
+@charset "UTF-8";
+section {
+  margin-bottom: 100px;
+}
+
+.wrapper {
+  position: relative;
+}
+.wrapper app-header {
+  margin-bottom: 65px;
+  display: block;
+}
+.wrapper .selection__control {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 70px;
+}
+.wrapper .selection__control .button-find {
+  margin: 0 30px;
+  width: 110px;
+  height: 110px;
+  position: relative;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.wrapper .selection__control .button-find.disabled {
+  opacity: 0.2;
+  pointer-events: none;
+}
+.wrapper .selection__control .button-find:hover .icon-logo {
+  color: #4bb7fd;
+  opacity: 1;
+}
+.wrapper .selection__control .button-find:hover::before {
+  transform: rotate(360deg);
+}
+.wrapper .selection__control .button-find .icon-logo {
+  opacity: 0.4;
+  font-size: 32px;
+  transition: 0.2s;
+}
+.wrapper .selection__control .button-find::before {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  padding: 2px;
+  background: linear-gradient(180deg, #4bb7fd 0%, #483bc3 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  mask-composite: exclude;
+  transition: 0.5s;
+}
+.wrapper .selection__option .choice-content {
+  border-radius: 12px;
+  background-color: rgba(32, 40, 62, 0.8);
+  max-width: 280px;
+  height: 480px;
+  overflow-y: auto;
+  margin-bottom: 24px;
+  position: relative;
+  transition: 0.3s;
+  border: 2px solid transparent;
+  scrollbar-color: #7b6ef6 transparent; /* «цвет ползунка» «цвет полосы скроллбара» */
+  scrollbar-width: none; /* толщина */
+  padding: 10px;
+}
+.wrapper .selection__option .choice-content::-webkit-scrollbar {
+  width: 0px; /* ширина для вертикального скролла */
+}
+.wrapper .selection__option .choice-content:hover {
+  border: 2px solid #7b6ef6;
+}
+.wrapper .selection__option .choice-content app-search-item + app-search-item {
+  margin-top: 20px;
+}
+.wrapper .selection__option .choice-content .preview-logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.wrapper .selection__option .isSelected {
+  border: 2px solid #37d8a7;
+}
+.wrapper .selection__option .isSelected:hover {
+  border: 2px solid #04a574;
+}
+.wrapper .selected-movies {
+  margin-left: 90px;
+  display: block;
+}
+.wrapper .catalog-content {
+  max-width: 350px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.wrapper .catalog-content h3 {
+  color: #fff;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 32px;
+  letter-spacing: -0.015em;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.selected {
+  position: relative;
+  height: 100%;
+}
+.selected::before,
+.selected img {
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  position: absolute;
+}
+.selected::before {
+  z-index: 2;
+  content: "";
+  background-color: rgba(0, 0, 0, 0.8);
+}
+.selected img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.selected h3 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  text-align: center;
+  color: #fff;
+  font-weight: 700;
+}
+
+::ng-deep .mat-tooltip {
+  background-color: #7b6ef6;
+  font-size: 14px;
+  line-height: 16px;
+  padding: 8px;
+}
+
+.transBack::before {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+/*# sourceMappingURL=selection.component.css.map */

@@ -17,8 +17,11 @@ public class MovieSelectionPipelineBuilderDirector  : IPipelineBuilderDirector<M
     public IDataHandler<Movie, MovieFilterModel> Construct() {
 
         _selectionPipelineBuilder.SetFirstChainPart<MovieTitleFilterDataHandler>()
-            // .SetNextChainPart<CarModelSearchDataHandler>()
-            // .SetNextChainPart<CarOrderDataHandler>()
+            .SetNextChainPart<MovieYearFilterDataHandler>()
+            .SetNextChainPart<MovieGenresFilterDataHandler>()
+            .SetNextChainPart<MovieCountryFilterDataHandler>()
+            .SetNextChainPart<MovieDirectorFilterDataHandler>()
+            .SetNextChainPart<MovieOrderDataHandler>()
             .SetNextChainPart<SkipObjectsDataHandler<Movie, MovieFilterModel>>()
             .SetNextChainPart<TakeObjectsDataHandler<Movie, MovieFilterModel>>();
 

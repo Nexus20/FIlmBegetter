@@ -20,4 +20,36 @@
         <app-input [inputParameters]="textareaErrorIconInput"></app-input>
         <app-input [inputParameters]="errorIconInput"></app-input>
     </section>
+    <section>
+        <h2 class="section-title">Cards</h2>
+        <!-- <app-card [movieCardParameters]="movieCardDefault"></app-card>
+        <app-card [movieCardParameters]="movieCardSmall"></app-card>
+        <app-card [movieCardParameters]="movieCardAdmin"></app-card> -->
+    </section>
+    <section>
+        <h2 class="section-title">Statistic card</h2>
+        <app-card [movieCardParameters]="statisticsCard"></app-card>
+    </section>
+    <section>
+        <h2 class="section-title">User card</h2>
+        <!-- <app-card [movieCardParameters]="userCard"></app-card> -->
+    </section>
+    <section>
+        <form [formGroup]="test">
+            <app-dropdown
+                formControlName="dropdown"
+                label="test"
+                [selectContent]="{
+                    title: 'test',
+                    elements: [
+                        { text: '1 option', value: '1' },
+                        { text: '2 option', value: '2' },
+                        { text: '3 option', value: '3' }
+                    ]
+                }"
+                label
+            ></app-dropdown>
+            <button type="submit">send</button>
+        </form>
+    </section>
 </div>

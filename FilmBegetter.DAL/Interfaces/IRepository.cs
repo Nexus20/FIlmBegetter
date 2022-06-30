@@ -7,13 +7,19 @@ public interface IRepository<TEntity> where TEntity : class {
     Task<List<TEntity>> FindAllAsync();
     
     Task CreateAsync(TEntity entity);
+
+    void Create(TEntity entity);
+
+    void Delete(TEntity entity);
     
-    Task Delete(Expression<Func<TEntity, bool>> filter);
+    Task DeleteAsync(Expression<Func<TEntity, bool>> filter);
 
     void Update(TEntity entity);
 
     Task<List<TEntity>> FindAsync(Expression<Func<TEntity, bool>> filter);
 
+    TEntity FirstOrDefault(Expression<Func<TEntity, bool>> filter);
+    
     Task<TEntity> FirstOrDefaultAsync(Expression<Func<TEntity, bool>> filter); 
     
     Task<TEntity> FirstOrDefaultWithDetailsAsync(Expression<Func<TEntity, bool>> filter);

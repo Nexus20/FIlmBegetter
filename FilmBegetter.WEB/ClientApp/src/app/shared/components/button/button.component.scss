@@ -1,71 +1,72 @@
 @import "../../../styles/variables.scss";
 
 :host {
-    display: inline-block;
+  display: inline-block;
 }
 
 .button {
-    color: $white;
-    transition: 0.2s ease-in;
-    cursor: pointer;
-    border-radius: $button-radius;
-    border: 2px solid transparent;
-    @include bodyRegular;
+  min-width: 100%;
+  color: $white;
+  transition: 0.2s ease-in;
+  cursor: pointer;
+  border-radius: $button-radius;
+  border: 2px solid transparent;
+  @include bodyRegular;
 
-    &.iconActive {
-        display: flex;
-        align-items: center;
-        [class^="icon-"] {
-            margin-left: -5px;
-            display: flex;
-            margin-right: 5px;
-        }
+  &.iconActive {
+    display: flex;
+    align-items: center;
+    [class^="icon-"] {
+      margin-left: -5px;
+      display: flex;
+      margin-right: 5px;
     }
+  }
 
-    &.unHover {
-        opacity: 0.6;
-        &:hover {
-            opacity: 1;
-            background-color: $primary-400;
-        }
-    }
-
-    &.defaultType {
-        background-color: $primary-400;
-        border-color: $primary-400;
-    }
-
-    &.success {
-        background-color: $success-400;
-        border-color: $success-400;
-    }
-    &.danger {
-        background-color: $error-400;
-        border-color: $error-400;
-    }
-    &.defaultSize {
-        padding: 16px 32px;
-    }
-
-    &.big {
-        padding: 20px 36px;
-        @include bodyLarge;
-    }
-
-    &.small {
-        padding: 8px 16px;
-        @include bodySmall;
-    }
-    &.disabled {
-        pointer-events: none;
-        opacity: 0.4;
-    }
-
+  &.unHover {
+    opacity: 0.6;
     &:hover {
-        background-color: transparent;
+      opacity: 1;
+      background-color: $primary-400;
     }
+  }
 
-    &.link {
-        display: block;
-    }
+  &.defaultType {
+    background-color: $primary-400;
+    border-color: $primary-400;
+  }
+
+  &.success {
+    background-color: $success-400;
+    border-color: $success-400;
+  }
+  &.danger {
+    background-color: $error-500;
+    border-color: $error-500;
+  }
+  &.defaultSize {
+    padding: 16px 32px;
+  }
+
+  &.big {
+    padding: 20px 36px;
+    @include bodyLarge;
+  }
+
+  &.small {
+    padding: 8px 16px;
+    @include bodySmall;
+  }
+  &.disabled {
+    pointer-events: none;
+    opacity: 0.4;
+  }
+
+  &:hover {
+    background-color: transparent;
+  }
+
+  &.link {
+    display: block;
+  }
 }

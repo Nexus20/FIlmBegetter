@@ -1,0 +1,123 @@
+.container {
+  padding: 0 20px;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 0 50px;
+  }
+}
+@media (min-width: 1024px) {
+  .container {
+    padding: 0;
+    max-width: 870px;
+    margin: 0 auto;
+  }
+}
+@media (min-width: 1280px) {
+  .container {
+    max-width: 1100px;
+  }
+}
+app-header {
+  margin-bottom: 40px;
+  display: block;
+}
+
+:ng-deep .paypal-powered-by {
+  display: none !important;
+}
+:ng-deep .paypal-button.paypal-button-color-gold,
+:ng-deep .paypal-button-row.paypal-button-color-gold .menu-button {
+  background-color: #7b6ef6 !important;
+}
+
+.subscription {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.subscription-card {
+  padding: 40px 0;
+  border-radius: 15px;
+  overflow: hidden;
+  background: url(../../../../../assets/images/elipse.png);
+  background-color: #121829;
+  color: #fff;
+  background-position: top;
+  background-repeat: no-repeat;
+  min-width: 480px;
+}
+.subscription .sub-card-header {
+  text-align: center;
+  padding: 0 40px;
+  margin-bottom: 85px;
+}
+.subscription .sub-card-header h2 {
+  max-width: 330px;
+  border-bottom: 1px solid #fff;
+  font-weight: 600;
+  line-height: 40px;
+  font-size: 32px;
+  text-transform: uppercase;
+  margin: 0 auto 25px auto;
+}
+.subscription .sub-card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 380px;
+  margin: 0 auto;
+}
+.subscription .sub-card-body h2 {
+  margin-bottom: 20px;
+  font-weight: 400;
+}
+.subscription .sub-card-body span {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.subscription .sub-card-body ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 35px 0;
+}
+.subscription .sub-card-body ul li {
+  display: flex;
+  align-items: center;
+  padding: 15px 0;
+}
+.subscription .sub-card-body ul li:not(:last-child) {
+  border-bottom: 1px solid #7b6ef6;
+}
+.subscription .sub-card-body ul li .icon-check {
+  font-size: 35px;
+  color: #05ce91;
+  margin: 0 20px 0 0;
+}
+.subscription .sub-card-price {
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+.subscription .sub-card-price h2 {
+  font-size: 64px;
+  border-bottom: 0;
+  margin: 0;
+}
+.subscription .sub-card-price .price-sub {
+  display: flex;
+  flex-direction: column;
+}
+.subscription .sub-card-price .price-sub h2 {
+  margin-top: 2px;
+  text-align: left;
+  font-size: 32px;
+  margin: 0;
+}
+.subscription .sub-card-price .price-sub span {
+  font-size: 12px;
+  line-height: 12px;
+}
+
+/*# sourceMappingURL=change-subscription.component.css.map */

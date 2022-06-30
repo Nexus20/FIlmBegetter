@@ -1,6 +1,8 @@
 //gray
+$gray-900: #121829;
 $gray-700: #323b54;
 $gray-600: #475069;
+$gray-400: #767e94;
 $gray-300: #8e95a9;
 $gray-200: #a8aebf;
 $gray-100: #c3c8d4;
@@ -41,6 +43,9 @@ $black: #000;
 //border radius
 $button-radius: 12px;
 
+//card styles
+$card-background: #20283e;
+
 // fonts mixin
 
 @mixin bodyLarge {
@@ -59,4 +64,16 @@ $button-radius: 12px;
     font-family: Poppins;
     font-size: 14px;
     line-height: 24px;
+}
+
+@mixin heading5 {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    /* identical to box height, or 120% */
+    letter-spacing: -0.015em;
+    /* Grey/50 */
+    color: #EBEEF5;
 }
