@@ -16,4 +16,6 @@ public interface IUserService {
     Task CheckSubscriptionExpiration(string userId);
     
     Task UpdateUserAsync(UserDto dto);
+    
+    Task UpdateUserRolesAsync(string userId, List<string> roles);
 }

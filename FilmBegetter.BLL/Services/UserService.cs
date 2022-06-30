@@ -143,4 +143,25 @@ public class UserService : IUserService {
 
         await _userManager.UpdateAsync(user);
     }
+
+    public async Task UpdateUserRolesAsync(string userId, List<string> roles) {
+
+        var user = await _userManager.FindByIdAsync(userId);
+
+        var userRoles = await _userManager.GetRolesAsync(user);
+        
+        foreach (var userRole in userRoles.Where(role => role != UserRoles.User)) {
+            
+            if (!roles.Contains(userRole)) {
+                await _userManager.RemoveFromRoleAsync(user, userRole);
+            }
+        }
+
+        foreach (var role in roles.Where(role => role != UserRoles.User)) {
+            
+            if (!await _userManager.IsInRoleAsync(user, role)) {
+                await _userManager.AddToRoleAsync(user, role);
+            }
+        }
+    }
 }
