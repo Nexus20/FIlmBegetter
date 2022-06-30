@@ -5,7 +5,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 
 import { AuthenticationResponseViewModel } from './../../../core/models/authenticationResponseViewModel.interface';
-import { AuthenticationService } from './../../../shared/services/authentication.service';
+import {AuthenticationService, UserAuthenticationInfo} from './../../../shared/services/authentication.service';
 import { DIALOG_DATA } from './../../../shared/components/dialog/dialog-token';
 import { DialogRef } from './../../../shared/components/dialog/dialog-ref';
 import { IButton } from './../../../shared/models/button.interface';
@@ -192,7 +192,14 @@ export class AuthenticationComponent implements OnInit {
       .subscribe({
         next: (res: AuthenticationResponseViewModel) => {
           localStorage.setItem("token", res.token);
-          this.authService.sendAuthStateChangeNotification(res.isAuthSuccessful);
+
+          const obj: UserAuthenticationInfo = {
+              isAuthenticated: res.isAuthSuccessful,
+              isAdmin: this.authService.isUserAdmin(),
+              isModer: this.authService.isUserModerator()
+          };
+
+          this.authService.sendAuthStateChangeNotification(obj);
           this.dialogRef.close();
           this.loginForm.reset();
           this.loginForm.markAllAsTouched();

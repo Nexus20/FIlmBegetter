@@ -10,12 +10,22 @@ import { AuthenticationResponseViewModel } from "../../core/models/authenticatio
 import { RegistrationResponseViewModel } from "../../core/models/registrationResponseViewModel.interface";
 import { RegistrationViewModel } from "../../core/models/registrationViewModel.interface";
 
+export class UserAuthenticationInfo {
+    isAuthenticated: boolean = false;
+    isAdmin: boolean = false;
+    isModer: boolean = false;
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
 
-  private authChangeSub = new BehaviorSubject<boolean>(false)
+  private authChangeSub = new BehaviorSubject<UserAuthenticationInfo>({
+      isAdmin: false,
+      isAuthenticated: false,
+      isModer: false
+  });
 
   public authChanged = this.authChangeSub.asObservable();
 
@@ -35,11 +45,18 @@ export class AuthenticationService {
 
   public logout = () => {
     localStorage.removeItem("token");
-    this.sendAuthStateChangeNotification(false);
+
+    const obj: UserAuthenticationInfo = {
+        isAdmin: false,
+        isModer: false,
+        isAuthenticated: false
+    }
+
+    this.sendAuthStateChangeNotification(obj);
   }
 
-  public sendAuthStateChangeNotification = (isAuthenticated: boolean) => {
-    this.authChangeSub.next(isAuthenticated);
+  public sendAuthStateChangeNotification = (authenticationInfo: UserAuthenticationInfo) => {
+    this.authChangeSub.next(authenticationInfo);
   }
 
   public isUserAuthenticated = (): boolean => {
