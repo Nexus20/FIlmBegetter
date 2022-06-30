@@ -12,17 +12,17 @@ export class HomeComponent implements OnInit {
   public routes: ISideMenu[] = [
     {
       icon: 'video-play',
-      route: 'movies',
+      route: 'admin/movies',
       label: 'Movies'
     },
     {
       icon: 'video-play',
-      route: 'movies/new',
+      route: 'admin/movies/new',
       label: 'New movie'
     },
     {
       icon: 'person',
-      route: 'users',
+      route: 'admin/users',
       label: 'Users'
     },
     {

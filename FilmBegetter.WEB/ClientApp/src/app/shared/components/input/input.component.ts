@@ -35,7 +35,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     this.componentParameters = value;
   }
   @Input() error?: string;
-  @Input() type: 'email' | 'password' | 'text' = 'text';
+  @Input() type: 'email' | 'password' | 'date' | 'file' | 'text' = 'text';
 
   get inputParameters(): IInput {
     return this.componentParameters;
