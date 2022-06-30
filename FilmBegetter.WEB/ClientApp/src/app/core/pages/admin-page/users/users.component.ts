@@ -3,6 +3,8 @@ import { UserService } from "../../../services/user.service";
 import { HttpErrorResponse } from "@angular/common/http";
 import { UserViewModel } from "../../../models/user-view-model.interface";
 import { IUserCard } from "../../../../shared/models/card-user.interface";
+import {ISideMenu} from "../../../../shared/components/side-menu/side-menu.interface";
+import { routes } from '../admin-routes.config';
 
 @Component({
   selector: 'app-users',
@@ -10,6 +12,8 @@ import { IUserCard } from "../../../../shared/models/card-user.interface";
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit {
+
+    public routes: ISideMenu[] = routes;
 
     users!: IUserCard[];
 

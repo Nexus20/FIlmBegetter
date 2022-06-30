@@ -3,6 +3,8 @@ import { ActivatedRoute } from "@angular/router";
 import { UserService } from "../../../services/user.service";
 import { UserViewModel } from "../../../models/user-view-model.interface";
 import { HttpErrorResponse } from "@angular/common/http";
+import {ISideMenu} from "../../../../shared/components/side-menu/side-menu.interface";
+import { routes } from '../admin-routes.config';
 
 @Component({
   selector: 'app-view-user-profile-component',
@@ -10,6 +12,8 @@ import { HttpErrorResponse } from "@angular/common/http";
   styleUrls: ['./view-user-profile-component.component.scss']
 })
 export class ViewUserProfileComponentComponent implements OnInit {
+
+    public routes: ISideMenu[] = routes;
 
     private userId!: string;
 
