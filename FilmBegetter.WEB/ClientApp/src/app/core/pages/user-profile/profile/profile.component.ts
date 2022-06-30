@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from "../../../services/user.service";
 import { UserViewModel } from "../../../models/user-view-model.interface";
 import { HttpErrorResponse } from "@angular/common/http";
+import { routes } from '../user-profile-routes.config';
 
 @Component({
   selector: 'app-profile',
@@ -12,28 +13,7 @@ import { HttpErrorResponse } from "@angular/common/http";
 export class ProfileComponent implements OnInit {
 
   public user!: UserViewModel;
-  public routes: ISideMenu[] = [
-    {
-      icon: 'edit',
-      route: 'edit',
-      label: 'Edit'
-    },
-    {
-      icon: 'logo',
-      route: 'subscriptions',
-      label: 'Subscription'
-    },
-    {
-      icon: 'person',
-      route: 'friends',
-      label: 'Friends'
-    },
-    {
-      icon: 'star',
-      route: 'collections',
-      label: 'Collections'
-    }
-  ];
+  public routes: ISideMenu[] = routes;
 
   constructor(private userService: UserService) { }
 
