@@ -1,1 +1,36 @@
-<p>edit-user-roles-component works!</p>
+<div class="wrapper">
+    <div class="side-menu-wrapper">
+        <app-side-menu [routes]="routes"></app-side-menu>
+    </div>
+    <section class="content">
+        <ng-container *ngIf="user && roles">
+
+            <h3 class="mb-3">Edit roles for user {{user.email}}</h3>
+
+            <form [formGroup]="rolesForm" (ngSubmit)="sendForm(rolesForm.value)">
+
+                <div class="mb-3">Roles:</div>
+                <div class="roles-section mb-3">
+                    <ng-container *ngFor="let role of roles">
+
+                        <div>
+                            <label class="custom-checkbox-container"
+                                   for="{{role.name}}-check">{{role.name}}
+                                <input [checked]="hasRole(role.name)" type="checkbox" (change)="onRoleSelect($event)"
+                                       value="{{role.name}}" id="{{role.name}}-check">
+                                <span class="custom-checkmark"></span>
+                            </label>
+                        </div>
+
+                    </ng-container>
+                </div>
+
+                <div class="mb-3 row">
+                    <app-button [text]="'Apply changes'" class="col-3 mb-4" type="submit" [disabled]="!rolesForm.valid" [buttonConfig]="submitButtonConfig"></app-button>
+                </div>
+
+            </form>
+
+        </ng-container>
+    </section>
+</div>

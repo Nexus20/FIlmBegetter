@@ -52,7 +52,7 @@ export class MovieCreationFormComponent implements OnInit {
     submitButtonConfig: IButton = {
         type: 'success',
         size: 'default',
-        text: 'Apply filters',
+        text: 'Add new movie',
         disabled: false
     };
 

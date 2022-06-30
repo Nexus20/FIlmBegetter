@@ -1,5 +1,4 @@
 ﻿export interface UserToUpdateViewModel {
-
     id: string;
     name: string;
     surname: string;

@@ -4,6 +4,7 @@ import { EnvironmentUrlService } from "../../shared/services/environment-url.ser
 import { UserViewModel } from "../models/user-view-model.interface";
 import { SubscriptionChangeResponse } from "../models/subscription-change-response.interface";
 import {UserToUpdateViewModel} from "../models/user-to-update-view-model.interface";
+import {UpdateUserRolesViewModel} from "../models/update-user-roles-view-model.interface";
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +32,10 @@ export class UserService {
 
     public updateCurrentUser(route: string, body: UserToUpdateViewModel) {
 
+        return this.http.put(this.createCompleteRoute(route, this.envUrl.urlAddress), body);
+    }
+
+    public updateRoles(route: string, body: UpdateUserRolesViewModel) {
         return this.http.put(this.createCompleteRoute(route, this.envUrl.urlAddress), body);
     }
 
