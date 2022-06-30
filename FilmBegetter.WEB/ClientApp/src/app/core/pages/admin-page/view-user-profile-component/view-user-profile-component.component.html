@@ -3,30 +3,43 @@
         <app-side-menu [routes]="routes"></app-side-menu>
     </div>
     <section class="content user-profile">
-        <h3 class="user-profile__title">User #{{user.id}}</h3>
-        <div class="user-profile__data">
-            <div class="user-profile__item profile-item">
-                <div class="profile-item__property">Name:</div>
-                <div class="profile-item__value">{{user.name}}</div>
-            </div>
-            <div class="user-profile__item profile-item">
-                <div class="profile-item__property">Surname:</div>
-                <div class="profile-item__value">{{user.surname}}</div>
-            </div>
-            <div class="user-profile__item profile-item">
-                <div class="profile-item__property">Email:</div>
-                <div class="profile-item__value">{{user.email}}</div>
-            </div>
-            <div class="user-profile__item profile-item">
-                <div class="profile-item__property">Subscription:</div>
-                <div class="profile-item__value">{{user.subscription.type}}</div>
-            </div>
-            <ng-container *ngIf="user.subscription.type.toLowerCase() === 'premium'">
+        <ng-container *ngIf="user">
+            <h3 class="user-profile__title">User #{{user.id}}</h3>
+            <div class="user-profile__data mb-3">
                 <div class="user-profile__item profile-item">
-                    <div class="profile-item__property">Subscription expiration date:</div>
-                    <div class="profile-item__value">{{user.subscriptionExpirationDare}}</div>
+                    <div class="profile-item__property">Name:</div>
+                    <div class="profile-item__value">{{user.name}}</div>
                 </div>
-            </ng-container>
-        </div>
+                <div class="user-profile__item profile-item">
+                    <div class="profile-item__property">Surname:</div>
+                    <div class="profile-item__value">{{user.surname}}</div>
+                </div>
+                <div class="user-profile__item profile-item">
+                    <div class="profile-item__property">Email:</div>
+                    <div class="profile-item__value">{{user.email}}</div>
+                </div>
+                <div class="user-profile__item profile-item">
+                    <div class="profile-item__property">Subscription:</div>
+                    <div class="profile-item__value">{{user.subscription.type}}</div>
+                </div>
+                <ng-container *ngIf="user.subscription.type.toLowerCase() === 'premium'">
+                    <div class="user-profile__item profile-item">
+                        <div class="profile-item__property">Subscription expiration date:</div>
+                        <div class="profile-item__value">{{user.subscriptionExpirationDare}}</div>
+                    </div>
+                </ng-container>
+                <div class="user-profile__item profile-item">
+                    <div class="profile-item__property">Roles:</div>
+                    <div class="profile-item__value">
+                        <ng-container *ngFor="let role of user.roles">
+                            <div>{{role.name}}</div>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+            <div class="user-profile__actions">
+                <app-button [buttonConfig]="editRolesBtnConfig"></app-button>
+            </div>
+        </ng-container>
     </section>
 </div>

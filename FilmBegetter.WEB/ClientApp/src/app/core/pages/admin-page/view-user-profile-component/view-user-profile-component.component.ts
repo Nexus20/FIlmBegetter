@@ -5,6 +5,7 @@ import { UserViewModel } from "../../../models/user-view-model.interface";
 import { HttpErrorResponse } from "@angular/common/http";
 import {ISideMenu} from "../../../../shared/components/side-menu/side-menu.interface";
 import { routes } from '../admin-routes.config';
+import {IButton} from "../../../../shared/models/button.interface";
 
 @Component({
   selector: 'app-view-user-profile-component',
@@ -18,6 +19,14 @@ export class ViewUserProfileComponentComponent implements OnInit {
     private userId!: string;
 
     user!: UserViewModel;
+
+    editRolesBtnConfig: IButton = {
+        disabled: false,
+        size: "default",
+        text: "Edit user roles",
+        type: "default",
+        href: "edit-user-roles"
+    };
 
   constructor(
       private route: ActivatedRoute,

@@ -10,6 +10,7 @@ import {SharedModule} from "../../../shared/shared.module";
 import { MovieUpdatingFormComponent } from './movie-updating-form/movie-updating-form.component';
 import { AdminMenuComponent } from './admin-menu/admin-menu.component';
 import { ViewUserProfileComponentComponent } from './view-user-profile-component/view-user-profile-component.component';
+import { EditUserRolesComponentComponent } from './edit-user-roles-component/edit-user-roles-component.component';
 
 
 
@@ -21,7 +22,8 @@ import { ViewUserProfileComponentComponent } from './view-user-profile-component
     MovieCreationFormComponent,
     MovieUpdatingFormComponent,
     AdminMenuComponent,
-    ViewUserProfileComponentComponent
+    ViewUserProfileComponentComponent,
+    EditUserRolesComponentComponent
   ],
     imports: [
         CommonModule,
