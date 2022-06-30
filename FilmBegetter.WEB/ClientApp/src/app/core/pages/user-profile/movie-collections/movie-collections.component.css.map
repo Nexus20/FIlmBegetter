@@ -1,1 +1,1 @@
-{"version":3,"sourceRoot":"","sources":[],"names":[],"mappings":"","file":"movie-collections.component.css"}
+{"version":3,"sourceRoot":"","sources":["movie-collections.component.scss"],"names":[],"mappings":"AAAA;EAEI;EACA;;AAEA;EACI;;AAGJ;EACI;EACA","file":"movie-collections.component.css"}

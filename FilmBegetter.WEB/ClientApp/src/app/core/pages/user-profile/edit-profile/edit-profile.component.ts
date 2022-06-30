@@ -3,6 +3,8 @@ import { UserViewModel } from "../../../models/user-view-model.interface";
 import { UserService } from "../../../services/user.service";
 import { HttpErrorResponse } from "@angular/common/http";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
+import {ISideMenu} from "../../../../shared/components/side-menu/side-menu.interface";
+import { routes } from '../user-profile-routes.config';
 
 @Component({
   selector: 'app-edit-profile',
@@ -10,6 +12,8 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
   styleUrls: ['./edit-profile.component.css']
 })
 export class EditProfileComponent implements OnInit {
+
+    public routes: ISideMenu[] = routes;
 
     editUserForm: FormGroup;
 

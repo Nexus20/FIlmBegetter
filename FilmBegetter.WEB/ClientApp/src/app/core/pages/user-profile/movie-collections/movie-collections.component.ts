@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { UserViewModel } from "../../../models/user-view-model.interface";
 import { UserService } from "../../../services/user.service";
 import { HttpErrorResponse } from "@angular/common/http";
+import {ISideMenu} from "../../../../shared/components/side-menu/side-menu.interface";
+import { routes } from '../user-profile-routes.config';
 
 @Component({
   selector: 'app-movie-collections',
@@ -9,6 +11,8 @@ import { HttpErrorResponse } from "@angular/common/http";
   styleUrls: ['./movie-collections.component.css']
 })
 export class MovieCollectionsComponent implements OnInit {
+
+    public routes: ISideMenu[] = routes;
 
     user!: UserViewModel;
 

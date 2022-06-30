@@ -7,6 +7,7 @@
 }
 .wrapper .content {
   padding-top: 40px;
+  flex: 1 1 auto;
 }
 .wrapper .content h3 {
   margin-bottom: 20px;

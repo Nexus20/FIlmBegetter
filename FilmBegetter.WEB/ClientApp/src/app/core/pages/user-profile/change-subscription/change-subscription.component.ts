@@ -24,7 +24,7 @@ export class ChangeSubscriptionComponent implements OnInit {
       {
         id: "#myPaypalButtons",
         currency: "USD",
-        value: "100.00",
+        value: "4.99",
         onApprove: (details) => {
           this.userService.updateUserSubscription('api/users/updateSubscription', { userId: this.user.id, type: 'Premium' }).subscribe({
             next: (data: any) => {

@@ -1,11 +1,13 @@
-import {Component, OnInit} from '@angular/core';
-import {UserViewModel} from "../../../models/user-view-model.interface";
-import {HttpErrorResponse} from "@angular/common/http";
-import {UserService} from "../../../services/user.service";
-import {FriendRequestsService} from "../../../services/friend-requests.service";
-import {FriendRequestToCreateViewModel} from "../../../models/friendRequestToCreateViewModel.interface";
-import {IButton} from "../../../../shared/models/button.interface";
-import {FriendRequestToUpdateViewModel} from "../../../models/friendRequestToUpdateViewModel.interface";
+import { Component, OnInit } from '@angular/core';
+import { UserViewModel } from "../../../models/user-view-model.interface";
+import { HttpErrorResponse } from "@angular/common/http";
+import { UserService } from "../../../services/user.service";
+import { FriendRequestsService } from "../../../services/friend-requests.service";
+import { FriendRequestToCreateViewModel } from "../../../models/friendRequestToCreateViewModel.interface";
+import { IButton } from "../../../../shared/models/button.interface";
+import { FriendRequestToUpdateViewModel } from "../../../models/friendRequestToUpdateViewModel.interface";
+import { ISideMenu } from "../../../../shared/components/side-menu/side-menu.interface";
+import { routes } from '../user-profile-routes.config';
 
 @Component({
   selector: 'app-friends',
@@ -13,6 +15,8 @@ import {FriendRequestToUpdateViewModel} from "../../../models/friendRequestToUpd
   styleUrls: ['./friends.component.scss']
 })
 export class FriendsComponent implements OnInit {
+
+    public routes: ISideMenu[] = routes;
 
     addFriendButtonConfig: IButton = {
         disabled: false,

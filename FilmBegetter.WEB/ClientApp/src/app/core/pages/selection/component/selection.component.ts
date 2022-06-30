@@ -13,6 +13,7 @@ import { MovieService } from "../../../services/movie.service";
 import { debounceTime, distinctUntilChanged, forkJoin, of, Subject, switchMap, takeUntil, tap } from 'rxjs';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { SelectedMoviesViewModel } from "../../../models/selectedMoviesViewModel.interface";
+import {MovieOrderType} from "../../../../shared/enums/movieOrderType";
 
 
 @Component({
@@ -126,7 +127,7 @@ export class SelectionComponent implements OnInit, OnDestroy {
   }
 
   public getMovies = () => {
-    this.movieService.getMovies("api/movies", { takeCount: 8 }).pipe(takeUntil(this.destroy$))
+    this.movieService.getMovies("api/movies", { takeCount: 8, orderTypes: [MovieOrderType.RatingDesc] }).pipe(takeUntil(this.destroy$))
       .subscribe({
         next: (data: MovieViewModel[]) => {
           this.movies = data.map(elem => { return { info: elem, type: "defaultPreview" } });
@@ -154,8 +155,8 @@ export class SelectionComponent implements OnInit, OnDestroy {
         let [firstSearchString, secondSearchString] = [values['firstSection'], values['secondSection']];
 
         return forkJoin(
-          [firstSearchString ? this.movieService.getMovies("api/movies", { title: firstSearchString }) : of([]),
-          secondSearchString ? this.movieService.getMovies("api/movies", { title: secondSearchString }) : of([])]
+          [firstSearchString ? this.movieService.getMovies("api/movies", { title: firstSearchString, orderTypes: [MovieOrderType.RatingDesc] }) : of([]),
+          secondSearchString ? this.movieService.getMovies("api/movies", { title: secondSearchString, orderTypes: [MovieOrderType.RatingDesc] }) : of([])]
         )
       })
     )

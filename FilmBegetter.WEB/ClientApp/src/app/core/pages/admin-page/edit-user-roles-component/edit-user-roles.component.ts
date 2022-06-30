@@ -9,7 +9,7 @@ import { RoleViewModel } from "../../../models/role-view-model.interface";
 import { RoleService } from "../../../services/role.service";
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 import { IButton } from "../../../../shared/models/button.interface";
-import {UpdateUserRolesViewModel} from "../../../models/update-user-roles-view-model.interface";
+import { UpdateUserRolesViewModel } from "../../../models/update-user-roles-view-model.interface";
 
 @Component({
     selector: 'app-edit-user-roles-component',

@@ -1,49 +1,64 @@
-<div class="container">
-    <div class="row">
-        <div class="col-12">
-
-            <div *ngIf="showError" class="alert alert-danger" role="alert">
-                {{errorMessage}}
-            </div>
-
-            <form [formGroup]="editUserForm" autocomplete="off" novalidate (ngSubmit)="editUser(editUserForm.value)">
-                <input type="hidden" id="id" formControlName="id" />
-                <div class="mb-3 row">
-                    <label for="name" class="col-form-label col-sm-2">Name:</label>
-                    <div class="col-md-5">
-                        <input type="text" id="name" formControlName="name" class="form-control" />
-                    </div>
-                    <div class="col-md-5">
-                        <em *ngIf="validateControl('name') && hasError('name', 'required')">Name is required</em>
-                    </div>
-                </div>
-                <div class="mb-3 row">
-                    <label for="surname" class="col-form-label col-sm-2">Surname:</label>
-                    <div class="col-md-5">
-                        <input type="text" id="surname" formControlName="surname" class="form-control" />
-                    </div>
-                    <div class="col-md-5">
-                        <em *ngIf="validateControl('surname') && hasError('surname', 'required')">Surname is required</em>
-                    </div>
-                </div>
-                <div class="mb-3 row">
-                    <label for="email" class="col-form-label col-sm-2">Email:</label>
-                    <div class="col-md-5">
-                        <input type="email" id="email" formControlName="email" class="form-control" />
-                    </div>
-                    <div class="col-md-5">
-                        <em *ngIf="validateControl('email') && hasError('email', 'required')">Surname is required</em>
-                    </div>
-                </div>
-                <br>
-                <div class="mb-3 row">
-                    <div class="col-md-1">
-                        <button type="submit" class="btn btn-info" [disabled]="!editUserForm.valid">Accept changes</button>
-                    </div>
-                </div>
-            </form>
-
-
-        </div>
+<div class="wrapper">
+    <div class="side-menu-wrapper">
+        <app-side-menu [routes]="routes"></app-side-menu>
     </div>
+    <section class="content">
+        <ng-container *ngIf="user">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+
+                        <div *ngIf="showError" class="alert alert-danger" role="alert">
+                            {{errorMessage}}
+                        </div>
+
+                        <form [formGroup]="editUserForm" autocomplete="off" novalidate
+                              (ngSubmit)="editUser(editUserForm.value)">
+                            <input type="hidden" id="id" formControlName="id"/>
+                            <div class="mb-3 row">
+                                <label for="name" class="col-form-label col-sm-2">Name:</label>
+                                <div class="col-md-5">
+                                    <input type="text" id="name" formControlName="name" class="form-control"/>
+                                </div>
+                                <div class="col-md-5">
+                                    <em *ngIf="validateControl('name') && hasError('name', 'required')">Name is
+                                        required</em>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label for="surname" class="col-form-label col-sm-2">Surname:</label>
+                                <div class="col-md-5">
+                                    <input type="text" id="surname" formControlName="surname" class="form-control"/>
+                                </div>
+                                <div class="col-md-5">
+                                    <em *ngIf="validateControl('surname') && hasError('surname', 'required')">Surname is
+                                        required</em>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label for="email" class="col-form-label col-sm-2">Email:</label>
+                                <div class="col-md-5">
+                                    <input type="email" id="email" formControlName="email" class="form-control"/>
+                                </div>
+                                <div class="col-md-5">
+                                    <em *ngIf="validateControl('email') && hasError('email', 'required')">Surname is
+                                        required</em>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="mb-3 row">
+                                <div class="col-md-1">
+                                    <button type="submit" class="btn btn-info" [disabled]="!editUserForm.valid">Accept
+                                        changes
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+
+
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+    </section>
 </div>
