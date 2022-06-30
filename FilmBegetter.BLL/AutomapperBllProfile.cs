@@ -30,7 +30,11 @@ public class AutomapperBllProfile : Profile {
         CreateMap<Rating, RatingDto>()
             .ReverseMap();
 
+        CreateMap<Role, RoleDto>().ReverseMap();
+        
         CreateMap<User, UserDto>()
+            .ForMember(d => d.Roles, o => 
+                o.MapFrom(s => s.UserRoles.Select(ur => ur.Role)))
             .ForMember(d => d.SentFriendRequests,
                 o =>
                     o.MapFrom(s => s.SentFriendRequests.Select(r => new FriendRequestDto()
@@ -52,6 +56,7 @@ public class AutomapperBllProfile : Profile {
             .ForMember(d => d.Friends, o => 
                     o.MapFrom(s => s.ReceivedFriendRequests.Where(r => r.Status == FriendRequestStatus.Accepted).Select(r => r.Sender)))
             .ReverseMap()
+            .ForMember(d => d.UserRoles, o => o.Ignore())
             .ForMember(d => d.ReceivedFriendRequests, o => o.Ignore())
             .ForMember(d => d.SentFriendRequests, o => o.Ignore());
 

@@ -59,6 +59,8 @@ public class AutomapperWebProfile : Profile {
         
         CreateMap<CommentRatingDto, CommentRatingViewModel>();
 
+        CreateMap<RoleDto, RoleViewModel>().ReverseMap();
+        
         CreateMap<UserDto, RegistrationViewModel>()
             .ReverseMap()
             .ForMember(d => d.UserName, o => o.MapFrom(s => s.Email))
