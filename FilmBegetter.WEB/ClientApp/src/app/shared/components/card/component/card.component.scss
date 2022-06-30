@@ -111,23 +111,40 @@
 }
 
 .card-collection {
-    @include bodyRegular;
+  @include bodyRegular;
+  border-radius: $button-radius;
+  background-color: $card-background;
+  padding: 25px;
+  max-width: 395px; //temp variables
+  margin: 0 auto;
+  transition: 0.3s;
+  border: 2px solid transparent;
+
+  &:hover {
+    border: 2px solid $primary-400;
+  }
+
+  &__content {
+    display: flex;
+    height: 100%;
+    width: 100%;
+  }
+  .collection__preview {
+    display: flex;
+    flex-wrap: wrap;
     border-radius: $button-radius;
-    background-color: $card-background;
-    padding: 25px;
-    max-width: 395px; //temp variables
-    transition: 0.3s;
-    border: 2px solid transparent;
-
-    &:hover {
-        border: 2px solid $primary-400;
-    }
-
-    &__content {
-        display: flex;
-        height: 100%;
-        width: 100%;
-    }
+    overflow: hidden;
+  }
+  .preview-item {
+    width: 50%;
+  }
+  .preview-rest {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba($color: $black, $alpha: 0.65);
+    color: $white;
+  }
 }
 
 .card-admin {
@@ -135,7 +152,6 @@
   border-radius: $button-radius;
   background-color: $card-background;
   padding: 25px;
-  max-width: 395px; //temp variables
   transition: 0.3s;
   border: 2px solid transparent;
 
@@ -207,7 +223,6 @@
   transition: 0.3s;
   border: 2px solid transparent;
   padding: 40px;
-  width: 280px; //temp style
   border-radius: $button-radius;
   background-color: $gray-900;
   box-shadow: 0px 7px 12px rgba(0, 0, 0, 0.25);

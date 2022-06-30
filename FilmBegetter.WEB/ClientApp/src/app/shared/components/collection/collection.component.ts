@@ -15,6 +15,7 @@ export class CollectionComponent implements OnInit {
   @Input() users!: IUserCard[];
   @Input() showBlock!: boolean;
   @Input() seeAll!: { router: string[], queryParams: object }
+  @Input() isLargeCard: boolean = false;
 
   constructor() { }
 
