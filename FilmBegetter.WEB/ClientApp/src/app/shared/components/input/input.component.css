@@ -40,9 +40,6 @@
   opacity: 0.4;
 }
 
-.input {
-  max-width: 280px;
-}
 .input + [class^=icon-] {
   top: 50%;
   transform: translateY(-50%);

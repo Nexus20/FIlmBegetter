@@ -2,6 +2,9 @@
   display: flex;
   column-gap: 20px;
 }
+.wrapper .side-menu-wrapper {
+  flex: 0 0 290px;
+}
 .wrapper .content {
   padding-top: 40px;
 }

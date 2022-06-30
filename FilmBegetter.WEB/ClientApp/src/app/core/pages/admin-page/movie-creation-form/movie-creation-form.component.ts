@@ -4,10 +4,11 @@ import { GenreViewModel } from "../../../models/genreViewModel.interface";
 import { GenreService } from "../../../services/genre.service";
 import { HttpErrorResponse } from "@angular/common/http";
 import { MovieService } from "../../../services/movie.service";
-import {Router} from "@angular/router";
-import {IInput} from "../../../../shared/models/input.interface";
-import {IButton} from "../../../../shared/models/button.interface";
-import {ISideMenu} from "../../../../shared/components/side-menu/side-menu.interface";
+import { Router } from "@angular/router";
+import { IInput } from "../../../../shared/models/input.interface";
+import { IButton } from "../../../../shared/models/button.interface";
+import { ISideMenu } from "../../../../shared/components/side-menu/side-menu.interface";
+import { routes } from '../admin-routes.config';
 
 @Component({
   selector: 'app-movie-creation-form',
@@ -16,29 +17,7 @@ import {ISideMenu} from "../../../../shared/components/side-menu/side-menu.inter
 })
 export class MovieCreationFormComponent implements OnInit {
 
-    public routes: ISideMenu[] = [
-        {
-            icon: 'video-play',
-            route: 'admin/movies',
-            label: 'Movies'
-        },
-        {
-            icon: 'video-play',
-            route: 'admin/movies/new',
-            label: 'New movie'
-        },
-        {
-            icon: 'person',
-            route: 'admin/users',
-            label: 'Users'
-        },
-        {
-            icon: 'statistics',
-            route: '',
-            label: 'Statistics'
-        },
-
-    ];
+    public routes: ISideMenu[] = routes;
 
     titleInputConfig: IInput = {
         isdisabled: false,
