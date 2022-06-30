@@ -24,6 +24,7 @@ public static class BllDependencyInjectionExtensions {
         services.AddScoped<JwtHandler>();
         
         services.AddScoped<IUserService, UserService>();
+        services.AddScoped<IRoleService, RoleService>();
         
         services.AddScoped<ISignInService, SignInService>();
         
