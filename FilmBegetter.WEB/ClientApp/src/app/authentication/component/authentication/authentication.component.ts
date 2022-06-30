@@ -5,7 +5,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 
 import { AuthenticationResponseViewModel } from './../../../core/models/authenticationResponseViewModel.interface';
-import {AuthenticationService, UserAuthenticationInfo} from './../../../shared/services/authentication.service';
+import { AuthenticationService, UserAuthenticationInfo } from './../../../shared/services/authentication.service';
 import { DIALOG_DATA } from './../../../shared/components/dialog/dialog-token';
 import { DialogRef } from './../../../shared/components/dialog/dialog-ref';
 import { IButton } from './../../../shared/models/button.interface';
@@ -105,20 +105,20 @@ export class AuthenticationComponent implements OnInit {
     }
   }
 
-  get username(): FormControl {
+  get email(): FormControl {
     if (this.isLogginMode) {
-      return this.loginForm.get('username') as FormControl;
+      return this.loginForm.get('email') as FormControl;
     }
     else {
-      return this.registerForm.get('username') as FormControl;
+      return this.registerForm.get('email') as FormControl;
     }
   }
 
   get surname(): FormControl {
     return this.registerForm.get('surname') as FormControl;
   }
-  get email(): FormControl {
-    return this.registerForm.get('email') as FormControl;
+  get username(): FormControl {
+    return this.registerForm.get('username') as FormControl;
   }
   get confirmPassword(): FormControl {
     return this.registerForm.get('confirmPassword') as FormControl;
@@ -167,7 +167,7 @@ export class AuthenticationComponent implements OnInit {
   public initForm(): void {
     if (this.isLogginMode) {
       this.loginForm = this.fb.group({
-        username: this.fb.control("", [Validators.required]),
+        email: this.fb.control("", [Validators.required, Validators.email]),
         password: this.fb.control("", [Validators.required])
       })
     }
@@ -188,15 +188,15 @@ export class AuthenticationComponent implements OnInit {
   private _login(): void {
     const value = this.loginForm.value;
 
-    this.authService.loginUser('api/accounts/login', { email: value.username, password: value.password })
+    this.authService.loginUser('api/accounts/login', { email: value.email, password: value.password })
       .subscribe({
         next: (res: AuthenticationResponseViewModel) => {
           localStorage.setItem("token", res.token);
 
           const obj: UserAuthenticationInfo = {
-              isAuthenticated: res.isAuthSuccessful,
-              isAdmin: this.authService.isUserAdmin(),
-              isModer: this.authService.isUserModerator()
+            isAuthenticated: res.isAuthSuccessful,
+            isAdmin: this.authService.isUserAdmin(),
+            isModer: this.authService.isUserModerator()
           };
 
           this.authService.sendAuthStateChangeNotification(obj);

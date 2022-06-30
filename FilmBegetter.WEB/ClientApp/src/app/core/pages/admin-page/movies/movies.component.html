@@ -3,38 +3,61 @@
         <app-side-menu [routes]="routes"></app-side-menu>
     </div>
     <section class="content">
-
         <h3 class="mb-3">Movies</h3>
 
-        <form class="filter-form" [formGroup]="filterForm" (ngSubmit)="sendForm(filterForm.value)">
+        <form
+            class="filter-form"
+            [formGroup]="filterForm"
+            (ngSubmit)="sendForm(filterForm.value)"
+        >
             <div class="input-section">
                 <div class="mb-3">
-                    <app-input formControlName="title" class="mb-4" [inputParameters]="titleInputConfig"></app-input>
+                    <app-input
+                        formControlName="title"
+                        class="mb-4"
+                        [inputParameters]="titleInputConfig"
+                    ></app-input>
                 </div>
                 <div class="mb-3">
-                    <app-input formControlName="country" class="mb-4" [inputParameters]="countryInputConfig"></app-input>
+                    <app-input
+                        formControlName="country"
+                        class="mb-4"
+                        [inputParameters]="countryInputConfig"
+                    ></app-input>
                 </div>
                 <div class="mb-3">
-                    <app-input formControlName="director" class="mb-4" [inputParameters]="directorInputConfig"></app-input>
+                    <app-input
+                        formControlName="director"
+                        class="mb-4"
+                        [inputParameters]="directorInputConfig"
+                    ></app-input>
                 </div>
                 <div class="mb-4">
-                    <app-input formControlName="year" class="mb-4" [inputParameters]="yearInputConfig"></app-input>
+                    <app-input
+                        formControlName="year"
+                        class="mb-4"
+                        [inputParameters]="yearInputConfig"
+                    ></app-input>
                 </div>
             </div>
             <div class="mb-3">
                 <div class="genres-section">
-
                     <ng-container *ngFor="let genre of genres">
                         <div>
-                            <label class="custom-checkbox-container" for="{{genre.name}}-check">{{genre.name}}
-                                <input type="checkbox" (change)="onGenreSelect($event)" value="{{genre.name}}" id="{{genre.name}}-check">
+                            <label
+                                class="custom-checkbox-container"
+                                for="{{ genre.name }}-check"
+                                >{{ genre.name }}
+                                <input
+                                    type="checkbox"
+                                    (change)="onGenreSelect($event)"
+                                    value="{{ genre.name }}"
+                                    id="{{ genre.name }}-check"
+                                />
                                 <span class="custom-checkmark"></span>
                             </label>
                         </div>
-
                     </ng-container>
-
-
                 </div>
             </div>
 
@@ -46,7 +69,7 @@
                 ></app-dropdown>
             </div>
 
-            <br>
+            <br />
             <div class="mb-3 row">
                 <app-button
                     [text]="'Apply filters'"
@@ -59,7 +82,10 @@
         </form>
 
         <ng-container *ngIf="movies">
-            <app-collection [movies]="movies"></app-collection>
+            <app-collection
+                [isLargeCard]="true"
+                [movies]="movies"
+            ></app-collection>
             <div class="row">
                 <app-button
                     [text]="'Load more'"

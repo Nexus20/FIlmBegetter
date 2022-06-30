@@ -1,14 +1,14 @@
 <header class="header">
     <div class="container">
         <div class="header__inner">
-            <div class="header__logo">
+            <a [routerLink]="['/']" class="header__logo">
                 <img
                     src="../../../../assets/images/logo.png"
                     width="60"
                     height="60"
                     alt="logo"
                 />
-            </div>
+            </a>
             <div class="header__menu">
                 <nav class="header__menu-nav">
                     <ul class="header__list">
@@ -19,10 +19,11 @@
                             <a href="#news"> Contacts</a>
                         </li>
                         <ng-container *ngIf="isUserAuthenticated == true">
-
                             <ng-container *ngIf="isUserAdmin">
                                 <li class="header__list-item">
-                                    <a [routerLink]="['/admin']" class="href">Admin Panel</a>
+                                    <a [routerLink]="['/admin']" class="href"
+                                        >Admin Panel</a
+                                    >
                                 </li>
                             </ng-container>
 

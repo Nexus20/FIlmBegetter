@@ -1,3 +1,7 @@
+import { ICollectionCard } from './../../../models/card-collection.interface';
+import { UserViewModel } from './../../../../core/models/user-view-model.interface';
+import { UserService } from './../../../../core/services/user.service';
+import { MovieCollectionViewModel } from './../../../../core/models/movie-collection-view-model.interface';
 import { FormControl, FormGroup } from '@angular/forms';
 import { IUserCard } from './../../../models/card-user.interface';
 import { IStatistics } from './../../../models/card-statistics.interface copy';
@@ -13,11 +17,19 @@ import { SubscriptionViewModel } from "../../../../core/models/subscription-view
 })
 export class TestComponent implements OnInit {
 
-  constructor() { }
+  constructor(private userService: UserService) { }
+
+  public collectionCard!: ICollectionCard;
 
   public test!: FormGroup;
 
   ngOnInit(): void {
+    this.userService.getCurrentUser("api/users/currentUser").subscribe(user => {
+      this.collectionCard = {
+        type: 'collection',
+        info: user.movieCollections[0]
+      }
+    })
   }
 
   //buttons
@@ -217,4 +229,5 @@ export class TestComponent implements OnInit {
       receivedFriendRequests: []
     }
   }
+
 }

@@ -25,7 +25,11 @@
     </div>
 
     <div class="collection__list">
-        <div class="collection-item" *ngFor="let movie of movies">
+        <div
+            class="collection-item"
+            [class.largeCol]="isLargeCard"
+            *ngFor="let movie of movies"
+        >
             <app-card [movieCardParameters]="movie"></app-card>
         </div>
     </div>

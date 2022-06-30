@@ -79,6 +79,11 @@ a {
       &-item {
         width: 50%;
       }
+      &__list {
+        .largeCol {
+          width: 100%;
+        }
+      }
     }
   }
 }
@@ -88,6 +93,11 @@ a {
     .collection {
       &-item {
         width: 25%;
+      }
+      &__list {
+        .largeCol {
+          width: 50%;
+        }
       }
     }
   }

@@ -23,6 +23,7 @@
                     {{ isLogginMode ? "Sign In" : "Sign Up" }}
                 </h3>
                 <app-input
+                    *ngIf="!isLogginMode"
                     (focusout)="setError(loginConfig, username)"
                     formControlName="username"
                     class="mb-4"
@@ -37,7 +38,6 @@
                 ></app-input>
                 <app-input
                     type="email"
-                    *ngIf="!isLogginMode"
                     (focusout)="setError(emailConfig, email)"
                     formControlName="email"
                     class="mb-4"

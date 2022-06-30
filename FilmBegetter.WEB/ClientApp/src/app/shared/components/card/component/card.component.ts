@@ -3,10 +3,10 @@ import { IUserCard } from './../../../models/card-user.interface';
 import { IStatistics } from './../../../models/card-statistics.interface copy';
 import { IMovieCard } from './../../../models/card.interface';
 import { Component, Input, OnInit } from '@angular/core';
-import {DialogService} from "../../dialog/dialog.service";
-import {AddIntoCollectionDialogComponent} from "../../add-into-collection-dialog/add-into-collection-dialog.component";
-import {MovieCollectionService} from "../../../../core/services/movie-collection.service";
-import {ICollectionCard} from "../../../models/card-collection.interface";
+import { DialogService } from "../../dialog/dialog.service";
+import { AddIntoCollectionDialogComponent } from "../../add-into-collection-dialog/add-into-collection-dialog.component";
+import { MovieCollectionService } from "../../../../core/services/movie-collection.service";
+import { ICollectionCard } from "../../../models/card-collection.interface";
 
 @Component({
   selector: 'app-card',
@@ -26,7 +26,8 @@ export class CardComponent implements OnInit {
   ngOnInit(): void {
   }
 
-    openDialog(state: boolean, movieId: string) {
-        this.dialog.open(AddIntoCollectionDialogComponent, { state, movieId });
-    }
+  openDialog(state: boolean, movieId: string, event: any) {
+    event.preventDefault();
+    this.dialog.open(AddIntoCollectionDialogComponent, { state, movieId });
+  }
 }
