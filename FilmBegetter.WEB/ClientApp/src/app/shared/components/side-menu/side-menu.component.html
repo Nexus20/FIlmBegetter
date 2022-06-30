@@ -13,7 +13,7 @@
         <ul>
             <ng-container *ngFor="let route of routes">
                 <li class="side-menu__item">
-                    <a class="side-menu__link" routerLink="./{{ route.route }}">
+                    <a class="side-menu__link" [routerLink]="['/' + route.route ]">
                         <span class="icon-{{ route.icon }}"></span>
                         {{ route.label }}
                     </a>

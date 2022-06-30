@@ -5,6 +5,9 @@ import { GenreService } from "../../../services/genre.service";
 import { HttpErrorResponse } from "@angular/common/http";
 import { MovieService } from "../../../services/movie.service";
 import {Router} from "@angular/router";
+import {IInput} from "../../../../shared/models/input.interface";
+import {IButton} from "../../../../shared/models/button.interface";
+import {ISideMenu} from "../../../../shared/components/side-menu/side-menu.interface";
 
 @Component({
   selector: 'app-movie-creation-form',
@@ -12,6 +15,67 @@ import {Router} from "@angular/router";
   styleUrls: ['./movie-creation-form.component.scss']
 })
 export class MovieCreationFormComponent implements OnInit {
+
+    public routes: ISideMenu[] = [
+        {
+            icon: 'video-play',
+            route: 'admin/movies',
+            label: 'Movies'
+        },
+        {
+            icon: 'video-play',
+            route: 'admin/movies/new',
+            label: 'New movie'
+        },
+        {
+            icon: 'person',
+            route: 'admin/users',
+            label: 'Users'
+        },
+        {
+            icon: 'statistics',
+            route: '',
+            label: 'Statistics'
+        },
+
+    ];
+
+    titleInputConfig: IInput = {
+        isdisabled: false,
+        placeholder: "Title",
+        type: "default",
+    };
+    descriptionInputConfig: IInput = {
+        isdisabled: false,
+        placeholder: "Description",
+        type: "textarea",
+    };
+    countryInputConfig:  IInput = {
+        isdisabled: false,
+        placeholder: "Country",
+        type: "default",
+    };
+    directorInputConfig:  IInput = {
+        isdisabled: false,
+        placeholder: "Director",
+        type: "default",
+    };
+    publicationDateInputConfig:  IInput = {
+        isdisabled: false,
+        placeholder: "",
+        type: "default",
+    };
+    yearInputConfig:  IInput = {
+        isdisabled: false,
+        placeholder: "Year",
+        type: "default",
+    };
+    submitButtonConfig: IButton = {
+        type: 'success',
+        size: 'default',
+        text: 'Apply filters',
+        disabled: false
+    };
 
     movieForm!: FormGroup;
 
