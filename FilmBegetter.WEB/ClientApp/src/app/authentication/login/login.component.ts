@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { AuthenticationService } from "../../shared/services/authentication.service";
+import {AuthenticationService, UserAuthenticationInfo} from "../../shared/services/authentication.service";
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationViewModel } from "../../core/models/authenticationViewModel.interface";
@@ -51,7 +51,14 @@ export class LoginComponent implements OnInit {
       .subscribe({
         next: (res: AuthenticationResponseViewModel) => {
           localStorage.setItem("token", res.token);
-          this.authService.sendAuthStateChangeNotification(res.isAuthSuccessful);
+
+            const obj: UserAuthenticationInfo = {
+                isAuthenticated: res.isAuthSuccessful,
+                isAdmin: this.authService.isUserAdmin(),
+                isModer: this.authService.isUserModerator()
+            };
+
+          this.authService.sendAuthStateChangeNotification(obj);
           this.router.navigate([this.returnUrl]);
         },
         error: (err: HttpErrorResponse) => {

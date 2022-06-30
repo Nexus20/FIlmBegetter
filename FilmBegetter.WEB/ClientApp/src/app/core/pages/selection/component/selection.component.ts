@@ -141,8 +141,8 @@ export class SelectionComponent implements OnInit, OnDestroy {
     this.getMovies();
     this.initForm();
     this.authService.authChanged.pipe(takeUntil(this.destroy$))
-      .subscribe(isAuth => {
-        this.isAuth = isAuth;
+      .subscribe(authInfo => {
+        this.isAuth = authInfo.isAuthenticated;
       })
 
     this.selectionForm.valueChanges.pipe(

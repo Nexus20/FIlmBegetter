@@ -19,6 +19,13 @@
                             <a href="#news"> Contacts</a>
                         </li>
                         <ng-container *ngIf="isUserAuthenticated == true">
+
+                            <ng-container *ngIf="isUserAdmin">
+                                <li class="header__list-item">
+                                    <a [routerLink]="['/admin']" class="href">Admin Panel</a>
+                                </li>
+                            </ng-container>
+
                             <li class="header__list-item">
                                 <a [routerLink]="['/profile']" class="href"
                                     >Profile</a

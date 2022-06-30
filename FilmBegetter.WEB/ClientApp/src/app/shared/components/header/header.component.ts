@@ -11,6 +11,9 @@ export class HeaderComponent implements OnInit {
 
   public isUserAuthenticated!: boolean;
 
+  public isUserAdmin!: boolean;
+  public isUserModer!: boolean;
+
   burgerIsOpen: boolean = false;
 
   constructor(private authService: AuthenticationService, private router: Router) {
@@ -19,7 +22,9 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.authService.authChanged
       .subscribe(res => {
-        this.isUserAuthenticated = res;
+        this.isUserAuthenticated = res.isAuthenticated;
+        this.isUserModer = res.isModer;
+        this.isUserAdmin = res.isAdmin;
       });
   }
 
