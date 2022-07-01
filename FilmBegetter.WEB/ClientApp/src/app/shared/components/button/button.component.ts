@@ -8,7 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ButtonComponent implements OnInit {
   @Input() buttonConfig!: IButton;
-  @Input() type: 'button' | 'submit' = 'button';
+  @Input() type: 'button' | 'submit' | 'reset' = 'button';
   @Input() disabled: boolean = false;
   @Input() image?: string;
   @Input() text?: string;

@@ -66,6 +66,12 @@ export class CatalogSearchComponent implements OnInit {
         text: 'Apply filters',
         disabled: false
     };
+    resetButtonConfig: IButton = {
+        type: 'default',
+        size: 'default',
+        text: 'Reset filters',
+        disabled: false
+    };
     loadMoreButtonConfig: IButton = {
         type: 'default',
         size: 'default',

@@ -44,6 +44,11 @@ export class MovieCreationFormComponent implements OnInit {
         placeholder: "",
         type: "default",
     };
+    imageInputConfig:  IInput = {
+        isdisabled: false,
+        placeholder: "",
+        type: "default",
+    };
     yearInputConfig:  IInput = {
         isdisabled: false,
         placeholder: "Year",

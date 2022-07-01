@@ -51,10 +51,16 @@
             <div class="mb-3 row">
                 <app-button
                     [text]="'Apply filters'"
-                    class="col-12 mb-4"
+                    class="col-12 mb-3"
                     type="submit"
                     [disabled]="!filterForm.valid"
                     [buttonConfig]="submitButtonConfig"
+                ></app-button>
+                <app-button
+                    [text]="'Reset filters'"
+                    class="col-12 mb-4"
+                    type="reset"
+                    [buttonConfig]="resetButtonConfig"
                 ></app-button>
             </div>
         </form>
