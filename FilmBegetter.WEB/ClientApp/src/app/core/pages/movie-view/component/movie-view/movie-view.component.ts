@@ -103,7 +103,7 @@ export class MovieViewComponent implements OnInit, OnDestroy {
             genres: {
                 label: 'Genres',
                 type: EMovieFieldType.genres,
-                value: ['Adventure', 'Action'] //TODO: create a function for retrive genres
+                value: genres.map(e => e.name)
             }
         }
     }
