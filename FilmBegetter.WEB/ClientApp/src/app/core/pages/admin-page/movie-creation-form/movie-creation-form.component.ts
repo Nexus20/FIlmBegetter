@@ -49,11 +49,6 @@ export class MovieCreationFormComponent implements OnInit {
         placeholder: "",
         type: "default",
     };
-    yearInputConfig:  IInput = {
-        isdisabled: false,
-        placeholder: "Year",
-        type: "default",
-    };
     submitButtonConfig: IButton = {
         type: 'success',
         size: 'default',

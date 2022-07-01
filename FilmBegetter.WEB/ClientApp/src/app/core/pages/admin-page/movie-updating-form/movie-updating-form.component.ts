@@ -6,13 +6,19 @@ import { HttpErrorResponse } from "@angular/common/http";
 import { GenreViewModel } from "../../../models/genreViewModel.interface";
 import { GenreService } from "../../../services/genre.service";
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
+import {IInput} from "../../../../shared/models/input.interface";
+import {IButton} from "../../../../shared/models/button.interface";
+import {ISideMenu} from "../../../../shared/components/side-menu/side-menu.interface";
+import { routes } from '../admin-routes.config';
 
 @Component({
   selector: 'app-movie-updating-form',
   templateUrl: './movie-updating-form.component.html',
-  styleUrls: ['./movie-updating-form.component.css']
+  styleUrls: ['./movie-updating-form.component.scss']
 })
 export class MovieUpdatingFormComponent implements OnInit {
+
+    public routes: ISideMenu[] = routes;
 
     private movieId!: string;
 
@@ -148,4 +154,41 @@ export class MovieUpdatingFormComponent implements OnInit {
     hasGenre(id: string) : boolean {
         return this.movie.genres.some(v => v.id == id);
     }
+
+    titleInputConfig: IInput = {
+        isdisabled: false,
+        placeholder: "Title",
+        type: "default",
+    };
+    descriptionInputConfig: IInput = {
+        isdisabled: false,
+        placeholder: "Description",
+        type: "textarea",
+    };
+    countryInputConfig:  IInput = {
+        isdisabled: false,
+        placeholder: "Country",
+        type: "default",
+    };
+    directorInputConfig:  IInput = {
+        isdisabled: false,
+        placeholder: "Director",
+        type: "default",
+    };
+    publicationDateInputConfig:  IInput = {
+        isdisabled: false,
+        placeholder: "",
+        type: "default",
+    };
+    imageInputConfig:  IInput = {
+        isdisabled: false,
+        placeholder: "",
+        type: "default",
+    };
+    submitButtonConfig: IButton = {
+        type: 'success',
+        size: 'default',
+        text: 'Add new movie',
+        disabled: false
+    };
 }

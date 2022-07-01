@@ -1,3 +1,97 @@
-
+.wrapper {
+  display: flex;
+  column-gap: 20px;
+  height: 100%;
+}
+.wrapper .side-menu-wrapper {
+  height: 100%;
+  flex: 0 0 290px;
+}
+.wrapper .content {
+  padding-top: 40px;
+  /* Customize the label (the container) */
+  /* Create a custom checkbox */
+  /* On mouse-over, add a grey background color */
+  /* When the radio button is checked, add a blue background */
+  /* Create the checkmark/indicator (hidden when not checked) */
+  /* Show the checkmark when checked */
+}
+.wrapper .content h3 {
+  margin-bottom: 20px;
+}
+.wrapper .content section {
+  margin-bottom: 20px;
+}
+.wrapper .content .custom-checkbox-container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  color: #a8aebf;
+  font-family: Poppins, sans-serif;
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: 20px;
+  /* Hide the browser's default checkbox */
+  /* Style the checkmark/indicator */
+}
+.wrapper .content .custom-checkbox-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+.wrapper .content .custom-checkbox-container .custom-checkmark:after {
+  left: 7px;
+  top: 0;
+  width: 8px;
+  height: 14px;
+  border: solid #fff;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.wrapper .content .custom-checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+  outline: none;
+  border: 2px solid #323b54;
+  transition: 0.3s ease;
+  color: #475069;
+}
+.wrapper .content .custom-checkbox-container:hover input ~ .custom-checkmark {
+  border-color: #7b6ef6;
+}
+.wrapper .content .custom-checkbox-container input:checked ~ .custom-checkmark {
+  background-color: #7b6ef6;
+  border: none;
+}
+.wrapper .content .custom-checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+.wrapper .content .custom-checkbox-container input:checked ~ .custom-checkmark:after {
+  display: block;
+}
+.wrapper .content .genres-section {
+  display: flex;
+  flex-wrap: wrap;
+}
+.wrapper .content .genres-section div {
+  flex: 0 0 150px;
+}
 
 /*# sourceMappingURL=movie-updating-form.component.css.map */
