@@ -3,14 +3,20 @@
   border: 2px solid #7b6ef6;
   border-radius: 10px;
   color: #c3c8d4;
-  padding: 50px 80px;
+  padding: 30px 50px;
   background-color: rgba(18, 24, 41, 0.8);
   overflow-y: auto;
   max-height: 625px;
+  width: 700px;
 }
 .wrapper .collections-list {
   display: flex;
   flex-wrap: wrap;
+  row-gap: 10px;
+}
+.wrapper .collections-list .collection-list__item {
+  flex: 1 1 200px;
+  text-align: center;
 }
 
 /*# sourceMappingURL=add-into-collection-dialog.component.css.map */

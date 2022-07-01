@@ -54,7 +54,7 @@ export class AddIntoCollectionDialogComponent implements OnInit {
                 this.movieCollections = data;
 
                 this.movieCollectionCards = data.map(e => <ICollectionCard>{
-                    type: "collection",
+                    type: "collection" as 'collection',
                     info: e
                 })
 

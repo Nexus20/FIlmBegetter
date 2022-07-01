@@ -5,16 +5,20 @@
     border: 2px solid $primary-400;
     border-radius: 10px;
     color: $gray-100;
-    padding: 50px 80px;
+    padding: 30px 50px;
     background-color: rgba($color: $gray-900, $alpha: 0.8);
     overflow-y: auto;
     max-height: 625px;
+    width: 700px;
 
     .collections-list {
         display: flex;
         flex-wrap: wrap;
+        row-gap: 10px;
 
-        &__item {
+        .collection-list__item {
+            flex: 1 1 200px;
+            text-align: center;
         }
     }
 }

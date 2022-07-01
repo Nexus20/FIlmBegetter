@@ -138,6 +138,9 @@
         </div>
         <h4 class="content-name">
             {{ cardParameters.info.name }}
+            <ng-container *ngIf="cardParameters.info.movies.length">
+                <span>(movies: {{cardParameters.info.movies.length}})</span>
+            </ng-container>
         </h4>
     </div>
 </div>

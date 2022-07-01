@@ -15,16 +15,18 @@
             </ng-container>
             <ng-template #hasCollections>
 
-                <ul class="collections-list" *ngFor="let collectionCard of movieCollectionCards">
-                    <li class="collection-list__item">
-                        <app-card [movieCardParameters]="collectionCard"></app-card>
-                        <ng-container *ngIf="!checkMovie(collectionCard.info) else movieInCollection">
-                            <app-button [buttonConfig]="addIntoCollectionButtonConfig" (click)="addIntoCollection(collectionCard.info.id)"></app-button>
-                        </ng-container>
-                        <ng-template #movieInCollection>
-                            <app-button [buttonConfig]="removeFromCollectionButtonConfig" (click)="removeFromCollection(collectionCard.info.id)"></app-button>
-                        </ng-template>
-                    </li>
+                <ul class="collections-list">
+                    <ng-container *ngFor="let collectionCard of movieCollectionCards">
+                        <li class="collection-list__item">
+                            <app-card class="mb-3" [movieCardParameters]="collectionCard"></app-card>
+                            <ng-container *ngIf="!checkMovie(collectionCard.info) else movieInCollection">
+                                <app-button class="collection-btn" [buttonConfig]="addIntoCollectionButtonConfig" (click)="addIntoCollection(collectionCard.info.id)"></app-button>
+                            </ng-container>
+                            <ng-template #movieInCollection>
+                                <app-button class="collection-btn" [buttonConfig]="removeFromCollectionButtonConfig" (click)="removeFromCollection(collectionCard.info.id)"></app-button>
+                            </ng-template>
+                        </li>
+                    </ng-container>
                 </ul>
 
             </ng-template>

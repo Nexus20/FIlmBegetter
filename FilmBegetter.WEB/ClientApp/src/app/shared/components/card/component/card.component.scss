@@ -119,6 +119,7 @@
   margin: 0 auto;
   transition: 0.3s;
   border: 2px solid transparent;
+    width: 200px;
 
   &:hover {
     border: 2px solid $primary-400;

@@ -54,10 +54,11 @@
                     ></app-movie-field>
                 </div>
                 <div class="row">
-                    <app-button
-                        class="see-later"
-                        [buttonConfig]="btnConfig"
-                    ></app-button>
+<!--                    <app-button-->
+<!--                        class="see-later"-->
+<!--                        [buttonConfig]="btnConfig"-->
+<!--                    ></app-button>-->
+                    <app-button class="col-6" (click)="openDialog($event, true)" [buttonConfig]="addToCollectionButtonConfig"></app-button>
                 </div>
             </div>
         </div>
