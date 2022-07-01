@@ -6,13 +6,18 @@
         <ng-container *ngIf="user != undefined">
 
             <div class="container">
-                <div class="row">
-                    <h2 class="col-12">Your collections</h2>
+                <div class="row mb-5">
+                    <h2 class="col-12 mb-3">Your collections</h2>
                     <div class="col-12">
                         <ng-container *ngIf="user.movieCollections.length else noCollectionsTemplate">
-                            <ul *ngFor="let collection of user.movieCollections">
-                                <li>{{collection.name}}</li>
-                            </ul>
+                            <div class="collection-cards">
+                                <ng-container *ngFor="let collectionCard of movieCollectionCards">
+                                    <app-card class="mb-3" [movieCardParameters]="collectionCard"></app-card>
+                                </ng-container>
+                            </div>
+                            <!--                            <ul *ngFor="let collection of user.movieCollections">-->
+                            <!--                                <li>{{collection.name}}</li>-->
+                            <!--                            </ul>-->
                         </ng-container>
                         <ng-template #noCollectionsTemplate>
                             <h4>You have no collections yet =(</h4>
@@ -21,6 +26,7 @@
                 </div>
                 <div class="row">
                     <div class="col-12">
+                        <h3 class="col-12 mb-3">Add new collection</h3>
                         <app-collection-form (getUserProfile)="getUserProfile()"
                                              [authorId]="user.id"></app-collection-form>
                     </div>

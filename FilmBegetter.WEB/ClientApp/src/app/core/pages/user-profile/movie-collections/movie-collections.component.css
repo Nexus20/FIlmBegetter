@@ -9,5 +9,11 @@
   padding-top: 40px;
   flex: 1 1 auto;
 }
+.wrapper .content .collection-cards {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 20px;
+  align-items: center;
+}
 
 /*# sourceMappingURL=movie-collections.component.css.map */

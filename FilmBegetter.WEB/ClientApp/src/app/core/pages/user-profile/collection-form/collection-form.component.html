@@ -6,9 +6,8 @@
     <input type="hidden" id="id" formControlName="id" />
     <input type="hidden" id="authorId" formControlName="authorId" />
     <div class="mb-3 row">
-        <label for="name" class="col-form-label col-sm-2">Name:</label>
         <div class="col-md-5">
-            <input type="text" id="name" formControlName="name" class="form-control" />
+            <app-input formControlName="name" [inputParameters]="nameInputConfig"></app-input>
         </div>
         <div class="col-md-5">
             <em *ngIf="validateControl('name') && hasError('name', 'required')">Name is required</em>
@@ -16,8 +15,14 @@
     </div>
     <br>
     <div class="mb-3 row">
-        <div class="col-md-1">
-            <button type="submit" class="btn btn-info" [disabled]="!collectionForm.valid">Create collection</button>
+        <div class="mb-3 row">
+            <app-button
+                [text]="'Add new collection'"
+                class="col-12 mb-4"
+                type="submit"
+                [disabled]="!collectionForm.valid"
+                [buttonConfig]="submitButtonConfig"
+            ></app-button>
         </div>
     </div>
 </form>

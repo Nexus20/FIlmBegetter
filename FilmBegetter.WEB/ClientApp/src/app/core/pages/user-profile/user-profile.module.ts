@@ -10,6 +10,8 @@ import { MovieCollectionsComponent } from './movie-collections/movie-collections
 import { CollectionFormComponent } from './collection-form/collection-form.component';
 import { FriendsComponent } from './friends/friends.component';
 import { SharedModule } from "../../../shared/shared.module";
+import { CollectionViewComponent } from './collection-view/collection-view.component';
+import {CardModule} from "../../../shared/components/card/card.module";
 
 
 
@@ -20,20 +22,22 @@ import { SharedModule } from "../../../shared/shared.module";
     ChangeSubscriptionComponent,
     MovieCollectionsComponent,
     CollectionFormComponent,
-    FriendsComponent
+    FriendsComponent,
+    CollectionViewComponent
   ],
-  imports: [
-    CommonModule,
-    RouterModule.forChild([
-      { path: '', component: ProfileComponent },
-      { path: 'edit', component: EditProfileComponent },
-      { path: 'subscriptions', component: ChangeSubscriptionComponent },
-      { path: 'collections', component: MovieCollectionsComponent },
-      { path: 'friends', component: FriendsComponent }
-    ]),
-    ReactiveFormsModule,
-    SharedModule,
-    DirectivesModule
-  ]
+    imports: [
+        CommonModule,
+        RouterModule.forChild([
+            {path: '', component: ProfileComponent},
+            {path: 'edit', component: EditProfileComponent},
+            {path: 'subscriptions', component: ChangeSubscriptionComponent},
+            {path: 'collections', component: MovieCollectionsComponent},
+            {path: 'friends', component: FriendsComponent}
+        ]),
+        ReactiveFormsModule,
+        SharedModule,
+        DirectivesModule,
+        CardModule
+    ]
 })
 export class UserProfileModule { }
