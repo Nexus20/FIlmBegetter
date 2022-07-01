@@ -1,27 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from "@angular/router";
-import { MovieViewModel } from "../../../models/movieViewModel.interface";
-import { HttpErrorResponse } from "@angular/common/http";
-import { MovieService } from "../../../services/movie.service";
-import { IMovieCard } from "../../../../shared/models/card.interface";
-import { MovieOrderType } from "../../../../shared/enums/movieOrderType";
-import { GenreService } from "../../../services/genre.service";
-import { GenreViewModel } from "../../../models/genreViewModel.interface";
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
-import { IInput } from "../../../../shared/models/input.interface";
-import { IButton } from "../../../../shared/models/button.interface";
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from "@angular/router";
+import {MovieViewModel} from "../../../models/movieViewModel.interface";
+import {HttpErrorResponse} from "@angular/common/http";
+import {MovieService} from "../../../services/movie.service";
+import {IMovieCard} from "../../../../shared/models/card.interface";
+import {GenreService} from "../../../services/genre.service";
+import {GenreViewModel} from "../../../models/genreViewModel.interface";
+import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {IInput} from "../../../../shared/models/input.interface";
+import {IButton} from "../../../../shared/models/button.interface";
 import {ICustomSelect} from "../../../../shared/models/custom-select.interface";
+import {QueryParams} from "../../../models/query-params";
 
-class QueryParams {
-    takeCount?: number;
-    genres?: Array<string>;
-    year?: number;
-    orderTypes?: Array<MovieOrderType>;
-    pageNumber?: number;
-    country?: string;
-    title?: string;
-    director?: string;
-}
 
 @Component({
   selector: 'app-catalog-search',
@@ -221,5 +211,11 @@ export class CatalogSearchComponent implements OnInit {
                 console.log(err)
             }
         });
+    }
+
+    reset() {
+        this.queryParams = {};
+        this.queryParams.pageNumber = this.currentPage = 1;
+        this.getMovies();
     }
 }

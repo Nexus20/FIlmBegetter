@@ -78,6 +78,13 @@
                     [disabled]="!filterForm.valid"
                     [buttonConfig]="submitButtonConfig"
                 ></app-button>
+                <app-button
+                    [text]="'Reset filters'"
+                    class="col-12 mb-4"
+                    type="reset"
+                    [buttonConfig]="resetButtonConfig"
+                    (click)="reset()"
+                ></app-button>
             </div>
         </form>
 

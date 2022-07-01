@@ -11,6 +11,7 @@ import {GenreService} from "../../../services/genre.service";
 import {IInput} from "../../../../shared/models/input.interface";
 import {IButton} from "../../../../shared/models/button.interface";
 import {ICustomSelect} from "../../../../shared/models/custom-select.interface";
+import {QueryParams} from "../../../models/query-params";
 
 @Component({
     selector: 'app-movies',
@@ -21,6 +22,10 @@ export class MoviesComponent implements OnInit {
 
     public routes: ISideMenu[] = routes;
 
+    queryParams: QueryParams = {};
+
+    currentPage: number = 1;
+
     movies!: IMovieCard[];
 
     genres!: GenreViewModel[];
@@ -29,7 +34,8 @@ export class MoviesComponent implements OnInit {
 
     constructor(private movieService: MovieService,
                 private genreService: GenreService,
-                private formBuilder: FormBuilder) {}
+                private formBuilder: FormBuilder) {
+    }
 
     ngOnInit(): void {
 
@@ -65,7 +71,7 @@ export class MoviesComponent implements OnInit {
     }
 
     private getMovies = () => {
-        this.movieService.getMovies("api/movies").subscribe({
+        this.movieService.getMovies("api/movies", this.queryParams).subscribe({
             next: (data: MovieViewModel[]) => {
                 console.log(data);
 
@@ -88,11 +94,38 @@ export class MoviesComponent implements OnInit {
     }
 
     sendForm(formValue: any) {
-        console.log(formValue);
+        this.currentPage = 1;
+        this.queryParams.pageNumber = this.currentPage;
+        this.queryParams.genres = formValue.genres;
+        this.queryParams.title = formValue.title;
+        this.queryParams.country = formValue.country;
+        this.queryParams.director = formValue.director;
+        this.queryParams.year = Number(formValue.year);
+
+        if (formValue.order != null) {
+            this.queryParams.orderTypes = [Number(formValue.order)];
+        }
+
+        this.getMovies();
     }
 
     loadMore() {
+        this.currentPage++;
+        this.queryParams.pageNumber = this.currentPage;
 
+        this.movieService.getMovies('api/movies', this.queryParams).subscribe({
+            next: (data: MovieViewModel[]) => {
+
+                for (let i = 0; i < data.length; i++) {
+                    this.movies.push({type: 'adminView', info: data[i]});
+                }
+
+                console.log(this.movies);
+            },
+            error: (err: HttpErrorResponse) => {
+                console.log(err)
+            }
+        });
     }
 
     onGenreSelect(event: any) {
@@ -120,17 +153,17 @@ export class MoviesComponent implements OnInit {
         placeholder: "Title",
         type: "default",
     };
-    countryInputConfig:  IInput = {
+    countryInputConfig: IInput = {
         isdisabled: false,
         placeholder: "Country",
         type: "default",
     };
-    directorInputConfig:  IInput = {
+    directorInputConfig: IInput = {
         isdisabled: false,
         placeholder: "Director",
         type: "default",
     };
-    yearInputConfig:  IInput = {
+    yearInputConfig: IInput = {
         isdisabled: false,
         placeholder: "Year",
         type: "default",
@@ -139,6 +172,12 @@ export class MoviesComponent implements OnInit {
         type: 'success',
         size: 'default',
         text: 'Apply filters',
+        disabled: false
+    };
+    resetButtonConfig: IButton = {
+        type: 'default',
+        size: 'default',
+        text: 'Reset filters',
         disabled: false
     };
     loadMoreButtonConfig: IButton = {
@@ -150,8 +189,14 @@ export class MoviesComponent implements OnInit {
     orderBySelectConfig: ICustomSelect = {
         title: 'Order by',
         elements: [
-            { text: 'Rating: worst first', value: "0" },
-            { text: 'Rating: best first', value: "1" },
+            {text: 'Rating: worst first', value: "0"},
+            {text: 'Rating: best first', value: "1"},
         ]
+    }
+
+    reset() {
+        this.queryParams = {};
+        this.queryParams.pageNumber = this.currentPage = 1;
+        this.getMovies();
     }
 }
