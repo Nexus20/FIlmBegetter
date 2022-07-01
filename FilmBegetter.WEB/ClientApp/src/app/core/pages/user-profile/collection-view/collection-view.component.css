@@ -1,0 +1,15 @@
+.wrapper {
+  display: flex;
+  column-gap: 20px;
+  height: 100%;
+}
+.wrapper .side-menu-wrapper {
+  height: 100%;
+  flex: 0 0 290px;
+}
+.wrapper .content {
+  padding-top: 40px;
+  flex: 1 1 auto;
+}
+
+/*# sourceMappingURL=collection-view.component.css.map */

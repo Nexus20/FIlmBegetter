@@ -23,6 +23,10 @@ export class MovieCollectionService {
         return this.http.get<MovieCollectionViewModel[]>(this.createCompleteRoute(route, this.envUrl.urlAddress));
     }
 
+    public getCollection(route: string) {
+        return this.http.get<MovieCollectionViewModel>(this.createCompleteRoute(route, this.envUrl.urlAddress));
+    }
+
     public addMovie = (route: string, body: MovieMovieCollectionViewModel) => {
         return this.http.post(this.createCompleteRoute(route, this.envUrl.urlAddress), body);
     }
@@ -34,6 +38,4 @@ export class MovieCollectionService {
     private createCompleteRoute = (route: string, envAddress: string) => {
         return `${envAddress}/${route}`;
     }
-
-
 }

@@ -12,7 +12,14 @@
                         <ng-container *ngIf="user.movieCollections.length else noCollectionsTemplate">
                             <div class="collection-cards">
                                 <ng-container *ngFor="let collectionCard of movieCollectionCards">
-                                    <app-card class="mb-3" [movieCardParameters]="collectionCard"></app-card>
+                                    <ng-container *ngIf="collectionCard.info.movies.length else noMoviesCollectionTemplate">
+                                        <a class="collection-link" [routerLink]="[collectionCard.info.id]">
+                                            <app-card class="mb-3" [movieCardParameters]="collectionCard"></app-card>
+                                        </a>
+                                    </ng-container>
+                                    <ng-template #noMoviesCollectionTemplate>
+                                        <app-card class="mb-3" [movieCardParameters]="collectionCard"></app-card>
+                                    </ng-template>
                                 </ng-container>
                             </div>
                             <!--                            <ul *ngFor="let collection of user.movieCollections">-->

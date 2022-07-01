@@ -48,7 +48,15 @@ public class MovieCollectionService : IMovieCollectionService {
 
         await _unitOfWork.SaveChangesAsync();
     }
-    
+
+    public async Task<MovieCollectionDto> GetCollectionByIdAsync(string id) {
+
+        var source = await _unitOfWork.GetRepository<IMovieCollectionRepository, MovieCollection>()
+            .FirstOrDefaultWithDetailsAsync(mc => mc.Id == id);
+
+        return _mapper.Map<MovieCollection, MovieCollectionDto>(source);
+    }
+
     public async Task AddMovieAsync(string collectionId, string movieId) {
 
         var movieMovieCollection = await _unitOfWork.GetRepository<IRepository<MovieMovieCollection>, MovieMovieCollection>()

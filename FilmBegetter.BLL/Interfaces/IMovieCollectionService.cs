@@ -11,4 +11,6 @@ public interface IMovieCollectionService {
     Task AddMovieAsync(string collectionId, string movieId);
 
     Task RemoveMovieAsync(string collectionId, string movieId);
+    
+    Task<MovieCollectionDto> GetCollectionByIdAsync(string id);
 }

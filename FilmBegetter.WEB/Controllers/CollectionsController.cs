@@ -35,6 +35,16 @@ public class CollectionsController : ControllerBase {
         return Ok(_mapper.Map<List<MovieCollectionDto>, List<MovieCollectionViewModel>>(source));
     }
 
+    [HttpGet]
+    [Authorize]
+    [Route("{id}")]
+    public async Task<IActionResult> Get(string id) {
+        
+        var source = await _movieCollectionService.GetCollectionByIdAsync(id);
+        
+        return Ok(_mapper.Map<MovieCollectionDto, MovieCollectionViewModel>(source));
+    }
+
     [HttpPost]
     [Authorize]
     [Route("{id}/add-movie")]
