@@ -1,6 +1,6 @@
 <div class="wrapper">
     <div class="side-menu-wrapper">
-        <app-side-menu [routes]="routes"></app-side-menu>
+        <app-side-menu style="position:fixed;" [routes]="routes"></app-side-menu>
     </div>
     <section class="content">
 
@@ -51,9 +51,6 @@
                                     <input type="file" id="image" #file (change)="uploadFile(file.files)"
                                            formControlName="image" class="form-control"/>
                                 </div>
-                                                    <div class="mb-3">
-                                                        <app-input formControlName="publicationDate" class="mb-4" #file (change)="uploadFile(file.files)" [type]="'file'" [inputParameters]="imageInputConfig"></app-input>
-                                                    </div>
                             </div>
 
                             <div class="mb-3">

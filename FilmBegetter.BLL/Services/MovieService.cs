@@ -29,12 +29,14 @@ public class MovieService : IMovieService {
         var movie = _mapper.Map<MovieDto, Movie>(dto);
 
         await _unitOfWork.GetRepository<IRepository<Movie>, Movie>().CreateAsync(movie);
-
-
+        
         foreach (var genreDto in dto.Genres) {
+            
+            var genre = await _unitOfWork.GetRepository<IRepository<Genre>, Genre>()
+                .FirstOrDefaultAsync(g => g.Name == genreDto.Name);
 
             var movieGenre = new MovieGenre() {
-                GenreId = genreDto.Id,
+                GenreId = genre.Id,
                 MovieId = movie.Id
             };
 
@@ -56,8 +58,11 @@ public class MovieService : IMovieService {
         
         foreach (var genreDto in dto.Genres) {
 
+            var genre = await _unitOfWork.GetRepository<IRepository<Genre>, Genre>()
+                .FirstOrDefaultAsync(g => g.Name == genreDto.Name);
+            
             var movieGenre = new MovieGenre() {
-                GenreId = genreDto.Id,
+                GenreId = genre.Id,
                 MovieId = movie.Id
             };
 

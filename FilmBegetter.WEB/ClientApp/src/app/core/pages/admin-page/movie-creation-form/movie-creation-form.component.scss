@@ -1,9 +1,11 @@
 .wrapper {
     display: flex;
     column-gap: 20px;
+    height: 100%;
 
     .side-menu-wrapper {
         flex: 0 0 290px;
+        height: 100%;
     }
 
     .content {

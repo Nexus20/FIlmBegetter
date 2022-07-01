@@ -78,7 +78,7 @@ public class MoviesController : ControllerBase {
                 
                 await UploadImage(image);
             
-                var path = $"/img/movies/{image.FileName}";
+                var path = $"../../../../../assets/images/movies/{image.FileName}";
                 dto.ImagePath = path;
             }
 
@@ -111,8 +111,8 @@ public class MoviesController : ControllerBase {
                 var image = files[0];
                 
                 await UploadImage(image);
-            
-                var path = $"/img/movies/{image.FileName}";
+                
+                var path = $"../../../../../assets/images/movies/{image.FileName}";
                 dto.ImagePath = path;
             }
 
@@ -172,12 +172,14 @@ public class MoviesController : ControllerBase {
     
     private async Task UploadImage(IFormFile file) {
         
-        var directoryPath = Path.Combine(_appEnvironment.WebRootPath, "img", "movies");
+        // var directoryPath = Path.Combine(_appEnvironment.WebRootPath, "img", "movies");
 
-        if (!Directory.Exists(directoryPath)) {
-            var dirInfo = new DirectoryInfo(directoryPath);
-            dirInfo.Create();
-        }
+        var directoryPath = Path.Combine("ClientApp", "src", "assets", "images", "movies");
+        
+        // if (!Directory.Exists(directoryPath)) {
+        //     var dirInfo = new DirectoryInfo(directoryPath);
+        //     dirInfo.Create();
+        // }
 
         await using var fileStream = new FileStream(Path.Combine(directoryPath, file.FileName),
             FileMode.Create);

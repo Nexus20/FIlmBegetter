@@ -96,6 +96,8 @@ export class MovieUpdatingFormComponent implements OnInit {
 
     sendForm() {
 
+        console.log(this.movieForm.get('genres')?.value);
+
         const formData = new FormData();
         formData.append('id', this.movieForm.get('id')?.value);
         formData.append('title', this.movieForm.get('title')?.value);

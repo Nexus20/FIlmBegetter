@@ -1,6 +1,6 @@
 <div class="wrapper">
     <div class="side-menu-wrapper">
-        <app-side-menu [routes]="routes"></app-side-menu>
+        <app-side-menu style="position:fixed;" [routes]="routes"></app-side-menu>
     </div>
     <section class="content">
 
@@ -40,6 +40,9 @@
                                            [inputParameters]="publicationDateInputConfig"></app-input>
                             </div>
                             <div class="mb-3">
+                                <div class="current-image mb-3">
+                                    <img src="{{movie.imagePath}}" alt="movie-image">
+                                </div>
                                 <label for="image" class="col-form-label col-sm-2">Image:</label>
                                 <div class="col-md-5">
                                     <input type="file" id="image" #file (change)="uploadFile(file.files)"

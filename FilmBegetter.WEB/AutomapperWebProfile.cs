@@ -28,7 +28,7 @@ public class AutomapperWebProfile : Profile {
             .ForMember(d => d.Genres, 
                 o => o.MapFrom(
                     s => s.Genres.Split(',', StringSplitOptions.None).Select(g => new GenreDto() {
-                Id = g
+                        Name = g
             })));
         
         CreateMap<MovieDto, MovieToUpdateViewModel>()
@@ -36,7 +36,7 @@ public class AutomapperWebProfile : Profile {
             .ForMember(d => d.Genres, 
                 o => o.MapFrom(
                     s => s.Genres.Split(',', StringSplitOptions.None).Select(g => new GenreDto() {
-                        Id = g
+                        Name = g
                     })));
 
         CreateMap<GenreDto, GenreViewModel>()

@@ -42,6 +42,9 @@
 
 .input {
   max-width: 280px;
+  -webkit-box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.1) inset;
+  -webkit-transition: background-color 5000s ease-in-out 0s;
+  transition: background-color 5000s ease-in-out 0s;
 }
 .input + [class^=icon-] {
   top: 50%;
